@@ -3,7 +3,7 @@
 [![Issues][issues-shield]][issues-url]
 
 <!-- TABLE OF CONTENTS -->
-# u05-The movie hub
+# u10-business-idea-grupp-6
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
