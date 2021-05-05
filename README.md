@@ -69,12 +69,6 @@ npm install
 
 Distributed under the MIT License. 
 
-## Team Linkedin/GitHub
-<!--Insert team members-->
-*Enzo Bomark* [GitHub](https://github.com/EnzoBomark) - [LinkedIn](https://www.linkedin.com/in/enzo-bomark-9046651b1/)<br>
-*Jamil Bariche* [GitHub](https://github.com/jamil-source) - [LinkedIn](https://www.linkedin.com/in/jamil-bariche-25561b189/)<br>
-*Simon Lindelöf* [GitHub](https://github.com/reelode) - [LinkedIn](https://www.linkedin.com/in/simon-lindel%C3%B6f-522520179/)<br>
-
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/chas-academy/u10-business-idea-grupp-6.svg?style=for-the-badge
 [contributors-url]: https://github.com/chas-academy/u10-business-idea-grupp-6/graphs/contributors
