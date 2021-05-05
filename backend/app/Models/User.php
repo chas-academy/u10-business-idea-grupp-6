@@ -48,6 +48,31 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class)->withTimestamps();
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function games()
+    {
+        return $this->belongsToMany(Game::class);
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
+
+    public function player_types()
+    {
+        return $this->belongsToMany(PlayerType::class);
+    }
+
+    public function langs()
+    {
+        return $this->belongsToMany(Lang::class);
+    }
+
+    public function miscs()
+    {
+        return $this->belongsToMany(Misc::class);
     }
 }
