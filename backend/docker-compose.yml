@@ -22,7 +22,7 @@ services:
             - redis
             - selenium
     mysql:
-        image: 'mysql:8.0'
+        image: mysql:8.0.17
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
