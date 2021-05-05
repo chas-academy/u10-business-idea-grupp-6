@@ -15,6 +15,8 @@ class CreateGenreUserTable extends Migration
     {
         Schema::create('genre_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('genre_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

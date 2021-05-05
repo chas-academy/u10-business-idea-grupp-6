@@ -15,6 +15,8 @@ class CreateMiscUserTable extends Migration
     {
         Schema::create('misc_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('misc_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

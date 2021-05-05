@@ -15,6 +15,7 @@ class CreateMiscsTable extends Migration
     {
         Schema::create('miscs', function (Blueprint $table) {
             $table->id();
+            $table->string('misc');
             $table->timestamps();
         });
     }

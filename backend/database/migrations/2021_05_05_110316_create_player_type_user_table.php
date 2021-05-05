@@ -15,6 +15,8 @@ class CreatePlayerTypeUserTable extends Migration
     {
         Schema::create('player_type_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('player_type_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

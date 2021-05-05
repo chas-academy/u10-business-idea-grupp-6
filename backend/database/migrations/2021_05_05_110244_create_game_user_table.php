@@ -15,6 +15,8 @@ class CreateGameUserTable extends Migration
     {
         Schema::create('game_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('game_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

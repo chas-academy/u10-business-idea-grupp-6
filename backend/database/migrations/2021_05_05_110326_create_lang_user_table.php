@@ -15,6 +15,8 @@ class CreateLangUserTable extends Migration
     {
         Schema::create('lang_user', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('lang_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
