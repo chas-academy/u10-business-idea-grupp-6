@@ -67,7 +67,6 @@ class DatabaseSeeder extends Seeder
 
                 $num = rand(0, 2);
                 if($num) $user->miscs()->attach($num);
-
             }
 
 
