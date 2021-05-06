@@ -86,10 +86,7 @@ class DatabaseSeeder extends Seeder
             }
 
             // $types = $user->player_types->map(function($i){return $i->id;});
-            // this query filters for any number of player types, at least one match
             
-            // It is dependent on an array of ids
-
             // this filters on languages, player_types and miscs
             // User::with('player_types', 'langs', 'miscs')->whereHas('player_types', function ($q) use($types)  { $q->where('player_types.id', $types); })->whereHas('langs', function ($q) use ($langs) { $q->where('langs.id', $langs); })->whereHas('miscs', function ($q) use ($miscs) { $q->where('miscs.id', $miscs); })->get();
 
@@ -102,7 +99,7 @@ class DatabaseSeeder extends Seeder
 
             // to execute a query, you need
             // 1. a user
-            // 2. get the ids of the user's preferences (e.g. look above at $types)
+            // 2. get the ids of the user's preferences as an array(e.g. look above at $types)
             // 3. set up the necessary base queries for exluding on types and langs
             // 4. if misc, exclude the miscs non-matches
             // 5. similar structure for times, (if player has preference, filter for it. otherwise, don't)
