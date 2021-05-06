@@ -35,9 +35,16 @@ class DatabaseSeeder extends Seeder
         //---------------------------------------TESTS
             Genre::create(['genre' => 'action']);
             Genre::create(['genre' => 'mmo']);
+            Genre::create(['genre' => 'fps']);
+            Genre::create(['genre' => 'arpg']);
 
             Game::create(['game' => 'Hitman 2', 'genre_id' => 1]);
-            Game::create(['game' => 'Habbo Hotel', 'genre_id' => 2]);
+            Game::create(['game' => 'World of Warcraft', 'genre_id' => 2]);
+            Game::create(['game' => 'Diablo 3', 'genre_id' => 4]);
+            Game::create(['game' => 'Call of Duty 3', 'genre_id' => 3]);
+            Game::create(['game' => 'Splinter Cell', 'genre_id' => 1]);
+            Game::create(['game' => 'Goat Simulator', 'genre_id' => 2]);
+            Game::create(['game' => 'Path of Exile', 'genre_id' => 4]);
 
             PlayerType::create(['type' => 'casual']);
             PlayerType::create(['type' => 'competetive']);
@@ -52,8 +59,17 @@ class DatabaseSeeder extends Seeder
 
             foreach(User::all() as $user)
             {
-                $user->genres()->attach(rand(1, 2));
-                $user->games()->attach(rand(1, 2));
+                for($i = 0; $i <= rand(0, 2); $i++)
+                {
+                    $num = rand(1,4);
+                    if($user->genres()->where('genre_id', $num)->get()->count() === 0)
+                        $user->genres()->attach($num);
+                    $gameNum = rand(1, 7);
+                    if($user->games()->where('game_id', $gameNum)->get()->count() === 0)
+                        $user->games()->attach($num);
+                }
+                
+                // $user->games()->attach(rand(1, 7));
                 
                 for($i = 0; $i <= rand(0, 2); $i++)
                 {
@@ -69,10 +85,23 @@ class DatabaseSeeder extends Seeder
                 if($num) $user->miscs()->attach($num);
             }
 
+            // $types = $user->player_types->map(function($i){return $i->id;});
+            // this query filters for any number of player types, at least one match
+            // It is dependent on an array of ids
+            // User::with('genres', 'games', 'player_types', 'langs', 'miscs')->whereHas('player_types', function ($q) use($types) { foreach($types as $type) { $q->orWhere('player_types.id', $type); } ; })->get();
+
+            // this is better
+            // User::with('genres', 'games', 'player_types', 'langs', 'miscs')->whereHas('player_types', function ($q) use($types)  { $q->where('player_types.id', $types); })->get();
 
 
+            // this filters on language and player type
+            // User::with('player_types', 'langs')->whereHas('player_types', function ($q) use($types)  { $q->where('player_types.id', $types); })->whereHas('langs', function ($q) use ($langs) { $q->where('langs.id', $langs); })->get(); 
 
 
+            // this filters on languages, player_types and miscs
+            // User::with('player_types', 'langs', 'miscs')->whereHas('player_types', function ($q) use($types)  { $q->where('player_types.id', $types); })->whereHas('langs', function ($q) use ($langs) { $q->where('langs.id', $langs); })->whereHas('miscs', function ($q) use ($miscs) { $q->where('miscs.id', $miscs); })->get();
+
+            
 
         // ----------------------------------------TESTS
     }
