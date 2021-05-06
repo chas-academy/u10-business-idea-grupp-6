@@ -87,21 +87,26 @@ class DatabaseSeeder extends Seeder
 
             // $types = $user->player_types->map(function($i){return $i->id;});
             // this query filters for any number of player types, at least one match
+            
             // It is dependent on an array of ids
-            // User::with('genres', 'games', 'player_types', 'langs', 'miscs')->whereHas('player_types', function ($q) use($types) { foreach($types as $type) { $q->orWhere('player_types.id', $type); } ; })->get();
-
-            // this is better
-            // User::with('genres', 'games', 'player_types', 'langs', 'miscs')->whereHas('player_types', function ($q) use($types)  { $q->where('player_types.id', $types); })->get();
-
-
-            // this filters on language and player type
-            // User::with('player_types', 'langs')->whereHas('player_types', function ($q) use($types)  { $q->where('player_types.id', $types); })->whereHas('langs', function ($q) use ($langs) { $q->where('langs.id', $langs); })->get(); 
-
 
             // this filters on languages, player_types and miscs
             // User::with('player_types', 'langs', 'miscs')->whereHas('player_types', function ($q) use($types)  { $q->where('player_types.id', $types); })->whereHas('langs', function ($q) use ($langs) { $q->where('langs.id', $langs); })->whereHas('miscs', function ($q) use ($miscs) { $q->where('miscs.id', $miscs); })->get();
 
+            // for handling variable existance of preference, like misc, save query in variable before executing, and chain the queries if the relation exists.
+            // more rows of code, but handles the logic
             
+            
+            // this tests a sort function on matches 
+            // $users->sort(function ($a, $b) use ($user) {if($user->count_matches($a, 'games') > $user->count_matches($b, 'games')) {return -1; } else return 1  ;});
+
+            // to execute a query, you need
+            // 1. a user
+            // 2. get the ids of the user's preferences (e.g. look above at $types)
+            // 3. set up the necessary base queries for exluding on types and langs
+            // 4. if misc, exclude the miscs non-matches
+            // 5. similar structure for times, (if player has preference, filter for it. otherwise, don't)
+            // 6. then, finally, do a filter for users that you have interacted with.
 
         // ----------------------------------------TESTS
     }

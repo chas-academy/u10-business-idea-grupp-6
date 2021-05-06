@@ -88,6 +88,6 @@ class User extends Authenticatable
                 return $i->id;
             });
         
-        return count(array_intersect($b, $a));
+        return count(array_intersect($b->toArray(), $a->toArray()));
     }
 }
