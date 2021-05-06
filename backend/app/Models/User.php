@@ -76,4 +76,18 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Misc::class);
     }
+
+    public function count_matches(User $user, $related_table)
+    {
+        $a = $user->{$related_table}->map(function ($i)
+            {
+                return $i->id;
+            });
+        $b = $this->{$related_table}->map(function ($i)
+            {
+                return $i->id;
+            });
+        
+        return count(array_intersect($b, $a));
+    }
 }
