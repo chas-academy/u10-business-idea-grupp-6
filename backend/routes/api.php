@@ -14,18 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function(Request $request) {
-    return $request->user();
-});
-
 require __DIR__ . '/json-api-auth.php';
-
-
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
     Route::get('/user', function() {
         return response([
-            'message' => 'Already confirmed'
+            'message' => 'Confirmed'
         ]);
     });
 });
