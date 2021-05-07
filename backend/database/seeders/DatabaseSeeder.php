@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             // 'remember_token' => Str::random(10)
         ])->roles()->attach(2);
 
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(150)->create();
 
 
         //---------------------------------------TESTS
@@ -111,7 +111,14 @@ class DatabaseSeeder extends Seeder
             // $types = $user->player_types->map(function($i){return $i->id;});
             
             // this filters on languages, player_types and miscs
-            // User::with('player_types', 'langs', 'miscs')->whereHas('player_types', function ($q) use($types)  { $q->where('player_types.id', $types); })->whereHas('langs', function ($q) use ($langs) { $q->where('langs.id', $langs); })->whereHas('miscs', function ($q) use ($miscs) { $q->where('miscs.id', $miscs); })->get();
+            // User::with('player_types', 'langs', 'miscs')
+            // ->whereHas('player_types', function ($q) use($types)  {
+                //  $q->where('player_types.id', $types); 
+            // })->whereHas('langs', function ($q) use ($langs) {
+                //  $q->where('langs.id', $langs); 
+            // })->whereHas('miscs', function ($q) use ($miscs) {
+                //  $q->where('miscs.id', $miscs); })
+                // ->get();
 
             // for handling variable existance of preference, like misc, save query in variable before executing, and chain the queries if the relation exists.
             // more rows of code, but handles the logic
