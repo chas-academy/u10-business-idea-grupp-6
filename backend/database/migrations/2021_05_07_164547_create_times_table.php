@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWeekdayTimesTable extends Migration
+class CreateTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateWeekdayTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('weekday_times', function (Blueprint $table) {
+        Schema::create('times', function (Blueprint $table) {
             $table->id();
-            $table->boolean('available')->default(false);
+            $table->enum('interval', ['weekday', 'weekend']);
             $table->unsignedFloat('from');
             $table->unsignedFloat('to');
             $table->foreignId('user_id')->constrained();
@@ -30,6 +30,6 @@ class CreateWeekdayTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('weekday_times');
+        Schema::dropIfExists('times');
     }
 }

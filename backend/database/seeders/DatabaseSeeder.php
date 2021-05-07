@@ -81,26 +81,26 @@ class DatabaseSeeder extends Seeder
 
                 for($i = 0; $i <= rand(0, 1); $i++)
                 {
-                    $available = rand(0,1) > 0;
-                    if(rand(0,1)>0 && $user->weekday_time()->count() === 0)
+                    $selected = rand(0,1);
+                    if($selected>0 && $user->times()->where('interval', 'weekday')->get()->count() === 0)
                     {
                         
-                        $weekday = \App\Models\WeekdayTime::create([
-                            'available' => $available,
+                        $weekday = \App\Models\Time::create([
+                            'interval' => 'weekday',
                             'from' => rand(0,23),
                             'to' => rand(0,23),
                             'user_id' => $user->id 
                         ]);
-                        $user->weekday_time()->save($weekday);
+                        // $user->weekday_time()->save($weekday);
                     }
-                    else if ($user->weekend_time()->count() === 0){
-                        $weekend = \App\Models\WeekendTime::create([
-                            'available' => $available,
+                    else if ( $selected===0 && $user->times()->where('interval', 'weekend')->get()->count() === 0){
+                        $weekend = \App\Models\Time::create([
+                            'interval' => 'weekend',
                             'from' => rand(0,23),
                             'to' => rand(0,23) ,
                             'user_id' => $user->id
                         ]);
-                        $user->weekday_time()->save($weekend);
+                    //     $user->weekday_time()->save($weekend);
                     }
                 }
 

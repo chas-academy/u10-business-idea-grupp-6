@@ -17,7 +17,7 @@ class MatchController extends Controller
     public function __construct()
     {
         // $this->user = auth()->user();
-        $this->user = User::find(3);
+        $this->user = User::find(10);
 
         $this->setDelimiters([
             'player_types' => $this->user->player_types->map(function($i)
@@ -38,31 +38,36 @@ class MatchController extends Controller
                 return $i->id;
             })]);
         
-        $this->setTimes([
-            'weekday_time' => $this->user->weekday_time,
-            'weekend_time' => $this->user->weekend_time
-        ]);
+        $this->setTimes(['times' => $this->user->times->map(function($i)
+        {
+            return $i->interval;
+        })]);
 
     }
 
     public function match()
-    {
-        
+    {  
+
         $keys = array_keys(array_merge_recursive(
                 $this->getDelimiters(), 
                 $this->getDemands(),
-                $this->getTimes()));
+                $this->getTimes()
+        ));
         
         $query = User::with(
             ...$keys
         );
         
-        if($this->getDemands())
+        
+
+        
+        if(count($this->getDemands()['miscs']))
         {
             foreach($this->getDemands() as $demand)
             {
                 $query->whereHas('miscs', function($q) use($demand)
                 {
+                    dd($demand);
                     $q->where('miscs.id', $demand);
                 });
             }
@@ -71,51 +76,21 @@ class MatchController extends Controller
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
             $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
-            {
+            { 
                 $q->where("$delimiter.id", $idsArray);
             });
         }
 
 
-        $times = $this->getTimes();
-        
+        $times = $this->getTimes()['times'];
     
-        $timeToLimitBy = "";
-
-
-
-        // this logic can go fuck itself
-        if($times['weekday_time'] && $times['weekend_time'])
+        if($times)
         {
-            if(!$times['weekday_time']->available && $times['weekend_time']->available)
+                $query->whereHas('times', function($q) use ($times)
                 {
-                    $timeToLimitBy = 'weekend_time';
-                } 
-            else if($times['weekday_time']->available && !$times['weekend_time']->available)
-                {
-                    $timeToLimitBy = 'weekday_time';
-                }
+                    $q->where('times.interval', $times);
+                });
         }
-
-        if($times['weekday_time'] && $times['weekday_time']->available && !$times['weekend_time'])
-        {
-            $timeToLimitBy = 'weekday_time';
-        }
-
-        if($times['weekend_time'] && $times['weekend_time']->available && !$times['weekday_time'])
-        {
-            $timeToLimitBy = 'weekend_time';
-        }
-        
-
-        if($timeToLimitBy !== "")
-        {
-            $query->whereHas($timeToLimitBy, function($q) use($timeToLimitBy)
-            {
-                $q->where($timeToLimitBy .'.available', 1);
-            });
-        }
-        
 
         $collection = $query->get();
 
