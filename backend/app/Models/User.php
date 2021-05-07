@@ -77,6 +77,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Misc::class);
     }
 
+    public function weekend_time()
+    {
+        return $this->hasOne(WeekendTime::class);
+    }
+
+    public function weekday_time()
+    {
+        return $this->hasOne(WeekdayTime::class);
+    }
+
     public function count_matches(User $user, string $related_table)
     {
         $a = $user->{$related_table}->map(function ($i)

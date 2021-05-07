@@ -69,8 +69,6 @@ class DatabaseSeeder extends Seeder
                         $user->games()->attach($num);
                 }
                 
-                // $user->games()->attach(rand(1, 7));
-                
                 for($i = 0; $i <= rand(0, 2); $i++)
                 {
                     $user->player_types()->attach($i+1);
@@ -79,6 +77,31 @@ class DatabaseSeeder extends Seeder
                 for($i = 0; $i <= rand(0, 2); $i++)
                 {
                     $user->langs()->attach($i+1);
+                }
+
+                for($i = 0; $i <= rand(0, 1); $i++)
+                {
+                    $available = rand(0,1) > 0;
+                    if(rand(0,1)>0 && $user->weekday_time()->count() === 0)
+                    {
+                        
+                        $weekday = \App\Models\WeekdayTime::create([
+                            'available' => $available,
+                            'from' => rand(0,23),
+                            'to' => rand(0,23),
+                            'user_id' => $user->id 
+                        ]);
+                        $user->weekday_time()->save($weekday);
+                    }
+                    else if ($user->weekend_time()->count() === 0){
+                        $weekend = \App\Models\WeekendTime::create([
+                            'available' => $available,
+                            'from' => rand(0,23),
+                            'to' => rand(0,23) ,
+                            'user_id' => $user->id
+                        ]);
+                        $user->weekday_time()->save($weekend);
+                    }
                 }
 
                 $num = rand(0, 2);
@@ -105,6 +128,20 @@ class DatabaseSeeder extends Seeder
             // 5. similar structure for times, (if player has preference, filter for it. otherwise, don't)
             // 6. then, finally, do a filter for users that you have interacted with.
 
+
+
+            /*
+
+                if($user->weekend_time === null && $user->weekday_time !== null)
+                {
+                    $q->whereHas('weekday_time', function ($iq){$iq->where('weekday_time.available', true);})
+                }
+                else if($user->weekday_time !== null && $user->weekend_time === null)
+                {
+                    $q->whereHas('weekend_time', function ($iq){$iq->where('weekend_time.available', true);})
+                }
+
+            */
         // ----------------------------------------TESTS
     }
 }
