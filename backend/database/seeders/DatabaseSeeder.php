@@ -129,9 +129,7 @@ class DatabaseSeeder extends Seeder
             // 6. then, finally, do a filter for users that you have interacted with.
 
 
-
             /*
-
                 if($user->weekend_time === null && $user->weekday_time !== null)
                 {
                     $q->whereHas('weekday_time', function ($iq){$iq->where('weekday_time.available', true);})
@@ -140,7 +138,6 @@ class DatabaseSeeder extends Seeder
                 {
                     $q->whereHas('weekend_time', function ($iq){$iq->where('weekend_time.available', true);})
                 }
-
             */
         // ----------------------------------------TESTS
     }
