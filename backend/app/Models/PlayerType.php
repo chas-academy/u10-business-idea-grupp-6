@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class PlayerType extends Model
 {
-    protected $fillable = [
-        'role'
-    ];
+    use HasFactory;
 
     public function users()
     {

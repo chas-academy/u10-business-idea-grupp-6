@@ -22,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'timezone_offset'
     ];
 
     /**
@@ -43,12 +44,55 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The events that are dispatched as a result of the model's hooks
+     */
     protected $dispatchesEvents = [
         'created' => UserCreated::class
     ];
 
+
+    //------------------------------------------------------
     public function roles()
     {
-        return $this->belongsToMany(Role::class)->withTimestamps();
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function games()
+    {
+        return $this->belongsToMany(Game::class);
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
+
+    public function player_types()
+    {
+        return $this->belongsToMany(PlayerType::class);
+    }
+
+    public function langs()
+    {
+        return $this->belongsToMany(Lang::class);
+    }
+
+    public function miscs()
+    {
+        return $this->belongsToMany(Misc::class);
+    }
+
+    public function times()
+    {
+        return $this->hasMany(Time::class);
+    }
+
+    public function count_matches(User $user, string $related_table): int
+    {
+        $a = $user->{$related_table}->pluck('id')->toArray();
+        $b = $this->{$related_table}->pluck('id')->toArray();
+        
+        return count(array_intersect($b, $a));
     }
 }
