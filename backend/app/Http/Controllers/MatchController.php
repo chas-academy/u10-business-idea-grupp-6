@@ -16,8 +16,8 @@ class MatchController extends Controller
 
     public function __construct()
     {
-        // $this->user = auth()->user();
-        $this->user = User::find(8); //debug
+        $this->user = auth()->user();
+        // $this->user = User::find(8); //debug
 
         $this->setDelimiters([
             'player_types',
