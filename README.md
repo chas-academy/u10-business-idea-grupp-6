@@ -117,7 +117,7 @@ function test () {
 }
 
 ```
-***Notice: use fragments <> instead of <div>-tags after the return.***
+***Notice: use fragments <> instead of div-tags after the return.***
 
 <hr></hr>
 
