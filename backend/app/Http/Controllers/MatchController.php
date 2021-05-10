@@ -18,11 +18,11 @@ class MatchController extends Controller
     {
         $this->user = auth()->user();
         // $this->user = User::find(8); //debug
-
+        
         $this->setDelimiters([
             'player_types',
-             'langs'
-             ]);
+            'langs'
+            ]);
 
         $this->setSortable('games');
 
@@ -34,11 +34,12 @@ class MatchController extends Controller
         $this->setTimes([
             'times' 
         ]);
-
+        
     }
 
     public function match()
     {  
+        if($this->getDelimiters)
         // pick out all related tables needed for filtering
         $keys = array_keys(array_merge_recursive(
                 $this->getDelimiters(), 
@@ -53,21 +54,23 @@ class MatchController extends Controller
         // if there are any demands
         if(count($this->getDemands()['miscs']))
         {
-            foreach($this->getDemands() as $demand)
+            foreach($this->getDemands() as $demand => $idsArray)
             {
-                $query->whereHas('miscs', function($q) use($demand)
-                {
-                    $q->where('miscs.id', $demand);
-                });
+                if($idsArray)
+                    $query->whereHas('miscs', function($q) use($demand)
+                    {
+                        $q->where('miscs.id', $demand);
+                    });
             }
         }
 
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
-            $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
-            { 
-                $q->where("$delimiter.id", $idsArray);
-            });
+            if($idsArray)
+                $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
+                { 
+                    $q->where("$delimiter.id", $idsArray);
+                });
         }
 
         $times = $this->getTimes()['times'];

@@ -14,7 +14,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/sanctum": "^2.10",
-        "laravel/nova": "~3.0"
+        "laravel/nova": "~3.0",
         "laravel/tinker": "^2.6"
     },
     "require-dev": {
