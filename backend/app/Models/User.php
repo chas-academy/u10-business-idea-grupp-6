@@ -92,7 +92,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $a = $user->{$related_table}->pluck('id')->toArray();
         $b = $this->{$related_table}->pluck('id')->toArray();
-        
+
         return count(array_intersect($b, $a));
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(ChatMessage::class);
     }
 }
