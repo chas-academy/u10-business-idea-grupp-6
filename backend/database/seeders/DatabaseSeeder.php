@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            // 'remember_token' => Str::random(10)
         ])->roles()->attach(2);
 
         \App\Models\User::factory(150)->create();
@@ -62,9 +61,12 @@ class DatabaseSeeder extends Seeder
                 for($i = 0; $i <= rand(0, 2); $i++)
                 {
                     $num = rand(1,4);
+
                     if($user->genres()->where('genre_id', $num)->get()->count() === 0)
                         $user->genres()->attach($num);
+
                     $gameNum = rand(1, 7);
+                    
                     if($user->games()->where('game_id', $gameNum)->get()->count() === 0)
                         $user->games()->attach($num);
                 }
@@ -91,7 +93,6 @@ class DatabaseSeeder extends Seeder
                             'to' => rand(0,23),
                             'user_id' => $user->id 
                         ]);
-                        // $user->weekday_time()->save($weekday);
                     }
                     else if ( $selected===0 && $user->times()->where('interval', 'weekend')->get()->count() === 0){
                         $weekend = \App\Models\Time::create([
@@ -100,52 +101,11 @@ class DatabaseSeeder extends Seeder
                             'to' => rand(0,23) ,
                             'user_id' => $user->id
                         ]);
-                    //     $user->weekday_time()->save($weekend);
                     }
                 }
 
                 $num = rand(0, 2);
                 if($num) $user->miscs()->attach($num);
             }
-
-            // $types = $user->player_types->map(function($i){return $i->id;});
-            
-            // this filters on languages, player_types and miscs
-            // User::with('player_types', 'langs', 'miscs')
-            // ->whereHas('player_types', function ($q) use($types)  {
-                //  $q->where('player_types.id', $types); 
-            // })->whereHas('langs', function ($q) use ($langs) {
-                //  $q->where('langs.id', $langs); 
-            // })->whereHas('miscs', function ($q) use ($miscs) {
-                //  $q->where('miscs.id', $miscs); })
-                // ->get();
-
-            // for handling variable existance of preference, like misc, save query in variable before executing, and chain the queries if the relation exists.
-            // more rows of code, but handles the logic
-            
-            
-            // this tests a sort function on matches 
-            // $users->sort(function ($a, $b) use ($user) {if($user->count_matches($a, 'games') > $user->count_matches($b, 'games')) {return -1; } else return 1  ;});
-
-            // to execute a query, you need
-            // 1. a user
-            // 2. get the ids of the user's preferences as an array(e.g. look above at $types)
-            // 3. set up the necessary base queries for exluding on types and langs
-            // 4. if misc, exclude the miscs non-matches
-            // 5. similar structure for times, (if player has preference, filter for it. otherwise, don't)
-            // 6. then, finally, do a filter for users that you have interacted with.
-
-
-            /*
-                if($user->weekend_time === null && $user->weekday_time !== null)
-                {
-                    $q->whereHas('weekday_time', function ($iq){$iq->where('weekday_time.available', true);})
-                }
-                else if($user->weekday_time !== null && $user->weekend_time === null)
-                {
-                    $q->whereHas('weekend_time', function ($iq){$iq->where('weekend_time.available', true);})
-                }
-            */
-        // ----------------------------------------TESTS
     }
 }

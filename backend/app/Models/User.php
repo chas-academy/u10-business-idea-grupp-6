@@ -43,10 +43,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The events that are dispatched as a result of the model's hooks
+     */
     protected $dispatchesEvents = [
         'created' => UserCreated::class
     ];
 
+
+    //------------------------------------------------------
     public function roles()
     {
         return $this->belongsToMany(Role::class);
@@ -82,17 +87,11 @@ class User extends Authenticatable
         return $this->hasMany(Time::class);
     }
 
-    public function count_matches(User $user, string $related_table)
+    public function count_matches(User $user, string $related_table): int
     {
-        $a = $user->{$related_table}->map(function ($i)
-            {
-                return $i->id;
-            });
-        $b = $this->{$related_table}->map(function ($i)
-            {
-                return $i->id;
-            });
+        $a = $user->{$related_table}->pluck('id')->toArray();
+        $b = $this->{$related_table}->pluck('id')->toArray();
         
-        return count(array_intersect($b->toArray(), $a->toArray()));
+        return count(array_intersect($b, $a));
     }
 }
