@@ -16,8 +16,8 @@ class MatchController extends Controller
 
     public function __construct()
     {
-        $this->user = auth()->user();
-        // $this->user = User::find(8); //debug
+        // $this->user = auth()->user();
+        $this->user = User::find(9); //debug
         
         $this->setDelimiters([
             'player_types',
@@ -39,7 +39,6 @@ class MatchController extends Controller
 
     public function match()
     {  
-        if($this->getDelimiters)
         // pick out all related tables needed for filtering
         $keys = array_keys(array_merge_recursive(
                 $this->getDelimiters(), 
@@ -51,18 +50,15 @@ class MatchController extends Controller
             ...$keys
         );
         
-        // if there are any demands
-        if(count($this->getDemands()['miscs']))
+        foreach($this->getDemands() as $demand => $idsArray)
         {
-            foreach($this->getDemands() as $demand => $idsArray)
-            {
-                if($idsArray)
-                    $query->whereHas('miscs', function($q) use($demand)
-                    {
-                        $q->where('miscs.id', $demand);
-                    });
-            }
+            if($idsArray)
+                $query->whereHas('miscs', function($q) use($demand)
+                {
+                    $q->where('miscs.id', $demand);
+                });
         }
+
 
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
@@ -125,7 +121,7 @@ class MatchController extends Controller
     public function setDemands($arrayOfStrings)
     {
         $demands = [];
-
+        
         foreach($arrayOfStrings as $key => $value)
         {
             $demands[$value] = $this->user->{$value}->pluck('id')->toArray();
