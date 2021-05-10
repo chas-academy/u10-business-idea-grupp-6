@@ -1,15 +1,6 @@
 @import 'global.scss';
 
-.grid {
-    @include grid-col($size: minmax(270px, 1fr));
-    @include grid-row($gap: 3rem);
-
-    div {
-        @include center();
-        background: $sec-color;
-        font-size: $font-md;
-        box-shadow: $shadow;
-        border-radius: $rounded-md;
-     }
+h1{
+    @include center();
+    color: $primary-text-color;
 }
-
