@@ -1,9 +1,8 @@
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
-// Public
-import Home from './public/components/home'
+// Components
+import Home from './components/home/'
 
-// Secure
 
 function App() {
   return (

@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+@import 'mixins';
+@import 'variables';
+
+*{}
+
+body {
+    background: $pre-color;
+    color: $pre-text-color;
+    font-family: $font-noto;
+}
+
+ 
