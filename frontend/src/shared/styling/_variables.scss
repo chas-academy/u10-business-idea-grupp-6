@@ -1,28 +1,25 @@
 //COLOR
-$pre-color: #131313;
-$sec-color: #3a3a3a;
-$tri-color: #ffffff;
+$background-color: #191720;
 
-//FONT & TEXT
-$pre-text-color: #fff;
-$sec-text-color: #333;
-$tri-text-color: #000;
+$primary-color: #24212E;
+$secondary-color: #454556;
 
-$font-noto: 'Noto Sans', sans-serif;
+$primary-button-color: #ffffff;
+$secondary-button-color: #24212E;
 
-$font-sm:1rem;
-$font-md:3rem;
-$font-lg:5rem;
-$font-xl:10rem;
+$primary-text-color: #ffffff;
+$secondary-text-color: #191720;
 
-//BORDERS
-$rounded-sm: 0.3rem;
-$rounded-md: 1rem;
-$rounded-lg: 2px;
-$rounded-max: 9999px;
+$rounded-sm: 10px;
+$rounded-md: 17px;
+$rounded-lg: 20px;
 
-//SHADOWS
-$shadow:rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+$font-xs: 12px;
+$font-sm: 14px;
+$font-md: 16px;
+$font-lg: 24px;
+$font-xl: 40px;
 
+$primary-border-color: solid 1px #ffffff1f;
 
-
+$font-roboto: 'Roboto', sans-serif;

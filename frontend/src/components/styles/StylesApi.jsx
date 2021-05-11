@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomeAPI = () => {
+const StylesApi = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const HomeAPI = () => {
     )
 }
 
-export default HomeAPI;
+export default StylesApi;
