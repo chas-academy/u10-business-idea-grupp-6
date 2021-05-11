@@ -4,7 +4,18 @@ import './Home.scss';
 export default function Home() {
     return (
         <>
-          <h1>Home works!</h1>
+            <div className="grid">
+                <div>Vi</div>
+                <div>Älskar</div>
+                <div>Scss</div>
+                <div>,</div>
+                <div></div>
+                <div>Och</div>
+                <div>Grupp</div>
+                <div>6</div>
+                <div>Är</div>
+                <div>Bäst</div>
+            </div>
         </>
     )
 }
