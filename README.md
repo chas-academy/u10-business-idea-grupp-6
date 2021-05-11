@@ -32,7 +32,6 @@
   <li> index.jsx for the js component logic </li>
   <li> PascalCase for naming other (apart from index) files with component name </li>
   <li> Data fetching in separate file from index </li>
-  <li> Components that are shown publicly for users that are not authorized yet should be in the public folder under src/components</li>
   <li> Components that are shown for authorized users should be in the secure folder under src/components </li>
 </ul>
 
