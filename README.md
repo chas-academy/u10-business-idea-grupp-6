@@ -36,6 +36,49 @@
   <li> Components that are shown for authorized users should be in the secure folder under src/components </li>
 </ul>
 
+#### Data fetching in separate file
+Create a fetch.js (or whatever you wanna call it)
+```js
+import axios from 'axios';
+const apiBaseURL = 'www.whatever.com'
+
+export const GET = url => {
+    return axios.get(`${apiBaseURL}/${url}`);
+}
+
+// if need for headers etc.
+
+const headers = 'some headers';
+
+export const POST = (url, data) => {
+    return axios(`${apiBaseURL}/${url}`, {
+        method: 'POST',
+        headers,
+        data,
+    });
+}
+
+//In the react component:
+
+//import the file at the top:
+
+import { GET, POST } from './fetch.js';
+//In component method:
+
+async getData(apiEndpoint) {
+    const { data: Items } = await GET(apiEndpoint);
+    if (Items) {
+      // Set data to state
+      this.setState({ Items });
+    }
+    else {
+      // error
+    }
+}
+
+```
+
+
 ***Note that if you know that a function is going to be re-used throughout the project, try to make it as a separate component.***
 
 ```
