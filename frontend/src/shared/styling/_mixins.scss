@@ -3,3 +3,12 @@
     display: grid;
     place-items: center;
 }
+
+@mixin button() {
+    border-radius: $rounded-md;
+    font-size: $font-sm;
+    width: 100%;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+}

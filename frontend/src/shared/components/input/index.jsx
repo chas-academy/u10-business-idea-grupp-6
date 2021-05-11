@@ -4,7 +4,7 @@ import './Input.scss';
 const Input = ({placeholder}) => {
     return (
         <>
-            <input placeholder={placeholder}/>
+            <input classname="input" placeholder={placeholder}/>
         </>
     )
 }

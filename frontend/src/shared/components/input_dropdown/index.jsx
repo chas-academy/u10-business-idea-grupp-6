@@ -4,7 +4,7 @@ import './InputDropdown.scss';
 const InputDropdown = ({placeholder}) => {
     return (
         <>
-            <input placeholder={placeholder}/>
+            <input classname="input-dropdown" placeholder={placeholder}/>
         </>
     )
 }

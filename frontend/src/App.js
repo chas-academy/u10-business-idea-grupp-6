@@ -3,12 +3,16 @@ import Home from './components/home/'
 import Styles from './components/styles/'
 
 const App = () => {
-  return (
-      <Router>
-            <Route path="/" exact component={Home} />
-            <Route path="/styles" exact component={Styles} />
-      </Router>
-  );
+    return (
+        <>
+            <main>
+                <Router>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/styles" exact component={Styles} />
+                </Router>
+            </main>
+        </>
+    );
 }
 
 export default App;

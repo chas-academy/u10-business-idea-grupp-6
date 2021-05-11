@@ -18,6 +18,8 @@
 /* #endregion TESTS */
 
 body {
+    @include center();
+    
     @include media('<=phone') {
         background-color: $beige;
     }
@@ -33,4 +35,10 @@ body {
     @include media('>desktop', '<=1920px') {
         background-color: $blood;
     }
+}
+
+main {
+    background-color: $color-black;
+    width: 90vw;
+    height: 100vh;
 }

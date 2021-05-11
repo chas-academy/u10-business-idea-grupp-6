@@ -4,7 +4,7 @@ import './InputPassword.scss';
 const InputPassword = ({placeholder}) => {
     return (
         <>
-            <input placeholder={placeholder}/>
+            <input classname="input-password" placeholder={placeholder}/>
         </>
     )
 }
