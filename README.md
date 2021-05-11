@@ -40,7 +40,7 @@ Create a fetch.js (or whatever you wanna call it)
 import axios from 'axios';
 const apiBaseURL = 'www.whatever.com'
 
-export const GET = url => {
+const GET = url => {
     return axios.get(`${apiBaseURL}/${url}`);
 }
 
@@ -48,13 +48,18 @@ export const GET = url => {
 
 const headers = 'some headers';
 
-export const POST = (url, data) => {
+const POST = (url, data) => {
     return axios(`${apiBaseURL}/${url}`, {
         method: 'POST',
         headers,
         data,
     });
 }
+
+export {
+POST,
+GET
+};
 
 //In the react component:
 
