@@ -34,6 +34,18 @@
   <li> Data fetching in separate file from index </li>
 </ul>
 
+#### Exports
+Always use exports at the bottom of the file, never in line.
+```js
+export default Input; //<-- good
+export default Input = () => .... //<--- bad
+
+export {
+Something,
+Else
+}; //<--- good
+```
+
 #### Data fetching in separate file
 Create a fetch.js (or whatever you wanna call it)
 ```js
