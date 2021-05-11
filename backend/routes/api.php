@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MatchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+require __DIR__ . '/json-api-auth.php';
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
+    Route::get('/match', [MatchController::class, 'match'])->name('match');
 });

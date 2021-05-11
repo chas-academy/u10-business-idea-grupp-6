@@ -1,0 +1,26 @@
+//GRID
+@mixin grid-row($amount: auto-fit, $size: 1fr, $gap: 1rem) {
+    display: grid;
+    grid-template-rows: repeat($amount, $size);
+    row-gap:$gap;
+}
+
+@mixin grid-col($amount: auto-fit, $size: 1fr, $gap: 1rem) {
+    display: grid;
+    grid-template-columns: repeat($amount, $size);
+    column-gap:$gap;
+}
+
+@mixin center() {
+    display: grid;
+    place-items: center;
+}
+
+//FLEX
+@mixin flex($justify: flex-start, $align: flex-start, $direction: row) {
+    display: flex;
+    justify-items: $justify;
+    justify-items: $align;
+    justify-items: $direction;
+}
+
