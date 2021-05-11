@@ -16,13 +16,13 @@ class MatchController extends Controller
 
     public function __construct()
     {
-        $this->user = auth()->user();
-        // $this->user = User::find(8); //debug
-
+        // $this->user = auth()->user();
+        $this->user = User::find(9); //debug
+        
         $this->setDelimiters([
             'player_types',
-             'langs'
-             ]);
+            'langs'
+            ]);
 
         $this->setSortable('games');
 
@@ -34,7 +34,7 @@ class MatchController extends Controller
         $this->setTimes([
             'times' 
         ]);
-
+        
     }
 
     public function match()
@@ -50,24 +50,23 @@ class MatchController extends Controller
             ...$keys
         );
         
-        // if there are any demands
-        if(count($this->getDemands()['miscs']))
+        foreach($this->getDemands() as $demand => $idsArray)
         {
-            foreach($this->getDemands() as $demand)
-            {
+            if($idsArray)
                 $query->whereHas('miscs', function($q) use($demand)
                 {
                     $q->where('miscs.id', $demand);
                 });
-            }
         }
+
 
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
-            $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
-            { 
-                $q->where("$delimiter.id", $idsArray);
-            });
+            if($idsArray)
+                $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
+                { 
+                    $q->where("$delimiter.id", $idsArray);
+                });
         }
 
         $times = $this->getTimes()['times'];
@@ -122,7 +121,7 @@ class MatchController extends Controller
     public function setDemands($arrayOfStrings)
     {
         $demands = [];
-
+        
         foreach($arrayOfStrings as $key => $value)
         {
             $demands[$value] = $this->user->{$value}->pluck('id')->toArray();
