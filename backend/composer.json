@@ -13,9 +13,10 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/sanctum": "^2.10",
         "laravel/nova": "~3.0",
-        "laravel/tinker": "^2.6"
+        "laravel/sanctum": "^2.10",
+        "laravel/tinker": "^2.6",
+        "phpseclib/bcmath_compat": "1.0.4"
     },
     "require-dev": {
         "arielmejiadev/json-api-auth": "^1.0",
