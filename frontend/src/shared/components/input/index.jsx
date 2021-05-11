@@ -1,10 +1,11 @@
 import React from 'react'
+import './Input.scss';
 
-const Input = () => {
+const Input = ({placeholder}) => {
     return (
-        <div>
-            <p>Input</p>
-        </div>
+        <>
+            <input placeholder={placeholder}/>
+        </>
     )
 }
 

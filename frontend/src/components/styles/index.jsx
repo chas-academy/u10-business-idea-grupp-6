@@ -6,10 +6,10 @@ import './Styles.scss';
 const Styles = () => {
     return (
         <>
-            <Button></Button>
-            <Input></Input>
-            <InputDropdown></InputDropdown>
-            <InputPassword></InputPassword>
+            {/* <Button name="Button" />
+            <Input placeholder="Input"/>
+            <InputDropdown placeholder="Input Dropdown"/>
+            <InputPassword placeholder="Input Password"/> */}
         </>
     )
 }

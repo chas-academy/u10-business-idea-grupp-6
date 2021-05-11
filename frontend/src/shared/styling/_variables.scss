@@ -1,25 +1,23 @@
 //COLOR
-$background-color: #191720;
+$color-white:      #ffffff;
+$color-black:      #191720;
+$color-dark-gray:  #24212E;
+$color-light-gray: #454556;
 
-$primary-color: #24212E;
-$secondary-color: #454556;
-
-$primary-button-color: #ffffff;
-$secondary-button-color: #24212E;
-
-$primary-text-color: #ffffff;
-$secondary-text-color: #191720;
-
-$rounded-sm: 10px;
-$rounded-md: 17px;
-$rounded-lg: 20px;
-
+//FONT-SIZE
 $font-xs: 12px;
 $font-sm: 14px;
 $font-md: 16px;
 $font-lg: 24px;
 $font-xl: 40px;
 
-$primary-border-color: solid 1px #ffffff1f;
+//BORDER
+$border: solid 1px #ffffff1f;
 
+//BORDER-RADIUS
+$rounded-sm: 10px;
+$rounded-md: 17px;
+$rounded-lg: 20px;
+
+//FONT
 $font-roboto: 'Roboto', sans-serif;

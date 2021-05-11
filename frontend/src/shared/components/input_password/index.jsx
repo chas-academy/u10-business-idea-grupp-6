@@ -1,10 +1,11 @@
 import React from 'react'
+import './InputPassword.scss';
 
-const InputPassword = () => {
+const InputPassword = ({placeholder}) => {
     return (
-        <div>
-            <p>Input Password</p>
-        </div>
+        <>
+            <input placeholder={placeholder}/>
+        </>
     )
 }
 

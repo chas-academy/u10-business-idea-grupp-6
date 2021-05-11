@@ -1,10 +1,11 @@
 import React from 'react'
+import './InputDropdown.scss';
 
-const InputDropdown = () => {
+const InputDropdown = ({placeholder}) => {
     return (
-        <div>
-            <p>Input Dropdown</p>
-        </div>
+        <>
+            <input placeholder={placeholder}/>
+        </>
     )
 }
 

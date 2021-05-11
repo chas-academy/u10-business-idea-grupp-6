@@ -1,57 +1,5 @@
-//Grid
-@mixin grid-row($amount: auto-fit, $size: 1fr, $row-gap: 1rem) {
-    display: grid;
-    grid-template-rows: repeat($amount, $size);
-    row-gap: $row-gap;
-}
-
-@mixin grid-col($amount: auto-fit, $size: 1fr, $gap: 1rem) {
-    display: grid;
-    grid-template-columns: repeat($amount, $size);
-    column-gap: $column-gap;
-}
-    
+//GRID
 @mixin center() {
     display: grid;
     place-items: center;
-}
-    
-//Flex
-@mixin flex($justify-content: flex-start, $align-items: flex-start, $flex-direction: row) {
-    display: flex;
-    justify-content: $justify-content;
-    align-items: $align-items;
-    flex-direction: $flex-direction;
-}
-    
-//Input
-@mixin input-field() {
-    height: 60px;
-    width: 285px;
-    border: $primary-border-color;
-    background: $primary-color;
-    color: $primary-text-color;
-    font-size: $font-sm;
-    font-weight: 600;
-    padding: 0 20px;
-    border-radius: $rounded-md;
-
-    &:focus{
-        outline: none;
-    }
-}
-
-//Buttons
-@mixin button() {
-    border: none;
-    cursor: pointer;
-    background: $primary-button-color;
-    color: $secondary-text-color;
-    font-size: $font-md;
-    border-radius: $rounded-md;
-    transition: all 0.1s;
-
-    &:active{
-        transform: scale(0.98);
-    }
 }
