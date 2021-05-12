@@ -11,13 +11,11 @@ import {
 const Styles = () => {
     return (
         <>
-            <div>
-                <ButtonSubmit name="Default Button" />
-                <ButtonLink name="Redirect to /" link="/" />
-                <Input placeholder="Input"/>
-                <InputPassword placeholder="Password"/>
-                <InputDropdown/>
-            </div>
+            {/* <ButtonSubmit name="Default Button" />
+            <ButtonLink name="Redirect to /" link="/" />
+            <Input placeholder="Input"/>
+            <InputPassword placeholder="Password"/> */}
+            <InputDropdown/>
         </>
     )
 }
