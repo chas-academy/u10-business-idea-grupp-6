@@ -1,18 +1,25 @@
 import {React} from 'react'
-import StylesApi from './StylesApi';
 import './Styles.scss';
-import Shared, {
+import {
     ButtonSubmit, 
     ButtonLink, 
     Input, 
     InputDropdown, 
+    InputEmail, 
     InputPassword
 } from '../../shared/components/'
 
 const Styles = () => {
     return (
         <>
-            <ButtonSubmit name="Button" />
+            <div>
+                <ButtonSubmit name="Default Button" />
+                <ButtonLink name="Redirect to /" link="/" />
+                <Input placeholder="Input"/>
+                <InputPassword placeholder="Password"/>
+                <InputEmail placeholder="Email"/>
+                <InputDropdown/>
+            </div>
         </>
     )
 }

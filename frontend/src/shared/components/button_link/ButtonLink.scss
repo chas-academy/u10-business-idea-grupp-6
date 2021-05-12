@@ -1,5 +1,6 @@
 @import 'global.scss';
 
 .button-link {
-    @include button();
+    @include center();
+    @include button(100%, 60px)
 }

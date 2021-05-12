@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './ButtonLink.scss'
 
-const ButtonLink = () => {
+const ButtonLink = ({name, link}) => {
     return (
         <>
-            <button className="button-link" >Link</button>
+            <Link to={link} className="button-link" >{name}</Link>
         </>
     )
 }

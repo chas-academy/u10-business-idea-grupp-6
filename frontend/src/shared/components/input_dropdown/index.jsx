@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './InputDropdown.scss';
 
-const InputDropdown = ({placeholder}) => {
+const InputDropdown = () => {
+
     return (
         <>
-            <input classname="input-dropdown" placeholder={placeholder}/>
+          
         </>
     )
 }
