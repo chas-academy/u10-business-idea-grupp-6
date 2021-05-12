@@ -1,13 +1,45 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import 'breakpoints';
 @import 'mixins';
 @import 'variables';
 
-*{}
-
-body {
-    background: $pre-color;
-    color: $pre-text-color;
-    font-family: $font-noto;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: $font-roboto;
 }
 
- 
+/* #region TESTS */
+ $beige:  #ffdbc1;
+ $orange: #ff9b54;
+ $red:    #ff735b;
+ $blood:  #da4c4c;
+/* #endregion TESTS */
+
+body {
+    @include center();
+    
+    @include media('<=phone') {
+        background-color: $beige;
+    }
+
+    @include media('>phone', '<=tablet') {
+        background-color: $orange;
+    }
+
+    @include media('>tablet', '<=desktop') {
+        background-color: $red;
+    }
+
+    @include media('>desktop', '<=1920px') {
+        background-color: $blood;
+    }
+}
+
+main {
+    background-color: $color-black;
+    width: 90vw;
+    height: 97.5vh;
+    padding: 2.5vh 0;
+}

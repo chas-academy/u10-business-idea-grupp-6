@@ -1,6 +1,6 @@
 @import 'global.scss';
 
-h1{
+.button-link {
     @include center();
-    color: $color-white;
+    @include button(100%, 60px)
 }

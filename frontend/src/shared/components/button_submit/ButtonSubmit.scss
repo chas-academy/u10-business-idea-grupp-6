@@ -1,0 +1,5 @@
+@import 'global.scss';
+
+.button-submit {
+    @include button(100%, 60px);
+}
