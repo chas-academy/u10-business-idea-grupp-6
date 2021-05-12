@@ -5,7 +5,6 @@ import {
     ButtonLink, 
     Input, 
     InputDropdown, 
-    InputEmail, 
     InputPassword
 } from '../../shared/components/'
 
@@ -17,7 +16,6 @@ const Styles = () => {
                 <ButtonLink name="Redirect to /" link="/" />
                 <Input placeholder="Input"/>
                 <InputPassword placeholder="Password"/>
-                <InputEmail placeholder="Email"/>
                 <InputDropdown/>
             </div>
         </>
