@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -94,7 +95,7 @@ class MatchController extends Controller
             return 1;
         });
         // dd($collection); //debug
-        return response()->json($collection);
+        return response(new UserCollection($collection));
     }
 
 
