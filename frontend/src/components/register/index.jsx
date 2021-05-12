@@ -18,17 +18,17 @@ const Register = () => {
   
   return (
     <>
-      <h1 className="title">Sign Up Now</h1>
-      <h2 className="sub-title">Please fill in the details and create an account</h2>
+      <h1 className="register-title">Sign Up Now</h1>
+      <h2 className="register-sub-title">Please fill in the details and create an account</h2>
 
-      <form className="form">
+      <form className="register-form">
         <Input type="text" placeholder="Username" name="name" getState={getName}/>
         <Input type="email" placeholder="Email" name="email" getState={getEmail}/>
         <InputPassword getState={getPwd} getStateConf={getPwdConf}/>
         <ButtonSubmit name="Sign up" submit={submit} />
       </form>
 
-      <p className="link-text">Already have an account?<Link className="link" to="/login">Log In</Link></p>
+      <p className="register-text">Already have an account?<Link className="register-link" to="/login">Log In</Link></p>
     </>
   );
 };

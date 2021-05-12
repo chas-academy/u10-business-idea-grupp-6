@@ -1,0 +1,35 @@
+@import "global.scss";
+
+.login-title {
+    text-align: center;
+    font-size: $font-lg;
+    margin-bottom: 15px;
+    margin-top: 50px;
+  }
+  
+  .login-sub-title {
+    text-align: center;
+    font-size: $font-md;
+    margin-bottom: 40px;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 300px;
+  }
+  
+  .login-text {
+    margin-top: 20px;
+    text-align: center;
+    font-size: $font-sm;
+  }
+  
+  .login-link {
+    color: $color-white;
+    opacity: 0.5;
+    margin-left: 5px;
+    text-decoration: none;
+  }
