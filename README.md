@@ -22,6 +22,7 @@
 
 * [Sass](https://sass-lang.com)
 * [Laravel](https://laravel.com)
+* [React](https://reactjs.org)
 
 ## Code Standards
 ### React
@@ -38,16 +39,82 @@
 ***Note that if you know that a function is going to be re-used throughout the project, try to make it as a separate component.***
 
 ![fileexample (2)](https://user-images.githubusercontent.com/70698047/117637850-80d15780-b182-11eb-8d8e-49f0a9e59919.png)
+  <li> index.jsx for the js component logic </li>
+  <li> PascalCase for naming other (apart from index) files with component name </li>
+  <li> Data fetching in separate file from index </li>
+</ul>
+
+#### Exports
+Always use exports at the bottom of the file, never in line.
+```js
+export default Input; //<-- good
+export default Input = () => .... //<--- bad
+
+export {
+Something,
+Else
+}; //<--- good
+```
+
+#### Data fetching in separate file
+Create a fetch.js (or whatever you wanna call it)
+```js
+import axios from 'axios';
+const apiBaseURL = 'www.whatever.com'
+
+const GET = url => {
+    return axios.get(`${apiBaseURL}/${url}`);
+}
+
+// if need for headers etc.
+
+const headers = 'some headers';
+
+const POST = (url, data) => {
+    return axios(`${apiBaseURL}/${url}`, {
+        method: 'POST',
+        headers,
+        data,
+    });
+}
+
+export {
+POST,
+GET
+};
+
+//In the react component:
+
+//import the file at the top:
+
+import { GET, POST } from './fetch.js';
+//In component method:
+
+async getData(apiEndpoint) {
+    const { data: Items } = await GET(apiEndpoint);
+    if (Items) {
+      // Set data to state
+      this.setState({ Items });
+    }
+    else {
+      // error
+    }
+}
+
+```
+
+
+***Note that if you know that a function is going to be re-used throughout the project, try to make it as a separate component.***
+
+```
+src/components/home
+  index.jsx
+  Home.scss
+  HomeApi.jsx
+```
 
 <hr></hr>
 There is a styling folder under shared with some global styling features that should be used throughout the project. Import the global.scss file at the top of the .scss file when styling components.
-
-![scssfile](https://user-images.githubusercontent.com/70698047/117637572-351eae00-b182-11eb-8470-28111ad19a47.png)
-<hr></hr>
-
-If your images are linked with the index.html file, it should be in the root public/ folder. Images you will use inside components should be in src/components.
-
-![filestructure](https://user-images.githubusercontent.com/70698047/117638642-59c75580-b183-11eb-800b-3ff41c15f45b.png)
 
 <hr></hr>
 
@@ -103,8 +170,8 @@ function test () {
 }
 
 ```
-***Notice: use fragments <> instead of <div>-tags after the return.***
 
+***Notice: use fragments <> instead of div-tags after the return.***
 <hr></hr>
 
 Try to minimize the amount of lines of code as much as possible, DRY. For instance do this: 
