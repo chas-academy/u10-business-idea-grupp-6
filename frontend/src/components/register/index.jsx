@@ -25,7 +25,7 @@ const Register = () => {
         <Input type="text" placeholder="Username" name="name" getState={getName}/>
         <Input type="email" placeholder="Email" name="email" getState={getEmail}/>
         <InputPassword getState={getPwd} getStateConf={getPwdConf}/>
-        <ButtonSubmit name="Sign up" submit={submit} />
+        <ButtonSubmit name="Register" submit={submit} />
       </form>
 
       <p className="register-text">Already have an account?<Link className="register-link" to="/login">Log In</Link></p>
