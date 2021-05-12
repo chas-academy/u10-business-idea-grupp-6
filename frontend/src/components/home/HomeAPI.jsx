@@ -1,11 +1,11 @@
 import React from 'react'
 
-const HomeAPI = () => {
-    return (
-        <div>
-            
-        </div>
-    )
+const HomeApi = () => {
+  return (
+    <div>
+        
+    </div>
+  )
 }
 
-export default HomeAPI;
+export default HomeApi;

@@ -19,6 +19,7 @@
 
 body {
     @include center();
+    color: $color-white;
     
     @include media('<=phone') {
         background-color: $beige;

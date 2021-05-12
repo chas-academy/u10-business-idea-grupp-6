@@ -4,7 +4,7 @@ import eyeClose from "../../assets/icons/eye-close.svg";
 
 import "./InputPassword.scss";
 
-const InputPassword = ({ placeholder }) => {
+const InputPassword = ({ placeholder, name }) => {
   const [toggle, setToggle] = useState(true);
 
   const toggleInputType = () => {
@@ -14,7 +14,8 @@ const InputPassword = ({ placeholder }) => {
   return (
     <>
       <div className="input-password">
-        <input className="input-text" type={toggle ? "password" : "text"} placeholder={placeholder} />
+        <label htmlFor={name} />
+        <input name={name} className="input-text" type={toggle ? "password" : "text"} placeholder={placeholder} />
         <input id="toggle-pw" type="checkbox" onChange={toggleInputType} />
         <label className="toggle-label" htmlFor="toggle-pw"/>
       </div>
