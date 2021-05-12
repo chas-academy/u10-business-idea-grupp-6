@@ -4,3 +4,11 @@
   @include button();
 }
 
+.small {
+  max-width: 45%;
+}
+
+.dark{
+  background: $color-dark-gray;
+  color: $color-white;
+}

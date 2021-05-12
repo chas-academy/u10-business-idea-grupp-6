@@ -13,20 +13,15 @@
 }
 
 //BUTTON
-@mixin button(
-    $background: $color-white,
-    $color: $color-black,
-    $height: 60px,
-    $width: 400px
-    ) {
-    @include center();
+@mixin button() {
+    display: grid;
+    place-items: center;
     position: relative;
-    display: block;
-    background: $background;
-    color: $color;
-    height: $height;
+    background: $color-white;
+    color: $color-black;
+    height: 60px;
     width: 100%;
-    max-width: $width;
+    max-width: 400px;
     border: none;
     border-radius: $rounded-md;
     font-size: $font-sm;
