@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-import eyeOpen from "../../assets/icons/eye-open.svg";
-import eyeClose from "../../assets/icons/eye-close.svg";
-
 import "./InputPassword.scss";
 
-const InputPassword = ({ placeholder, name }) => {
-  const [toggle, setToggle] = useState(true);
+const InputPassword = ({ getState, getStateConf }) => {
+  const [toggle, setToggle] = useState(true),
+        [pwdValue, setPwdValue] = useState(''),
+        [pwdConfValue, setPwdConfValue] = useState('');
+
+  const inputValue = (input) => {
+    setPwdValue(input);
+    getState(input);
+  };
+
+  const inputConfValue= (input) => {
+    setPwdConfValue(input);
+    getStateConf(input);
+  };
 
   const toggleInputType = () => {
     toggle ? setToggle(false) : setToggle(true);
@@ -14,15 +23,32 @@ const InputPassword = ({ placeholder, name }) => {
   return (
     <>
       <div className="input-password">
-        <label htmlFor={name} />
-        <input name={name} className="input-text" type={toggle ? "password" : "text"} placeholder={placeholder} />
-        <input id="toggle-pw" type="checkbox" onChange={toggleInputType} />
-        <label className="toggle-label" htmlFor="toggle-pw"/>
+        <input 
+          name="password" 
+          className="input-text" 
+          type={toggle ? "password" : "text"} 
+          placeholder="Password"
+          value={pwdValue}
+          onChange={e => inputValue(e.target.value)}
+          />
+        <input id="toggle-hidden" type="checkbox" onChange={toggleInputType} />
+        <label className="toggle-label" htmlFor="toggle-hidden"/>
       </div>
+
+      { getStateConf && 
+        <div className="input-password">
+          <input 
+            name="password_confirmation" 
+            className="input-text" 
+            type={toggle ? "password" : "text"} 
+            placeholder="Password Confirmation"
+            value={pwdConfValue}
+            onChange={e => inputConfValue(e.target.value)}
+          />
+        </div>
+      }  
     </>
   );
 };
 
 export default InputPassword;
-
-{/* <img src={toggle ? eyeOpen : eyeClose} width="40" alt="" /> */}

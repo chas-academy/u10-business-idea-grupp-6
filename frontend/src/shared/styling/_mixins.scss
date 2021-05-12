@@ -13,12 +13,20 @@
 }
 
 //BUTTON
-@mixin button($width, $height) {
-    background: $color-white;
-    color: $color-black;
+@mixin button(
+    $background: $color-white,
+    $color: $color-black,
+    $height: 60px,
+    $width: 400px
+    ) {
+    @include center();
+    position: relative;
+    display: block;
+    background: $background;
+    color: $color;
     height: $height;
-    width: $width;
-    max-width: 400px;
+    width: 100%;
+    max-width: $width;
     border: none;
     border-radius: $rounded-md;
     font-size: $font-sm;
@@ -34,6 +42,8 @@
 
 //INPUT
 @mixin input-field() {
+    position: relative;
+    display: flex;
     background: $color-dark-gray;
     color: $color-white;
     height: 60px;
@@ -42,7 +52,7 @@
     border: $border;
     border-radius: $rounded-md;
     font-size: $font-sm;
-    font-weight: 500;
+    font-weight: 400;
     cursor: text;
     padding: 0 20px;
 

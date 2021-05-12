@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import './InputDropdown.scss';
 
 const InputDropdown = () => {
-
-    return (
-        <>
-          
-        </>
-    )
+  return (
+    <>
+      
+    </>
+  )
 }
 
 export default InputDropdown;

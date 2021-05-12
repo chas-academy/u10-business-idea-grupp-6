@@ -11,7 +11,6 @@ const Input = ({placeholder, type, name, getState}) => {
 
   return (
     <>
-      <label htmlFor={name}/>
       <input 
         className="input" 
         name={name} 

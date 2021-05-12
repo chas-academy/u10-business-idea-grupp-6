@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Register.scss";
-import { Input, InputPassword, ButtonSubmit } from "../../shared/components/";
 import { Link } from 'react-router-dom';
+import { Input, InputPassword, ButtonSubmit } from "../../shared/components/";
 
 const Register = () => {
   const [name, setName] = useState(''),
@@ -20,16 +20,15 @@ const Register = () => {
     <>
       <h1 className="title">Sign Up Now</h1>
       <h2 className="sub-title">Please fill in the details and create an account</h2>
-      <form>
+
+      <form className="form">
         <Input type="text" placeholder="Username" name="name" getState={getName}/>
         <Input type="email" placeholder="Email" name="email" getState={getEmail}/>
-        <InputPassword placeholder="Password" name="password" getState={getPwd}/>
-        <InputPassword placeholder="Password confirmation" name="password_confirmation" getState={getPwdConf}/>
-        {/* <Input type="text" placeholder="Age" />
-        <Input type="text" placeholder="Full name" /> */}
+        <InputPassword getState={getPwd} getStateConf={getPwdConf}/>
         <ButtonSubmit name="Sign up" submit={submit} />
       </form>
-      <p>Already have an account? <Link to="/login">Log In</Link></p>
+
+      <p className="link-text">Already have an account?<Link className="link" to="/login">Log In</Link></p>
     </>
   );
 };
