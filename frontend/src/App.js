@@ -14,6 +14,7 @@ const App = () => {
             <Route path="/register" exact component={Register} />
             <Route path="/login" exact component={Login} />
             <Route path="/verified_succesfully" exact component={VerifiedSuccesfully} />
+            <Route path="/verified_already" exact component={VerifiedAlready} />
           </Router>
         </main>
       </>
