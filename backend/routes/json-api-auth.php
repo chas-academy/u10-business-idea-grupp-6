@@ -9,10 +9,6 @@ use App\Http\Controllers\JsonApiAuth\NewPasswordController;
 use App\Http\Controllers\JsonApiAuth\PasswordResetLinkController;
 use App\Http\Controllers\JsonApiAuth\RegisterController;
 use App\Http\Controllers\JsonApiAuth\VerifyEmailController;
-header('Access-Control-Allow-Origin:  *');
-header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, PATCH, DELETE');
-header('Access-Control-Allow-Headers: Accept, Content-Type, X-Auth-Token, Origin, Authorization');
-
 
 Route::post('/register', RegisterController::class)->name('json-api-auth.register');
 
