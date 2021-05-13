@@ -20,7 +20,6 @@ class RegisterController extends Controller
      */
     public function __invoke(RegisterRequest $request)
     {
-        return response('hello');
         try {
 
             /** @var User $user */
