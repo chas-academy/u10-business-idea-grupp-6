@@ -4,6 +4,7 @@ import Register from './components/register/'
 import Login from './components/login/'
 import VerifiedSuccesfully from './components/verified_succesfully';
 import VerifiedAlready from './components/verified_already';
+import Verify from './components/verify';
 
 const App = () => {
     return (
