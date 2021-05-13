@@ -1,15 +1,16 @@
 import axios from 'axios'
-const apiBaseURL = 'BACKEND_URL'
+
+const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api'
+
+axios.defaults.withCredentials = true;
 
 export const GET = (url) => {
-    // return axios.get(`${apiBaseURL}/${url}`);
-    return console.log(url);
+    return axios.get(`${apiBaseURL}/${url}`);
 }
 
-export const POST = (url, data) => {
-    // return axios(`${apiBaseURL}/${url}`, {
-    //     method: 'POST',
-    //     data,
-    // });
-    return console.log(url, data);
+export const POST = async (url, data) => {
+    return axios(`${apiBaseURL}/${url}`, {
+        method: 'POST',
+        data,
+    });
 }

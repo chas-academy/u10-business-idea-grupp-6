@@ -30,7 +30,9 @@ const Register = () => {
       password_confirmation: pwdConf
     }
     
-    POST('posts', data)
+    POST('register', data).then(console.log(data))
+    //token exists in data.data.token here, i think. can redirect to logged in page
+
 
     // Post data
     // getData('ApiEndpoint', data);

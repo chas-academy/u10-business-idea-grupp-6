@@ -7,7 +7,7 @@ import axios from 'axios';
 
 axios.interceptors.request.use(
   config => {
-    config.headers.authorization = `Bearer ${localStorage.getItem('token')}`;
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
     return config;
   },
   error => {
