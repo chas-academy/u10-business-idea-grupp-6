@@ -1,28 +1,13 @@
-import React from 'react'
 import axios from 'axios'
+const apiBaseURL = 'BACKEND_URL'
 
-const RegisterAPI = () => {
-
-
-const getData = () => {
-
+export const GET = (url) => {
+    return axios.get(`${apiBaseURL}/${url}`);
 }
 
-  // Bäst?
-  const sendData = async () => {
-    try {
-        const res = await axios.post("http://", {
-            headers: {
-                'authorization': 'Bearer...'
-            }
-        }, getData());
-      console.log(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  return <div></div>;
+export const POST = (url, data) => {
+    return axios(`${apiBaseURL}/${url}`, {
+        method: 'POST',
+        data,
+    });
 }
-
-export default RegisterAPI;

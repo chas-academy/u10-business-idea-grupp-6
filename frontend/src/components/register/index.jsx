@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Register.scss";
 import { Link } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit } from "../../shared/components/";
+import { GET, POST } from './RegisterAPI.jsx';
 
 const Register = () => {
   const [name, setName] = useState(''),
@@ -13,9 +14,28 @@ const Register = () => {
         getEmail = (e) => setEmail(e),
         getPwd = (e) => setPwd(e),
         getPwdConf = (e) => setPwdConf(e);
-
-  const submit = () => console.log({name,email,pwd,pwdConf});
+        
+  // Post data to backend, url needs to be set up in RegisterApi      
+  // const getData = async(apiEndpoint, data) => {
+  //   const { data: items } = await POST(apiEndpoint, data);
+  //   if (items) return console.log(items);
+  //   if (!items) return console.log('error');
+  // }
   
+  const submit = () => {
+    const data = {
+      name: name,
+      email: email,
+      password: pwd,
+      password_confirmation: pwdConf
+    }
+    
+    POST('posts', data)
+
+    // Post data
+    // getData('ApiEndpoint', data);
+  };
+
   return (
     <>
       <h1 className="register-title">Sign Up Now</h1>
