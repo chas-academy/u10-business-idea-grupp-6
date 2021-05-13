@@ -39,9 +39,9 @@ class MatchController extends Controller
         
     }
 
-        public function test()
+        public function test(Request $request)
     {
-        return response('test');
+        return response(['request' => $request->all()]);
     }
 
     public function match()
