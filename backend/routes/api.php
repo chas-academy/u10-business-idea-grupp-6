@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, PATCH, DELETE');
 header('Access-Control-Allow-Headers: Accept, Content-Type, X-Auth-Token, Origin, Authorization');
 
-
+Route::get('/test', [MatchController::class, 'test']);
 require __DIR__ . '/json-api-auth.php';
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {

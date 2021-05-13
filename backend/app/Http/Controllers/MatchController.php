@@ -14,6 +14,8 @@ class MatchController extends Controller
     private $demands    = null;
     private $times      = null;
 
+
+    
     public function __construct()
     {
         // $this->user = auth()->user();
@@ -35,6 +37,11 @@ class MatchController extends Controller
             'times' 
         ]);
         
+    }
+
+        public function test()
+    {
+        return response('test');
     }
 
     public function match()
