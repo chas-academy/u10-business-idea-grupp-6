@@ -1,11 +1,11 @@
 import React from 'react';
-import './VerifiedAlready.scss';
+import './Verified.scss';
 import { ButtonLink } from "../../shared/components";
 
-const VerifiedAlready = () => {
+const Verified = () => {
   return (
     <>
-      <h1 className="verified-title">Email is already verified</h1>
+      <h1 className="verified-title">Email is verified succesfully!</h1>
 
       <div className="verified-container">
         <ButtonLink classValue="button-link light" name="Setup Your Profile" link="#"/>
@@ -14,4 +14,4 @@ const VerifiedAlready = () => {
   )
 }
 
-export default VerifiedAlready;
+export default Verified;
