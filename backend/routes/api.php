@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MatchController;
+use App\Http\Controllers\Preferences\GameController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,10 @@ Route::post('/test', [MatchController::class, 'test']);
 require __DIR__ . '/json-api-auth.php';
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
+
+    // here, we group the preference-saving routes
+    Route::post('/games', GameController::class);
+
+
     Route::get('/match', [MatchController::class, 'match'])->name('match');
 });
