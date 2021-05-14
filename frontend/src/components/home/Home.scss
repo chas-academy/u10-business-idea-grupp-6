@@ -1,15 +1,27 @@
 @import 'global.scss';
 
-.grid {
-    @include grid-col($size: minmax(270px, 1fr));
-    @include grid-row($gap: 3rem);
-
-    div {
-        @include center();
-        background: $sec-color;
-        font-size: $font-md;
-        box-shadow: $shadow;
-        border-radius: $rounded-md;
-     }
+.home-title {
+    text-align: center;
+    font-size: $font-xl;
+    margin-bottom: 15px;
+    margin-top: 200px;
 }
 
+.home-container {
+    margin: auto;
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 400px;
+}
+
+.home-text {
+    text-align: center;
+    opacity: 0.5;
+    width: 100%;
+    max-width: 270px;
+    margin: auto;
+    margin-top: 20px;
+    font-size: $font-sm;
+  }
