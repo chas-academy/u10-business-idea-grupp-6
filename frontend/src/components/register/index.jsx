@@ -31,22 +31,52 @@ const Register = () => {
     });
   };
 
-  if(redirectVerify)
-    return <Redirect to="/verify" />;
+  if(redirectVerify) return <Redirect to="/verify" />;
   
   return (
     <>
-      <h1 className="register-title">Sign Up Now</h1>
-      <h2 className="register-sub-title">Please fill in the details and create an account</h2>
+      <h1 className="register-title">
+        Sign Up Now
+      </h1>
+      <h2 className="register-sub-title">
+        Please fill in the details and create an account
+      </h2>
 
       <form className="register-form">
-        <Input type="text" placeholder="Username" name="name" getState={getName}/>
-        <Input type="email" placeholder="Email" name="email" getState={getEmail}/>
-        <InputPassword getState={getPwd} getStateConf={getPwdConf}/>
-        <ButtonSubmit name="Register" submit={submit} />
+        <Input 
+          type="text" 
+          placeholder="Username" 
+          name="name" 
+          getState={getName}
+        />
+
+        <Input 
+          type="email" 
+          placeholder="Email" 
+          name="email" 
+          getState={getEmail}
+        />
+
+        <InputPassword 
+          getState={getPwd} 
+          getStateConf={getPwdConf}
+        />
+
+        <ButtonSubmit 
+          name="Register" 
+          submit={submit} 
+        />
       </form>
 
-      <p className="register-text">Already have an account?<Link className="register-link" to="/login">Log In</Link></p>
+      <p className="register-text">
+        Already have an account?
+        <Link 
+          className="register-link" 
+          to="/login"
+        >
+          Log In
+        </Link>
+      </p>
     </>
   );
 };

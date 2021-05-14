@@ -24,16 +24,40 @@ const Login = () => {
 
   return (
     <>
-      <h1 className="login-title">Log In Now</h1>
-      <h2 className="login-sub-title">Please login to continue </h2>
+      <h1 className="login-title">
+        Log In Now
+      </h1>
+      <h2 className="login-sub-title">
+        Please login to continue
+      </h2>
 
       <form className="login-form">
-        <Input type="email" placeholder="Email" name="email" getState={getEmail} />
-        <InputPassword getState={getPwd} />
-        <ButtonSubmit name="Login" submit={submit} />
+        <Input 
+          type="email" 
+          placeholder="Email" 
+          name="email" 
+          getState={getEmail}
+        />
+
+        <InputPassword 
+          getState={getPwd}
+        />
+        
+        <ButtonSubmit 
+          name="Login" 
+          submit={submit}
+        />
       </form>
 
-      <p className="login-text">Dont have an account?<Link className="login-link" to="/register">Register</Link></p>
+      <p className="login-text">
+        Dont have an account?
+        <Link 
+          className="login-link" 
+          to="/register"
+        >
+          Register
+        </Link>
+      </p>
     </>
   )
 }
