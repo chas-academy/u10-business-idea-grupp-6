@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\PreferenceController;
-use App\Http\Controllers\Preferences\GameController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
