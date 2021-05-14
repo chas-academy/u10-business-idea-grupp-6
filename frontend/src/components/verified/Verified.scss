@@ -1,27 +1,19 @@
-@import 'global.scss';
+@import "global.scss";
 
-.home-title {
+.verified-title {
     text-align: center;
     font-size: $font-xl;
     margin-bottom: 15px;
     margin-top: 200px;
 }
 
-.home-container {
+.verified-container {
     margin: auto;
     margin-top: 200px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     max-width: 400px;
 }
-
-.home-text {
-    text-align: center;
-    opacity: 0.5;
-    width: 100%;
-    max-width: 270px;
-    margin: auto;
-    margin-top: 20px;
-    font-size: $font-sm;
-  }

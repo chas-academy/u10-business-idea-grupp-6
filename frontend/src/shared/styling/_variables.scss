@@ -1,28 +1,23 @@
 //COLOR
-$pre-color: #131313;
-$sec-color: #3a3a3a;
-$tri-color: #ffffff;
+$color-white:      #ffffff;
+$color-black:      #191720;
+$color-dark-gray:  #24212E;
+$color-light-gray: #454556;
 
-//FONT & TEXT
-$pre-text-color: #fff;
-$sec-text-color: #333;
-$tri-text-color: #000;
+//FONT-SIZE
+$font-xs: 12px;
+$font-sm: 14px;
+$font-md: 16px;
+$font-lg: 24px;
+$font-xl: 40px;
 
-$font-noto: 'Noto Sans', sans-serif;
+//BORDER
+$border: solid 1px #ffffff1f;
 
-$font-sm:1rem;
-$font-md:3rem;
-$font-lg:5rem;
-$font-xl:10rem;
+//BORDER-RADIUS
+$rounded-sm: 10px;
+$rounded-md: 17px;
+$rounded-lg: 20px;
 
-//BORDERS
-$rounded-sm: 0.3rem;
-$rounded-md: 1rem;
-$rounded-lg: 2px;
-$rounded-max: 9999px;
-
-//SHADOWS
-$shadow:rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
-
-
-
+//FONT
+$font-roboto: 'Roboto', sans-serif;
