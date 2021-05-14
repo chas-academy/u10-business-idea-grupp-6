@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import "./Register.scss";
 import { Link } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit } from "../../shared/components/";
@@ -9,6 +10,7 @@ const Register = () => {
         [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
         [pwdConf, setPwdConf] = useState('');
+        // [toVerify, setToVerify] = useState(false);
 
   const getName = (e) => setName(e),
         getEmail = (e) => setEmail(e),
@@ -34,9 +36,19 @@ const Register = () => {
     //token exists in data.data.token here, i think. can redirect to logged in page
 
 
+    return <Redirect to="/verify" />;
+
     // Post data
     // getData('ApiEndpoint', data);
   };
+
+  // const redirect = () => {
+  //   // if (toVerify === true) {
+  //   //   return <Redirect to="/verify" />;
+  //   // }
+  //   console.log("redirect");
+  //   return <Redirect to="/verify" />;
+  // }
 
   return (
     <>
