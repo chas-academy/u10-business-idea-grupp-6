@@ -3,17 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './shared/styling/global.scss';
-import axios from 'axios';
 
-axios.interceptors.request.use(
-  config => {
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-);
 
 ReactDOM.render(
   <React.StrictMode>
