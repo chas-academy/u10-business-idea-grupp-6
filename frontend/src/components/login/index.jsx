@@ -11,15 +11,17 @@ const Login = () => {
   const getEmail = (e) => setEmail(e),
     getPwd = (e) => setPwd(e);
 
-  const submit = () => {
+    const submit = (event) => {
+    event.preventDefault();
     const data = {
       email: email,
       password: pwd,
     }
-
+    
     POST('login', data).then(data => {
       localStorage.setItem('token', data.data.token)
     });
+    
   };
 
   return (
@@ -31,7 +33,9 @@ const Login = () => {
         Please login to continue
       </h2>
 
-      <form className="login-form">
+      <form 
+        className="login-form" 
+        onSubmit={submit}>
         <Input 
           type="email" 
           placeholder="Email" 
@@ -45,7 +49,6 @@ const Login = () => {
         
         <ButtonSubmit 
           name="Login" 
-          submit={submit}
         />
       </form>
 
