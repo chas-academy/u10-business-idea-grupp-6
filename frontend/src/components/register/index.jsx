@@ -17,7 +17,8 @@ const Register = () => {
         getPwd = (e) => setPwd(e),
         getPwdConf = (e) => setPwdConf(e);
   
-  const submit = () => {
+  const submit = (event) => {
+    event.preventDefault();
     const data = {
       name: name,
       email: email,
@@ -42,7 +43,10 @@ const Register = () => {
         Please fill in the details and create an account
       </h2>
 
-      <form className="register-form">
+      <form 
+        className="register-form"
+        onSubmit={submit}>
+
         <Input 
           type="text"
           placeholder="Username"
@@ -62,10 +66,8 @@ const Register = () => {
           getStateConf={getPwdConf}
         />
 
-        <ButtonSubmit
-          name="Register"
-          submit={submit}
-        />
+        <ButtonSubmit name="Register" />
+
       </form>
 
       <p className="register-text">

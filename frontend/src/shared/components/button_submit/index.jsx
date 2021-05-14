@@ -1,13 +1,12 @@
 import React from 'react'
 import './ButtonSubmit.scss';
 
-const ButtonSubmit = ({name, submit}) => {
+const ButtonSubmit = ({name}) => {
   return (
     <>
       <button
         className="button-submit"
-        type="button"
-        onClick={submit}
+        type="submit"
       >
         {name}
       </button>
