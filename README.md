@@ -2,6 +2,10 @@
 [![Forks][forks-shield]][forks-url]
 [![Issues][issues-shield]][issues-url]
 
+# U10 Business Idea - Gaming Tinder (team 6)
+
+School Assignment @ Chas Academy.
+
 ## Table of Contents
 
 - [About the Project](#about-the-project)
