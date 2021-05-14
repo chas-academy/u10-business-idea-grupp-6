@@ -29,16 +29,6 @@
 ### File structure:
 <ul>
   <li> snake_case on component name (should be a folder) </li>
-  <li> index.js for the js component logic </li>
-  <li> PascalCase for naming other (apart from index) files with component name </li>
-  <li> Data fetching in separate file from index </li>
-  <li> Components that are shown publicly for users that are not authorized yet should be in the public folder under src/components</li>
-  <li> Components that are shown for authorized users should be in the secure folder under src/components </li>
-</ul>
-
-***Note that if you know that a function is going to be re-used throughout the project, try to make it as a separate component.***
-
-![fileexample (2)](https://user-images.githubusercontent.com/70698047/117637850-80d15780-b182-11eb-8d8e-49f0a9e59919.png)
   <li> index.jsx for the js component logic </li>
   <li> PascalCase for naming other (apart from index) files with component name </li>
   <li> Data fetching in separate file from index </li>
@@ -116,6 +106,21 @@ src/components/home
 <hr></hr>
 There is a styling folder under shared with some global styling features that should be used throughout the project. Import the global.scss file at the top of the .scss file when styling components.
 
+```
+src/shared/styling
+  global.scss
+  _mixins.scss
+  _variables.scss
+```
+<hr></hr>
+
+Images/Icons are placed in the shared folder.
+
+```
+src/shared/assets
+  icons
+  Images
+```
 <hr></hr>
 
 
@@ -170,8 +175,8 @@ function test () {
 }
 
 ```
-
 ***Notice: use fragments <> instead of div-tags after the return.***
+
 <hr></hr>
 
 Try to minimize the amount of lines of code as much as possible, DRY. For instance do this: 
