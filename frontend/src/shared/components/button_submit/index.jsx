@@ -4,7 +4,12 @@ import './ButtonSubmit.scss';
 const ButtonSubmit = ({name}) => {
   return (
     <>
-      <button className="button-submit" type="submit">{name}</button>
+      <button
+        className="button-submit"
+        type="submit"
+      >
+        {name}
+      </button>
     </>
   )
 }
