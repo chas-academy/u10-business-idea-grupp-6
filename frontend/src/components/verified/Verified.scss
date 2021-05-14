@@ -1,19 +1,19 @@
 @import "global.scss";
 
 .verified-title {
-    text-align: center;
-    font-size: $font-xl;
-    margin-bottom: 15px;
-    margin-top: 200px;
+  text-align: center;
+  font-size: $font-xl;
+  margin-bottom: 15px;
+  margin-top: 200px;
 }
 
 .verified-container {
-    margin: auto;
-    margin-top: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
+  margin: auto;
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
 }

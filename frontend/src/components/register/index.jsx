@@ -44,34 +44,34 @@ const Register = () => {
 
       <form className="register-form">
         <Input 
-          type="text" 
-          placeholder="Username" 
-          name="name" 
+          type="text"
+          placeholder="Username"
+          name="name"
           getState={getName}
         />
 
         <Input 
-          type="email" 
-          placeholder="Email" 
-          name="email" 
+          type="email"
+          placeholder="Email"
+          name="email"
           getState={getEmail}
         />
 
-        <InputPassword 
-          getState={getPwd} 
+        <InputPassword
+          getState={getPwd}
           getStateConf={getPwdConf}
         />
 
-        <ButtonSubmit 
-          name="Register" 
-          submit={submit} 
+        <ButtonSubmit
+          name="Register"
+          submit={submit}
         />
       </form>
 
       <p className="register-text">
         Already have an account?
-        <Link 
-          className="register-link" 
+        <Link
+          className="register-link"
           to="/login"
         >
           Log In

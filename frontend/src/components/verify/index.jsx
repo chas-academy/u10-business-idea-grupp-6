@@ -16,8 +16,8 @@ const Verify = () => {
       </p>
 
       <div className="verify-container">
-        <ButtonSubmit 
-          name="Send Email Again" 
+        <ButtonSubmit
+          name="Send Email Again"
           submit={submit}
         />
       </div>
