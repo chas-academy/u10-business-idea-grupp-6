@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
@@ -27,20 +28,24 @@ class ProfileController extends Controller
 
     public function updateProfile(Request $request, User $user)
     {
-        $validator = Validator::make($request->all(), [
-            'display_name' => 'required|unique:profiles',
-        ]);
+        $this->authorize('update', $user->profile);
+        
+            $validator = Validator::make($request->all(), [
+                'display_name' => 'required|unique:profiles',
+            ]);
 
-        if($validator->fails())
-            return response()->json(['error' => $validator->messages()], 422);
+            if ($validator->fails())
+                return response()->json(['error' => $validator->messages()], 422);
 
-        $user->profile->update($request->all());
+            $user->profile->update($request->all());
 
-        return response(['message' => 'Profile sucessfully updated']);
-    }  
+            return response(['message' => 'Profile sucessfully updated']);
+    }
 
     public function updateAccount(Request $request, User $user)
-    {   
+    {
+        $this->authorize('update', $user);
+
         $user->update($request->all());
 
         return response(['message' => 'Account sucessfully updated']);
@@ -50,10 +55,10 @@ class ProfileController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'current_password' => ['required', new MatchOldPassword],
-            'password' => 'required|string|confirmed|min:8' 
+            'password' => 'required|string|confirmed|min:8'
         ]);
 
-        if($validator->fails())
+        if ($validator->fails())
             return response()->json(['error' => $validator->messages()], 422);
 
         $user->update([
