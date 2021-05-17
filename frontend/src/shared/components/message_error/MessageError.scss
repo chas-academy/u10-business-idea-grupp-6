@@ -1,0 +1,9 @@
+@import 'global.scss';
+
+.message {
+    @include message();
+    color: #D8000C;
+    background-color:  #FFBABA;
+    border: 2px solid #D8000C;
+}
+  

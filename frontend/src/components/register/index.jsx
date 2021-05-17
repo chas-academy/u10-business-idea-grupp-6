@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import "./Register.scss";
 import { Link } from 'react-router-dom';
-import { Input, InputPassword, ButtonSubmit } from "../../shared/components/";
+import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { POST } from "../../shared/services/requests";
 
 const Register = () => {
@@ -10,7 +10,10 @@ const Register = () => {
         [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
         [pwdConf, setPwdConf] = useState(''),
-        [redirectVerify, setRedirectVerify] = useState(false);
+        [redirectVerify, setRedirectVerify] = useState(false),
+        [errorEmail, setErrorEmail] = useState(null),
+        [errorPwd, setErrorPwd] = useState(null);
+
 
   const getName = (e) => setName(e),
         getEmail = (e) => setEmail(e),
@@ -29,7 +32,11 @@ const Register = () => {
     POST('register', data).then(data => {
       localStorage.setItem('token', data.data.token)
       setRedirectVerify(true);
-    });
+    }).catch(err =>{
+      console.log(err.response.data.errors.password)
+      setErrorEmail(err.response.data.errors.email);
+      setErrorPwd(err.response.data.errors.password);
+    })
   };
 
   if(redirectVerify) return <Redirect to="/verify" />;
@@ -39,6 +46,7 @@ const Register = () => {
       <h1 className="register-title">
         Sign Up Now
       </h1>
+
       <h2 className="register-sub-title">
         Please fill in the details and create an account
       </h2>
@@ -49,17 +57,21 @@ const Register = () => {
 
         <Input 
           type="text"
-          placeholder="Username"
+          placeholder="Name"
           name="name"
           getState={getName}
         />
 
+        {errorEmail != null ? <MessageError message = {errorEmail}/> : false}
+        
         <Input 
           type="email"
           placeholder="Email"
           name="email"
           getState={getEmail}
         />
+        
+        {errorPwd != null ? <MessageError message = {errorPwd}/> : false}
 
         <InputPassword
           getState={getPwd}

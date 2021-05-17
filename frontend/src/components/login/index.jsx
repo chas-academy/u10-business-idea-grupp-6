@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './Login.scss'
 import { Link } from 'react-router-dom';
-import { Input, InputPassword, ButtonSubmit } from "../../shared/components/";
+import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { POST } from '../../shared/services/requests';
 
 const Login = () => {
   const [email, setEmail] = useState(''),
-        [pwd, setPwd] = useState('');
+        [pwd, setPwd] = useState(''),
+        [error, setError] = useState(null);
 
   const getEmail = (e) => setEmail(e),
         getPwd = (e) => setPwd(e);
@@ -20,7 +21,10 @@ const Login = () => {
     
     POST('login', data).then(data => {
       localStorage.setItem('token', data.data.token)
-    });
+    }).catch(err =>{
+      console.log(err.response.data.message)
+      setError(err.response.data.message);
+    })
     
   };
 
@@ -37,7 +41,8 @@ const Login = () => {
         className="login-form"
         onSubmit={submit}
       >
-
+        {error != null ? <MessageError message = {error}/> : false}
+        
         <Input
           type="email"
           placeholder="Email"

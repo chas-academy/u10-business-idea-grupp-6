@@ -3,6 +3,7 @@ import ButtonLink from './button_link/';
 import Input from './input/';
 import InputDropdown from './input_dropdown/';
 import InputPassword from './input_password/';
+import MessageError from './message_error/';
 
 export {
   ButtonSubmit,
@@ -10,4 +11,5 @@ export {
   Input,
   InputDropdown,
   InputPassword,
+  MessageError
 }
