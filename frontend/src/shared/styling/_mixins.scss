@@ -1,57 +1,57 @@
 //GRID
 @mixin center() {
-    display: grid;
-    place-items: center;
+  display: grid;
+  place-items: center;
 }
 
 //FLEX
 @mixin flex($justify, $align, $direction) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
-    flex-direction: $direction;
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
 }
 
 //BUTTON
 @mixin button() {
-    display: grid;
-    place-items: center;
-    position: relative;
-    background: $color-white;
-    color: $color-black;
-    height: 60px;
-    width: 100%;
-    max-width: 400px;
-    border: none;
-    border-radius: $rounded-md;
-    font-size: $font-sm;
-    font-weight: 400;
-    cursor: pointer;
-    transition: transform 0.1s;
-    text-decoration: none;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: $color-white;
+  color: $color-black;
+  height: 60px;
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: $rounded-md;
+  font-size: $font-sm;
+  font-weight: 400;
+  cursor: pointer;
+  transition: transform 0.1s;
+  text-decoration: none;
 
-    &:active {
-        transform: scale(0.98);
-    }
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
 //INPUT
 @mixin input-field() {
-    position: relative;
-    display: flex;
-    background: $color-dark-gray;
-    color: $color-white;
-    height: 60px;
-    width: 100%;
-    max-width: 400px;
-    border: $border;
-    border-radius: $rounded-md;
-    font-size: $font-sm;
-    font-weight: 400;
-    cursor: text;
-    padding: 0 20px;
+  position: relative;
+  display: flex;
+  background: $color-dark-gray;
+  color: $color-white;
+  height: 60px;
+  width: 100%;
+  max-width: 400px;
+  border: $border;
+  border-radius: $rounded-md;
+  font-size: $font-sm;
+  font-weight: 400;
+  cursor: text;
+  padding: 0 20px;
 
-    &:focus{
-        outline: none;
-    }
+  &:focus{
+    outline: none;
+  }
 }

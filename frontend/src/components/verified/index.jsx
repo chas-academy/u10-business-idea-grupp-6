@@ -11,8 +11,8 @@ const Verified = () => {
 
       <div className="verified-container">
         <ButtonLink 
-          classValue="button-link light" 
-          name="Setup Your Profile" 
+          classValue="button-link light"
+          name="Setup Your Profile"
           link="#"
         />
       </div>

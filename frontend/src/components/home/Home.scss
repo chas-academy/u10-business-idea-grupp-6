@@ -1,27 +1,27 @@
 @import 'global.scss';
 
 .home-title {
-    text-align: center;
-    font-size: $font-xl;
-    margin-bottom: 15px;
-    margin-top: 200px;
+  text-align: center;
+  font-size: $font-xl;
+  margin-bottom: 15px;
+  margin-top: 200px;
 }
 
 .home-container {
-    margin: auto;
-    margin-top: 200px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 400px;
+  margin: auto;
+  margin-top: 200px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
 }
 
 .home-text {
-    text-align: center;
-    opacity: 0.5;
-    width: 100%;
-    max-width: 270px;
-    margin: auto;
-    margin-top: 20px;
-    font-size: $font-sm;
-  }
+  text-align: center;
+  opacity: 0.5;
+  width: 100%;
+  max-width: 270px;
+  margin: auto;
+  margin-top: 20px;
+  font-size: $font-sm;
+}

@@ -7,13 +7,13 @@ const InputPassword = ({ getState, getStateConf }) => {
         [pwdConfValue, setPwdConfValue] = useState('');
 
   const inputValue = (input) => {
-    setPwdValue(input);
-    getState(input);
+        setPwdValue(input);
+        getState(input);
   };
 
   const inputConfValue= (input) => {
-    setPwdConfValue(input);
-    getStateConf(input);
+        setPwdConfValue(input);
+        getStateConf(input);
   };
 
   const toggleInputType = () => {
@@ -23,30 +23,37 @@ const InputPassword = ({ getState, getStateConf }) => {
   return (
     <>
       <div className="input-password">
-        <input 
-          name="password" 
-          className="input-text" 
-          type={toggle ? "password" : "text"} 
+        <input
+          name="password"
+          className="input-text"
+          type={toggle ? "password" : "text"}
           placeholder="Password"
           value={pwdValue}
           onChange={e => inputValue(e.target.value)}
           />
-        <input id="toggle-hidden" type="checkbox" onChange={toggleInputType} />
-        <label className="toggle-label" htmlFor="toggle-hidden"/>
+        <input
+          id="toggle-hidden"
+          type="checkbox"
+          onChange={toggleInputType}
+        />
+        <label
+          className="toggle-label"
+          htmlFor="toggle-hidden"
+        />
       </div>
 
-      { getStateConf && 
+      { getStateConf &&
         <div className="input-password">
-          <input 
-            name="password_confirmation" 
-            className="input-text" 
-            type={toggle ? "password" : "text"} 
+          <input
+            name="password_confirmation"
+            className="input-text"
+            type={toggle ? "password" : "text"}
             placeholder="Password Confirmation"
             value={pwdConfValue}
             onChange={e => inputConfValue(e.target.value)}
           />
         </div>
-      }  
+      }
     </>
   );
 };

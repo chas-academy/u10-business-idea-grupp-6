@@ -6,10 +6,10 @@ import { POST } from '../../shared/services/requests';
 
 const Login = () => {
   const [email, setEmail] = useState(''),
-    [pwd, setPwd] = useState('');
+        [pwd, setPwd] = useState('');
 
   const getEmail = (e) => setEmail(e),
-    getPwd = (e) => setPwd(e);
+        getPwd = (e) => setPwd(e);
 
     const submit = (event) => {
     event.preventDefault();
@@ -34,28 +34,31 @@ const Login = () => {
       </h2>
 
       <form 
-        className="login-form" 
-        onSubmit={submit}>
-        <Input 
-          type="email" 
-          placeholder="Email" 
-          name="email" 
+        className="login-form"
+        onSubmit={submit}
+      >
+
+        <Input
+          type="email"
+          placeholder="Email"
+          name="email"
           getState={getEmail}
         />
 
-        <InputPassword 
+        <InputPassword
           getState={getPwd}
         />
-        
+
         <ButtonSubmit 
           name="Login" 
         />
+
       </form>
 
       <p className="login-text">
         Dont have an account?
-        <Link 
-          className="login-link" 
+        <Link
+          className="login-link"
           to="/register"
         >
           Register
@@ -65,4 +68,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
