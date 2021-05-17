@@ -1,12 +1,21 @@
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import Home from './components/home/'
-import Register from './components/register/'
-import Login from './components/login/'
+import ProtectedRoute from './guard/protected_route';
+import { useState, useEffect } from 'react';
+import Home from './components/home/';
+import Register from './components/register/';
+import Login from './components/login/';
 import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
 
 const App = () => {
+  const [isAuth, setIsAuth] = useState(false); 
+  
+  useEffect(() => {
+    setIsAuth(localStorage.getItem('token'));
+    console.log(isAuth);
+  })
+
   return (
     <>
       <main>
@@ -26,19 +35,22 @@ const App = () => {
             exact component={Login}
           />
 
-          <Route
+          <ProtectedRoute
             path="/verified"
             exact component={Verified}
+            isAuth={isAuth} 
           />
 
-          <Route
+          <ProtectedRoute
             path="/already-verified"
             exact component={AlreadyVerified}
+            isAuth={isAuth} 
           />
 
-          <Route
+          <ProtectedRoute
             path="/verify"
             exact component={Verify}
+            isAuth={isAuth} 
           />
 
         </Router>
