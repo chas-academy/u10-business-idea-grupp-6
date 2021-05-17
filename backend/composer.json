@@ -8,20 +8,22 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": ">=7.3",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
         "laravel/nova": "~3.0",
+
+        "pusher/pusher-php-server": "^7.0",
+        "fakerphp/faker": "^1.9.1",
         "laravel/sanctum": "^2.10",
         "laravel/tinker": "^2.6",
-        "pusher/pusher-php-server": "^7.0"
+        "phpseclib/bcmath_compat": "1.0.4"
     },
     "require-dev": {
         "arielmejiadev/json-api-auth": "^1.0",
         "facade/ignition": "^2.5",
-        "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
