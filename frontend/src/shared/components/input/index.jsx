@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import './Input.scss';
 
 const Input = ({placeholder, type, name, getState}) => {
