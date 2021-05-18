@@ -4,17 +4,18 @@ import { useState, useEffect } from 'react';
 import Home from './components/home/';
 import Register from './components/register/';
 import Login from './components/login/';
-import Verified from './components/verified';
-import AlreadyVerified from "./components/already_verified";
-import Verify from './components/verify';
+import Verified from './components/verified/';
+import AlreadyVerified from "./components/already_verified/";
+import Verify from './components/verify/';
+import Preferences from './components/preferences/';
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(false); 
+  const [isAuth, setIsAuth] = useState(true); 
   
-  useEffect(() => {
-    setIsAuth(localStorage.getItem('token'));
-    console.log(isAuth);
-  })
+  // useEffect(() => {
+  //   setIsAuth(localStorage.getItem('token'));
+  //   console.log(isAuth);
+  // })
 
   return (
     <>
@@ -50,6 +51,12 @@ const App = () => {
           <ProtectedRoute
             path="/verify"
             exact component={Verify}
+            isAuth={isAuth} 
+          />
+
+          <ProtectedRoute
+            path="/preferences"
+            exact component={Preferences}
             isAuth={isAuth} 
           />
 
