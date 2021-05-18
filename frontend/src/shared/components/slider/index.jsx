@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './Slider.scss';
 
 const Slider = ({name}) => {
-  const [startValue, setStartValue] = useState(0);
-  const [endValue, setEndValue] = useState(24);
+  const [startValue, setStartValue] = useState(0),
+        [endValue, setEndValue] = useState(24),
+        [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     const inputLeft = document.getElementById(`${name}-left`),
@@ -67,13 +68,41 @@ const Slider = ({name}) => {
     });
   }
 
-  return (
-    <>
-      <div className="slider-middle">
-        <p className="slider-data">{name} [ start: {startValue} end: {endValue} ]</p>
+  const toggleInputType = () => {
+    toggle ? setToggle(false) : setToggle(true);
+  };
 
-        <input type="range" id={`${name}-left`} min="0" max="100" defaultValue="0"/>
-        <input type="range" id={`${name}-right`} min="0" max="100" defaultValue="100"/>
+  return (
+    <div className="slider">
+      <input 
+        type="checkbox" 
+        name={name} 
+        onChange={toggleInputType}
+      />
+      <label htmlFor={name}>
+        {name}
+      </label>
+
+      <div className={(toggle) ? 'slider-middle' : 'slider-middle hidden'}>
+        <p className="slider-data">
+          [ start: {startValue} end: {endValue} ]
+        </p>
+
+        <input 
+          type="range" 
+          id={`${name}-left`} 
+          min="0" 
+          max="100" 
+          defaultValue="0"
+        />
+
+        <input 
+          type="range" 
+          id={`${name}-right`}
+          min="0" 
+          max="100" 
+          defaultValue="100"
+        />
 
         <div className="slider-container">
           <div className="slider-track"/>
@@ -82,7 +111,7 @@ const Slider = ({name}) => {
           <div className={`slider-thumb right ${name}-right`}/>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

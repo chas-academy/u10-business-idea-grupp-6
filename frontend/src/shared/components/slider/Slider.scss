@@ -1,7 +1,7 @@
 @import "global.scss";
 
 @mixin thumb() {
-    pointer-events: all;
+  pointer-events: all;
 	width: 30px;
 	height: 30px;
 	border-radius: 0;
@@ -11,101 +11,106 @@
   -ms-appearance: none;
 }
 
-.slider-middle {
-	position: relative;
-	width: 100%;
-	max-width: 400px;
+.hidden {
+  @include hidden();
+}
+.slider {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 30px;
 
-  .slider-data {
-    @include center();
-    margin-bottom: 15px;
-  }
-
-  .slider-container {
+  .slider-middle {
     position: relative;
-    z-index: 1;
-    height: 7px;
-    margin: 0 15px;
-
-    .slider-track {
-      position: absolute;
+  
+    .slider-data {
+      @include center();
+      margin-bottom: 15px;
+    }
+  
+    .slider-container {
+      position: relative;
       z-index: 1;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      border-radius: 5px;
-      background-color: $color-dark-gray;
-      border: $border;
+      height: 7px;
+      margin: 0 15px;
+  
+      .slider-track {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 5px;
+        background-color: $color-dark-gray;
+        border: $border;
+      }
+      
+      .slider-range {
+        position: absolute;
+        z-index: 2;
+        left: 25%;
+        right: 25%;
+        top: 0;
+        bottom: 0;
+        border-radius: 5px;
+        background-color: $color-light-gray;
+        border: $border;
+  
+      }
+  
+      .slider-thumb {
+        position: absolute;
+        z-index: 3;
+        width: 16px;
+        height: 16px;
+        background-color: $color-super-light-gray;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0 rgba(90, 81, 129, 0.1);
+        transition: box-shadow .3s ease-in-out;
+        border: $border;
+  
+      }
+          
+      .slider-thumb.left {
+        left: 25%;
+        transform: translate(-10px, -4px);
+      }
+  
+      .slider-thumb.right {
+        right: 25%;
+        transform: translate(10px, -4px);
+      }
+  
+      .slider-thumb.hover {
+        box-shadow: 0 0 0 10px rgba(90, 81, 129, 0.1);
+      }
+  
+      .slider-thumb.active {
+        box-shadow: 0 0 0 20px rgba(90, 81, 129, 0.2);
+      }
     }
-    
-    .slider-range {
-      position: absolute;
-      z-index: 2;
-      left: 25%;
-      right: 25%;
-      top: 0;
-      bottom: 0;
-      border-radius: 5px;
-      background-color: $color-light-gray;
-      border: $border;
-
+  }
+  
+  input[type=range] {
+    cursor: grab;
+    position: absolute;
+    pointer-events: none;
+    -webkit-appearance: none;
+    z-index: 2;
+    height: 10px;
+    width: 100%;
+    opacity: 0;
+  
+    &::-webkit-slider-thumb {
+      @include thumb();
     }
-
-    .slider-thumb {
-      position: absolute;
-      z-index: 3;
-      width: 16px;
-      height: 16px;
-      background-color: $color-super-light-gray;
-      border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(90, 81, 129, 0.1);
-      transition: box-shadow .3s ease-in-out;
-      border: $border;
-
+  
+    &::-moz-range-thumb {
+      @include thumb();
     }
-        
-    .slider-thumb.left {
-      left: 25%;
-      transform: translate(-10px, -4px);
-    }
-
-    .slider-thumb.right {
-      right: 25%;
-      transform: translate(10px, -4px);
-    }
-
-    .slider-thumb.hover {
-      box-shadow: 0 0 0 10px rgba(90, 81, 129, 0.1);
-    }
-
-    .slider-thumb.active {
-      box-shadow: 0 0 0 20px rgba(90, 81, 129, 0.2);
+  
+    &::-ms-thumb {
+      @include thumb();
     }
   }
 }
-
-input[type=range] {
-  cursor: grab;
-	position: absolute;
-	pointer-events: none;
-	-webkit-appearance: none;
-	z-index: 2;
-	height: 10px;
-	width: 100%;
-	opacity: 0;
-
-  &::-webkit-slider-thumb {
-    @include thumb();
-  }
-
-  &::-moz-range-thumb {
-    @include thumb();
-  }
-
-  &::-ms-thumb {
-    @include thumb();
-  }
-}
-
-
