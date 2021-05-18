@@ -3,7 +3,6 @@ import "./Verify.scss";
 import { ButtonSubmit } from "../../shared/components";
 
 const Verify = () => {
-
   const submit = () => console.log("This is just a placeholder");
 
   return (

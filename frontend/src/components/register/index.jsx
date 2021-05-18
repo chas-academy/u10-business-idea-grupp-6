@@ -30,16 +30,15 @@ const Register = () => {
     }
     
     POST('register', data).then(data => {
-      localStorage.setItem('token', data.data.token)
+      localStorage.setItem('token', data.data.token);
       setRedirectVerify(true);
-    }).catch(err =>{
-      console.log(err.response.data.errors.password)
-      setErrorEmail(err.response.data.errors.email);
-      setErrorPwd(err.response.data.errors.password);
+    }).catch(error => {
+      setErrorEmail(error.response.data.errors.email);
+      setErrorPwd(error.response.data.errors.password);
     })
   };
 
-  if(redirectVerify) return <Redirect to="/verify" />;
+  if(redirectVerify) return <Redirect to="/verify"/>;
   
   return (
     <>

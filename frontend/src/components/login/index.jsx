@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import './Login.scss'
+import React, { useState } from 'react';
+import './Login.scss';
 import { Link } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { POST } from '../../shared/services/requests';
@@ -16,16 +16,14 @@ const Login = () => {
     event.preventDefault();
     const data = {
       email: email,
-      password: pwd,
+      password: pwd
     }
     
     POST('login', data).then(data => {
-      localStorage.setItem('token', data.data.token)
-    }).catch(err =>{
-      console.log(err.response.data.message)
-      setError(err.response.data.message);
+      localStorage.setItem('token', data.data.token);
+    }).catch(error => {
+      setError(error.response.data.message);
     })
-    
   };
 
   return (
