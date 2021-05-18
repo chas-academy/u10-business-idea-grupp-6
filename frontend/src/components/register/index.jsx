@@ -62,7 +62,7 @@ const Register = () => {
           getState={getName}
         />
 
-        {errorEmail != null ? <MessageError message = {errorEmail}/> : false}
+        {errorEmail && <MessageError message = {errorEmail}/>}
         
         <Input 
           type="email"
@@ -71,7 +71,7 @@ const Register = () => {
           getState={getEmail}
         />
         
-        {errorPwd != null ? <MessageError message = {errorPwd}/> : false}
+        {errorPwd && <MessageError message = {errorPwd}/>}
 
         <InputPassword
           getState={getPwd}

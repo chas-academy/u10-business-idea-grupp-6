@@ -41,7 +41,7 @@ const Login = () => {
         className="login-form"
         onSubmit={submit}
       >
-        {error != null ? <MessageError message = {error}/> : false}
+        {error && <MessageError message = {error}/>}
         
         <Input
           type="email"
