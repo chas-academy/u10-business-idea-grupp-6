@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MatchupCollection;
 use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class MatchController extends Controller
     
     public function __construct()
     {
-        $this->user = auth()->user();
+        $this->user = auth('sanctum')->user();
         // $this->user = User::find(9); //debug
         
         $this->setDelimiters([
@@ -105,7 +106,13 @@ class MatchController extends Controller
         return response(new UserCollection($collection));
     }
 
-
+    /**
+     * Returns all of a user's matches
+     */
+    public function currentMatchups()
+    {
+        return response(new MatchupCollection($this->user->matchups));
+    }
     //------------------------------------------------------------------
 
 

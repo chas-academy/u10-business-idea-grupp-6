@@ -108,6 +108,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Interaction::class, 'object_user_id');
     }
 
+    public function matchups()
+    {
+        return $this->belongsToMany(Matchup::class)->withPivot('user_id');
+    }
+    // $user->matches->map(fn($i) => ['match' => $i, 'users' => $i->users]);
 
     // ----
     public function count_matches(User $user, string $related_table): int

@@ -15,6 +15,12 @@ class Interaction extends Model
         'created' => InteractionOccurance::class
     ];
 
+    protected $fillable = [
+        'subject_user_id',
+        'object_user_id',
+        'likes'
+    ];
+
     public function subject_user()
     {
         return $this->belongsTo(User::class, 'subject_user_id');

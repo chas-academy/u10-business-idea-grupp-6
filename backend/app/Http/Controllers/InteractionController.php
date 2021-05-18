@@ -18,7 +18,7 @@ class InteractionController extends Controller
 
     /**
      * This request must have a key 'object_user_id' integer for matching purposes,
-     * a 'likes' key that has the value of a boolean,
+     * a 'likes' key that is 1 or 0,
      * and be sent from an authenticated user
      */
     public function store(Request $request)
