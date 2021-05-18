@@ -93,6 +93,23 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Time::class);
     }
 
+    public function interactions()
+    {
+        return $this->hasMany(Interaction::class);
+    }
+
+    public function subject_interactions()
+    {
+        return $this->hasMany(Interaction::class, 'subject_user_id');
+    }
+
+    public function object_interactions()
+    {
+        return $this->hasMany(Interaction::class, 'object_user_id');
+    }
+
+
+    // ----
     public function count_matches(User $user, string $related_table): int
     {
         $a = $user->{$related_table}->pluck('id')->toArray();
