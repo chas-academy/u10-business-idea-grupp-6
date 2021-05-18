@@ -19,8 +19,8 @@ const InputDropdown = () => {
     useEffect(() => {  
         const values = games.reduce((acc, curr) => {
             const value = {
-                value: curr.games,
-                label: curr.games,
+                value: curr.game,
+                label: curr.game,
                 id: curr.id
             }
             acc.push(value)
