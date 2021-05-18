@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './Slider.scss';
 
-const Slider = () => {
+const Slider = ({name}) => {
   const [startValue, setStartValue] = useState(0);
   const [endValue, setEndValue] = useState(24);
 
   useEffect(() => {
-    const inputLeft = document.getElementById("input-left"),
-          inputRight = document.getElementById("input-right"),
-          thumbLeft = document.querySelector(".left"),
-          thumbRight = document.querySelector(".right"),
-          range = document.querySelector(".slider-range");
+    const inputLeft = document.getElementById(`${name}-left`),
+          inputRight = document.getElementById(`${name}-right`),
+          thumbLeft = document.querySelector(`.${name}-left`),
+          thumbRight = document.querySelector(`.${name}-right`),
+          range = document.querySelector(`.${name}-range`);
 
     const setLeftValue = () => {
       const elem = inputLeft,
@@ -70,16 +70,16 @@ const Slider = () => {
   return (
     <>
       <div className="slider-middle">
-        <p className="slider-data">start: {startValue} end: {endValue}</p>
+        <p className="slider-data">{name} [ start: {startValue} end: {endValue} ]</p>
 
-        <input type="range" id="input-left" min="0" max="100" defaultValue="0"/>
-        <input type="range" id="input-right" min="0" max="100" defaultValue="100"/>
+        <input type="range" id={`${name}-left`} min="0" max="100" defaultValue="0"/>
+        <input type="range" id={`${name}-right`} min="0" max="100" defaultValue="100"/>
 
         <div className="slider-container">
           <div className="slider-track"/>
-          <div className="slider-range"/>
-          <div className="slider-thumb left"/>
-          <div className="slider-thumb right"/>
+          <div className={`slider-range ${name}-range`}/>
+          <div className={`slider-thumb left ${name}-left`}/>
+          <div className={`slider-thumb right ${name}-right`}/>
         </div>
       </div>
     </>

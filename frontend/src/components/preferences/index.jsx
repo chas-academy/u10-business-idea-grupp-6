@@ -15,7 +15,10 @@ const Preferences = () => {
           placeholder="Games"
         />
 
-        <Slider />
+        <Slider name="weekday" />
+
+        <Slider name="weekend"/>
+
       </div>
     </>
   )
