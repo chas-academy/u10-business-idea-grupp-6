@@ -32,5 +32,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
     Route::post('getFriends', [MatchController::class, 'getFriends'])->name('getFriends');
     Route::post('/session/create', [SessionController::class, 'create'])->name('create');
     Route::post('/session/{session}/chats', [ChatController::class, 'chats'])->name('chats');
+    Route::post('/session/{session}/read', [ChatController::class, 'read'])->name('read');
+    Route::post('/session/{session}/clear', [ChatController::class, 'clear'])->name('clear');
     Route::post('/send/{session}', [ChatController::class, 'send'])->name('send');
 });
