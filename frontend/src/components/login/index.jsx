@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './Login.scss';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { POST } from '../../shared/services/requests';
 
-const Login = () => {
+const Login = ({getToken}) => {
   const [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
-        [error, setError] = useState(null);
+        [error, setError] = useState(null),
+        [redirect, setRedirect] = useState(false);
 
   const getEmail = (e) => setEmail(e),
         getPwd = (e) => setPwd(e);
@@ -21,10 +22,14 @@ const Login = () => {
     
     POST('login', data).then(data => {
       localStorage.setItem('token', data.data.token);
+      getToken(localStorage.getItem('token'))
+      setRedirect(true);
     }).catch(error => {
       setError(error.response.data.message);
     })
   };
+
+  if(redirect) return <Redirect to="/private-settings"/>;
 
   return (
     <>
