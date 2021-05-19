@@ -20,8 +20,8 @@ class MatchController extends Controller
 
     public function __construct()
     {
-        // $this->user = auth()->user();
-        $this->user = User::find(9); //debug
+        $this->user = auth('sanctum')->user();
+        // $this->user = User::find(9); //debug
 
         $this->setDelimiters([
             'player_types',
@@ -30,7 +30,7 @@ class MatchController extends Controller
 
         $this->setSortable('games');
 
-        if ($this->user->miscs)
+        if($this->user->miscs)
             $this->setDemands([
                 'miscs'
             ]);
@@ -58,16 +58,18 @@ class MatchController extends Controller
             ...$keys
         );
 
-        foreach ($this->getDemands() as $demand => $idsArray) {
-            if ($idsArray)
+        foreach($this->getDemands() as $demand => $idsArray)
+        {
+            if($idsArray)
                 $query->whereHas('miscs', function ($q) use ($demand) {
                     $q->where('miscs.id', $demand);
                 });
         }
 
 
-        foreach ($this->getDelimiters() as $delimiter => $idsArray) {
-            if ($idsArray)
+        foreach($this->getDelimiters() as $delimiter => $idsArray)
+        {
+            if($idsArray)
                 $query->whereHas($delimiter, function ($q) use ($idsArray, $delimiter) {
                     $q->where("$delimiter.id", $idsArray);
                 });
@@ -75,7 +77,8 @@ class MatchController extends Controller
 
         $times = $this->getTimes()['times'];
 
-        if ($times) {
+        if($times)
+        {
             $query->whereHas('times', function ($q) use ($times) {
                 // match those that have a time with the interval of choosing
                 $q->where('times.interval', $times);
@@ -90,7 +93,7 @@ class MatchController extends Controller
 
         $collection->sort(function ($a, $b) use ($sortable) {
             // this is quite query heavy
-            if ($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
+            if($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
                 return -1;
             return 1;
         });
@@ -106,7 +109,8 @@ class MatchController extends Controller
     {
         $delimiters = [];
 
-        foreach ($arrayOfStrings as $key => $value) {
+        foreach($arrayOfStrings as $key => $value)
+        {
             $delimiters[$value] = $this->user->{$value}->pluck('id')->toArray();
         }
 
@@ -122,7 +126,8 @@ class MatchController extends Controller
     {
         $demands = [];
 
-        foreach ($arrayOfStrings as $key => $value) {
+        foreach($arrayOfStrings as $key => $value)
+        {
             $demands[$value] = $this->user->{$value}->pluck('id')->toArray();
         }
 
@@ -133,7 +138,8 @@ class MatchController extends Controller
     {
         $times = [];
 
-        foreach ($arrayOfStrings as $key => $value) {
+        foreach($arrayOfStrings as $key => $value)
+        {
             $times[$value] = $this->user->{$value}->pluck('interval')->toArray();
         }
 
