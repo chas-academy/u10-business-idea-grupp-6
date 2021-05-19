@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MatchupCollection;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -101,7 +102,13 @@ class MatchController extends Controller
         return response(new UserCollection($collection));
     }
 
-
+    /**
+     * Returns all of a user's matches
+     */
+    public function currentMatchups()
+    {
+        return response(new MatchupCollection($this->user->matchups));
+    }
     //------------------------------------------------------------------
 
 
