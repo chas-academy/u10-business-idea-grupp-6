@@ -1,4 +1,8 @@
 import axios from 'axios';
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
+
+window.Pusher = require('pusher-js');
 
 const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api'
 axios.defaults.withCredentials = true;
@@ -23,3 +27,25 @@ export const POST = async (url, data) => {
     data,
   });
 }
+
+export const echo = new Echo({
+  broadcaster: 'pusher',
+  key: "236a01f23701620287f9",
+  cluster: 'eu',
+  forceTLS: true,
+  authEndpoint: 'http://u10.test/api/broadcasting/auth',
+  authorizer: (channel, options) => {
+    return {
+      authorize: (socketId, callback) => {
+        axios.post('http://u10.test/api/broadcasting/auth', {
+           socket_id: socketId, channel_name: channel.name })
+          .then(response => {
+            callback(false, response.data)
+          })
+          .catch(error => {
+            callback(true, error)
+          })
+      }
+    }
+  },
+});

@@ -1,9 +1,12 @@
 <?php
 
+
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\InteractionController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +30,15 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
 
     // this route is for getting a list of user-matches
     Route::get('/match', [MatchController::class, 'match'])->name('match');
+
+
+    // for chat
+    Route::post('getFriends', [MatchController::class, 'getFriends'])->name('getFriends');
+    Route::post('/session/create', [SessionController::class, 'create'])->name('create');
+    Route::post('/session/{session}/chats', [ChatController::class, 'chats'])->name('chats');
+    Route::post('/session/{session}/read', [ChatController::class, 'read'])->name('read');
+    Route::post('/session/{session}/clear', [ChatController::class, 'clear'])->name('clear');
+    Route::post('/send/{session}', [ChatController::class, 'send'])->name('send');
 
     // this route is for giving the frontend a list of all current matchups made with other users
     Route::get('/match/all', [MatchController::class, 'currentMatchups'])->name('currentMatchups');
