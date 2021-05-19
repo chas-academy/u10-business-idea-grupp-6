@@ -10,12 +10,9 @@ import Verify from './components/verify/';
 import Preferences from './components/preferences/';
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(true); 
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('token')); 
   
-  // useEffect(() => {
-  //   setIsAuth(localStorage.getItem('token'));
-  //   console.log(isAuth);
-  // })
+  const getIsAuth = e => setIsAuth(e);
 
   return (
     <>
@@ -28,12 +25,16 @@ const App = () => {
 
           <Route
             path="/register"
-            exact component={Register}
+            render={(props) => (
+              <Register { ...props } getToken={getIsAuth} />
+            )}
           />
 
           <Route
             path="/login"
-            exact component={Login}
+            render={(props) => (
+              <Login { ...props } getToken={getIsAuth} />
+            )}
           />
 
           <ProtectedRoute
