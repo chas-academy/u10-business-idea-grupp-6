@@ -22,7 +22,7 @@ const Login = ({getToken}) => {
     
     POST('login', data).then(data => {
       localStorage.setItem('token', data.data.token);
-      getToken(localStorage.getItem('toke'))
+      getToken(localStorage.getItem('token'))
       setRedirect(true);
     }).catch(error => {
       setError(error.response.data.message);
