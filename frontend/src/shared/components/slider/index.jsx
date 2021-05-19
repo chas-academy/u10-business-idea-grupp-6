@@ -61,6 +61,11 @@ const Slider = ({name}) => {
 
   const submit = () => {
     console.log(sliderValue);
+    if(!toggle) console.log(false);
+  }
+
+  const never = () => {
+    if(toggle) console.log(false);
   }
 
   const toggleInputType = () => {
@@ -69,22 +74,32 @@ const Slider = ({name}) => {
 
   return (
     <div className="slider">
-      <input 
-        className="slider-checkbox"
-        type="checkbox" 
-        id={name} 
-        onChange={toggleInputType}
-      />
+      <div className="flex">
+        <input 
+          className="slider-checkbox"
+          type="checkbox" 
+          id={name} 
+          onChange={toggleInputType}
+          onClick={never}
+        />
 
-      <label 
-        htmlFor={name}
-        className="slider-checkbox-label"
-      >
-        {name}
-      </label>
+        <label 
+          htmlFor={name}
+          className="slider-checkbox-label"
+        >
+          {name}
+        </label>
+
+        {toggle && <p className="slider-data">
+            {sliderValue.start}:00 To {sliderValue.end}:00
+        </p> }
+
+        {!toggle && <p className="slider-data">
+            Never
+        </p> }
+      </div>
 
       <div className={(toggle) ? 'slider-middle' : 'slider-middle hidden'}>
-       
         <input 
           type="range" 
           id={`${name}-start`} 
@@ -105,10 +120,6 @@ const Slider = ({name}) => {
           <div className={`slider-thumb start ${name}-start`}/>
           <div className={`slider-thumb end ${name}-end`}/>
         </div>
-
-        <p className="slider-data">
-          [ start: {sliderValue.start}:00 end: {sliderValue.end}:00 ]
-        </p>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Preferences.scss'
-import { Slider, InputDropdown } from "../../shared/components/";
+import { Slider, Input } from "../../shared/components/";
 
 const Preferences = () => {
   return (
@@ -11,10 +11,14 @@ const Preferences = () => {
 
       <div className="preferences-container" >
 
-        <Slider name="weekdays" />
+        <Input placeholder="test"/>
+
+        <Slider name="weekdays"/>
 
         <Slider name="weekends"/>
-        
+
+        <Input placeholder="test"/>
+
       </div>
     </>
   )

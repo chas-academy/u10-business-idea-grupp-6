@@ -11,39 +11,74 @@
   -ms-appearance: none;
 }
 
-.hidden {
-  @include hidden();
-}
+
 .slider {
   width: 100%;
   max-width: 400px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
-  .slider-checkbox{
-    display: none;
+  .flex{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 10px;
   }
 
-  .slider-checkbox-label{
+  .slider-data{
+    margin-top: 6px;
+  }
+  
+  input[type=checkbox]{
+    display: none;
+  }
+  
+  label {
+    margin-right: 85px;
     cursor: pointer;
-    margin-left: 40px;
+    text-indent: 63px;
+    line-height: 1.8;
+    border: $border;
+    width: 54px;
+    height: 28px;
+    background: $color-dark-gray;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+  }
+  
+  label:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+  
+  input:checked + label {
+    background: $color-light-gray;
+  }
+  
+  input:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
   }
 
   .slider-middle {
     position: relative;
     width: 100%;
-    margin-top: 20px;
-    transition:visibility 0.3s, opacity 0.3s; 
-  
-    .slider-data {
-      @include center();
-      margin-top: 20px;
-    }
-  
+    transition:visibility 0.2s, opacity 0.2s, padding 0.6s; 
+    @include center(); 
+    padding: 20px 0 10px 0;
+
     .slider-container {
+      width: 95%;
       position: relative;
       z-index: 1;
       height: 5px;
-      margin: 0 15px;
   
       .slider-track {
         position: absolute;
@@ -92,13 +127,13 @@
       }
   
       .slider-thumb.hover {
-        box-shadow: 0 0 0 8px rgba(90, 81, 129, 0.1);
+        box-shadow: 0 0 0 6px rgba(90, 81, 129, 0.3);
         color: white;
         content: 'text';
       }
   
       .slider-thumb.active {
-        box-shadow: 0 0 0 12px rgba(90, 81, 129, 0.2);
+        box-shadow: 0 0 0 8px rgba(142, 128, 206, 0.4);
       }
     }
   }
@@ -124,4 +159,9 @@
       @include thumb();
     }
   }
+}
+
+.slider-middle.hidden {
+  @include hidden();
+  padding: 0;
 }
