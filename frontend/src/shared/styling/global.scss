@@ -4,43 +4,43 @@
 @import 'variables';
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: $font-roboto;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $font-roboto;
 }
 
 /* #region TESTS */
- $beige:  #ffdbc1;
- $orange: #ff9b54;
- $red:    #ff735b;
- $blood:  #da4c4c;
+$beige:  #ffdbc1;
+$orange: #ff9b54;
+$red:    #ff735b;
+$blood:  #da4c4c;
 /* #endregion TESTS */
 
 body {
-    @include center();
-    color: $color-white;
-    background-color: $color-black;
-    
-    // @include media('<=phone') {
-    //     background-color: $beige;
-    // }
+  @include center();
+  color: $color-white;
+  background-color: $color-black;
 
-    // @include media('>phone', '<=tablet') {
-    //     background-color: $orange;
-    // }
+  // @include media('<=phone') {
+  //   background-color: $beige;
+  // }
 
-    // @include media('>tablet', '<=desktop') {
-    //     background-color: $red;
-    // }
+  // @include media('>phone', '<=tablet') {
+  //   background-color: $orange;
+  // }
 
-    // @include media('>desktop', '<=1920px') {
-    //     background-color: $blood;
-    // }
+  // @include media('>tablet', '<=desktop') {
+  //   background-color: $red;
+  // }
+
+  // @include media('>desktop', '<=1920px') {
+  //   background-color: $blood;
+  // }
 }
 
 main {
-    width: 78vw;
-    height: 100vh;
-    padding: 30px 0;
+  width: 78vw;
+  height: 100vh;
+  padding: 30px 0;
 }

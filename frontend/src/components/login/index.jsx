@@ -6,20 +6,22 @@ import { POST } from '../../shared/services/requests';
 
 const Login = () => {
   const [email, setEmail] = useState(''),
-    [pwd, setPwd] = useState('');
+        [pwd, setPwd] = useState('');
 
   const getEmail = (e) => setEmail(e),
-    getPwd = (e) => setPwd(e);
+        getPwd = (e) => setPwd(e);
 
-  const submit = () => {
+    const submit = (event) => {
+    event.preventDefault();
     const data = {
       email: email,
       password: pwd,
     }
-
+    
     POST('login', data).then(data => {
       localStorage.setItem('token', data.data.token)
     });
+    
   };
 
   return (
@@ -31,28 +33,32 @@ const Login = () => {
         Please login to continue
       </h2>
 
-      <form className="login-form">
-        <Input 
-          type="email" 
-          placeholder="Email" 
-          name="email" 
+      <form 
+        className="login-form"
+        onSubmit={submit}
+      >
+
+        <Input
+          type="email"
+          placeholder="Email"
+          name="email"
           getState={getEmail}
         />
 
-        <InputPassword 
+        <InputPassword
           getState={getPwd}
         />
-        
+
         <ButtonSubmit 
           name="Login" 
-          submit={submit}
         />
+
       </form>
 
       <p className="login-text">
         Dont have an account?
-        <Link 
-          className="login-link" 
+        <Link
+          className="login-link"
           to="/register"
         >
           Register
@@ -62,4 +68,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;

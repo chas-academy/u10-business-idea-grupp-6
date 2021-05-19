@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,76 +17,69 @@ class MatchController extends Controller
     private $times      = null;
 
 
-    
+
     public function __construct()
     {
         // $this->user = auth()->user();
         $this->user = User::find(9); //debug
-        
+
         $this->setDelimiters([
             'player_types',
             'langs'
-            ]);
+        ]);
 
         $this->setSortable('games');
 
-        if($this->user->miscs)
+        if ($this->user->miscs)
             $this->setDemands([
-                'miscs' 
+                'miscs'
             ]);
-        
+
         $this->setTimes([
-            'times' 
+            'times'
         ]);
-        
     }
 
-        public function test(Request $request)
+    public function test(Request $request)
     {
         return response(['request' => $request->all()]);
     }
 
     public function match()
-    {  
+    {
         // pick out all related tables needed for filtering
         $keys = array_keys(array_merge_recursive(
-                $this->getDelimiters(), 
-                $this->getDemands(),
-                $this->getTimes()
+            $this->getDelimiters(),
+            $this->getDemands(),
+            $this->getTimes()
         ));
 
         $query = User::with(
             ...$keys
         );
-        
-        foreach($this->getDemands() as $demand => $idsArray)
-        {
-            if($idsArray)
-                $query->whereHas('miscs', function($q) use($demand)
-                {
+
+        foreach ($this->getDemands() as $demand => $idsArray) {
+            if ($idsArray)
+                $query->whereHas('miscs', function ($q) use ($demand) {
                     $q->where('miscs.id', $demand);
                 });
         }
 
 
-        foreach($this->getDelimiters() as $delimiter => $idsArray)
-        {
-            if($idsArray)
-                $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
-                { 
+        foreach ($this->getDelimiters() as $delimiter => $idsArray) {
+            if ($idsArray)
+                $query->whereHas($delimiter, function ($q) use ($idsArray, $delimiter) {
                     $q->where("$delimiter.id", $idsArray);
                 });
         }
 
         $times = $this->getTimes()['times'];
-    
-        if($times)
-        {
-            $query->whereHas('times', function($q) use ($times)
-                {
-                    // match those that have a time with the interval of choosing
-                    $q->where('times.interval', $times);
-                });
+
+        if ($times) {
+            $query->whereHas('times', function ($q) use ($times) {
+                // match those that have a time with the interval of choosing
+                $q->where('times.interval', $times);
+            });
         }
 
         // execute
@@ -94,10 +88,9 @@ class MatchController extends Controller
         // this is a single sorting parameter right now
         $sortable = $this->getSortable();
 
-        $collection->sort(function($a, $b) use ($sortable)
-        {
+        $collection->sort(function ($a, $b) use ($sortable) {
             // this is quite query heavy
-            if($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
+            if ($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
                 return -1;
             return 1;
         });
@@ -113,8 +106,7 @@ class MatchController extends Controller
     {
         $delimiters = [];
 
-        foreach($arrayOfStrings as $key => $value)
-        {
+        foreach ($arrayOfStrings as $key => $value) {
             $delimiters[$value] = $this->user->{$value}->pluck('id')->toArray();
         }
 
@@ -129,9 +121,8 @@ class MatchController extends Controller
     public function setDemands($arrayOfStrings)
     {
         $demands = [];
-        
-        foreach($arrayOfStrings as $key => $value)
-        {
+
+        foreach ($arrayOfStrings as $key => $value) {
             $demands[$value] = $this->user->{$value}->pluck('id')->toArray();
         }
 
@@ -142,11 +133,10 @@ class MatchController extends Controller
     {
         $times = [];
 
-        foreach($arrayOfStrings as $key => $value)
-        {
+        foreach ($arrayOfStrings as $key => $value) {
             $times[$value] = $this->user->{$value}->pluck('interval')->toArray();
         }
-        
+
         $this->times = $times;
     }
 
@@ -159,7 +149,7 @@ class MatchController extends Controller
     {
         return $this->delimiters;
     }
-    
+
     public function getSortable()
     {
         return $this->sortable;
@@ -169,5 +159,10 @@ class MatchController extends Controller
     public function getTimes()
     {
         return $this->times;
+    }
+
+    public function getFriends()
+    {
+        return UserResource::collection(User::where('id', '!=', auth()->id())->get());
     }
 }

@@ -5,9 +5,9 @@ import InputDropdown from './input_dropdown/';
 import InputPassword from './input_password/';
 
 export {
-    ButtonSubmit,
-    ButtonLink,
-    Input,
-    InputDropdown,
-    InputPassword,
+  ButtonSubmit,
+  ButtonLink,
+  Input,
+  InputDropdown,
+  InputPassword,
 }
