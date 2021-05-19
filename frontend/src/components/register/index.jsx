@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import "./Register.scss";
-import { Link } from 'react-router-dom';
-import { Input, InputPassword, ButtonSubmit } from "../../shared/components/";
+import { Link, Redirect } from 'react-router-dom';
+import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { POST } from "../../shared/services/requests";
 
-const Register = () => {
+const Register = ({getToken}) => {
   const [name, setName] = useState(''),
         [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
         [pwdConf, setPwdConf] = useState(''),
-        [redirectVerify, setRedirectVerify] = useState(false);
+        [redirectVerify, setRedirectVerify] = useState(false),
+        [errorEmail, setErrorEmail] = useState(null),
+        [errorPwd, setErrorPwd] = useState(null);
+
 
   const getName = (e) => setName(e),
         getEmail = (e) => setEmail(e),
@@ -27,18 +29,24 @@ const Register = () => {
     }
     
     POST('register', data).then(data => {
-      localStorage.setItem('token', data.data.token)
+      localStorage.setItem('token', data.data.token);
+      localStorage.setItem('user_id', data.data.user.id);
+      getToken(localStorage.getItem('token'));
       setRedirectVerify(true);
-    });
+    }).catch(error => {
+      setErrorEmail(error.response.data.errors.email);
+      setErrorPwd(error.response.data.errors.password);
+    })
   };
 
-  if(redirectVerify) return <Redirect to="/verify" />;
+  if(redirectVerify) return <Redirect to="/verify"/>;
   
   return (
     <>
       <h1 className="register-title">
         Sign Up Now
       </h1>
+
       <h2 className="register-sub-title">
         Please fill in the details and create an account
       </h2>
@@ -49,17 +57,21 @@ const Register = () => {
 
         <Input 
           type="text"
-          placeholder="Username"
+          placeholder="Name"
           name="name"
           getState={getName}
         />
 
+        {errorEmail && <MessageError message = {errorEmail}/>}
+        
         <Input 
           type="email"
           placeholder="Email"
           name="email"
           getState={getEmail}
         />
+        
+        {errorPwd && <MessageError message = {errorPwd}/>}
 
         <InputPassword
           getState={getPwd}

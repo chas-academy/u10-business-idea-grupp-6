@@ -9,12 +9,9 @@ import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(false); 
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('token')); 
   
-  useEffect(() => {
-    setIsAuth(localStorage.getItem('token'));
-    console.log(isAuth);
-  })
+  const getIsAuth = e => setIsAuth(e);
 
   return (
     <>
@@ -27,12 +24,16 @@ const App = () => {
 
           <Route
             path="/register"
-            exact component={Register}
+            render={(props) => (
+              <Register { ...props } getToken={getIsAuth} />
+            )}
           />
 
           <Route
             path="/login"
-            exact component={Login}
+            render={(props) => (
+              <Login { ...props } getToken={getIsAuth} />
+            )}
           />
 
           <ProtectedRoute
