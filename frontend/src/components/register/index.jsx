@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import "./Register.scss";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { POST } from "../../shared/services/requests";
 
-const Register = () => {
+const Register = ({getToken}) => {
   const [name, setName] = useState(''),
         [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
@@ -31,6 +30,7 @@ const Register = () => {
     
     POST('register', data).then(data => {
       localStorage.setItem('token', data.data.token);
+      getToken(localStorage.setItem('token', data.data.token));
       setRedirectVerify(true);
     }).catch(error => {
       setErrorEmail(error.response.data.errors.email);
