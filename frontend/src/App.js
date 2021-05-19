@@ -7,6 +7,7 @@ import Login from './components/login/';
 import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
+import EditProfile from './components/edit-profile';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false); 
@@ -50,6 +51,12 @@ const App = () => {
           <ProtectedRoute
             path="/verify"
             exact component={Verify}
+            isAuth={isAuth} 
+          />
+
+          <ProtectedRoute
+            path="/edit-profile"
+            exact component={EditProfile}
             isAuth={isAuth} 
           />
 
