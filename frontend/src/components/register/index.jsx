@@ -30,7 +30,7 @@ const Register = ({getToken}) => {
     
     POST('register', data).then(data => {
       localStorage.setItem('token', data.data.token);
-      getToken(localStorage.setItem('token', data.data.token));
+      getToken(localStorage.getItem('token'));
       setRedirectVerify(true);
     }).catch(error => {
       setErrorEmail(error.response.data.errors.email);
