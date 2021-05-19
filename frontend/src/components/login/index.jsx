@@ -20,6 +20,9 @@ const Login = () => {
     
     POST('login', data).then(data => {
       localStorage.setItem('token', data.data.token)
+      // echo.private('App.Models.User.1').listen('UserCreated', (e) => {
+      //   console.log(e)
+      // });
     });
     
   };
