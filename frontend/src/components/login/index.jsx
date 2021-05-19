@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './Login.scss'
 import { Link } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit } from "../../shared/components/";
-import { POST } from '../../shared/services/requests';
+import { echo, POST } from '../../shared/services/requests';
 
 const Login = () => {
   const [email, setEmail] = useState(''),
@@ -19,10 +19,17 @@ const Login = () => {
     }
     
     POST('login', data).then(data => {
+
       localStorage.setItem('token', data.data.token)
-      // echo.private('App.Models.User.1').listen('UserCreated', (e) => {
-      //   console.log(e)
-      // });
+      localStorage.setItem('user_id', data.data.user.id)
+
+      // set up listen for succesful matchup! maybe in app-component instead
+      echo.private('App.Models.User.' + localStorage.getItem('user_id'))
+      .listen('MatchupSuccessful', (e) => {
+
+        // if you get a match, will print to console
+        console.log(e)
+      });
     });
     
   };

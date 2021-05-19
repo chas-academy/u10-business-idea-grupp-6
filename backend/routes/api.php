@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/json-api-auth.php';
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
-
+    Broadcast::routes();
     // this route is for adding or removing user preferences.
     Route::post('/prefs', PreferenceController::class)->name('prefs');
 

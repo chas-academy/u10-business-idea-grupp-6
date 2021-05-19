@@ -10,10 +10,6 @@ class Matchup extends Model
 {
     use HasFactory;
 
-    protected $dispatchesEvents = [
-        'created' => MatchupSuccessful::class
-    ];
-
     public function users()
     {
         return $this->belongsToMany(User::class);

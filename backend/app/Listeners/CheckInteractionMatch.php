@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\InteractionOccurance;
+use App\Events\MatchupSuccessful;
 use App\Models\Matchup;
 use App\Models\UserMatch;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,8 +36,12 @@ class CheckInteractionMatch
             ->where('object_user_id', $interaction->subject_user_id)
             ->where('likes', true)
             ->first())
-            Matchup::create()
-            ->users()
+            {
+            $matchup = Matchup::create();
+
+            $matchup->users()
             ->attach([$interaction->subject_user_id, $interaction->object_user_id]);
+            MatchupSuccessful::dispatch($matchup);
+            }
     }
 }

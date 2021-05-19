@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MatchupSuccessful
+class MatchupSuccessful implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -35,6 +35,9 @@ class MatchupSuccessful
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return $this->matchup->users
+        ->map(fn($u) => 
+        new PrivateChannel("App.Models.User.".$u->id))
+        ->toArray();
     }
 }

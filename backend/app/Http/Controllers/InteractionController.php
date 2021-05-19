@@ -28,7 +28,7 @@ class InteractionController extends Controller
             'object_user_id' => $request->object_user_id,
             'likes' => $request->likes
         ]);
-
+        
         return response(201);
     }
 }

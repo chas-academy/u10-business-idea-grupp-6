@@ -5,6 +5,7 @@ import Pusher from 'pusher-js';
 window.Pusher = require('pusher-js');
 
 const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api'
+
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
