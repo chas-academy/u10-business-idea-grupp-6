@@ -11,12 +11,10 @@ const Preferences = () => {
 
       <div className="preferences-container" >
 
-        <Slider name="weekday" />
+        <Slider name="weekdays" />
 
-        <Slider name="weekend"/>
-
-        <InputDropdown />
-
+        <Slider name="weekends"/>
+        
       </div>
     </>
   )

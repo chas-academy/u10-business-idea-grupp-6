@@ -2,56 +2,47 @@ import React, { useEffect, useState } from 'react';
 import './Slider.scss';
 
 const Slider = ({name}) => {
-  const [startValue, setStartValue] = useState(0),
-        [endValue, setEndValue] = useState(24),
+  const [sliderValue, setSliderValue] = useState({start: 0, end: 24}),
         [toggle, setToggle] = useState(false);
 
   useEffect(() => {
-    const inputLeft = document.getElementById(`${name}-left`),
-          inputRight = document.getElementById(`${name}-right`),
-          thumbLeft = document.querySelector(`.${name}-left`),
-          thumbRight = document.querySelector(`.${name}-right`),
+    const inputStart = document.getElementById(`${name}-start`),
+          inputEnd = document.getElementById(`${name}-end`),
+          thumbStart = document.querySelector(`.${name}-start`),
+          thumbEnd = document.querySelector(`.${name}-end`),
           range = document.querySelector(`.${name}-range`);
 
-    const setLeftValue = () => {
-      const elem = inputLeft,
-            min = parseInt(elem.min),
-            max = parseInt(elem.max);
-    
-      elem.value = Math.min(parseInt(elem.value), parseInt(inputRight.value) - 1);
-      let percent = ((elem.value - min) / (max - min)) * 100;
-    
-      thumbLeft.style.left = percent + "%";
-      range.style.left = percent + "%";
-      setStartValue(Math.round(24 * ((percent)/100)));
+    const setStartValue = () => {
+      inputStart.value = Math.min(parseInt(inputStart.value), parseInt(inputEnd.value) - 1);
+      thumbStart.style.left = inputStart.value + "%";
+      range.style.left = inputStart.value + "%";
+      
+      setSliderValue(prevState => ({
+        ...prevState,
+        start: Math.round(24 * ((inputStart.value)/100))
+      }));
     }
     
-    const setRightValue = () => {
-      const elem = inputRight,
-            min = parseInt(elem.min),
-            max = parseInt(elem.max);
-    
-      elem.value = Math.max(parseInt(elem.value), parseInt(inputLeft.value) + 1);
-      let percent = ((elem.value - min) / (max - min)) * 100;
-    
-      thumbRight.style.right = (100 - percent) + "%";
-      range.style.right = (100 - percent) + "%";
-      setEndValue(Math.round(24 * ((percent)/100)));
+    const setEndValue = () => {
+      inputEnd.value = Math.max(parseInt(inputEnd.value), parseInt(inputStart.value) + 1);
+      thumbEnd.style.right = (100 - inputEnd.value) + "%";
+      range.style.right = (100 - inputEnd.value) + "%";
+      
+      setSliderValue(prevState => ({
+        ...prevState,
+        end: Math.round(24 * ((inputEnd.value)/100))
+      }));
     }
+   
+    setStartValue();
+    setEndValue();
 
-    setLeftValue();
-    setRightValue();
+    addEventListeners(inputStart, thumbStart);
+    addEventListeners(inputEnd, thumbEnd);
     
-    inputLeft.addEventListener("input", setLeftValue);
-    inputRight.addEventListener("input", setRightValue);
-
-    addEventListeners(inputLeft, thumbLeft);
-    addEventListeners(inputRight, thumbRight);
+    inputStart.addEventListener("input", setStartValue);
+    inputEnd.addEventListener("input", setEndValue);
   }, []);
-
-  // useEffect(() => {
-  //   console.log({startValue, endValue});
-  // }, [startValue, endValue]);
 
   const addEventListeners = (input, thumb) => {
     input.addEventListener("mouseover", () => {
@@ -68,6 +59,10 @@ const Slider = ({name}) => {
     });
   }
 
+  const submit = () => {
+    console.log(sliderValue);
+  }
+
   const toggleInputType = () => {
     toggle ? setToggle(false) : setToggle(true);
   };
@@ -75,41 +70,45 @@ const Slider = ({name}) => {
   return (
     <div className="slider">
       <input 
+        className="slider-checkbox"
         type="checkbox" 
-        name={name} 
+        id={name} 
         onChange={toggleInputType}
       />
-      <label htmlFor={name}>
+
+      <label 
+        htmlFor={name}
+        className="slider-checkbox-label"
+      >
         {name}
       </label>
 
       <div className={(toggle) ? 'slider-middle' : 'slider-middle hidden'}>
-        <p className="slider-data">
-          [ start: {startValue} end: {endValue} ]
-        </p>
-
+       
         <input 
           type="range" 
-          id={`${name}-left`} 
-          min="0" 
-          max="100" 
+          id={`${name}-start`} 
           defaultValue="0"
+          onMouseUp={submit}
         />
 
         <input 
           type="range" 
-          id={`${name}-right`}
-          min="0" 
-          max="100" 
+          id={`${name}-end`}
           defaultValue="100"
+          onMouseUp={submit}
         />
 
         <div className="slider-container">
           <div className="slider-track"/>
           <div className={`slider-range ${name}-range`}/>
-          <div className={`slider-thumb left ${name}-left`}/>
-          <div className={`slider-thumb right ${name}-right`}/>
+          <div className={`slider-thumb start ${name}-start`}/>
+          <div className={`slider-thumb end ${name}-end`}/>
         </div>
+
+        <p className="slider-data">
+          [ start: {sliderValue.start}:00 end: {sliderValue.end}:00 ]
+        </p>
       </div>
     </div>
   )

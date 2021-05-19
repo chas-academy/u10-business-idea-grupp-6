@@ -29,7 +29,7 @@ const Login = ({getToken}) => {
     })
   };
 
-  if(redirect) return <Redirect to="/private-settings"/>;
+  if(redirect) return <Redirect to="/preferences"/>;
 
   return (
     <>
