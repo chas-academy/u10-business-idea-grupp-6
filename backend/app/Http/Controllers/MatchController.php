@@ -40,11 +40,6 @@ class MatchController extends Controller
         
     }
 
-        public function test(Request $request)
-    {
-        return response(['request' => $request->all()]);
-    }
-
     public function match()
     {  
         // pick out all related tables needed for filtering
@@ -57,17 +52,21 @@ class MatchController extends Controller
         $query = User::with(
             ...$keys
         );
-        
+   
         foreach($this->getDemands() as $demand => $idsArray)
         {
-            if($idsArray)
-                $query->whereHas('miscs', function($q) use($demand)
+            if(count($idsArray))
+                $query->whereHas('miscs', function($q) use($demand, $idsArray)
                 {
-                    $q->where('miscs.id', $demand);
+                    foreach($idsArray as $id)
+                    {
+                        $q->where('miscs.id', $id);
+                    }
+                    
                 });
         }
 
-
+             
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
             if($idsArray)
@@ -77,17 +76,52 @@ class MatchController extends Controller
                 });
         }
 
-        $times = $this->getTimes()['times'];
-    
-        if($times)
-        {
-            $query->whereHas('times', function($q) use ($times)
-                {
-                    // match those that have a time with the interval of choosing
-                    $q->where('times.interval', $times);
-                });
-        }
+        // $limit = [];
+        // // return response($this->getTimes());
+        // $query->whereHas('times', function($q) use(&$limit) {
+             
+        //     $times = $this->getTimes()['times'];
 
+            
+
+        //     foreach($times as $time)
+        //     {
+        //         if($time['available'])
+        //         {
+        //             array_push($limit, $time['interval']);
+        //         }
+        //     }
+            
+        //     if(count($limit) === 1)
+        //     {
+                
+        //         $q->where(['times.interval', $limit[0], ['times.available', 1]]);
+        //     } else {
+        //         // $q->where([['times.interval', ['weekday', 'weekend']], ]);
+        //     }
+
+        //     // för varje tid, skapa en position i en array med ett objekt
+        //     // objektet vet om den 
+        //     // foreach($times as $time)
+        //     // {
+        //     //     $q->where([['times.interval', $time['interval']], ['times.available', 1]]);
+        //     // }
+            
+        //     // this bit is great for if we have lots of times.... buuuuut....
+        //     //     foreach($times as $position => $data)
+        //     //     {
+        //     //         if($data['available'])
+        //     //         {
+        //     //             $q->orWhere([
+        //     //                     ['times.interval', $data['interval']], 
+        //     //                     ['times.available', 1]
+        //     //                 ]);
+        //     //         }
+        //     //     }
+        //     // });
+
+        // });
+// return response($limit);    
         // execute
         $collection = $query->get();
 
@@ -104,6 +138,7 @@ class MatchController extends Controller
         // dd($collection); //debug
         return response(new UserCollection($collection));
     }
+    
 
 
     //------------------------------------------------------------------
@@ -144,7 +179,8 @@ class MatchController extends Controller
 
         foreach($arrayOfStrings as $key => $value)
         {
-            $times[$value] = $this->user->{$value}->pluck('interval')->toArray();
+            $times[$value] = $this->user->{$value}()->select('interval', 'available')->get()->filter(fn($i)=> $i->available === 1)
+            ->toArray();
         }
         
         $this->times = $times;
