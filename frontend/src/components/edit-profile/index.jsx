@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   Input,
   InputDropdown,
+  Textarea,
   ButtonSubmit,
   MessageError,
 } from "../../shared/components/";
@@ -11,14 +12,14 @@ import { PATCH } from "../../shared/services/requests";
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(''),
-        [country, setCountry] = useState('');
+        [country, setCountry] = useState(''),
         // [imgPath, setImgPath] = useState(''),
-        // [body, setBody] = useState(''),
+        [body, setBody] = useState('');
 
   const getDisplayName = (e) => setDisplayName(e),
-        getCountry = (e) => setCountry(e);
+        getCountry = (e) => setCountry(e),
         // getImgPath = (e) => setImgPath(e),
-        // getBody = (e) => setBody(e);
+        getBody = (e) => setBody(e);
 
   const submit = (event) => {
     console.log(event.target[0].value);
@@ -27,7 +28,7 @@ const EditProfile = () => {
       display_name: displayName,
       country: country,
       // img_path: imgPath,
-      // body: body,
+      body: body,
     };
 
     PATCH("/user/{user}", data)
@@ -43,7 +44,8 @@ const EditProfile = () => {
 
   return (
     <>
-      <h1 className="profile-title">Edit Public Profile</h1>
+      <h1 className="profile-title">Edit Profile</h1>
+      <h2 className="profile-sub-title">This is your public profile that other people can see</h2>
 
       <form className="profile-form" onSubmit={submit}>
         {/* {errorEmail && <MessageError message = {errorEmail}/>} */}
@@ -64,7 +66,13 @@ const EditProfile = () => {
           getState={getCountry}
         />
 
-        <ButtonSubmit name="Profile" />
+        <Textarea
+          name="body"
+          placeholder="Write something about yourself..."
+          getState={getBody}
+        />
+
+        <ButtonSubmit name="Save Profile" />
       </form>
     </>
   );
