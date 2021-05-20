@@ -4,6 +4,7 @@ import Input from './input/';
 import InputDropdown from './input_dropdown/';
 import InputPassword from './input_password/';
 import MessageError from './message_error/';
+import Textarea from './textarea/';
 
 export {
   ButtonSubmit,
@@ -11,5 +12,6 @@ export {
   Input,
   InputDropdown,
   InputPassword,
-  MessageError
+  MessageError,
+  Textarea
 }
