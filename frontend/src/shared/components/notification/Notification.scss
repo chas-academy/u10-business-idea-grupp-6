@@ -1,5 +1,9 @@
 @import 'global.scss';
 
 #notification {
-    color: green !important;
+    position: absolute;
+    display: block;
+    z-index: 5;
+    background-color: $color-dark-gray;
+    color: $color-white;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { echo } from '../../services/requests';
-
+import './Notification.scss';
 const Notification = ({ auth }) => {
 
     useEffect(() => {
@@ -9,24 +9,25 @@ const Notification = ({ auth }) => {
             console.log('subscribing to echo for user ' + uid)
             echo.private('App.Models.User.' + uid)
                 .listen('MatchupSuccessful', (e) => {
-                    console.log(e.matchup.users)
-                    const otherUser = e.matchup.users.find(user => user.id !== parseInt(uid))
-                    console.log(otherUser)
+                    console.log(e)
+                    const otherUser = e.matchupData.users.find(user => user.id !== parseInt(uid))
                     setMessage(`
-                    You have a new match! Their name is ${otherUser.name}
-                    `)
+                    You have a new match! Their name is ${otherUser.profile.display_name || "hidden..."}
+                    `);
                 });
         }
-    }, [auth])
-
+    }, [auth]);
 
     const [isShown, setIsShown] = useState(false),
-        [message, setMessage] = useState("");
+          [message, setMessage] = useState("");
 
     useEffect(() => {
         if (message) {
             setIsShown(true);
-            setTimeout(() => setIsShown(false), 5000);
+            setTimeout(() => {
+                setIsShown(false);
+                setMessage("");
+            }, 5000);
         }
     }, [message])
 

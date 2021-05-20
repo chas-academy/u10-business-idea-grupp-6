@@ -17,9 +17,11 @@ const App = () => {
   return (
     <>
       <main>
+        
         <Notification
           auth={isAuth}
-          message={"Hello"} />
+          />
+
         <Router>
           <Route
             path="/"
