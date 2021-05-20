@@ -7,7 +7,7 @@ import Login from './components/login/';
 import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
-import PrivateSettings from './components/private_settings';
+import ChangePassword from './components/change_password';
 
 
 const App = () => {
@@ -57,8 +57,8 @@ const App = () => {
           />
 
           <ProtectedRoute
-            path="/private-settings"
-            exact component={PrivateSettings}
+            path="/change-password"
+            exact component={ChangePassword}
             isAuth={isAuth} 
           />
 

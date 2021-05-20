@@ -56,6 +56,9 @@ const Login = ({getToken}) => {
 
         <InputPassword
           getState={getPwd}
+          placeholder="Password"
+          htmlForPwd= "pwd"
+          idPwd="pwd"
         />
 
         <ButtonSubmit 

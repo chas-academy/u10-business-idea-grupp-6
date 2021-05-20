@@ -76,6 +76,9 @@ const Register = ({getToken}) => {
         <InputPassword
           getState={getPwd}
           getStateConf={getPwdConf}
+          placeholder="Password"
+          htmlForPwd= "pwd"
+          idPwd="pwd"
         />
 
         <ButtonSubmit name="Register" />

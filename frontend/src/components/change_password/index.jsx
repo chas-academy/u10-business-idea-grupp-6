@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import "./PrivateSettings.scss";
+import "./ChangePassword.scss";
 import { Link } from 'react-router-dom';
-import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
+import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components";
 import { PATCH } from "../../shared/services/requests";
 
-const PrivateSettings = () => {
+const ChangePassword = () => {
   const [currentPwd, setCurrentPwd] = useState(''),
         [newPwd, setNewPwd] = useState(''),
         [newPwdConf, setNewPwdConf] = useState(''),
@@ -54,14 +54,16 @@ const PrivateSettings = () => {
         <InputPassword
           placeholder="Current Password"
           getState={getCurrentPwd}
-          get
+          htmlForPwd= "currentPwd"
+          idPwd="currentPwd"
         />
-utPassword, Password 
         
         <InputPassword 
           getState={getNewPwd}
           getStateConf={getNewPwdConf}
-        />getStateConf={getNewPwdConf}
+          placeholder = "New Password"
+          htmlForPwd= "newPwd"
+          idPwd="newPwd"
         />
 
         <ButtonSubmit name="Update" />
@@ -72,4 +74,4 @@ utPassword, Password
   );
 };
 
-export default PrivateSettings;
+export default ChangePassword;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./InputPassword.scss";
 
-const InputPassword = ({ getState, getStateConf, placeholder }) => {
+const InputPassword = ({ getState, getStateConf, placeholder, idPwd, htmlForPwd }) => {
   const [toggle, setToggle] = useState(true),
         [pwdValue, setPwdValue] = useState(''),
         [pwdConfValue, setPwdConfValue] = useState('');
@@ -33,13 +33,14 @@ const InputPassword = ({ getState, getStateConf, placeholder }) => {
           onChange={e => inputValue(e.target.value)}
         />
         <input
-          id="toggle-hidden"
+          id={idPwd}
+          className="checkbox"
           type="checkbox"
           onChange={toggleInputType}
         />
         <label
           className="toggle-label"
-          htmlFor="toggle-hidden"
+          htmlFor={htmlForPwd}
         />
       </div>
 
