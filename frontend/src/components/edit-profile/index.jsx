@@ -3,10 +3,11 @@ import "./EditProfile.scss";
 import { Link } from "react-router-dom";
 import {
   Input,
+  InputDropdown,
   ButtonSubmit,
   MessageError,
 } from "../../shared/components/";
-import { POST } from "../../shared/services/requests";
+import { PATCH } from "../../shared/services/requests";
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(''),
@@ -29,7 +30,7 @@ const EditProfile = () => {
       // body: body,
     };
 
-    POST("/user/{user}", data)
+    PATCH("/user/{user}", data)
       .then((data) => {
         console.log(data);
         // localStorage.setItem("token", data.data.token);
@@ -53,6 +54,8 @@ const EditProfile = () => {
           name="display_name"
           getState={getDisplayName}
         />
+
+        <InputDropdown />
 
         <Input
           type="text"
