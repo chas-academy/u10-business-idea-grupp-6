@@ -7,15 +7,21 @@ import Login from './components/login/';
 import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
+import Notification from './shared/components/notification';
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem('token')); 
-  
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
+
   const getIsAuth = e => setIsAuth(e);
 
   return (
     <>
       <main>
+        
+        <Notification
+          auth={isAuth}
+          />
+
         <Router>
           <Route
             path="/"
@@ -25,33 +31,33 @@ const App = () => {
           <Route
             path="/register"
             render={(props) => (
-              <Register { ...props } getToken={getIsAuth} />
+              <Register {...props} getToken={getIsAuth} />
             )}
           />
 
           <Route
             path="/login"
             render={(props) => (
-              <Login { ...props } getToken={getIsAuth} />
+              <Login {...props} getToken={getIsAuth} />
             )}
           />
 
           <ProtectedRoute
             path="/verified"
             exact component={Verified}
-            isAuth={isAuth} 
+            isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/already-verified"
             exact component={AlreadyVerified}
-            isAuth={isAuth} 
+            isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/verify"
             exact component={Verify}
-            isAuth={isAuth} 
+            isAuth={isAuth}
           />
 
         </Router>

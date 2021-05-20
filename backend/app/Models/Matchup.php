@@ -10,6 +10,8 @@ class Matchup extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['users'];
+
     public function users()
     {
         return $this->belongsToMany(User::class);

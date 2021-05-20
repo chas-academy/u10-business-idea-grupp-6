@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Http\Resources\UserCollection;
 use App\Models\Matchup;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -21,11 +22,14 @@ class MatchupSuccessful implements ShouldBroadcast
      * @return void
      */
 
-    public $matchup;
+    public $matchupData;
 
     public function __construct(Matchup $matchup)
     {
-        $this->matchup = $matchup;
+        $this->matchupData = [
+            'matchup' => $matchup,
+            'users' => new UserCollection($matchup->users) 
+        ];
     }
 
     /**
@@ -35,7 +39,7 @@ class MatchupSuccessful implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return $this->matchup->users
+        return $this->matchupData['users']
         ->map(fn($u) => 
         new PrivateChannel("App.Models.User.".$u->id))
         ->toArray();
