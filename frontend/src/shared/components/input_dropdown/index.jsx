@@ -1,63 +1,91 @@
 import React, { useState, useEffect } from 'react'
 import './InputDropdown.scss';
 import AsyncSelect from 'react-select/async';
+import { POST, GET } from "../../services/requests";
 
 const InputDropdown = ({placeholder, type}) => {
   const [selectedOption, setSelectedOption] = useState([]),
-        [verifyRequest, setVerifyRequest] = useState([]),
+        [selectValue, setSelectValue] = useState([]),
         [options, setOptions] = useState([]);
 
-  const data = [
-    { id: 1, game: 'World Of Warcraft', genre_id: 4 },
-    { id: 2, game: 'Minecraft', genre_id: 6 },
-    { id: 3, game: 'Five Nights At Freddys', genre_id: 3 },
-    { id: 4, game: 'Call Of Duty World At War', genre_id: 7 },
-    { id: 5, game: 'Call Of Duty Black Ops 1', genre_id: 4 },
-    { id: 6, game: 'Call Of Duty Black Ops 2', genre_id: 8 },
-    { id: 7, game: 'Counter Strike Global Offensive', genre_id: 2 },
-  ]
-
   useEffect(() => {
-    const values = data.reduce((acc, curr) => {
-      const value = {
-        value: curr[type],
-        label: curr[type],
-        id: curr.id
-      }
-      acc.push(value)
-      return acc;
-    }, []);
+    
+    GET('user/prefs').then(response => {
+      const values = response.data.data.preferences[type].reduce((acc, curr) => {
+        const value = {
+          value: curr[type.slice(0, -1)],
+          label: curr[type.slice(0, -1)],
+          id: curr.id
+        }
+        acc.push(value)
+        return acc;
+      }, []);
+      
+      console.log(values);
+      setSelectValue(values);
+    }).catch(error => {
+      console.log(error);
+    })
 
-    setOptions(values);
-  }, []);
+    POST('prefs-payload', {model: type}).then(response => {
+      const values = response.data.reduce((acc, curr) => {
+        const value = {
+          value: curr[type.slice(0, -1)],
+          label: curr[type.slice(0, -1)],
+          id: curr.id
+        }
+        acc.push(value)
+        return acc;
+      }, []);
 
-  useEffect(() => {
-    const data = selectedOption.map(i => i.id);
-    if(data.length !== verifyRequest.length) console.log(data);
-    setVerifyRequest(data);
+      setOptions(values);
 
-  }, [selectedOption]);
+    }).catch(error => {
+      console.log(error);
+    })
+  }, [])
+
 
   const promiseOptions = (inputValue) =>
     new Promise(resolve => resolve(filterOptions(inputValue))
-    );
+  );
 
   const filterOptions = (inputValue) =>
     options.filter(i => i.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
+  );
+
+  const handleChange = (elem) => {
+    console.log(elem);
+    if(elem.length !== selectedOption.length) {
+      const data = {
+        model: type,
+        model_id: elem
+        .filter(item => !selectedOption.includes(item))
+        .concat(selectedOption.filter(item => !elem.includes(item))).pop().id
+      }
+      setSelectedOption(elem);
+      setSelectValue(elem);
+      
+      POST('prefs', data).then(data => {
+        console.log(data);
+      }).catch(error => {
+        console.log(error);
+      })
+    };
+  }
 
   return (
     <>
       <AsyncSelect
         cacheOptions
-        defaultOptions
+        value={selectValue}
         placeholder={placeholder}
         loadOptions={promiseOptions}
         styles={customStyles}
         isMulti
         closeMenuOnSelect={false}
         className="input-dropdown"
-        onChange={setSelectedOption}
+        onChange={(e) => handleChange(e)}
       />
     </>
   )

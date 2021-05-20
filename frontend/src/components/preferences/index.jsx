@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Preferences.scss'
 import { Slider, InputDropdown, Input, Switch } from "../../shared/components/";
+import { GET, POST } from '../../shared/services/requests';
 
 const Preferences = () => {
+
+
   return (
     <>
       <h1 className="preferences-title">
@@ -11,15 +14,13 @@ const Preferences = () => {
 
       <div className="preferences-container" >
 
-        <InputDropdown placeholder="Search Games"/>
-       
-        <Input placeholder="test" />
+        <InputDropdown placeholder="Search Games" type="games" options=""/>
 
         <Slider name="weekdays"/>
 
         <Slider name="weekends"/>
 
-        <InputDropdown placeholder="Search Genres"/>
+        <Input placeholder="test" />
 
         <Switch name="Flexible Times"/>
         
