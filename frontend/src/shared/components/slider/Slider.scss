@@ -23,42 +23,12 @@
     margin: 0 10px;
 
     .slider-checkbox {
-      display: none;
-  
-      &:checked + label {
-        background: $color-light-gray;
-      }
-  
-      &:checked + label:after {
-        left: calc(100% - 5px);
-        transform: translateX(-100%);
-      }
+     @include checkbox();
     }
   
     .slider-checkbox-label {
       margin-right: 85px;
-      cursor: pointer;
-      text-indent: 63px;
-      line-height: 1.8;
-      border: $border;
-      width: 54px;
-      height: 28px;
-      background: $color-dark-gray;
-      display: block;
-      border-radius: 100px;
-      position: relative;
-  
-      &:after {
-        content: '';
-        position: absolute;
-        top: 5px;
-        left: 5px;
-        width: 16px;
-        height: 16px;
-        background: #fff;
-        border-radius: 90px;
-        transition: 0.3s;
-      }
+      @include checkbox-label();
     }
   
     .slider-data {
