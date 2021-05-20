@@ -23,7 +23,7 @@ class Session extends Model
 
     public function deleteChats()
     {
-        $this->chats()->where('user_id', auth()->id())->delete();
+        $this->chats()->where('user_id', auth('sanctum')->user()->id)->delete();
     }
 
     public function deleteMessages()

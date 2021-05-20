@@ -16,12 +16,12 @@ class Message extends Model
         return $this->hasMany(Chat::class);
     }
 
-    public function createForSend($session_id)
+    public function createForSend($session_id, $user_id)
     {
         return $this->chats()->create([
             'session_id' => $session_id,
             'type' => 0,
-            'user_id' => auth()->id()
+            'user_id' => $user_id
         ]);
     }
 

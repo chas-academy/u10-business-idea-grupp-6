@@ -15,7 +15,7 @@ class ChatResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'message' => $this->message['content'],
+            'content' => $this->message['content'],
             'id' => $this->id,
             'type' => $this->type,
             'read_at' => $this->read_at_timing($this),

@@ -8,6 +8,7 @@ import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
 import Notification from './shared/components/notification';
+import Chat from './components/chat';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
@@ -17,10 +18,10 @@ const App = () => {
   return (
     <>
       <main>
-        
+
         <Notification
           auth={isAuth}
-          />
+        />
 
         <Router>
           <Route
@@ -40,6 +41,11 @@ const App = () => {
             render={(props) => (
               <Login {...props} getToken={getIsAuth} />
             )}
+          />
+
+          <Route
+            path="/chat"
+            exact component={Chat}
           />
 
           <ProtectedRoute

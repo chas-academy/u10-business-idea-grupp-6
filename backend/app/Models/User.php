@@ -93,11 +93,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Time::class);
     }
 
-    public function interactions()
-    {
-        return $this->hasMany(Interaction::class);
-    }
-
     public function subject_interactions()
     {
         return $this->hasMany(Interaction::class, 'subject_user_id');

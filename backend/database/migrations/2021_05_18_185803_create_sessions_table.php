@@ -15,9 +15,11 @@ class CreateSessionsTable extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user1_id');
-            $table->unsignedInteger('user2_id');
-            $table->unique(['user1_id', 'user2_id']);
+            $table->unsignedBigInteger('user_a_id');
+            $table->unsignedBigInteger('user_b_id');
+            $table->unique(['user_a_id', 'user_b_id']);
+            $table->foreign('user_a_id')->references('id')->on('users');
+            $table->foreign('user_b_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -29,7 +31,6 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('session');
         Schema::dropIfExists('sessions');
     }
 }

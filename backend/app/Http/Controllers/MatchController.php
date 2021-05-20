@@ -21,7 +21,7 @@ class MatchController extends Controller
 
     public function __construct()
     {
-        $this->user = auth('sanctum')->user();
+         $this->user = auth('sanctum')->user();
         // $this->user = User::find(9); //debug
 
         $this->setDelimiters([
@@ -56,8 +56,13 @@ class MatchController extends Controller
         ));
 
         $query = User::with(
-            ...$keys
+            ...$keys,
         );
+
+        // only get users that haven't been swiped on yet
+        if(count($subject_interactions_objects = $this->user->subject_interactions->pluck('object_user_id')))
+            $query->whereNotIn('id', $subject_interactions_objects);
+
 
         foreach($this->getDemands() as $demand => $idsArray)
         {
