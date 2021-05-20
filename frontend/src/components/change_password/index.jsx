@@ -58,6 +58,8 @@ const ChangePassword = () => {
           idPwd="currentPwd"
         />
         
+        {errorNewPwd && <MessageError message={errorNewPwd} />}
+
         <InputPassword 
           getState={getNewPwd}
           getStateConf={getNewPwdConf}
