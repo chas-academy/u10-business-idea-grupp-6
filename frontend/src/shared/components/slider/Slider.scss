@@ -11,157 +11,144 @@
   -ms-appearance: none;
 }
 
-
 .slider {
   width: 100%;
   max-width: 400px;
   margin-bottom: 20px;
 
-  .flex{
+  .slider-checkbox-container {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 10px;
-  }
 
-  .slider-data{
-    margin-top: 6px;
-  }
+    .slider-checkbox {
+      display: none;
   
-  input[type=checkbox]{
-    display: none;
-  }
+      &:checked + label {
+        background: $color-light-gray;
+      }
   
-  label {
-    margin-right: 85px;
-    cursor: pointer;
-    text-indent: 63px;
-    line-height: 1.8;
-    border: $border;
-    width: 54px;
-    height: 28px;
-    background: $color-dark-gray;
-    display: block;
-    border-radius: 100px;
-    position: relative;
-  }
+      &:checked + label:after {
+        left: calc(100% - 5px);
+        transform: translateX(-100%);
+      }
+    }
   
-  label:after {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 16px;
-    height: 16px;
-    background: #fff;
-    border-radius: 90px;
-    transition: 0.3s;
-  }
+    .slider-checkbox-label {
+      margin-right: 85px;
+      cursor: pointer;
+      text-indent: 63px;
+      line-height: 1.8;
+      border: $border;
+      width: 54px;
+      height: 28px;
+      background: $color-dark-gray;
+      display: block;
+      border-radius: 100px;
+      position: relative;
   
-  input:checked + label {
-    background: $color-light-gray;
-  }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 16px;
+        height: 16px;
+        background: #fff;
+        border-radius: 90px;
+        transition: 0.3s;
+      }
+    }
   
-  input:checked + label:after {
-    left: calc(100% - 5px);
-    transform: translateX(-100%);
+    .slider-data {
+      margin-top: 6px;
+    }
   }
 
   .slider-middle {
     position: relative;
-    width: 100%;
-    transition:visibility 0.2s, opacity 0.2s, padding 0.6s; 
-    @include center(); 
-    padding: 20px 0 10px 0;
+    transition: all 0.4s ease-out; 
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+    input[type=range] {
+      cursor: pointer;
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      height: 10px;
+      width: 100%;
+      opacity: 0;
+    
+      &::-webkit-slider-thumb {
+        @include thumb();
+      }
+    
+      &::-moz-range-thumb {
+        @include thumb();
+      }
+    
+      &::-ms-thumb {
+        @include thumb();
+      }
+    }
 
     .slider-container {
-      width: 95%;
+      width: 100%;
+      height: 5px;
       position: relative;
       z-index: 1;
-      height: 5px;
+
+      @include media('<=phone') {
+        height: 10px;
+      }
   
       .slider-track {
+        width: 100%;
+        height: 100%;
         position: absolute;
-        z-index: 1;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
         border-radius: 5px;
         background-color: $color-dark-gray;
         border: $border;
       }
       
       .slider-range {
+        height: 100%;
         position: absolute;
-        z-index: 2;
-        left: 25%;
-        right: 25%;
-        top: 0;
-        bottom: 0;
-        border-radius: 5px;
+        border-radius: 20px;
         background-color: $color-light-gray;
         border: $border;
       }
   
       .slider-thumb {
-        position: absolute;
-        z-index: 3;
         width: 15px;
         height: 15px;
-        background: $color-super-light-gray;
-        border-radius: 50%;
-        box-shadow: 0 0 0 0 rgba(90, 81, 129, 0.1);
-        transition: box-shadow .3s ease-in-out;
+        position: absolute;
+        z-index: 3;
+        border-radius: 100%;
+        background-color: $color-super-light-gray;
         border: $border;
+        transition: box-shadow .3s ease-in-out;
+        transform: translate(0px, -5px);
+
+        @include media('<=phone') {
+          width: 20px;
+          height: 20px;
+        }
       }
           
-      .slider-thumb.start {
-        left: 25%;
-        transform: translate(-10px, -5px);
+      .hover {
+        box-shadow: 0 0 0 6px #5a51814d;
       }
   
-      .slider-thumb.end {
-        right: 25%;
-        transform: translate(10px, -5px);
+      .active {
+        box-shadow: 0 0 0 8px #8e80ce66;
       }
-  
-      .slider-thumb.hover {
-        box-shadow: 0 0 0 6px rgba(90, 81, 129, 0.3);
-        color: white;
-        content: 'text';
-      }
-  
-      .slider-thumb.active {
-        box-shadow: 0 0 0 8px rgba(142, 128, 206, 0.4);
-      }
-    }
-  }
-  
-  input[type=range] {
-    cursor: pointer;
-    position: absolute;
-    pointer-events: none;
-    z-index: 2;
-    height: 10px;
-    width: 100%;
-    opacity: 0;
-  
-    &::-webkit-slider-thumb {
-      @include thumb();
-    }
-  
-    &::-moz-range-thumb {
-      @include thumb();
-    }
-  
-    &::-ms-thumb {
-      @include thumb();
     }
   }
 }
 
 .slider-middle.hidden {
   @include hidden();
-  padding: 0;
 }

@@ -61,7 +61,6 @@ const Slider = ({name}) => {
 
   const submit = () => {
     console.log(sliderValue);
-    if(!toggle) console.log(false);
   }
 
   const never = () => {
@@ -74,7 +73,7 @@ const Slider = ({name}) => {
 
   return (
     <div className="slider">
-      <div className="flex">
+      <div className="slider-checkbox-container">
         <input 
           className="slider-checkbox"
           type="checkbox" 
@@ -83,20 +82,13 @@ const Slider = ({name}) => {
           onClick={never}
         />
 
-        <label 
-          htmlFor={name}
-          className="slider-checkbox-label"
-        >
+        <label className="slider-checkbox-label" htmlFor={name}>
           {name}
         </label>
 
-        {toggle && <p className="slider-data">
-            {sliderValue.start}:00 To {sliderValue.end}:00
-        </p> }
-
-        {!toggle && <p className="slider-data">
-            Never
-        </p> }
+        <p className="slider-data">
+          { toggle ? `${sliderValue.start}:00 To ${sliderValue.end}:00` : `Never` }
+        </p> 
       </div>
 
       <div className={(toggle) ? 'slider-middle' : 'slider-middle hidden'}>
