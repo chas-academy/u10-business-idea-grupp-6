@@ -7,6 +7,8 @@ import Login from './components/login/';
 import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
+import PrivateSettings from './components/private_settings';
+
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')); 
@@ -51,6 +53,12 @@ const App = () => {
           <ProtectedRoute
             path="/verify"
             exact component={Verify}
+            isAuth={isAuth} 
+          />
+
+          <ProtectedRoute
+            path="/private-settings"
+            exact component={PrivateSettings}
             isAuth={isAuth} 
           />
 

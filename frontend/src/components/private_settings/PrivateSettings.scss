@@ -1,0 +1,35 @@
+@import "global.scss";
+
+.edit-title {
+  text-align: center;
+  font-size: $font-lg;
+  margin-bottom: 15px;
+  margin-top: 50px;
+}
+
+.edit-sub-title {
+  text-align: center;
+  font-size: $font-md;
+  margin-bottom: 40px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 500px;
+}
+
+.edit-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: $font-sm;
+}
+
+.edit-link {
+  color: $color-white;
+  opacity: 0.5;
+  margin-left: 5px;
+  text-decoration: none;
+}
