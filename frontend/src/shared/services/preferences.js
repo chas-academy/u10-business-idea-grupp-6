@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { POST } from './requests';
 
-// const apiBaseURL = 'http://u10-backend-staging.herokuapp.com/api';
-const apiBaseURL = 'http://127.0.0.1:8000/api';
+const apiBaseURL = 'http://u10-backend-staging.herokuapp.com/api';
 axios.defaults.withCredentials = true;
 
 const tables = [
