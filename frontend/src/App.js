@@ -11,6 +11,9 @@ import Notification from './components/notification';
 import Chat from './components/chat';
 import { GET } from './shared/services/requests';
 
+import ChangePassword from './components/change_password';
+
+
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
 
@@ -89,6 +92,12 @@ const App = () => {
             path="/verify"
             exact component={Verify}
             isAuth={isAuth}
+          />
+
+          <ProtectedRoute
+            path="/change-password"
+            exact component={ChangePassword}
+            isAuth={isAuth} 
           />
 
         </Router>

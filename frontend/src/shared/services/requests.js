@@ -4,8 +4,8 @@ import Pusher from 'pusher-js';
 
 window.Pusher = require('pusher-js');
 
-// const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api'
-const apiBaseURL = 'http://u10.test/api'
+const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api'
+
 
 axios.defaults.withCredentials = true;
 
@@ -26,6 +26,13 @@ export const GET = (url) => {
 export const POST = async (url, data) => {
   return axios(`${apiBaseURL}/${url}`, {
     method: 'POST',
+    data
+  });
+}
+
+export const PATCH = async (url, data) => {
+  return axios(`${apiBaseURL}/${url}`, {
+    method: 'PATCH',
     data,
   });
 }
