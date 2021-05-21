@@ -30,7 +30,7 @@ const Login = ({getToken}) => {
     })
   };
 
-  if(redirect) return <Redirect to="/private-settings"/>;
+  if(redirect) return <Redirect to="/change-password"/>;
 
   return (
     <>
@@ -56,6 +56,8 @@ const Login = ({getToken}) => {
 
         <InputPassword
           getState={getPwd}
+          placeholder="Password"
+          idPwd="pwd"
         />
 
         <ButtonSubmit 

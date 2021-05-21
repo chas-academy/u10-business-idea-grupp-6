@@ -7,6 +7,8 @@ import Login from './components/login/';
 import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
+import ChangePassword from './components/change_password';
+
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')); 
@@ -51,6 +53,12 @@ const App = () => {
           <ProtectedRoute
             path="/verify"
             exact component={Verify}
+            isAuth={isAuth} 
+          />
+
+          <ProtectedRoute
+            path="/change-password"
+            exact component={ChangePassword}
             isAuth={isAuth} 
           />
 
