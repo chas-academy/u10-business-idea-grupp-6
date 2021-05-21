@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class MatchController extends Controller
 {
-    public User $user;
+    public $user;
 
     private $delimiters = null;
     private $sortable   = null;
@@ -21,7 +21,11 @@ class MatchController extends Controller
 
     public function __construct()
     {
-         $this->user = auth('sanctum')->user();
+        $this->user = auth('sanctum')->user();
+        if($this->user === null)
+        {
+            abort(403);
+        }
         // $this->user = User::find(9); //debug
 
         $this->setDelimiters([

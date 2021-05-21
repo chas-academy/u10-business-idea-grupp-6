@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class InteractionController extends Controller
 {
-    private User $user;
+    private $user;
 
     public function __construct()
     {

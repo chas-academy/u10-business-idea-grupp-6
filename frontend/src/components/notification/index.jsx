@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { echo } from '../../services/requests';
+import { echo } from '../../shared/services/requests';
+import ButtonLink from '../../shared/components/button_link';
 import './Notification.scss';
 const Notification = ({ auth }) => {
 
@@ -20,9 +21,9 @@ const Notification = ({ auth }) => {
                 })
                 
             //THIS DOESNT WORK!!!!!!! 
-            echo.join('Chat').here((user) => {
-                console.log(user)
-            });
+            // echo.join('Chat').here((user) => {
+            //     console.log(user)
+            // });
         }
     }, [auth]);
 
@@ -40,7 +41,7 @@ const Notification = ({ auth }) => {
 
     return (
         message && isShown && <div id="notification">
-            {message}
+            <ButtonLink link="/chat" name={message} classValue="button-link"/>
         </div>
     )
 }

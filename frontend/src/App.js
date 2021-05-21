@@ -7,11 +7,32 @@ import Login from './components/login/';
 import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
-import Notification from './shared/components/notification';
+import Notification from './components/notification';
 import Chat from './components/chat';
+import { GET } from './shared/services/requests';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
+
+  const logout = () => {
+    GET('logout').then(data => {
+
+      setIsAuth(null);
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('user_id');
+
+    window.location.reload();
+    }).catch(e => {
+
+      setIsAuth(null);
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('user_id');
+
+      window.location.reload();
+    })
+  }
 
   const getIsAuth = e => setIsAuth(e);
 
@@ -19,11 +40,14 @@ const App = () => {
     <>
       <main>
 
-        <Notification
-          auth={isAuth}
-        />
 
+        {isAuth && <button className="button-link" onClick={logout}>Log out</button>}
         <Router>
+          
+          <Notification
+            auth={isAuth}
+          />
+
           <Route
             path="/"
             exact component={Home}
@@ -43,9 +67,10 @@ const App = () => {
             )}
           />
 
-          <Route
+          <ProtectedRoute
             path="/chat"
             exact component={Chat}
+            isAuth={isAuth}
           />
 
           <ProtectedRoute

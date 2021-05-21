@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Http\Resources\MatchupResource;
 use App\Http\Resources\UserCollection;
 use App\Models\Matchup;
 use Illuminate\Broadcasting\Channel;
@@ -27,7 +28,7 @@ class MatchupSuccessful implements ShouldBroadcast
     public function __construct(Matchup $matchup)
     {
         $this->matchupData = [
-            'matchup' => $matchup,
+            'matchup' => new MatchupResource($matchup),
             'users' => new UserCollection($matchup->users) 
         ];
     }
