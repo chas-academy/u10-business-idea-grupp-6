@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import './Input.scss';
+import React, { useState } from "react";
+import "./Input.scss";
 
-const Input = ({placeholder, type, name, getState}) => {
+const Input = ({ placeholder, type, name, getState, currentValue }) => {
   const [value, setValue] = useState("");
 
   const inputValue = (input) => {
     setValue(input);
     getState(input);
-  }
+  };
 
   return (
     <>
@@ -16,11 +16,11 @@ const Input = ({placeholder, type, name, getState}) => {
         name={name}
         type={type}
         placeholder={placeholder}
-        value={value}
-        onChange={e => inputValue(e.target.value)}
+        value={currentValue}
+        onChange={(e) => inputValue(e.target.value)}
       />
     </>
-  )
-}
+  );
+};
 
 export default Input;

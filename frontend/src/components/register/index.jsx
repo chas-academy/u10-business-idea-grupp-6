@@ -30,6 +30,7 @@ const Register = ({getToken}) => {
     
     POST('register', data).then(data => {
       localStorage.setItem('token', data.data.token);
+      localStorage.setItem('user_id', data.data.user.id);
       getToken(localStorage.getItem('token'));
       setRedirectVerify(true);
     }).catch(error => {
@@ -75,6 +76,8 @@ const Register = ({getToken}) => {
         <InputPassword
           getState={getPwd}
           getStateConf={getPwdConf}
+          placeholder="Password"
+          idPwd="pwd"
         />
 
         <ButtonSubmit name="Register" />

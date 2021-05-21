@@ -1,0 +1,35 @@
+@import "global.scss";
+
+.profile-title {
+  text-align: center;
+  font-size: $font-lg;
+  margin-bottom: 15px;
+  margin-top: 50px;
+}
+
+.profile-sub-title {
+  text-align: center;
+  font-size: $font-md;
+  margin-bottom: 40px;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 500px;
+}
+
+.profile-text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: $font-sm;
+}
+
+.profile-link {
+  color: $color-white;
+  opacity: 0.5;
+  margin-left: 5px;
+  text-decoration: none;
+}

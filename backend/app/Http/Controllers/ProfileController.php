@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $this->authorize('update', $user->profile);
         
             $validator = Validator::make($request->all(), [
-                'display_name' => 'required|unique:profiles',
+                'display_name' => 'unique:profiles',
             ]);
 
             if ($validator->fails())

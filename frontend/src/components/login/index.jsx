@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import './Login.scss';
+import React, { useState } from 'react'
+import './Login.scss'
 import { Link, Redirect } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
-import { POST } from '../../shared/services/requests';
+import { echo, POST } from '../../shared/services/requests';
 
 const Login = ({getToken}) => {
   const [email, setEmail] = useState(''),
@@ -21,8 +21,18 @@ const Login = ({getToken}) => {
     }
     
     POST('login', data).then(data => {
+      
       localStorage.setItem('token', data.data.token);
-      getToken(localStorage.getItem('token'))
+      localStorage.setItem('user_id', data.data.user.id);
+      getToken(localStorage.getItem('token'));
+
+      echo.private('App.Models.User.' + localStorage.getItem('user_id'))
+      .listen('MatchupSuccessful', (e) => {
+
+        // if you get a match, will print to console
+        console.log(e)
+      });
+
       setRedirect(true);
     }).catch(error => {
       setError(error.response.data.message);
@@ -55,6 +65,8 @@ const Login = ({getToken}) => {
 
         <InputPassword
           getState={getPwd}
+          placeholder="Password"
+          idPwd="pwd"
         />
 
         <ButtonSubmit 

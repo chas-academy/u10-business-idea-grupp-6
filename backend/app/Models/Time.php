@@ -9,6 +9,13 @@ class Time extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'interval',
+        'from',
+        'to',
+        'available'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

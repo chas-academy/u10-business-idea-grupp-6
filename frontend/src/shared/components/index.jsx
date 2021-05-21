@@ -6,6 +6,7 @@ import InputPassword from './input_password/';
 import Slider from './slider/';
 import MessageError from './message_error/';
 import Switch from './switch/'
+import Textarea from './textarea/';
 
 export {
   ButtonSubmit,
@@ -15,5 +16,7 @@ export {
   InputPassword,
   Slider,
   MessageError,
-  Switch
+  Switch,
+  MessageError,
+  Textarea
 }
