@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Event;
 use App\Events\UserCreated;
 use App\Listeners\AssignDefaultRole;
 use App\Listeners\CheckInteractionMatch;
+use App\Listeners\AttachEmptyTimes;
 use App\Listeners\CreateProfile;
 
 class EventServiceProvider extends ServiceProvider
@@ -25,7 +26,8 @@ class EventServiceProvider extends ServiceProvider
         ],
         UserCreated::class => [
             AssignDefaultRole::class,
-            CreateProfile::class
+            CreateProfile::class,
+            AttachEmptyTimes::class
         ],
         InteractionOccurance::class => [
             CheckInteractionMatch::class

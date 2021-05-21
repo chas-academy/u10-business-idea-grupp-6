@@ -17,7 +17,8 @@ class TimeResource extends JsonResource
         return [
             'interval' => $this->interval,
             'from' => $this->from,
-            'to' => $this->to
+            'to' => $this->to,
+            'available' => $this->available
         ];
     }
 }

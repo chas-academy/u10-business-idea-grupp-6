@@ -7,6 +7,7 @@ use App\Http\Controllers\MatchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\TimeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +34,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
     Route::get('/match', [MatchController::class, 'match'])->name('match');
 
 
+
     // for chat
-    Route::post('getFriends', [MatchController::class, 'getFriends'])->name('getFriends');
     Route::post('/session/create', [SessionController::class, 'create'])->name('create');
     Route::post('/session/{session}/chats', [ChatController::class, 'chats'])->name('chats');
     Route::post('/session/{session}/read', [ChatController::class, 'read'])->name('read');
@@ -46,6 +47,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
 
     // this route is for saving interactions from users
     Route::post('/interactions', [InteractionController::class, 'store']);
+
+    // route for updating user's time preferences. frequently requested
+    Route::patch('/times', TimeController::class);
+
 
     Route::get('/user/{user}', [ProfileController::class, 'getProfile']);
     Route::get('/user/{user}/account', [ProfileController::class, 'getAccount']);

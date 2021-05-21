@@ -22,11 +22,11 @@ class MatchController extends Controller
     public function __construct()
     {
         $this->user = auth('sanctum')->user();
+
         if($this->user === null)
         {
             abort(403);
         }
-        // $this->user = User::find(9); //debug
 
         $this->setDelimiters([
             'player_types',
@@ -45,71 +45,62 @@ class MatchController extends Controller
         ]);
     }
 
-    public function test(Request $request)
-    {
-        return response(['request' => $request->all()]);
-    }
+
 
     public function match()
-    {
-        // pick out all related tables needed for filtering
+    {  
         $keys = array_keys(array_merge_recursive(
-            $this->getDelimiters(),
-            $this->getDemands(),
-            $this->getTimes()
+                $this->getDelimiters(), 
+                $this->getDemands()
         ));
 
         $query = User::with(
             ...$keys,
         );
 
+
         // only get users that haven't been swiped on yet
         if(count($subject_interactions_objects = $this->user->subject_interactions->pluck('object_user_id')))
             $query->whereNotIn('id', $subject_interactions_objects);
 
-
+   
         foreach($this->getDemands() as $demand => $idsArray)
         {
-            if($idsArray)
-                $query->whereHas('miscs', function ($q) use ($demand) {
-                    $q->where('miscs.id', $demand);
+            if(count($idsArray))
+                $query->whereHas('miscs', function($q) use($demand, $idsArray)
+                {
+                    foreach($idsArray as $id)
+                    {
+                        $q->where('miscs.id', $id);
+                    }
+                    
                 });
         }
 
-
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
-            if($idsArray)
-                $query->whereHas($delimiter, function ($q) use ($idsArray, $delimiter) {
+            if(count($idsArray))
+                $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
+                {
                     $q->where("$delimiter.id", $idsArray);
                 });
         }
 
-        $times = $this->getTimes()['times'];
-
-        if($times)
-        {
-            $query->whereHas('times', function ($q) use ($times) {
-                // match those that have a time with the interval of choosing
-                $q->where('times.interval', $times);
-            });
-        }
-
-        // execute
         $collection = $query->get();
 
-        // this is a single sorting parameter right now
         $sortable = $this->getSortable();
 
         $collection->sort(function ($a, $b) use ($sortable) {
             // this is quite query heavy
             if($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
                 return -1;
+          
             return 1;
         });
-        // dd($collection); //debug
+
         return response(new UserCollection($collection));
     }
+    
 
     /**
      * Returns all of a user's matches
@@ -156,7 +147,8 @@ class MatchController extends Controller
 
         foreach($arrayOfStrings as $key => $value)
         {
-            $times[$value] = $this->user->{$value}->pluck('interval')->toArray();
+            $times[$value] = $this->user->{$value}()->select('interval', 'available')->get()->filter(fn($i)=> $i->available === 1)
+            ->toArray();
         }
 
         $this->times = $times;
@@ -181,10 +173,5 @@ class MatchController extends Controller
     public function getTimes()
     {
         return $this->times;
-    }
-
-    public function getFriends()
-    {
-        return UserResource::collection(User::where('id', '!=', auth()->id())->get());
     }
 }
