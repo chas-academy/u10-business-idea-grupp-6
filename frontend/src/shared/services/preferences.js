@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { POST } from './requests';
+import { PATCH, POST } from './requests';
 
 const apiBaseURL = 'http://u10-backend-staging.herokuapp.com/api';
+
 axios.defaults.withCredentials = true;
 
 const tables = [
@@ -57,6 +58,21 @@ export const SWITCH = (type, id) => {
   }
 
   POST('prefs', data).then(data => {
+    console.log(data);
+  },  error => {
+    console.log(error);
+  });
+}
+
+export const TIME = (from, to, interval, available) => {
+  const data = {
+    from: from,
+    to: to,
+    interval: interval,
+    available: available
+  }
+
+  PATCH('times', data).then(data => {
     console.log(data);
   },  error => {
     console.log(error);

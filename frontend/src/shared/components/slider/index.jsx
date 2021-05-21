@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { TIME } from '../../services/preferences';
 import './Slider.scss';
 
-const Slider = ({name}) => {
+const Slider = ({name, defaults}) => {
   const [sliderValue, setSliderValue] = useState({start: 0, end: 24}),
         [toggle, setToggle] = useState(false);
 
@@ -10,7 +11,11 @@ const Slider = ({name}) => {
           inputEnd = document.getElementById(`${name}-end`),
           thumbStart = document.querySelector(`.${name}-start`),
           thumbEnd = document.querySelector(`.${name}-end`),
-          range = document.querySelector(`.${name}-range`);
+          range = document.querySelector(`.${name}-range`),
+          filter = defaults?.find(elem => elem.interval === name);
+      
+    inputStart.value = Math.round(filter?.from / 24 * 100);
+    inputEnd.value = Math.round(filter?.to / 24 * 100);
 
     const setStartValue = () => {
       inputStart.value = Math.min(parseInt(inputStart.value), parseInt(inputEnd.value) - 1);
@@ -33,6 +38,16 @@ const Slider = ({name}) => {
         end: Math.round(24 * ((inputEnd.value)/100))
       }));
     }
+
+    if(filter?.available){
+      document.getElementById(name).checked = true
+      setToggle(true);
+    }
+
+    setSliderValue({
+      start: filter?.from,
+      end: filter?.to,
+    });
    
     setStartValue();
     setEndValue();
@@ -42,7 +57,7 @@ const Slider = ({name}) => {
     
     inputStart.addEventListener("input", setStartValue);
     inputEnd.addEventListener("input", setEndValue);
-  }, []);
+  }, [defaults]);
 
   const addEventListeners = (input, thumb) => {
     input.addEventListener("mouseover", () => {
@@ -60,11 +75,12 @@ const Slider = ({name}) => {
   }
 
   const submit = () => {
-    console.log(sliderValue);
+    TIME(sliderValue.start, sliderValue.end, name , true);
   }
 
-  const never = () => {
-    if(toggle) console.log(false);
+  const toggleHandler = () => {
+    if(toggle) TIME(sliderValue.start, sliderValue.end, name, false);
+    if(!toggle) TIME(sliderValue.start, sliderValue.end, name, true);
   }
 
   const toggleInputType = () => {
@@ -79,7 +95,7 @@ const Slider = ({name}) => {
           type="checkbox" 
           id={name} 
           onChange={toggleInputType}
-          onClick={never}
+          onClick={toggleHandler}
         />
 
         <label className="slider-checkbox-label" htmlFor={name}>

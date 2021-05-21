@@ -32,12 +32,12 @@ const Preferences = () => {
         <h2>When do you play</h2>
 
         <Slider 
-          name="Weekdays" 
+          name="weekday" 
           defaults={defaults?.times}
         />
 
         <Slider 
-          name="Weekends" 
+          name="weekend" 
           defaults={defaults?.times}
         />
 

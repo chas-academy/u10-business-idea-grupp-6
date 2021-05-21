@@ -15,7 +15,6 @@ export {
   InputDropdown,
   InputPassword,
   Slider,
-  MessageError,
   Switch,
   MessageError,
   Textarea

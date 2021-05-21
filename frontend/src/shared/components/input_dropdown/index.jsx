@@ -23,9 +23,7 @@ const InputDropdown = ({placeholder, type, data, defaults}) => {
       label: i[type],
       id: i.id
     }));
-
-    console.log({formated, defaults})
-
+    
     setDefaultValue(formated);
   }, [defaults]);
 
