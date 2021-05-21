@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// const apiBaseURL = 'http://u10-backend-staging.herokuapp.com/api';
-const apiBaseURL = 'http://127.0.0.1:8000/api';
+const apiBaseURL = 'http://u10-backend-staging.herokuapp.com/api';
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
