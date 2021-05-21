@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api'
+const apiBaseURL = 'http://u10-backend-staging.herokuapp.com/api'
 axios.defaults.withCredentials = true;
 
 axios.interceptors.request.use(
@@ -23,3 +23,10 @@ export const POST = async (url, data) => {
     data,
   });
 }
+
+export const PATCH = async (url, data) => {
+  return axios(`${apiBaseURL}/${url}`, {
+    method: "PATCH",
+    data,
+  });
+};
