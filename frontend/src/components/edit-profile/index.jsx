@@ -13,6 +13,7 @@ import { PATCH, GET } from "../../shared/services/requests";
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(""),
+        [oldDisplayName, setOldDisplayName] = useState(""),
      // [country, setCountry] = useState(""),
      // [imgPath, setImgPath] = useState(''),
         [body, setBody] = useState(""),
@@ -28,7 +29,7 @@ const EditProfile = () => {
   useEffect(() => {
     GET(`user/${userId}`)
       .then((data) => {
-        setDisplayName(data.data.display_name);
+        setOldDisplayName(data.data.display_name);
         setBody(data.data.body);
       })
       .catch((error) => {
@@ -45,7 +46,7 @@ const EditProfile = () => {
       body: body,
     };
 
-    if(data.display_name === displayName){
+    if(data.display_name === oldDisplayName){
       return false;
     } else{
       PATCH(`user/${userId}`, data.display_name)
@@ -81,7 +82,7 @@ const EditProfile = () => {
         <Input
           type="text"
           placeholder="Display Name"
-          currentValue={displayName}
+          currentValue={oldDisplayName}
           name="display_name"
           getState={getDisplayName}
         />
