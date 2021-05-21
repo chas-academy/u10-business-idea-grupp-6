@@ -70,7 +70,6 @@ const EditProfile = () => {
     //       console.log("Profile successfully updated!");
     //     })
     // }
-  };
 
   return (
     <>
@@ -110,7 +109,7 @@ const EditProfile = () => {
       </form>
     </>
   );
-};
+}
 
 export default EditProfile;
 
