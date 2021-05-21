@@ -31,6 +31,12 @@ class PreferenceController extends Controller
         }
 
         $className = substr(ucfirst($model), 0, -1);
+
+        if($strpos = strpos($className, '_'))
+        {
+            $className = substr_replace($className, ucfirst(substr($className, $strpos + 1, 1)), $strpos, 2);
+        }
+
         $class     = '\\App\\Models\\'. $className;
 
         if($object = $class::find($request->model_id))

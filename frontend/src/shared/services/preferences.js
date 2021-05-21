@@ -32,7 +32,7 @@ export const PREFERENCES = () => {
   .then(response => response.data.data.preferences);
 }
 
-export const UPDATE = (elem, diff, type) => {
+export const DROPDOWN = (elem, diff, type) => {
   if(elem.length !== diff.length) {
     const data = {
       model: `${type}s`,
@@ -45,8 +45,21 @@ export const UPDATE = (elem, diff, type) => {
     
     POST('prefs', data).then(data => {
       console.log(data);
-    },error => {
+    }, error => {
       console.log(error);
-    })
+    });
   };
+}
+
+export const SWITCH = (type, id) => {
+  const data = {
+    model: `${type}s`,
+    model_id: id
+  }
+
+  POST('prefs', data).then(data => {
+    console.log(data);
+  },  error => {
+    console.log(error);
+  });
 }

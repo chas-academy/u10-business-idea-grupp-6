@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './InputDropdown.scss';
 import AsyncSelect from 'react-select/async';
-import { UPDATE } from '../../services/preferences';
+import { DROPDOWN } from '../../services/preferences';
 
-const InputDropdown = ({placeholder, type, data, defalts}) => {
+const InputDropdown = ({placeholder, type, data, defaults}) => {
   const [selectedOption, setSelectedOption] = useState([]),
         [defaultValue, setDefaultValue] = useState([]),
         [options, setOptions] = useState();
@@ -18,14 +18,16 @@ const InputDropdown = ({placeholder, type, data, defalts}) => {
   }, [data]);
 
   useEffect(() => { 
-    const formated = defalts?.map(i => ({
+    const formated = defaults?.map(i => ({
       value: i[type],
       label: i[type],
       id: i.id
     }));
 
+    console.log({formated, defaults})
+
     setDefaultValue(formated);
-  }, [defalts]);
+  }, [defaults]);
 
   const promiseOptions = (inputValue) =>
     new Promise(resolve => resolve(filterOptions(inputValue))
@@ -36,7 +38,7 @@ const InputDropdown = ({placeholder, type, data, defalts}) => {
   );
 
   const handleChange = (elem) => {
-    UPDATE(elem, selectedOption, type);
+    DROPDOWN(elem, selectedOption, type);
     setSelectedOption(elem);
     setDefaultValue(elem);
   }

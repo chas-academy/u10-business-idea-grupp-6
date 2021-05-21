@@ -5,11 +5,11 @@ import { OPTIONS, PREFERENCES } from "../../shared/services/preferences";
 
 const Preferences = () => {
   const [options, setOptions] = useState(),
-        [defalts, setDefalts] = useState();
+        [defaults, setDefaults] = useState();
 
   useEffect(() => {
     OPTIONS().then(options => setOptions(options));
-    PREFERENCES().then(options => setDefalts(options));
+    PREFERENCES().then(options => setDefaults(options));
   }, [])
 
   return (
@@ -20,40 +20,64 @@ const Preferences = () => {
 
       <div className="preferences-container" >
 
+        <h2>Favorite games</h2>
+
         <InputDropdown 
-          placeholder="Search Games" 
+          placeholder="Search games" 
           type="game" 
           data={options?.games}
-          defalts={defalts?.games}
+          defaults={defaults?.games}
         />
 
-        <Slider name="weekdays"/>
+        <h2>When do you play</h2>
 
-        <Slider name="weekends"/>
+        <Slider 
+          name="Weekdays" 
+          defaults={defaults?.times}
+        />
+
+        <Slider 
+          name="Weekends" 
+          defaults={defaults?.times}
+        />
+
+        <h2>Appealing genres</h2>
 
         <InputDropdown 
-          placeholder="Search Genres" 
+          placeholder="Search genres" 
           type="genre" 
           data={options?.genres}
-          defalts={defalts?.genres}
+          defaults={defaults?.genres}
         />
-
-        <Switch name="Non-aggressive Language" type="miscs" moduleId="1"/>
         
-        <Switch name="Flexible Times" type="miscs" moduleId="2"/>
+        <h2>Type of player</h2>
+
+        { options?.player_types.map(type => 
+          <Switch 
+            type="player_type" 
+            data={type}
+            defaults={defaults?.player_types}
+          /> 
+        )}
+
+        <h2>Preferred languages</h2>
 
         <InputDropdown 
-          placeholder="Search Languages" 
+          placeholder="Search languages" 
           type="lang" 
           data={options?.langs}
-          defalts={defalts?.langs}
+          defaults={defaults?.langs}
         />
 
-        <Switch name="medium" type="miscs" moduleId="1"/>
+        <h2>Optional</h2>
         
-        <Switch name="Competetive" type="miscs" moduleId="2"/>
-
-        <Switch name="Casual" type="miscs" moduleId="2"/>
+        { options?.miscs.map(misc => 
+          <Switch 
+            type="misc" 
+            data={misc} 
+            defaults={defaults?.miscs}
+          />
+        )}
 
       </div>
     </>

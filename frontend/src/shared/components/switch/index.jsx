@@ -1,48 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './Switch.scss';
-import { POST, GET } from "../../services/requests";
+import { SWITCH } from "../../services/preferences";
 
-const Switch = ({name, type, moduleId}) => {
-  const [selectValue, setSelectValue] = useState([]);
+const Switch = ({type, data, defaults}) => {
 
-  useEffect(() => { 
-    GET('user/prefs').then(response => {
-      const values = response.data.data.preferences[type].reduce((acc, curr) => {
-        const value = {
-          value: curr[type.slice(0, -1)],
-          label: curr[type.slice(0, -1)],
-          id: curr.id
-        }
-        acc.push(value)
-        return acc;
-      }, []);
-      
-      setSelectValue(values);
-    })
-  }, []);
+  useEffect(() => {
+    document.getElementById(data[type]).checked = 
+    defaults?.some(elem => elem.id === data.id);
+  }, [defaults])
 
-  const handleChange = () => {
-    const data = {
-      model: type,
-      model_id: moduleId
-    }
-
-    POST('prefs', data).then(data => {
-      console.log(data);
-    })
-  }
+  const handleChange = (event) => SWITCH(type, data.id);
 
   return (
     <div className="switch-container">
         <input 
           className="switch-checkbox"
           type="checkbox" 
-          id={name} 
-          onChange={handleChange}
+          id={data[type]} 
+          onChange={(e) => handleChange(e)}
         />
 
-        <label className="switch-checkbox-label" htmlFor={name}>
-          {name}
+        <label className="switch-checkbox-label" htmlFor={data[type]}>
+          {data[type]}
         </label>
     </div>
   )

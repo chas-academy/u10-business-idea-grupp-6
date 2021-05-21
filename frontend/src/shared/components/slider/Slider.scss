@@ -37,6 +37,7 @@
   }
 
   .slider-middle {
+    @include center();
     position: relative;
     transition: all 0.4s ease-out; 
     padding-top: 20px;
@@ -65,7 +66,7 @@
     }
 
     .slider-container {
-      width: 100%;
+      width: 95%;
       height: 5px;
       position: relative;
       z-index: 1;
@@ -100,12 +101,21 @@
         background-color: $color-super-light-gray;
         border: $border;
         transition: box-shadow .3s ease-in-out;
-        transform: translate(0px, -5px);
 
         @include media('<=phone') {
           width: 20px;
           height: 20px;
         }
+      }
+
+      .slider-thumb.start {
+        left: 25%;
+        transform: translate(-10px, -5px);
+      }
+  
+      .slider-thumb.end {
+        right: 25%;
+        transform: translate(10px, -5px);
       }
           
       .hover {
