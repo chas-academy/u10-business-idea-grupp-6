@@ -30,6 +30,4 @@ class NewPasswordController extends Controller
             'message' => __('json-api-auth.password_updated'),
         ]);
     }
-
-
 }
