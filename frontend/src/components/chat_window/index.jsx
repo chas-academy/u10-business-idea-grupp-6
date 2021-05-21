@@ -22,11 +22,9 @@ const ChatWindow = ({ active, matchup }) => {
             console.log('subscribing to session chat ' + matchup.session.id)
             
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
-                console.log(e)
                 const f = e;
-                if (f.chat.user_id === parseInt(localStorage.getItem('user_id')))
+                if (f.chat.user_id !== parseInt(localStorage.getItem('user_id')))
                 {
-                    console.log('changing to number 1')
                     f.chat.type = 1;
                 }
                 setNewMessages((previousState) => [...previousState, f]);
@@ -72,7 +70,7 @@ const ChatWindow = ({ active, matchup }) => {
                 )}
                 {newMessages.map(i => 
 
-                    <p className={i.chat.type !== 0 ? "received" : "sent"}>
+                    <p className={i.chat.type ? "received" : "sent"}>
                         {i.content}
                     </p>
 
