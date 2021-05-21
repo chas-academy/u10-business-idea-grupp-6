@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./EditProfile.scss";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   Input,
   InputDropdown,
   Textarea,
   ButtonSubmit,
   MessageError,
+  Modal,
 } from "../../shared/components/";
-import { PATCH } from "../../shared/services/requests";
+import { PATCH, GET } from "../../shared/services/requests";
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(""),
@@ -22,6 +23,19 @@ const EditProfile = () => {
     // getImgPath = (e) => setImgPath(e),
     getBody = (e) => setBody(e);
 
+  const userId = localStorage.getItem("user_id");
+
+  useEffect(() => {
+    GET(`user/${userId}`)
+      .then((data) => {
+        setDisplayName(data.data.display_name);
+        setBody(data.data.body);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const submit = (event) => {
     event.preventDefault();
     const data = {
@@ -30,8 +44,6 @@ const EditProfile = () => {
       // img_path: imgPath,
       body: body,
     };
-
-    const userId = localStorage.getItem("user_id");
 
     PATCH(`user/${userId}`, data)
       .then((data) => {
@@ -51,12 +63,12 @@ const EditProfile = () => {
       </h2>
 
       <form className="profile-form" onSubmit={submit}>
-  
         {errorDisplayName && <MessageError message={errorDisplayName} />}
 
         <Input
           type="text"
           placeholder="Display Name"
+          currentValue={displayName}
           name="display_name"
           getState={getDisplayName}
         />
@@ -73,6 +85,7 @@ const EditProfile = () => {
         <Textarea
           name="body"
           placeholder="Write something about yourself..."
+          currentValue={body}
           getState={getBody}
         />
 
@@ -83,3 +96,5 @@ const EditProfile = () => {
 };
 
 export default EditProfile;
+
+//<a href="https://www.freepik.com/vectors/hand">Hand vector created by freepik - www.freepik.com</a>

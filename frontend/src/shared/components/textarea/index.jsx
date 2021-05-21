@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Textarea.scss";
 
-const Textarea = ({placeholder, name, getState}) => {
+const Textarea = ({placeholder, name, getState, currentValue}) => {
   const [value, setValue] = useState("");
 
   const inputValue = (input) => {
@@ -15,7 +15,7 @@ const Textarea = ({placeholder, name, getState}) => {
         className="textarea"
         name={name}
         placeholder={placeholder}
-        value={value}
+        value={currentValue}
         onChange={(e) => inputValue(e.target.value)}
       />
     </>
