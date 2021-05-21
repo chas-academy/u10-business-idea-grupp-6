@@ -42,11 +42,11 @@ export const echo = new Echo({
   key: "236a01f23701620287f9",
   cluster: 'eu',
   forceTLS: true,
-  authEndpoint: 'http://u10.test/api/broadcasting/auth',
+  authEndpoint: `${apiBaseURL}/broadcasting/auth`,
   authorizer: (channel, options) => {
     return {
       authorize: (socketId, callback) => {
-        axios.post('http://u10.test/api/broadcasting/auth', {
+        axios.post(`${apiBaseURL}/broadcasting/auth`, {
            socket_id: socketId, channel_name: channel.name })
           .then(response => {
             callback(false, response.data)
