@@ -30,6 +30,7 @@ const EditProfile = () => {
     GET(`user/${userId}`)
       .then((data) => {
         setOldDisplayName(data.data.display_name);
+        setDisplayName(data.data.display_name);
         setBody(data.data.body);
       })
       .catch((error) => {
@@ -47,11 +48,9 @@ const EditProfile = () => {
 
     if(displayName !== oldDisplayName)
     {
-       data.display_name = displayName
+      data.display_name = displayName
     }
-    // if(){
-    //   return false;
-    // } else{
+
       PATCH(`user/${userId}`, data)
         .then((data) => {
           console.log("Profile successfully updated!");
@@ -61,15 +60,6 @@ const EditProfile = () => {
           setErrorDisplayName(error.response.data.error.display_name);
         });
     }
-
-    // if (data.body === body) {
-    //   return false;
-    // } else {
-    //   PATCH(`user/${userId}`, data)
-    //     .then((data) => {
-    //       console.log("Profile successfully updated!");
-    //     })
-    // }
 
   return (
     <>
@@ -84,7 +74,7 @@ const EditProfile = () => {
         <Input
           type="text"
           placeholder="Display Name"
-          currentValue={oldDisplayName}
+          currentValue={displayName}
           name="display_name"
           getState={getDisplayName}
         />
