@@ -81,28 +81,28 @@ class DatabaseSeeder extends Seeder
                     $user->langs()->attach($i+1);
                 }
 
-                for($i = 0; $i <= rand(0, 1); $i++)
-                {
-                    $selected = rand(0,1);
-                    if($selected>0 && $user->times()->where('interval', 'weekday')->get()->count() === 0)
-                    {
+                // for($i = 0; $i <= rand(0, 1); $i++)
+                // {
+                //     $selected = rand(0,1);
+                //     if($selected>0 && $user->times()->where('interval', 'weekday')->get()->count() === 0)
+                //     {
                         
-                        $weekday = \App\Models\Time::create([
-                            'interval' => 'weekday',
-                            'from' => rand(0,23),
-                            'to' => rand(0,23),
-                            'user_id' => $user->id 
-                        ]);
-                    }
-                    else if ( $selected===0 && $user->times()->where('interval', 'weekend')->get()->count() === 0){
-                        $weekend = \App\Models\Time::create([
-                            'interval' => 'weekend',
-                            'from' => rand(0,23),
-                            'to' => rand(0,23) ,
-                            'user_id' => $user->id
-                        ]);
-                    }
-                }
+                //         $weekday = \App\Models\Time::create([
+                //             'interval' => 'weekday',
+                //             'from' => rand(0,23),
+                //             'to' => rand(0,23),
+                //             'user_id' => $user->id 
+                //         ]);
+                //     }
+                //     else if ( $selected===0 && $user->times()->where('interval', 'weekend')->get()->count() === 0){
+                //         $weekend = \App\Models\Time::create([
+                //             'interval' => 'weekend',
+                //             'from' => rand(0,23),
+                //             'to' => rand(0,23) ,
+                //             'user_id' => $user->id
+                //         ]);
+                //     }
+                // }
 
                 $num = rand(0, 2);
                 if($num) $user->miscs()->attach($num);

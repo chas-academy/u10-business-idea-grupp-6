@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class PreferenceController extends Controller
 {
-    public User $user;
+    public $user;
 
     public function __construct()
     {
@@ -15,7 +15,7 @@ class PreferenceController extends Controller
     }
 
     /**
-     * The method which adds or removes user preferences.
+     * The method which adds or removes user preferences. EXCEPT FOR TIMES
      * Request must be formatted like this:
      * model: 'games',
      * model_id: 1
@@ -31,6 +31,11 @@ class PreferenceController extends Controller
         }
 
         $className = substr(ucfirst($model), 0, -1);
+        if($strpos = strpos($className, '_'))
+        {
+            $className = substr_replace($className, ucfirst(substr($className, $strpos + 1, 1)), $strpos, 2);
+        }
+
         $class     = '\\App\\Models\\'. $className;
 
         if($object = $class::find($request->model_id))

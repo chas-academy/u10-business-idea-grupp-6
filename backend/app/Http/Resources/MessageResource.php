@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TimeResource extends JsonResource
+class MessageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,11 +14,6 @@ class TimeResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'interval' => $this->interval,
-            'from' => $this->from,
-            'to' => $this->to,
-            'available' => $this->available
-        ];
+        return parent::toArray($request);
     }
 }

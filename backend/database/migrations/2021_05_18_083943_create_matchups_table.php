@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTimesTable extends Migration
+class CreateMatchupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('times', function (Blueprint $table) {
+        Schema::create('matchups', function (Blueprint $table) {
             $table->id();
-            $table->enum('interval', ['weekday', 'weekend']);
-            $table->unsignedFloat('from')->default(19);
-            $table->unsignedFloat('to')->default(21);
-            $table->boolean('available')->default(false);
-            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ class CreateTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('times');
+        Schema::dropIfExists('matchups');
     }
 }
