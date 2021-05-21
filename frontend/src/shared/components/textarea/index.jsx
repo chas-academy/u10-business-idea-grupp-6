@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./Input.scss";
+import "./Textarea.scss";
 
-const Input = ({ placeholder, type, name, getState, currentValue }) => {
+const Textarea = ({placeholder, name, getState, currentValue}) => {
   const [value, setValue] = useState("");
 
   const inputValue = (input) => {
@@ -11,10 +11,9 @@ const Input = ({ placeholder, type, name, getState, currentValue }) => {
 
   return (
     <>
-      <input
-        className="input"
+      <textarea
+        className="textarea"
         name={name}
-        type={type}
         placeholder={placeholder}
         value={currentValue}
         onChange={(e) => inputValue(e.target.value)}
@@ -23,4 +22,4 @@ const Input = ({ placeholder, type, name, getState, currentValue }) => {
   );
 };
 
-export default Input;
+export default Textarea;

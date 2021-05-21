@@ -1,19 +1,18 @@
-import { Route, BrowserRouter as Router } from 'react-router-dom';
-import ProtectedRoute from './guard/protected_route';
-import { useState, useEffect } from 'react';
-import Home from './components/home/';
-import Register from './components/register/';
-import Login from './components/login/';
-import Verified from './components/verified';
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import ProtectedRoute from "./guard/protected_route";
+import React, { useState, useEffect } from "react";
+import Home from "./components/home/";
+import Register from "./components/register/";
+import Login from "./components/login/";
+import Verified from "./components/verified";
 import AlreadyVerified from "./components/already_verified";
+import EditProfile from "./components/edit-profile";
+import ChangePassword from "./components/change_password";
 import Verify from './components/verify';
 import Notification from './components/notification';
 import Chat from './components/chat';
 import { GET } from './shared/services/requests';
-
-import ChangePassword from './components/change_password';
-
-
+  
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
 
@@ -96,14 +95,21 @@ const App = () => {
 
           <ProtectedRoute
             path="/change-password"
-            exact component={ChangePassword}
-            isAuth={isAuth} 
+            exact
+            component={ChangePassword}
+            isAuth={isAuth}
           />
 
+          <Route
+            path="/edit-profile"
+            exact
+            component={EditProfile}
+            isAuth={isAuth}
+          />
         </Router>
       </main>
     </>
   );
-}
+};
 
 export default App;
