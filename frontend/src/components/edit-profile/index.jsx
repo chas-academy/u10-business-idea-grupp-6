@@ -12,22 +12,21 @@ import { PATCH } from "../../shared/services/requests";
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(""),
-    [country, setCountry] = useState(""),
+    // [country, setCountry] = useState(""),
     // [imgPath, setImgPath] = useState(''),
     [body, setBody] = useState(""),
     [errorDisplayName, setErrorDisplayName] = useState(null);
 
   const getDisplayName = (e) => setDisplayName(e),
-    getCountry = (e) => setCountry(e),
+    // getCountry = (e) => setCountry(e),
     // getImgPath = (e) => setImgPath(e),
     getBody = (e) => setBody(e);
 
   const submit = (event) => {
-    console.log(event.target[0].value);
     event.preventDefault();
     const data = {
       display_name: displayName,
-      country: country,
+      // country: country,
       // img_path: imgPath,
       body: body,
     };
@@ -36,7 +35,7 @@ const EditProfile = () => {
 
     PATCH(`user/${userId}`, data)
       .then((data) => {
-        console.log(data);
+        console.log("Profile successfully updated!");
       })
       .catch((error) => {
         console.log(error);
@@ -77,7 +76,7 @@ const EditProfile = () => {
           getState={getBody}
         />
 
-        <ButtonSubmit name="Save Profile" />
+        <ButtonSubmit name="Update Profile" />
       </form>
     </>
   );
