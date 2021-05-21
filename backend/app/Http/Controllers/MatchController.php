@@ -19,8 +19,7 @@ class MatchController extends Controller
     
     public function __construct()
     {
-        // $this->user = auth()->user();
-        $this->user = User::find(9); //debug
+        $this->user = auth('sanctum')->user();
         
         $this->setDelimiters([
             'player_types',
@@ -40,52 +39,46 @@ class MatchController extends Controller
         
     }
 
-        public function test(Request $request)
-    {
-        return response(['request' => $request->all()]);
-    }
-
     public function match()
     {  
-        // pick out all related tables needed for filtering
         $keys = array_keys(array_merge_recursive(
                 $this->getDelimiters(), 
-                $this->getDemands(),
-                $this->getTimes()
+                $this->getDemands()
         ));
 
         $query = User::with(
             ...$keys
         );
-        
+   
         foreach($this->getDemands() as $demand => $idsArray)
         {
-            if($idsArray)
-                $query->whereHas('miscs', function($q) use($demand)
+            if(count($idsArray))
+            {
+                $query->whereHas('miscs', function($q) use($demand, $idsArray)
                 {
-                    $q->where('miscs.id', $demand);
+                    foreach($idsArray as $id)
+                    {
+                        $q->where('miscs.id', $id);
+                    }
+                    
                 });
+            }
+            // else 
+            // {
+            //     $query->doesntHave('miscs'); //if user doesn't have miscs preference, will only see users without miscs. good? they won't ever see the user anyway
+            // }
         }
-
 
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
             if($idsArray)
+            {
                 $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
                 { 
                     $q->where("$delimiter.id", $idsArray);
                 });
-        }
+            }
 
-        $times = $this->getTimes()['times'];
-    
-        if($times)
-        {
-            $query->whereHas('times', function($q) use ($times)
-                {
-                    // match those that have a time with the interval of choosing
-                    $q->where('times.interval', $times);
-                });
         }
 
         // execute
@@ -104,6 +97,7 @@ class MatchController extends Controller
         // dd($collection); //debug
         return response(new UserCollection($collection));
     }
+    
 
 
     //------------------------------------------------------------------
@@ -144,7 +138,8 @@ class MatchController extends Controller
 
         foreach($arrayOfStrings as $key => $value)
         {
-            $times[$value] = $this->user->{$value}->pluck('interval')->toArray();
+            $times[$value] = $this->user->{$value}()->select('interval', 'available')->get()->filter(fn($i)=> $i->available === 1)
+            ->toArray();
         }
         
         $this->times = $times;
