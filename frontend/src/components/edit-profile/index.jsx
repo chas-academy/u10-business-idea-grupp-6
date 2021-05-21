@@ -13,10 +13,10 @@ import { PATCH, GET } from "../../shared/services/requests";
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(""),
-    // [country, setCountry] = useState(""),
-    // [imgPath, setImgPath] = useState(''),
-    [body, setBody] = useState(""),
-    [errorDisplayName, setErrorDisplayName] = useState(null);
+     // [country, setCountry] = useState(""),
+     // [imgPath, setImgPath] = useState(''),
+        [body, setBody] = useState(""),
+        [errorDisplayName, setErrorDisplayName] = useState(null);
 
   const getDisplayName = (e) => setDisplayName(e),
     // getCountry = (e) => setCountry(e),
@@ -45,14 +45,27 @@ const EditProfile = () => {
       body: body,
     };
 
-    PATCH(`user/${userId}`, data)
-      .then((data) => {
-        console.log("Profile successfully updated!");
-      })
-      .catch((error) => {
-        console.log(error);
-        setErrorDisplayName(error.response.data.error.display_name);
-      });
+    if(data.display_name === displayName){
+      return false;
+    } else{
+      PATCH(`user/${userId}`, data.display_name)
+        .then((data) => {
+          console.log("Profile successfully updated!");
+        })
+        .catch((error) => {
+          console.log(error);
+          setErrorDisplayName(error.response.data.error.display_name);
+        });
+    }
+
+    if (data.body === body) {
+      return false;
+    } else {
+      PATCH(`user/${userId}`, data.body)
+        .then((data) => {
+          console.log("Profile successfully updated!");
+        })
+    }
   };
 
   return (
