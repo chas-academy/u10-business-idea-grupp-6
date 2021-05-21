@@ -77,7 +77,6 @@ const Register = ({getToken}) => {
           getState={getPwd}
           getStateConf={getPwdConf}
           placeholder="Password"
-          htmlForPwd= "pwd"
           idPwd="pwd"
         />
 

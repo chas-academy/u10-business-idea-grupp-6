@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./InputPassword.scss";
 
-const InputPassword = ({ getState, getStateConf, placeholder, idPwd, htmlForPwd }) => {
+const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
   const [toggle, setToggle] = useState(true),
         [pwdValue, setPwdValue] = useState(''),
         [pwdConfValue, setPwdConfValue] = useState('');
@@ -40,7 +40,7 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd, htmlForPwd 
         />
         <label
           className="toggle-label"
-          htmlFor={htmlForPwd}
+          htmlFor={idPwd}
         />
       </div>
 

@@ -54,7 +54,6 @@ const ChangePassword = () => {
         <InputPassword
           placeholder="Current Password"
           getState={getCurrentPwd}
-          htmlForPwd= "currentPwd"
           idPwd="currentPwd"
         />
         
@@ -64,7 +63,6 @@ const ChangePassword = () => {
           getState={getNewPwd}
           getStateConf={getNewPwdConf}
           placeholder = "New Password"
-          htmlForPwd= "newPwd"
           idPwd="newPwd"
         />
 
