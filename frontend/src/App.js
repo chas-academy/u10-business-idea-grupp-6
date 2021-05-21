@@ -8,6 +8,8 @@ import Verified from './components/verified';
 import AlreadyVerified from "./components/already_verified";
 import Verify from './components/verify';
 import EditProfile from './components/edit-profile';
+import ChangePassword from './components/change_password';
+
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')); 
@@ -58,6 +60,8 @@ const App = () => {
           <ProtectedRoute
             path="/edit-profile"
             exact component={EditProfile}
+            path="/change-password"
+            exact component={ChangePassword}
             isAuth={isAuth} 
           />
 

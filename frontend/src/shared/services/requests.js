@@ -20,6 +20,13 @@ export const GET = (url) => {
 export const POST = async (url, data) => {
   return axios(`${apiBaseURL}/${url}`, {
     method: 'POST',
+    data
+  });
+}
+
+export const PATCH = async (url, data) => {
+  return axios(`${apiBaseURL}/${url}`, {
+    method: 'PATCH',
     data,
   });
 }

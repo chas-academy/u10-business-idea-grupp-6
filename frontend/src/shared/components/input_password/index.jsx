@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import "./InputPassword.scss";
 
-const InputPassword = ({ getState, getStateConf }) => {
+const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
   const [toggle, setToggle] = useState(true),
         [pwdValue, setPwdValue] = useState(''),
         [pwdConfValue, setPwdConfValue] = useState('');
 
+
   const inputValue = (input) => {
-        setPwdValue(input);
-        getState(input);
+    setPwdValue(input);
+    getState(input);
   };
 
-  const inputConfValue= (input) => {
-        setPwdConfValue(input);
-        getStateConf(input);
+  const inputConfValue = (input) => {
+    setPwdConfValue(input);
+    getStateConf(input);
   };
 
   const toggleInputType = () => {
@@ -27,18 +28,19 @@ const InputPassword = ({ getState, getStateConf }) => {
           name="password"
           className="input-text"
           type={toggle ? "password" : "text"}
-          placeholder="Password"
+          placeholder={placeholder}
           value={pwdValue}
           onChange={e => inputValue(e.target.value)}
-          />
+        />
         <input
-          id="toggle-hidden"
+          id={idPwd}
+          className="checkbox"
           type="checkbox"
           onChange={toggleInputType}
         />
         <label
           className="toggle-label"
-          htmlFor="toggle-hidden"
+          htmlFor={idPwd}
         />
       </div>
 
