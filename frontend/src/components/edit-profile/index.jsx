@@ -40,16 +40,19 @@ const EditProfile = () => {
   const submit = (event) => {
     event.preventDefault();
     const data = {
-      display_name: displayName,
       // country: country,
       // img_path: imgPath,
       body: body,
     };
 
-    if(data.display_name === oldDisplayName){
-      return false;
-    } else{
-      PATCH(`user/${userId}`, data.display_name)
+    if(displayName !== oldDisplayName)
+    {
+       data.display_name = displayName
+    }
+    // if(){
+    //   return false;
+    // } else{
+      PATCH(`user/${userId}`, data)
         .then((data) => {
           console.log("Profile successfully updated!");
         })
@@ -59,14 +62,14 @@ const EditProfile = () => {
         });
     }
 
-    if (data.body === body) {
-      return false;
-    } else {
-      PATCH(`user/${userId}`, data.body)
-        .then((data) => {
-          console.log("Profile successfully updated!");
-        })
-    }
+    // if (data.body === body) {
+    //   return false;
+    // } else {
+    //   PATCH(`user/${userId}`, data)
+    //     .then((data) => {
+    //       console.log("Profile successfully updated!");
+    //     })
+    // }
   };
 
   return (
