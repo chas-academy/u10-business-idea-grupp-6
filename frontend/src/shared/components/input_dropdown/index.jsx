@@ -1,50 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import './InputDropdown.scss';
 import AsyncSelect from 'react-select/async';
-import { POST, GET } from "../../services/requests";
+import { UPDATE } from '../../services/preferences';
 
-const InputDropdown = ({placeholder, type}) => {
+const InputDropdown = ({placeholder, type, data, defalts}) => {
   const [selectedOption, setSelectedOption] = useState([]),
-        [selectValue, setSelectValue] = useState([]),
-        [options, setOptions] = useState([]);
+        [defaultValue, setDefaultValue] = useState([]),
+        [options, setOptions] = useState();
 
-  useEffect(() => {
-    
-    GET('user/prefs').then(response => {
-      const values = response.data.data.preferences[type].reduce((acc, curr) => {
-        const value = {
-          value: curr[type.slice(0, -1)],
-          label: curr[type.slice(0, -1)],
-          id: curr.id
-        }
-        acc.push(value)
-        return acc;
-      }, []);
-      
-      console.log(values);
-      setSelectValue(values);
-    }).catch(error => {
-      console.log(error);
-    })
+  useEffect(() => { 
+    const formated = data?.map(i => ({
+      value: i[type],
+      label: i[type],
+      id: i.id
+    }));
+    setOptions(formated);
+  }, [data]);
 
-    POST('prefs-payload', {model: type}).then(response => {
-      const values = response.data.reduce((acc, curr) => {
-        const value = {
-          value: curr[type.slice(0, -1)],
-          label: curr[type.slice(0, -1)],
-          id: curr.id
-        }
-        acc.push(value)
-        return acc;
-      }, []);
+  useEffect(() => { 
+    const formated = defalts?.map(i => ({
+      value: i[type],
+      label: i[type],
+      id: i.id
+    }));
 
-      setOptions(values);
-
-    }).catch(error => {
-      console.log(error);
-    })
-  }, [])
-
+    setDefaultValue(formated);
+  }, [defalts]);
 
   const promiseOptions = (inputValue) =>
     new Promise(resolve => resolve(filterOptions(inputValue))
@@ -55,30 +36,16 @@ const InputDropdown = ({placeholder, type}) => {
   );
 
   const handleChange = (elem) => {
-    console.log(elem);
-    if(elem.length !== selectedOption.length) {
-      const data = {
-        model: type,
-        model_id: elem
-        .filter(item => !selectedOption.includes(item))
-        .concat(selectedOption.filter(item => !elem.includes(item))).pop().id
-      }
-      setSelectedOption(elem);
-      setSelectValue(elem);
-      
-      POST('prefs', data).then(data => {
-        console.log(data);
-      }).catch(error => {
-        console.log(error);
-      })
-    };
+    UPDATE(elem, selectedOption, type);
+    setSelectedOption(elem);
+    setDefaultValue(elem);
   }
 
   return (
     <>
       <AsyncSelect
         cacheOptions
-        value={selectValue}
+        value={defaultValue}
         placeholder={placeholder}
         loadOptions={promiseOptions}
         styles={customStyles}

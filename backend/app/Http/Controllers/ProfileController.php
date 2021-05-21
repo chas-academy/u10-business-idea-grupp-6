@@ -69,7 +69,7 @@ class ProfileController extends Controller
         return response(['message' => 'Password sucessfully updated']);
     }
 
-    public function getPrefrences()
+    public function getPreferences()
     {
         return new UserResource(auth('sanctum')->user());
     }

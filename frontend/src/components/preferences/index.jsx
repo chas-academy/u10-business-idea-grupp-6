@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Preferences.scss'
 import { Slider, InputDropdown, Input, Switch } from "../../shared/components/";
-import { GET, POST } from '../../shared/services/requests';
+import { OPTIONS, PREFERENCES } from "../../shared/services/preferences";
 
 const Preferences = () => {
+  const [options, setOptions] = useState(),
+        [defalts, setDefalts] = useState();
 
+  useEffect(() => {
+    OPTIONS().then(options => setOptions(options));
+    PREFERENCES().then(options => setDefalts(options));
+  }, [])
 
   return (
     <>
@@ -14,17 +20,40 @@ const Preferences = () => {
 
       <div className="preferences-container" >
 
-        <InputDropdown placeholder="Search Games" type="games" options=""/>
+        <InputDropdown 
+          placeholder="Search Games" 
+          type="game" 
+          data={options?.games}
+          defalts={defalts?.games}
+        />
 
         <Slider name="weekdays"/>
 
         <Slider name="weekends"/>
 
-        <Input placeholder="test" />
+        <InputDropdown 
+          placeholder="Search Genres" 
+          type="genre" 
+          data={options?.genres}
+          defalts={defalts?.genres}
+        />
 
-        <Switch name="Flexible Times"/>
+        <Switch name="Non-aggressive Language" type="miscs" moduleId="1"/>
         
-        <Switch name="No Harsh Language"/>
+        <Switch name="Flexible Times" type="miscs" moduleId="2"/>
+
+        <InputDropdown 
+          placeholder="Search Languages" 
+          type="lang" 
+          data={options?.langs}
+          defalts={defalts?.langs}
+        />
+
+        <Switch name="medium" type="miscs" moduleId="1"/>
+        
+        <Switch name="Competetive" type="miscs" moduleId="2"/>
+
+        <Switch name="Casual" type="miscs" moduleId="2"/>
 
       </div>
     </>

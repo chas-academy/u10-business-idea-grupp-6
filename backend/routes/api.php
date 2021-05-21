@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
     // this route is for getting a list of user-matches
     Route::get('/match', [MatchController::class, 'match'])->name('match');
     
-    Route::get('/user/prefs', [ProfileController::class, 'getPrefrences']);
+    Route::get('/user/prefs', [ProfileController::class, 'getPreferences']);
     Route::get('/user/{user}', [ProfileController::class, 'getProfile']);
     Route::get('/user/{user}/account', [ProfileController::class, 'getAccount']);
     Route::patch('/user/{user}', [ProfileController::class, 'updateProfile']);
