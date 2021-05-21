@@ -14,8 +14,8 @@ const ChangePassword = () => {
 
 
   const getCurrentPwd = (e) => setCurrentPwd(e),
-    getNewPwd = (e) => setNewPwd(e),
-    getNewPwdConf = (e) => setNewPwdConf(e);
+        getNewPwd = (e) => setNewPwd(e),
+        getNewPwdConf = (e) => setNewPwdConf(e);
 
   const submit = (event) => {
     event.preventDefault();

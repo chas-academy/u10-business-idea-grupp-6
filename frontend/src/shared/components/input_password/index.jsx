@@ -48,7 +48,7 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
         <div className="input-password">
           <input
             name="password_confirmation"
-            className="input-text" 
+            className="input-text"
             type={toggle ? "password" : "text"}
             placeholder="Password Confirmation"
             value={pwdConfValue}
