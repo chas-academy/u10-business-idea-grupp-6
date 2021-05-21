@@ -19,8 +19,7 @@ class MatchController extends Controller
     
     public function __construct()
     {
-        // $this->user = auth()->user();
-        $this->user = User::find(9); //debug
+        $this->user = auth('sanctum')->user();
         
         $this->setDelimiters([
             'player_types',
@@ -42,11 +41,9 @@ class MatchController extends Controller
 
     public function match()
     {  
-        // pick out all related tables needed for filtering
         $keys = array_keys(array_merge_recursive(
                 $this->getDelimiters(), 
-                $this->getDemands(),
-                $this->getTimes()
+                $this->getDemands()
         ));
 
         $query = User::with(
@@ -56,6 +53,7 @@ class MatchController extends Controller
         foreach($this->getDemands() as $demand => $idsArray)
         {
             if(count($idsArray))
+            {
                 $query->whereHas('miscs', function($q) use($demand, $idsArray)
                 {
                     foreach($idsArray as $id)
@@ -64,64 +62,25 @@ class MatchController extends Controller
                     }
                     
                 });
+            }
+            // else 
+            // {
+            //     $query->doesntHave('miscs'); //if user doesn't have miscs preference, will only see users without miscs. good? they won't ever see the user anyway
+            // }
         }
 
-             
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
             if($idsArray)
+            {
                 $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
                 { 
                     $q->where("$delimiter.id", $idsArray);
                 });
+            }
+
         }
 
-        // $limit = [];
-        // // return response($this->getTimes());
-        // $query->whereHas('times', function($q) use(&$limit) {
-             
-        //     $times = $this->getTimes()['times'];
-
-            
-
-        //     foreach($times as $time)
-        //     {
-        //         if($time['available'])
-        //         {
-        //             array_push($limit, $time['interval']);
-        //         }
-        //     }
-            
-        //     if(count($limit) === 1)
-        //     {
-                
-        //         $q->where(['times.interval', $limit[0], ['times.available', 1]]);
-        //     } else {
-        //         // $q->where([['times.interval', ['weekday', 'weekend']], ]);
-        //     }
-
-        //     // för varje tid, skapa en position i en array med ett objekt
-        //     // objektet vet om den 
-        //     // foreach($times as $time)
-        //     // {
-        //     //     $q->where([['times.interval', $time['interval']], ['times.available', 1]]);
-        //     // }
-            
-        //     // this bit is great for if we have lots of times.... buuuuut....
-        //     //     foreach($times as $position => $data)
-        //     //     {
-        //     //         if($data['available'])
-        //     //         {
-        //     //             $q->orWhere([
-        //     //                     ['times.interval', $data['interval']], 
-        //     //                     ['times.available', 1]
-        //     //                 ]);
-        //     //         }
-        //     //     }
-        //     // });
-
-        // });
-// return response($limit);    
         // execute
         $collection = $query->get();
 
