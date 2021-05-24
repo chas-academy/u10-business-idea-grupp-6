@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { echo, POST } from '../../shared/services/requests';
 import './ChatWindow.scss';
 
-const ChatWindow = ({ active, matchup }) => {
+const ChatWindow = ({ active, matchup, closeChat }) => {
     // console.log('active is', active, matchup)
 
     // 
     const [inputValue, setInputValue] = useState(""),
           [messageLog, setMessageLog] = useState([]),
           [newMessages, setNewMessages] = useState([]);
+
 
     useEffect(() => {
         if (active) {
@@ -31,7 +32,7 @@ const ChatWindow = ({ active, matchup }) => {
                 }
                 setNewMessages((previousState) => [...previousState, f]);
             })
-        }
+        } 
     }, [active])
 
     // use this for debugging
@@ -48,12 +49,25 @@ const ChatWindow = ({ active, matchup }) => {
         })
         setInputValue("");
     }
+
+    const toggleChat = () => {
+        echo.leave(`Chat.${matchup.session.id}`)
+        closeChat();
+    }
+
     return <>
         {active &&
-            <div>
+            <div class="chat-modal">
+                 <img
+                    src="https://image.flaticon.com/icons/png/512/860/860790.png"
+                    width="40px"
+                    className="back-arrow"
+                    onClick={toggleChat}
+                />
                 <h1 className="chatwindow-title">
                     {matchup.user[0].profile.display_name}
                 </h1>
+               
 
                 <div className="chatbox">
                     {messageLog.map(i => 
@@ -63,7 +77,7 @@ const ChatWindow = ({ active, matchup }) => {
                                 >
                                 {i.content}
                                 </p>
-                                <p className="chatwindow-sent">
+                                <p className="chatbox-sent">
                                 {i.send_at}
                                 </p>
                         </div>

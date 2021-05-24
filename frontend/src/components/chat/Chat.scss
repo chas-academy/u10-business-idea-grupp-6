@@ -1,7 +1,7 @@
 @import 'global.scss';
 
 .chat-title {
-    margin-top: 20px;
+    margin: 40px 0;
 }
 
 .chat-box {
@@ -11,4 +11,14 @@
     border-radius: 20px;
     padding: 20px;
     margin: 30px 0;
+    cursor: pointer;
+    transition: all 100ms;
+}
+
+.chat-box:hover {
+    background-color: $color-light-gray;
+}
+
+.profile-img {
+    float: left;
 }

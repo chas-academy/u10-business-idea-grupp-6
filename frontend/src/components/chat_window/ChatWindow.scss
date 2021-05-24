@@ -1,5 +1,17 @@
 @import 'global.scss';
 
+.chat-modal {
+    padding-top: 50px;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    height: 90%; 
+    transform: translate(-50%, -50%);
+    background-color: rgb(15, 15, 15);
+}
+
 .received {
     margin: 30px;
     background-color: $color-dark-gray;
@@ -70,8 +82,13 @@
     justify-content: space-between;
 }
 
-.chatwindow-sent {
+.chatbox-sent {
     font-size: $font-xs;
     color: $color-super-light-gray;
     margin-left: 10px;
+}
+
+.back-arrow {
+    margin-left: 20px;
+    cursor: pointer;
 }

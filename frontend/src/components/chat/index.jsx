@@ -7,12 +7,15 @@ import ChatWindow from '../chat_window';
 const Chat = () => {
 
     const [matchups, setMatchups] = useState([]),
-        [activeChat, setActiveChat] = useState(null);
+          [activeChat, setActiveChat] = useState(null),
+          [showChat, setShowChat] = useState([]);
+
 
     useEffect(() => {
         GET('match/all').then(data => {
             // console.log(data);
             setMatchups(data.data);
+            console.log(data)
         })
         const uid = localStorage.getItem('user_id');
 
@@ -38,15 +41,17 @@ const Chat = () => {
                 const index = newMatchups.findIndex(i => i.id === matchupId)
                 newMatchups[index].session = data.data.data;
                 setMatchups(newMatchups);
-                console.log(data.data)
+                setShowChat(true);
             });
         }
     }
 
+    const handleCloseChat = () => setActiveChat(null);
+
     return (
         <>
             <h1 className="chat-title">
-                Chat
+                Chat Room
             </h1>
 
             {matchups.length === 0 && <div>You have no more matches...
@@ -57,9 +62,15 @@ const Chat = () => {
             </div>}
 
             {matchups.map(matchup =>
-                <div key={matchup.id}
+                matchup &&
+                <div
                 onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}
                 className="chat-box">
+                    <img
+                        src="https://image.flaticon.com/icons/png/512/1077/1077114.png" 
+                        width="30px"
+                        className="profile-img"
+                    />
                     <p className="">
                         {matchup.user[0].profile.display_name}
                     </p>
@@ -69,9 +80,10 @@ const Chat = () => {
             {matchups.map(matchup =>
 
                 <ChatWindow
-                    active={activeChat && matchup.session && activeChat === matchup.session.id ? true : false}
+                    active={(activeChat && matchup.session) && activeChat === matchup.session.id ? true : false}
                     matchup={matchup}
-                    key={matchup.session.id}
+                    closeChat={handleCloseChat}
+                    key={matchup.user[0].id}
                 />
 
             )}
