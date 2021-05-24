@@ -16,7 +16,7 @@ class PlayerTypeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'type' => $this->type
+            'player_type' => $this->player_type
         ];
     }
 }

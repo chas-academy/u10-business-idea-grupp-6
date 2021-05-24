@@ -8,6 +8,7 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\UserResource;
 
 class ProfileController extends Controller
 {
@@ -66,5 +67,10 @@ class ProfileController extends Controller
         ]);
 
         return response(['message' => 'Password sucessfully updated']);
+    }
+
+    public function getPreferences()
+    {
+        return new UserResource(auth('sanctum')->user());
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./MessageError.scss";
 
-function MessageError({ message }) {
+const MessageError = ({ message }) => {
   return (
     <>
       <div 

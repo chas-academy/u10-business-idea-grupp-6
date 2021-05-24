@@ -45,13 +45,13 @@ class DatabaseSeeder extends Seeder
             Game::create(['game' => 'Goat Simulator', 'genre_id' => 2]);
             Game::create(['game' => 'Path of Exile', 'genre_id' => 4]);
 
-            PlayerType::create(['type' => 'casual']);
-            PlayerType::create(['type' => 'competetive']);
-            PlayerType::create(['type' => 'medium']);
+            PlayerType::create(['player_type' => 'casual']);
+            PlayerType::create(['player_type' => 'competetive']);
+            PlayerType::create(['player_type' => 'medium']);
 
-            Lang::create(['lang_eng' => 'Swedish', 'native' => 'Svenska', 'code' => 'SE']);
-            Lang::create(['lang_eng' => 'Arabic', 'native' => 'عربى', 'code' => 'AR']);
-            Lang::create(['lang_eng' => 'English', 'native' => 'English', 'code' => 'ENG']);
+            Lang::create(['lang' => 'Swedish', 'native' => 'Svenska', 'code' => 'SE']);
+            Lang::create(['lang' => 'Arabic', 'native' => 'عربى', 'code' => 'AR']);
+            Lang::create(['lang' => 'English', 'native' => 'English', 'code' => 'ENG']);
 
             Misc::create(['misc' => 'Non-aggressive language']);
             Misc::create(['misc' => 'Flexible times']);
@@ -81,28 +81,28 @@ class DatabaseSeeder extends Seeder
                     $user->langs()->attach($i+1);
                 }
 
-                for($i = 0; $i <= rand(0, 1); $i++)
-                {
-                    $selected = rand(0,1);
-                    if($selected>0 && $user->times()->where('interval', 'weekday')->get()->count() === 0)
-                    {
+                // for($i = 0; $i <= rand(0, 1); $i++)
+                // {
+                //     $selected = rand(0,1);
+                //     if($selected>0 && $user->times()->where('interval', 'weekday')->get()->count() === 0)
+                //     {
                         
-                        $weekday = \App\Models\Time::create([
-                            'interval' => 'weekday',
-                            'from' => rand(0,23),
-                            'to' => rand(0,23),
-                            'user_id' => $user->id 
-                        ]);
-                    }
-                    else if ( $selected===0 && $user->times()->where('interval', 'weekend')->get()->count() === 0){
-                        $weekend = \App\Models\Time::create([
-                            'interval' => 'weekend',
-                            'from' => rand(0,23),
-                            'to' => rand(0,23) ,
-                            'user_id' => $user->id
-                        ]);
-                    }
-                }
+                //         $weekday = \App\Models\Time::create([
+                //             'interval' => 'weekday',
+                //             'from' => rand(0,23),
+                //             'to' => rand(0,23),
+                //             'user_id' => $user->id 
+                //         ]);
+                //     }
+                //     else if ( $selected===0 && $user->times()->where('interval', 'weekend')->get()->count() === 0){
+                //         $weekend = \App\Models\Time::create([
+                //             'interval' => 'weekend',
+                //             'from' => rand(0,23),
+                //             'to' => rand(0,23) ,
+                //             'user_id' => $user->id
+                //         ]);
+                //     }
+                // }
 
                 $num = rand(0, 2);
                 if($num) $user->miscs()->attach($num);

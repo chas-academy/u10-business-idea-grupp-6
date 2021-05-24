@@ -49,15 +49,62 @@
   font-size: $font-sm;
   font-weight: 400;
   cursor: text;
+  margin-bottom: 30px;
   padding: 0 20px;
 
-  &:focus{
+  &:hover {
+    border: $border-hover;
+  }
+
+  &:focus {
     outline: none;
   }
 }
 
-// MESSAGE
+@mixin checkbox() {
+    display: none;
 
+    &:checked + label {
+      background: $color-light-gray;
+    }
+
+    &:checked + label:after {
+      left: calc(100% - 5px);
+      transform: translateX(-100%);
+    }
+}
+
+@mixin checkbox-label() {
+  cursor: pointer;
+  text-indent: 63px;
+  line-height: 1.8;
+  border: $border;
+  width: 54px;
+  height: 28px;
+  background: $color-dark-gray;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+  white-space: nowrap;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 16px;
+    height: 16px;
+    background: $color-white;
+    border-radius: 90px;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    border: $border-hover;
+  }
+}
+
+// MESSAGE
 @mixin message() {
   position: relative;
   display: flex;
@@ -73,4 +120,11 @@
   padding: 0 20px;
 }
 
+// HIDE
+@mixin hidden() {
+  visibility: hidden;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+}
 

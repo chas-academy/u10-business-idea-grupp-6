@@ -8,35 +8,25 @@
   margin: 0;
   padding: 0;
   font-family: $font-roboto;
-}
 
-/* #region TESTS */
-$beige:  #ffdbc1;
-$orange: #ff9b54;
-$red:    #ff735b;
-$blood:  #da4c4c;
-/* #endregion TESTS */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+  -webkit-text-fill-color: $color-white;
+  -webkit-box-shadow: 0 0 0px 1000px $color-dark-gray inset;
+  }
+}
 
 body {
   @include center();
   color: $color-white;
   background-color: $color-black;
-
-  // @include media('<=phone') {
-  //   background-color: $beige;
-  // }
-
-  // @include media('>phone', '<=tablet') {
-  //   background-color: $orange;
-  // }
-
-  // @include media('>tablet', '<=desktop') {
-  //   background-color: $red;
-  // }
-
-  // @include media('>desktop', '<=1920px') {
-  //   background-color: $blood;
-  // }
 }
 
 main {

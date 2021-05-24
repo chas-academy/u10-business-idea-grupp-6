@@ -13,6 +13,7 @@ import { PATCH, GET } from "../../shared/services/requests";
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(""),
+        [oldDisplayName, setOldDisplayName] = useState(""),
      // [country, setCountry] = useState(""),
      // [imgPath, setImgPath] = useState(''),
         [body, setBody] = useState(""),
@@ -28,6 +29,7 @@ const EditProfile = () => {
   useEffect(() => {
     GET(`user/${userId}`)
       .then((data) => {
+        setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
         setBody(data.data.body);
       })
@@ -39,16 +41,17 @@ const EditProfile = () => {
   const submit = (event) => {
     event.preventDefault();
     const data = {
-      display_name: displayName,
       // country: country,
       // img_path: imgPath,
       body: body,
     };
 
-    if(data.display_name === displayName){
-      return false;
-    } else{
-      PATCH(`user/${userId}`, data.display_name)
+    if(displayName !== oldDisplayName)
+    {
+      data.display_name = displayName
+    }
+
+      PATCH(`user/${userId}`, data)
         .then((data) => {
           console.log("Profile successfully updated!");
         })
@@ -57,16 +60,6 @@ const EditProfile = () => {
           setErrorDisplayName(error.response.data.error.display_name);
         });
     }
-
-    if (data.body === body) {
-      return false;
-    } else {
-      PATCH(`user/${userId}`, data.body)
-        .then((data) => {
-          console.log("Profile successfully updated!");
-        })
-    }
-  };
 
   return (
     <>
@@ -106,7 +99,7 @@ const EditProfile = () => {
       </form>
     </>
   );
-};
+}
 
 export default EditProfile;
 

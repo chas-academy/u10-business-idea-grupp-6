@@ -15,7 +15,7 @@ class CreatePlayerTypesTable extends Migration
     {
         Schema::create('player_types', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('player_type');
             $table->timestamps();
         });
     }
