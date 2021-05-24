@@ -45,13 +45,13 @@ class DatabaseSeeder extends Seeder
             Game::create(['game' => 'Goat Simulator', 'genre_id' => 2]);
             Game::create(['game' => 'Path of Exile', 'genre_id' => 4]);
 
-            PlayerType::create(['type' => 'casual']);
-            PlayerType::create(['type' => 'competetive']);
-            PlayerType::create(['type' => 'medium']);
+            PlayerType::create(['player_type' => 'casual']);
+            PlayerType::create(['player_type' => 'competetive']);
+            PlayerType::create(['player_type' => 'medium']);
 
-            Lang::create(['lang_eng' => 'Swedish', 'native' => 'Svenska', 'code' => 'SE']);
-            Lang::create(['lang_eng' => 'Arabic', 'native' => 'عربى', 'code' => 'AR']);
-            Lang::create(['lang_eng' => 'English', 'native' => 'English', 'code' => 'ENG']);
+            Lang::create(['lang' => 'Swedish', 'native' => 'Svenska', 'code' => 'SE']);
+            Lang::create(['lang' => 'Arabic', 'native' => 'عربى', 'code' => 'AR']);
+            Lang::create(['lang' => 'English', 'native' => 'English', 'code' => 'ENG']);
 
             Misc::create(['misc' => 'Non-aggressive language']);
             Misc::create(['misc' => 'Flexible times']);

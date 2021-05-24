@@ -1,0 +1,16 @@
+@import "global.scss";
+
+.switch-container {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+
+  .switch-checkbox {
+   @include checkbox();
+  }
+
+  .switch-checkbox-label {
+    margin-left: 10px;
+    @include checkbox-label();
+  }
+}

@@ -39,7 +39,7 @@ const Login = ({getToken}) => {
     })
   };
 
-  if(redirect) return <Redirect to="/change-password"/>;
+  if(redirect) return <Redirect to="/preferences"/>;
 
   return (
     <>

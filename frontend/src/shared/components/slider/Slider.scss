@@ -1,0 +1,134 @@
+@import "global.scss";
+
+@mixin thumb() {
+  pointer-events: all;
+	width: 50px;
+	height: 50px;
+	border-radius: 0;
+	border: 0 none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+  -ms-appearance: none;
+}
+
+.slider {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+
+  .slider-checkbox-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 10px;
+
+    .slider-checkbox {
+     @include checkbox();
+    }
+  
+    .slider-checkbox-label {
+      margin-right: 85px;
+      @include checkbox-label();
+    }
+  
+    .slider-data {
+      margin-top: 6px;
+    }
+  }
+
+  .slider-middle {
+    @include center();
+    position: relative;
+    transition: all 0.4s ease-out; 
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+    input[type=range] {
+      cursor: pointer;
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      height: 10px;
+      width: 100%;
+      opacity: 0;
+    
+      &::-webkit-slider-thumb {
+        @include thumb();
+      }
+    
+      &::-moz-range-thumb {
+        @include thumb();
+      }
+    
+      &::-ms-thumb {
+        @include thumb();
+      }
+    }
+
+    .slider-container {
+      width: 95%;
+      height: 5px;
+      position: relative;
+      z-index: 1;
+
+      @include media('<=phone') {
+        height: 10px;
+      }
+  
+      .slider-track {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 5px;
+        background-color: $color-dark-gray;
+        border: $border;
+      }
+      
+      .slider-range {
+        height: 100%;
+        position: absolute;
+        border-radius: 20px;
+        background-color: $color-light-gray;
+        border: $border;
+      }
+  
+      .slider-thumb {
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        z-index: 3;
+        border-radius: 100%;
+        background-color: $color-super-light-gray;
+        border: $border;
+        transition: box-shadow .3s ease-in-out;
+
+        @include media('<=phone') {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      .slider-thumb.start {
+        left: 25%;
+        transform: translate(-10px, -5px);
+      }
+  
+      .slider-thumb.end {
+        right: 25%;
+        transform: translate(10px, -5px);
+      }
+          
+      .hover {
+        box-shadow: 0 0 0 6px #5a51814d;
+      }
+  
+      .active {
+        box-shadow: 0 0 0 8px #8e80ce66;
+      }
+    }
+  }
+}
+
+.slider-middle.hidden {
+  @include hidden();
+}

@@ -11,7 +11,9 @@ import ChangePassword from "./components/change_password";
 import Verify from './components/verify';
 import Notification from './components/notification';
 import Chat from './components/chat';
+import Preferences from './components/preferences/';
 import { GET } from './shared/services/requests';
+
   
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
@@ -52,7 +54,8 @@ const App = () => {
 
           <Route
             path="/"
-            exact component={Home}
+            exact 
+            component={Home}
           />
 
           <Route
@@ -71,26 +74,37 @@ const App = () => {
 
           <ProtectedRoute
             path="/chat"
-            exact component={Chat}
+            exact 
+            component={Chat}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/verified"
-            exact component={Verified}
+            exact 
+            component={Verified}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/already-verified"
-            exact component={AlreadyVerified}
+            exact 
+            component={AlreadyVerified}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/verify"
-            exact component={Verify}
+            exact 
+            component={Verify}
             isAuth={isAuth}
+          />
+
+          <ProtectedRoute
+            path="/preferences"
+            exact 
+            component={Preferences}
+            isAuth={isAuth} 
           />
 
           <ProtectedRoute
@@ -106,6 +120,7 @@ const App = () => {
             component={EditProfile}
             isAuth={isAuth}
           />
+
         </Router>
       </main>
     </>
