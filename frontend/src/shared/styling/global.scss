@@ -34,3 +34,19 @@ main {
   height: 100vh;
   padding: 30px 0;
 }
+
+.icon {
+  color: $color-white;
+
+  &.icon-small {
+    font-size: 1rem;
+  }
+
+  &.icon-medium {
+    font-size: 2rem;
+  }
+
+  &.icon-large {
+    font-size: 3rem;
+  }
+}
