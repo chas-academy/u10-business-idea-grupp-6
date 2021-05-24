@@ -103,7 +103,7 @@ const Slider = ({name, defaults}) => {
         </label>
 
         <p className="slider-data">
-          { toggle ? `${sliderValue.start}:00 To ${sliderValue.end}:00` : `Never` }
+          { toggle ? `${sliderValue.start}:00 to ${sliderValue.end}:00` : `never` }
         </p> 
       </div>
 

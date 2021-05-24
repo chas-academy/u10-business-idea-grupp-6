@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './InputDropdown.scss';
 import AsyncSelect from 'react-select/async';
 import { DROPDOWN } from '../../services/preferences';
+import { POST } from '../../services/requests';
 
 const InputDropdown = ({placeholder, type, data, defaults}) => {
   const [selectedOption, setSelectedOption] = useState([]),
@@ -9,22 +10,23 @@ const InputDropdown = ({placeholder, type, data, defaults}) => {
         [options, setOptions] = useState();
 
   useEffect(() => { 
-    const formated = data?.map(i => ({
+    const formatted = data?.map(i => ({
       value: i[type],
       label: i[type],
       id: i.id
     }));
-    setOptions(formated);
+    setOptions(formatted);
   }, [data]);
 
   useEffect(() => { 
-    const formated = defaults?.map(i => ({
+    const formatted = defaults?.map(i => ({
       value: i[type],
       label: i[type],
       id: i.id
     }));
     
-    setDefaultValue(formated);
+    setDefaultValue(formatted);
+    setSelectedOption(formatted);
   }, [defaults]);
 
   const promiseOptions = (inputValue) =>
