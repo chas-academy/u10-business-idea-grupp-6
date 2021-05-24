@@ -14,12 +14,14 @@ const ChatWindow = ({ active, matchup }) => {
         if (active) {
             if(!(messageLog.length))
             {
-                POST('session/'+matchup.session.id +'/chats').then(data => {
+                POST('session/' + matchup.session.id + '/chats').then(data => {
                 // console.log(data.data.data)
                 setMessageLog((previousState) => [...data.data.data]);
+                console.log(data)
                 });
             }
             console.log('subscribing to session chat ' + matchup.session.id)
+            
             
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
                 const f = e;
@@ -44,45 +46,58 @@ const ChatWindow = ({ active, matchup }) => {
             content: inputValue,
             to_user: matchup.user[0].id
         })
+        setInputValue("");
     }
     return <>
         {active &&
             <div>
-                <form onSubmit={submit}>
+                <h1 className="chatwindow-title">
+                    {matchup.user[0].profile.display_name}
+                </h1>
 
-                    <input 
-                    type="text" 
-                    name="message" 
-                    onChange={(e) => setInputValue(e.target.value)} 
-                    />
-                    
-                    <button type="submit">
-                        Send
-                    </button>
-                </form>
-
-                {messageLog.map(i => 
-
-                <p className={i.type ?  "received" : "sent"}>
-                    {i.content}
-                </p>
+                <div className="chatbox">
+                    {messageLog.map(i => 
+                        <div className={parseInt(i.type) ?  "received" : "sent"}>
+                            <div className="chatbox-bubble">
+                                <p key={i.id}
+                                >
+                                {i.content}
+                                </p>
+                                <p className="chatwindow-sent">
+                                {i.send_at}
+                                </p>
+                        </div>
+                </div>
+                
 
                 )}
                 {newMessages.map(i => 
-
-                    <p className={i.chat.type ? "received" : "sent"}>
+                    
+                        <p key={i.id}
+                        className={i.chat.type ? "received" : "sent"}
+                        >
                         {i.content}
-                    </p>
-
+                        </p>
+                    
                     )}
+                    </div>
+                    <div className="chatwindow">
+                        <form onSubmit={submit}>
 
+                            <input 
+                                type="text" 
+                                name="message" 
+                                onChange={(e) => setInputValue(e.target.value)} 
+                                className="chatwindow-textarea"
+                                value={inputValue}
+                                placeholder="Send message"
+                            />
+                    </form>
+                </div>
             </div>
-
-
         }
 
     </>
-
 }
 
 export default ChatWindow

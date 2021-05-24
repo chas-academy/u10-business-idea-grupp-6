@@ -38,13 +38,14 @@ const Chat = () => {
                 const index = newMatchups.findIndex(i => i.id === matchupId)
                 newMatchups[index].session = data.data.data;
                 setMatchups(newMatchups);
+                console.log(data.data)
             });
         }
     }
 
     return (
         <>
-            <h1>
+            <h1 className="chat-title">
                 Chat
             </h1>
 
@@ -56,21 +57,21 @@ const Chat = () => {
             </div>}
 
             {matchups.map(matchup =>
-                <p>
-                    <button
-                        onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}>
-                        GO CHAT
-                    </button>
-
-                    {matchup.user[0].id}
+                <div key={matchup.id}
+                onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}
+                className="chat-box">
+                    <p className="">
+                        {matchup.user[0].profile.display_name}
+                    </p>
                     {/* write user info here */}
-                </p>
+                </div>
             )}
             {matchups.map(matchup =>
 
                 <ChatWindow
                     active={activeChat && matchup.session && activeChat === matchup.session.id ? true : false}
                     matchup={matchup}
+                    key={matchup.session.id}
                 />
 
             )}

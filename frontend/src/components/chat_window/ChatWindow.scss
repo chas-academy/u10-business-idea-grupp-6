@@ -1,8 +1,77 @@
 @import 'global.scss';
 
-.received{
-    text-align: left;
+.received {
+    margin: 30px;
+    background-color: $color-dark-gray;
+    min-width: 80%;
+    border-radius: 40px 40px 40px 0;
+    padding: 25px;
+    align-items: flex-start;
 }
-.sent{
-    text-align: right;
+.sent {
+    align-self: flex-end;
+    margin: 30px 10px;
+    background-color: $color-light-gray;
+    min-width: 80%;
+    border-radius: 40px 40px 0 40px;
+    padding: 25px;
+}
+
+.chatwindow-title {
+    text-align: center;
+}
+
+.chatbox {
+    display: flex;
+    flex-flow: column;
+    margin: 40px 0;
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: $color-dark-gray;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: $color-dark-gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: $color-light-gray;
+}
+
+.chatwindow-textarea {
+    margin-top: 80px;
+    background-color: $color-dark-gray;
+    border: 1px solid $color-light-gray;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    height: 60px;
+    outline: none;
+    padding: 0 10px;
+    color: $color-white;
+}
+
+.chatwindow-send {
+    margin: 0 auto;
+    display: block;
+}
+
+.chatbox-bubble {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chatwindow-sent {
+    font-size: $font-xs;
+    color: $color-super-light-gray;
+    margin-left: 10px;
 }

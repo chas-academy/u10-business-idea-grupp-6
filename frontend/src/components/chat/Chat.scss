@@ -1,1 +1,14 @@
 @import 'global.scss';
+
+.chat-title {
+    margin-top: 20px;
+}
+
+.chat-box {
+    text-align: center;
+    background-color: $color-dark-gray;
+    height: 10%;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 30px 0;
+}
