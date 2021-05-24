@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./ButtonLink.scss";
 
-const ButtonLink = ({ name, link, classValue }) => {
+const ButtonLink = ({ name, link, classValue, children }) => {
   return (
     <>
       <Link
@@ -10,6 +10,7 @@ const ButtonLink = ({ name, link, classValue }) => {
         className={classValue}
       >
         {name}
+        {children}
       </Link>
     </>
   );
