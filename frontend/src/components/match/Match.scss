@@ -1,39 +1,59 @@
-@import 'global.scss';
+@import "global.scss";
 
-.match-container {
-    background-color: red;
-    border-radius: $rounded-md;
-    height: 500px;
-
-    .match-like {
-
-    }
-
-    .match-dislike {
-        
-    }
+@mixin match-button() {
+  height: 60px;
+  width: 60px;
+  background-color: $color-super-dark-gray;
+  color: white;
+  border: none;
+  border-radius: $rounded-sm;
+  cursor: pointer;
 }
 
+.match-container {
+  margin: 0 auto;
+  margin-top: 50px;
+  background-color: $color-dark-gray;
+  border-radius: $rounded-md;
+  height: 500px;
+  max-width: 800px;
+  position: relative;
+
+  .match-like {
+    @include match-button();
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .match-dislike {
+    @include match-button();
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+}
 
 .spinner {
-    animation-name: spin;
-    animation-duration: 1.3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    height: 50px;
-    width: 50px;
-    margin: 2rem auto;
-    display: none;
+  animation-name: spin;
+  animation-duration: 1.3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  height: 50px;
+  width: 50px;
+  margin: 2rem auto;
+  display: none;
 
-    &.shown {
-        display: block;
-    }
+  &.shown {
+    display: block;
+  }
 }
 
 @keyframes spin {
-    from {
-        transform:rotate(0deg);
-    } to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

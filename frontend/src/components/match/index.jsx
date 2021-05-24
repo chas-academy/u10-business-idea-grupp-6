@@ -8,8 +8,8 @@ import ProfileData from '../../shared/components/profile_data';
 
 const Match = () => {
   const [matches, setMatches] = useState([]),
-    [current, setCurrent] = useState(),
-    [loading, setLoading] = useState(false)
+        [current, setCurrent] = useState(),
+        [loading, setLoading] = useState(false);
 
   // useEffect(() => {
   //   setLoading(true);
@@ -51,7 +51,7 @@ const Match = () => {
         "games": [
           {
             "id": 3,
-            "game": "Diablo 3",
+            "game": "Fortnite",
             "genre": {
               "id": 4,
               "genre": "arpg"
@@ -60,6 +60,38 @@ const Match = () => {
           {
             "id": 3,
             "game": "World of Warcraft",
+            "genre": {
+              "id": 4,
+              "genre": "mmo"
+            }
+          },
+          {
+            "id": 3,
+            "game": "Minecraft",
+            "genre": {
+              "id": 4,
+              "genre": "mmo"
+            }
+          },
+          {
+            "id": 3,
+            "game": "Roblox",
+            "genre": {
+              "id": 4,
+              "genre": "mmo"
+            }
+          },
+          {
+            "id": 3,
+            "game": "Snake",
+            "genre": {
+              "id": 4,
+              "genre": "mmo"
+            }
+          },
+          {
+            "id": 3,
+            "game": "Gta V",
             "genre": {
               "id": 4,
               "genre": "mmo"
@@ -174,7 +206,7 @@ const Match = () => {
             disabled={loading}
           // onClick={dislike}
           >
-            DISLIKE
+            NOPE
           </button>
 
           {!matches.length &&

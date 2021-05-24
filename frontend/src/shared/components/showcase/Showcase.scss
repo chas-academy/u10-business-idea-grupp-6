@@ -1,0 +1,22 @@
+@import "global.scss";
+
+.showcase {
+  margin-bottom: 30px;
+  display: flex;
+  padding: 0 10px;
+
+  .item {
+    text-align: center;
+    background-color: $color-white;
+    color: $color-black;
+    padding: 5px 10px;
+    width: 25%;
+    max-width: 190px;
+    border-radius: $rounded-lg;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 10px;
+    font-size: $font-sm;
+  }
+}
