@@ -24,6 +24,8 @@ const Login = ({getToken}) => {
       
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('user_id', data.data.user.id);
+      localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
+      
       getToken(localStorage.getItem('token'));
 
       echo.private('App.Models.User.' + localStorage.getItem('user_id'))

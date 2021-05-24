@@ -31,6 +31,8 @@ const Register = ({getToken}) => {
     POST('register', data).then(data => {
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('user_id', data.data.user.id);
+      localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
+      
       getToken(localStorage.getItem('token'));
       setRedirectVerify(true);
     }).catch(error => {

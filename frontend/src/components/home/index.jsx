@@ -34,7 +34,13 @@ const Home = () => {
           name="Chat"
           link="/chat"
           />
-          
+        
+        <ButtonLink
+          classValue="button-link small light"
+          name="Match"
+          link="/match"
+        />
+        
       </div>
     </>
   )

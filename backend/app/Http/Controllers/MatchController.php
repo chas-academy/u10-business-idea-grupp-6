@@ -63,7 +63,8 @@ class MatchController extends Controller
         if(count($subject_interactions_objects = $this->user->subject_interactions->pluck('object_user_id')))
             $query->whereNotIn('id', $subject_interactions_objects);
 
-   
+        $query->whereKeyNot($this->user->id);
+
         foreach($this->getDemands() as $demand => $idsArray)
         {
             if(count($idsArray))
@@ -90,7 +91,7 @@ class MatchController extends Controller
 
         $sortable = $this->getSortable();
 
-        $collection->sort(function ($a, $b) use ($sortable) {
+        $sortedCollection = $collection->sort(function ($a, $b) use ($sortable) {
             // this is quite query heavy
             if($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
                 return -1;
@@ -98,7 +99,7 @@ class MatchController extends Controller
             return 1;
         });
 
-        return response(new UserCollection($collection));
+        return response(new UserCollection($sortedCollection));
     }
     
 

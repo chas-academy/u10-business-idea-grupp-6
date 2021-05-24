@@ -1,0 +1,39 @@
+@import 'global.scss';
+
+.match-container {
+    background-color: red;
+    border-radius: $rounded-md;
+    height: 500px;
+
+    .match-like {
+
+    }
+
+    .match-dislike {
+        
+    }
+}
+
+
+.spinner {
+    animation-name: spin;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    height: 50px;
+    width: 50px;
+    margin: 2rem auto;
+    display: none;
+
+    &.shown {
+        display: block;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
