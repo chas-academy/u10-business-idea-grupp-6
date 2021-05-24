@@ -10,6 +10,10 @@ const ChatWindow = ({ active, matchup }) => {
           [messageLog, setMessageLog] = useState([]),
           [newMessages, setNewMessages] = useState([]);
 
+    const read = () => {
+        POST('session/' + matchup.session.id + '/read');
+    }
+
     useEffect(() => {
         if (active) {
             if(!(messageLog.length))
@@ -19,13 +23,16 @@ const ChatWindow = ({ active, matchup }) => {
                 setMessageLog((previousState) => [...data.data.data]);
                 });
             }
+            read();
             console.log('subscribing to session chat ' + matchup.session.id)
             
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
+                read();
                 const f = e;
                 if (f.chat.user_id !== parseInt(localStorage.getItem('user_id')))
                 {
                     f.chat.type = 1;
+                    f.chat.sent_at = "Just now";
                 }
                 setNewMessages((previousState) => [...previousState, f]);
             })
@@ -63,7 +70,7 @@ const ChatWindow = ({ active, matchup }) => {
 
                 {messageLog.map(i => 
 
-                <p className={i.type ?  "received" : "sent"}>
+                    <p className={i.type ? "received" : "sent"}>
                     {i.content}
                 </p>
 
