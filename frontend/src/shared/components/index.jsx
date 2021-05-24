@@ -5,7 +5,6 @@ import InputDropdown from './input_dropdown/';
 import InputPassword from './input_password/';
 import Slider from './slider/';
 import MessageError from './message_error/';
-import Modal from './modal/';
 import Switch from './switch/';
 import Textarea from './textarea/';
 
@@ -18,6 +17,5 @@ export {
   Slider,
   Switch,
   MessageError,
-  Modal,
   Textarea,
 };
