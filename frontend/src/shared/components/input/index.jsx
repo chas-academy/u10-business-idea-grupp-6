@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import "./Input.scss";
+import React, { useState } from 'react';
+import './Input.scss';
 
 const Input = ({ placeholder, type, name, getState, currentValue }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   const inputValue = (input) => {
-    setValue(input);
-    getState(input);
+        setValue(input);
+        getState(input);
   };
 
   return (
     <>
       <input
-        className="input"
+        className='input'
         name={name}
         type={type}
         placeholder={placeholder}

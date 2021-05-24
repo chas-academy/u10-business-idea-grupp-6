@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "./EditProfile.scss";
+import React, { useState, useEffect } from 'react';
+import './EditProfile.scss';
 // import { Link } from "react-router-dom";
 import {
   Input,
@@ -8,23 +8,23 @@ import {
   ButtonSubmit,
   MessageError,
   Modal,
-} from "../../shared/components/";
-import { PATCH, GET } from "../../shared/services/requests";
+} from '../../shared/components/';
+import { PATCH, GET } from '../../shared/services/requests';
 
 const EditProfile = () => {
-  const [displayName, setDisplayName] = useState(""),
-        [oldDisplayName, setOldDisplayName] = useState(""),
-     // [country, setCountry] = useState(""),
-     // [imgPath, setImgPath] = useState(''),
-        [body, setBody] = useState(""),
+  const [displayName, setDisplayName] = useState(''),
+        [oldDisplayName, setOldDisplayName] = useState(''),
+        // [country, setCountry] = useState(""),
+        // [imgPath, setImgPath] = useState(''),
+        [body, setBody] = useState(''),
         [errorDisplayName, setErrorDisplayName] = useState(null);
 
   const getDisplayName = (e) => setDisplayName(e),
-    // getCountry = (e) => setCountry(e),
-    // getImgPath = (e) => setImgPath(e),
-    getBody = (e) => setBody(e);
+        // getCountry = (e) => setCountry(e),
+        // getImgPath = (e) => setImgPath(e),
+        getBody = (e) => setBody(e);
 
-  const userId = localStorage.getItem("user_id");
+  const userId = localStorage.getItem('user_id');
 
   useEffect(() => {
     GET(`user/${userId}`)
@@ -46,36 +46,35 @@ const EditProfile = () => {
       body: body,
     };
 
-    if(displayName !== oldDisplayName)
-    {
-      data.display_name = displayName
+    if (displayName !== oldDisplayName) {
+      data.display_name = displayName;
     }
 
-      PATCH(`user/${userId}`, data)
-        .then((data) => {
-          console.log("Profile successfully updated!");
-        })
-        .catch((error) => {
-          console.log(error);
-          setErrorDisplayName(error.response.data.error.display_name);
-        });
-    }
+    PATCH(`user/${userId}`, data)
+      .then((data) => {
+        console.log('Profile successfully updated!');
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorDisplayName(error.response.data.error.display_name);
+      });
+  };
 
   return (
     <>
-      <h1 className="profile-title">Edit Profile</h1>
-      <h2 className="profile-sub-title">
+      <h1 className='profile-title'>Edit Profile</h1>
+      <h2 className='profile-sub-title'>
         This is your public profile that other people can see
       </h2>
 
-      <form className="profile-form" onSubmit={submit}>
+      <form className='profile-form' onSubmit={submit}>
         {errorDisplayName && <MessageError message={errorDisplayName} />}
 
         <Input
-          type="text"
-          placeholder="Display Name"
+          type='text'
+          placeholder='Display Name'
           currentValue={displayName}
-          name="display_name"
+          name='display_name'
           getState={getDisplayName}
         />
 
@@ -89,17 +88,17 @@ const EditProfile = () => {
         /> */}
 
         <Textarea
-          name="body"
-          placeholder="Write something about yourself..."
+          name='body'
+          placeholder='Write something about yourself...'
           currentValue={body}
           getState={getBody}
         />
 
-        <ButtonSubmit name="Update Profile" />
+        <ButtonSubmit name='Update Profile' />
       </form>
     </>
   );
-}
+};
 
 export default EditProfile;
 

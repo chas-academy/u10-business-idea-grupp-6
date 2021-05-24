@@ -1,33 +1,24 @@
-import { Route, BrowserRouter as Router } from "react-router-dom";
-import ProtectedRoute from "./guard/protected_route";
-import React, { useState, useEffect } from "react";
-import Home from "./components/home/";
-import Register from "./components/register/";
-import Login from "./components/login/";
-import Verified from "./components/verified";
-import AlreadyVerified from "./components/already_verified";
-import EditProfile from "./components/edit-profile";
-import ChangePassword from "./components/change_password";
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import ProtectedRoute from './guard/protected_route';
+import React, { useState, useEffect } from 'react';
+import Home from './components/home/';
+import Register from './components/register/';
+import Login from './components/login/';
+import Verified from './components/verified';
+import AlreadyVerified from './components/already_verified';
+import EditProfile from './components/edit-profile';
+import ChangePassword from './components/change_password';
 import Verify from './components/verify';
 import Notification from './components/notification';
 import Chat from './components/chat';
 import Preferences from './components/preferences/';
 import { GET } from './shared/services/requests';
 
-  
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
 
   const logout = () => {
-    GET('logout').then(data => {
-
-      setIsAuth(null);
-
-      localStorage.removeItem('token');
-      localStorage.removeItem('user_id');
-
-    window.location.reload();
-    }).catch(e => {
+    GET('logout').then((data) => {
 
       setIsAuth(null);
 
@@ -35,89 +26,86 @@ const App = () => {
       localStorage.removeItem('user_id');
 
       window.location.reload();
-    })
-  }
+    }).catch((e) => {
 
-  const getIsAuth = e => setIsAuth(e);
+        setIsAuth(null);
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+
+        window.location.reload();
+      });
+  };
+
+  const getIsAuth = (e) => setIsAuth(e);
 
   return (
     <>
       <main>
 
-
-        {isAuth && <button className="button-link" onClick={logout}>Log out</button>}
+        {isAuth && <button className='button-link' onClick={logout}>Log out</button>}
         <Router>
-          
-          <Notification
-            auth={isAuth}
+
+          <Notification auth={isAuth} />
+
+          <Route
+            path='/'
+            exact component={Home}
           />
 
           <Route
-            path="/"
-            exact 
-            component={Home}
-          />
-
-          <Route
-            path="/register"
+            path='/register'
             render={(props) => (
               <Register {...props} getToken={getIsAuth} />
             )}
           />
 
           <Route
-            path="/login"
+            path='/login'
             render={(props) => (
               <Login {...props} getToken={getIsAuth} />
             )}
           />
 
           <ProtectedRoute
-            path="/chat"
-            exact 
-            component={Chat}
+            path='/chat'
+            exact component={Chat}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path="/verified"
-            exact 
-            component={Verified}
+            path='/verified'
+            exact component={Verified}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path="/already-verified"
-            exact 
-            component={AlreadyVerified}
+            path='/already-verified'
+            exact component={AlreadyVerified}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path="/verify"
-            exact 
-            component={Verify}
+            path='/verify'
+            exact component={Verify}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path="/preferences"
-            exact 
-            component={Preferences}
-            isAuth={isAuth} 
+            path='/preferences'
+            exact component={Preferences}
+            isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path="/change-password"
-            exact
-            component={ChangePassword}
+            path='/change-password'
+            exact component={ChangePassword}
             isAuth={isAuth}
           />
 
           <Route
-            path="/edit-profile"
-            exact
-            component={EditProfile}
+            path='/edit-profile'
+            exact component={EditProfile}
             isAuth={isAuth}
           />
 
