@@ -32,6 +32,10 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
         } 
     }, [active])
 
+    useEffect(() => {
+        openChat();
+    }, [messageLog]);
+
     const submit = (e) => {
         e.preventDefault();
         POST('send/' + matchup.session.id, {
@@ -85,6 +89,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
                         </p>
                     
                     )}
+            
                     </div>
                     <div className="chatwindow">
                         <form onSubmit={submit}>
