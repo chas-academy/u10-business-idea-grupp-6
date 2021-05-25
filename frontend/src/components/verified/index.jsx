@@ -1,6 +1,6 @@
 import React from 'react';
 import './Verified.scss';
-import { ButtonLink } from "../../shared/components";
+import { ButtonLink } from '../../shared/components';
 
 const Verified = () => {
   return (
@@ -10,14 +10,16 @@ const Verified = () => {
       </h1>
 
       <div className="verified-container">
-        <ButtonLink 
+
+        <ButtonLink
           classValue="button-link light"
           name="Setup Your Profile"
           link="#"
         />
+
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Verified;

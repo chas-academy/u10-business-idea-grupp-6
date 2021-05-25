@@ -1,9 +1,14 @@
-import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import "./ChangePassword.scss";
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import './ChangePassword.scss';
 import { Link } from 'react-router-dom';
-import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components";
-import { PATCH } from "../../shared/services/requests";
+import {
+  Input,
+  InputPassword,
+  ButtonSubmit,
+  MessageError,
+} from '../../shared/components';
+import { PATCH } from '../../shared/services/requests';
 
 const ChangePassword = () => {
   const [currentPwd, setCurrentPwd] = useState(''),
@@ -11,7 +16,6 @@ const ChangePassword = () => {
         [newPwdConf, setNewPwdConf] = useState(''),
         [errorCurrentPwd, setErrorCurrentPwd] = useState(null),
         [errorNewPwd, setErrorNewPwd] = useState(null);
-
 
   const getCurrentPwd = (e) => setCurrentPwd(e),
         getNewPwd = (e) => setNewPwd(e),
@@ -23,16 +27,18 @@ const ChangePassword = () => {
       current_password: currentPwd,
       password: newPwd,
       password_confirmation: newPwdConf,
-    }
+    };
 
     const userId = localStorage.getItem('user_id');
 
-    PATCH(`user/${userId}/password`, data).then(res => {
-      console.log('Success!!')
-    }).catch(error => {
-      setErrorCurrentPwd(error.response.data.error.current_password)
-      setErrorNewPwd(error.response.data.error.password)
-    });
+    PATCH(`user/${userId}/password`, data)
+      .then((res) => {
+        console.log('Success!!');
+      })
+      .catch((error) => {
+        setErrorCurrentPwd(error.response.data.error.current_password);
+        setErrorNewPwd(error.response.data.error.password);
+      });
   };
 
   return (
@@ -47,7 +53,8 @@ const ChangePassword = () => {
 
       <form
         className="edit-form"
-        onSubmit={submit}>
+        onSubmit={submit}
+      >
 
         {errorCurrentPwd && <MessageError message={errorCurrentPwd} />}
 
@@ -56,20 +63,19 @@ const ChangePassword = () => {
           getState={getCurrentPwd}
           idPwd="currentPwd"
         />
-        
+
         {errorNewPwd && <MessageError message={errorNewPwd} />}
 
-        <InputPassword 
+        <InputPassword
           getState={getNewPwd}
           getStateConf={getNewPwdConf}
-          placeholder = "New Password"
+          placeholder="New Password"
           idPwd="newPwd"
         />
 
         <ButtonSubmit name="Update" />
 
       </form>
-
     </>
   );
 };
