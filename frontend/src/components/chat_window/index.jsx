@@ -2,23 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { echo, POST } from '../../shared/services/requests';
 import './ChatWindow.scss';
 
-const ChatWindow = ({ active, matchup, closeChat }) => {
-    // console.log('active is', active, matchup)
+const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
-    // 
     const [inputValue, setInputValue] = useState(""),
           [messageLog, setMessageLog] = useState([]),
           [newMessages, setNewMessages] = useState([]);
 
 
     useEffect(() => {
+        openChat()
         if (active) {
             if(!(messageLog.length))
             {
                 POST('session/' + matchup.session.id + '/chats').then(data => {
-                // console.log(data.data.data)
                 setMessageLog((previousState) => [...data.data.data]);
-                console.log(data)
                 });
             }
             console.log('subscribing to session chat ' + matchup.session.id)
@@ -34,12 +31,6 @@ const ChatWindow = ({ active, matchup, closeChat }) => {
             })
         } 
     }, [active])
-
-    // use this for debugging
-    // 
-    // useEffect(() => {
-    //     console.log(messageLog, newMessages)
-    // }, [messageLog, newMessages])
 
     const submit = (e) => {
         e.preventDefault();
@@ -69,7 +60,7 @@ const ChatWindow = ({ active, matchup, closeChat }) => {
                 </h1>
                
 
-                <div className="chatbox">
+                <div id="chatbox" className="chatbox">
                     {messageLog.map(i => 
                         <div className={parseInt(i.type) ?  "received" : "sent"}>
                             <div className="chatbox-bubble">
@@ -104,7 +95,7 @@ const ChatWindow = ({ active, matchup, closeChat }) => {
                                 onChange={(e) => setInputValue(e.target.value)} 
                                 className="chatwindow-textarea"
                                 value={inputValue}
-                                placeholder="Send message"
+                                placeholder={"Message " + matchup.user[0].profile.display_name}
                             />
                     </form>
                 </div>
