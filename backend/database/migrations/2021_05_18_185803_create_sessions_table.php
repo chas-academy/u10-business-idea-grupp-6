@@ -20,6 +20,7 @@ class CreateSessionsTable extends Migration
             $table->unique(['user_a_id', 'user_b_id']);
             $table->foreign('user_a_id')->references('id')->on('users');
             $table->foreign('user_b_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
