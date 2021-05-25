@@ -53,7 +53,7 @@ const InputDropdown = ({ placeholder, type, data, defaults }) => {
         styles={customStyles}
         isMulti
         closeMenuOnSelect={false}
-        className='input-dropdown'
+        className="input-dropdown"
         onChange={(e) => handleChange(e)}
       />
     </>

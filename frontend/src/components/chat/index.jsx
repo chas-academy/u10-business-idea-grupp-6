@@ -40,14 +40,16 @@ const Chat = () => {
 
   return (
     <>
-      <h1>Chat</h1>
+      <h1>
+        Chat
+      </h1>
 
       {matchups.length === 0 && (
         <div>
           You have no more matches...
           <ButtonLink
-            name='Match'
-            classValue='button-link'
+            name="Match"
+            classValue="button-link"
           />
         </div>
       )}

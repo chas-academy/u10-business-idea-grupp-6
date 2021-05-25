@@ -94,44 +94,44 @@ const Slider = ({ name, defaults }) => {
   };
 
   return (
-    <div className='slider'>
-      <div className='slider-checkbox-container'>
+    <div className="slider">
+      <div className="slider-checkbox-container">
         <input
-          className='slider-checkbox'
-          type='checkbox'
+          className="slider-checkbox"
+          type="checkbox"
           id={name}
           onChange={toggleInputType}
           onClick={toggleHandler}
         />
 
         <label
-          className='slider-checkbox-label'
+          className="slider-checkbox-label"
           htmlFor={name}>
           {name}
         </label>
 
-        <p className='slider-data'>
+        <p className="slider-data">
           {toggle ? `${sliderValue.start}:00 to ${sliderValue.end}:00` : `never`}
         </p>
       </div>
 
-      <div className={toggle ? 'slider-middle' : 'slider-middle hidden'}>
+      <div className={toggle ? "slider-middle" : "slider-middle hidden"}>
         <input
-          type='range'
+          type="range"
           id={`${name}-start`}
-          defaultValue='0'
+          defaultValue="0"
           onMouseUp={submit}
         />
 
         <input
-          type='range'
+          type="range"
           id={`${name}-end`}
-          defaultValue='100'
+          defaultValue="100"
           onMouseUp={submit}
         />
 
-        <div className='slider-container'>
-          <div className='slider-track' />
+        <div className="slider-container">
+          <div className="slider-track" />
           <div className={`slider-range ${name}-range`} />
           <div className={`slider-thumb start ${name}-start`} />
           <div className={`slider-thumb end ${name}-end`} />

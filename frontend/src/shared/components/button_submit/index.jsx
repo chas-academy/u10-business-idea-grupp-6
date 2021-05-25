@@ -5,8 +5,8 @@ const ButtonSubmit = ({ name }) => {
   return (
     <>
       <button
-        className='button-submit'
-        type='submit'
+        className="button-submit"
+        type="submit"
       >
         {name}
       </button>

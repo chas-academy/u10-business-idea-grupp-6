@@ -18,16 +18,16 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
 
   const logout = () => {
-    GET('logout').then((data) => {
+    GET('logout')
+      .then((data) => {
+        setIsAuth(null);
 
-      setIsAuth(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
 
-      localStorage.removeItem('token');
-      localStorage.removeItem('user_id');
-
-      window.location.reload();
-    }).catch((e) => {
-
+        window.location.reload();
+      })
+      .catch((e) => {
         setIsAuth(null);
 
         localStorage.removeItem('token');
@@ -42,73 +42,84 @@ const App = () => {
   return (
     <>
       <main>
+        {isAuth && (
+          <button
+            className="button-link"
+            onClick={logout}
+          >
+            Log out
+          </button>
+        )}
 
-        {isAuth && <button className='button-link' onClick={logout}>Log out</button>}
         <Router>
-
           <Notification auth={isAuth} />
 
           <Route
-            path='/'
-            exact component={Home}
+            path="/"
+            exact
+            component={Home}
           />
 
           <Route
-            path='/register'
-            render={(props) => (
-              <Register {...props} getToken={getIsAuth} />
-            )}
+            path="/register"
+            render={(props) =>
+              <Register {...props} getToken={getIsAuth} />}
           />
 
           <Route
-            path='/login'
-            render={(props) => (
-              <Login {...props} getToken={getIsAuth} />
-            )}
+            path="/login"
+            render={(props) =>
+              <Login {...props} getToken={getIsAuth} />}
           />
 
           <ProtectedRoute
-            path='/chat'
-            exact component={Chat}
+            path="/chat"
+            exact
+            component={Chat}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path='/verified'
-            exact component={Verified}
+            path="/verified"
+            exact
+            component={Verified}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path='/already-verified'
-            exact component={AlreadyVerified}
+            path="/already-verified"
+            exact
+            component={AlreadyVerified}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path='/verify'
-            exact component={Verify}
+            path="/verify"
+            exact
+            component={Verify}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path='/preferences'
-            exact component={Preferences}
+            path="/preferences"
+            exact
+            component={Preferences}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
-            path='/change-password'
-            exact component={ChangePassword}
+            path="/change-password"
+            exact
+            component={ChangePassword}
             isAuth={isAuth}
           />
 
           <Route
-            path='/edit-profile'
-            exact component={EditProfile}
+            path="/edit-profile"
+            exact
+            component={EditProfile}
             isAuth={isAuth}
           />
-
         </Router>
       </main>
     </>

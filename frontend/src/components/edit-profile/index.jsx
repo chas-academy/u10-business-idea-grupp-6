@@ -62,19 +62,26 @@ const EditProfile = () => {
 
   return (
     <>
-      <h1 className='profile-title'>Edit Profile</h1>
-      <h2 className='profile-sub-title'>
+      <h1 className="profile-title">
+        Edit Profile
+      </h1>
+
+      <h2 className="profile-sub-title">
         This is your public profile that other people can see
       </h2>
 
-      <form className='profile-form' onSubmit={submit}>
+      <form
+        className="profile-form"
+        onSubmit={submit}
+      >
+
         {errorDisplayName && <MessageError message={errorDisplayName} />}
 
         <Input
-          type='text'
-          placeholder='Display Name'
+          type="text"
+          placeholder="Display Name"
           currentValue={displayName}
-          name='display_name'
+          name="display_name"
           getState={getDisplayName}
         />
 
@@ -88,13 +95,14 @@ const EditProfile = () => {
         /> */}
 
         <Textarea
-          name='body'
-          placeholder='Write something about yourself...'
+          name="body"
+          placeholder="Write something about yourself..."
           currentValue={body}
           getState={getBody}
         />
 
-        <ButtonSubmit name='Update Profile' />
+        <ButtonSubmit name="Update Profile" />
+
       </form>
     </>
   );

@@ -50,21 +50,25 @@ const ChatWindow = ({ active, matchup }) => {
         <div>
           <form onSubmit={submit}>
             <input
-              type='text'
-              name='message'
+              type="text"
+              name="message"
               onChange={(e) => setInputValue(e.target.value)}
             />
 
-            <button type='submit'>
+            <button type="submit">
               Send
             </button>
           </form>
 
           {messageLog.map((i) => (
-            <p className={i.type ? 'received' : 'sent'}>{i.content}</p>
+            <p className={i.type ? "received" : "sent"}>
+              {i.content}
+            </p>
           ))}
           {newMessages.map((i) => (
-            <p className={i.chat.type ? 'received' : 'sent'}>{i.content}</p>
+            <p className={i.chat.type ? "received" : "sent"}>
+              {i.content}
+            </p>
           ))}
         </div>
       )}

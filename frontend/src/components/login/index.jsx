@@ -45,42 +45,47 @@ const Login = ({ getToken }) => {
       });
   };
 
-  if (redirect) return <Redirect to='/preferences' />;
+  if (redirect) return <Redirect to="/preferences" />;
 
   return (
     <>
-      <h1 className='login-title'>Log In Now</h1>
-      <h2 className='login-sub-title'>Please login to continue</h2>
+      <h1 className="login-title">
+        Log In Now
+      </h1>
+
+      <h2 className="login-sub-title">
+        Please login to continue
+      </h2>
 
       <form
-        className='login-form'
+        className="login-form"
         onSubmit={submit}
       >
 
         {error && <MessageError message={error} />}
 
         <Input
-          type='email'
-          placeholder='Email'
-          name='email'
+          type="email"
+          placeholder="Email"
+          name="email"
           getState={getEmail}
         />
 
         <InputPassword
           getState={getPwd}
-          placeholder='Password'
-          idPwd='pwd'
+          placeholder="Password"
+          idPwd="pwd"
         />
 
-        <ButtonSubmit name='Login' />
+        <ButtonSubmit name="Login" />
 
       </form>
 
-      <p className='login-text'>
+      <p className="login-text">
         Dont have an account?
         <Link
-          className='login-link'
-          to='/register'>
+          className="login-link"
+          to="/register">
           Register
         </Link>
       </p>

@@ -12,11 +12,11 @@ const Input = ({ placeholder, type, name, getState, currentValue }) => {
   return (
     <>
       <input
-        className='input'
+        className="input"
         name={name}
         type={type}
         placeholder={placeholder}
-        value={currentValue}
+        value={currentValue || value }
         onChange={(e) => inputValue(e.target.value)}
       />
     </>

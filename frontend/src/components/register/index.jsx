@@ -45,36 +45,36 @@ const Register = ({ getToken }) => {
       });
   };
 
-  if (redirectVerify) return <Redirect to='/verify' />;
+  if (redirectVerify) return <Redirect to="/verify" />;
 
   return (
     <>
-      <h1 className='register-title'>
+      <h1 className="register-title">
         Sign Up Now
       </h1>
 
-      <h2 className='register-sub-title'>
+      <h2 className="register-sub-title">
         Please fill in the details and create an account
       </h2>
 
       <form
-        className='register-form'
+        className="register-form"
         onSubmit={submit}
       >
 
         <Input
-          type='text'
-          placeholder='Name'
-          name='name'
+          type="text"
+          placeholder="Name"
+          name="name"
           getState={getName}
         />
 
         {errorEmail && <MessageError message={errorEmail} />}
 
         <Input
-          type='email'
-          placeholder='Email'
-          name='email'
+          type="email"
+          placeholder="Email"
+          name="email"
           getState={getEmail}
         />
 
@@ -83,18 +83,19 @@ const Register = ({ getToken }) => {
         <InputPassword
           getState={getPwd}
           getStateConf={getPwdConf}
-          placeholder='Password'
-          idPwd='pwd'
+          placeholder="Password"
+          idPwd="pwd"
         />
 
-        <ButtonSubmit name='Register' />
+        <ButtonSubmit name="Register" />
+
       </form>
 
-      <p className='register-text'>
+      <p className="register-text">
         Already have an account?
         <Link
-          className='register-link'
-          to='/login'
+          className="register-link"
+          to="/login"
         >
           Log In
         </Link>

@@ -44,11 +44,11 @@ const Notification = ({ auth }) => {
 
   return (
     message && isShown && (
-      <div id='notification'>
+      <div id="notification">
         <ButtonLink
-          link='/chat'
+          link="/chat"
           name={message}
-          classValue='button-link'
+          classValue="button-link"
         />
       </div>
     )

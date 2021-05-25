@@ -43,25 +43,25 @@ const ChangePassword = () => {
 
   return (
     <>
-      <h1 className='edit-title'>
+      <h1 className="edit-title">
         Change Password
       </h1>
 
-      <h2 className='edit-sub-title'>
+      <h2 className="edit-sub-title">
         Please fill in the details if you want to change your password
       </h2>
 
       <form
-        className='edit-form'
+        className="edit-form"
         onSubmit={submit}
       >
 
         {errorCurrentPwd && <MessageError message={errorCurrentPwd} />}
 
         <InputPassword
-          placeholder='Current Password'
+          placeholder="Current Password"
           getState={getCurrentPwd}
-          idPwd='currentPwd'
+          idPwd="currentPwd"
         />
 
         {errorNewPwd && <MessageError message={errorNewPwd} />}
@@ -69,11 +69,12 @@ const ChangePassword = () => {
         <InputPassword
           getState={getNewPwd}
           getStateConf={getNewPwdConf}
-          placeholder='New Password'
-          idPwd='newPwd'
+          placeholder="New Password"
+          idPwd="newPwd"
         />
 
-        <ButtonSubmit name='Update' />
+        <ButtonSubmit name="Update" />
+
       </form>
     </>
   );

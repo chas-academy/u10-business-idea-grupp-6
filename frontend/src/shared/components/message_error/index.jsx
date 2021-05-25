@@ -4,7 +4,7 @@ import './MessageError.scss';
 const MessageError = ({ message }) => {
   return (
     <>
-      <div className='message'>
+      <div className="message">
         {message}
       </div>
     </>
