@@ -70,10 +70,7 @@ const EditProfile = () => {
         This is your public profile that other people can see
       </h2>
 
-      <form
-        className="profile-form"
-        onSubmit={submit}
-      >
+      <form className="profile-form" onSubmit={submit}>
 
         {errorDisplayName && <MessageError message={errorDisplayName} />}
 
@@ -93,6 +90,12 @@ const EditProfile = () => {
           name="country"
           getState={getCountry}
         /> */}
+
+        <Modal
+          modalContent="Hello Modal!"
+          openModalBtnClass="button-modal"
+          closeModalBtnClass="button-modal"
+        />
 
         <Textarea
           name="body"

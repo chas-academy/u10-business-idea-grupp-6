@@ -33,7 +33,8 @@ const Home = () => {
 
         <ButtonLink
           name="Chat"
-          link="/chat">
+          link="/chat"
+        >
           <FontAwesomeIcon
             className="icon icon-medium"
             icon={faCommentDots}
