@@ -1,23 +1,26 @@
 @import "global.scss";
-
 .nav-container {
-  margin: 0 auto;
+  align-items: center;
+  border-radius: $rounded-md;
   display: flex;
-  width: 100%;
+  margin: 0px auto;
+  margin-bottom: 20px;
+  width: 80%;
   height: 60px;
   justify-content: space-around;
-  align-items: center;
-  max-width: 600px;
-  border-radius: $rounded-md;
+  max-width: 700px;
   padding: 0 20px;
   background-color: $color-dark-gray;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
   .icon {
     opacity: 0.6;
-  }
-
-  .icon:hover {
-    opacity: 1;
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .active-link{
@@ -25,3 +28,5 @@
   }
 
 }
+
+
