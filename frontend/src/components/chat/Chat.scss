@@ -30,3 +30,11 @@
     flex-direction: column;
     font-size: $font-lg;
 }
+
+.onlinedot {
+  height: 30px;
+  width: 30px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}

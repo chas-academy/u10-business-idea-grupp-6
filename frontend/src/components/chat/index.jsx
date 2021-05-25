@@ -7,8 +7,8 @@ import ChatWindow from '../chat_window';
 const Chat = () => {
 
     const [matchups, setMatchups] = useState([]),
-          [activeChat, setActiveChat] = useState(null),
-          [showChat, setShowChat] = useState([]);
+        [activeChat, setActiveChat] = useState(null),
+        [showChat, setShowChat] = useState([]);
 
 
     useEffect(() => {
@@ -23,6 +23,26 @@ const Chat = () => {
                 setMatchups((previousState) => [...previousState, newMatchup])
             });
     }, [])
+
+    echo.join(`Chat`).here((users) => {
+        matchups.forEach(matchup => {
+            users.forEach(user => {
+                if (user.id == matchup.user[0].id) {
+                    matchup.user[0].online = true;
+                }
+            })
+        })
+    })
+        .joining((user) => {
+            matchups.forEach(matchup =>
+                user.id == matchup.user[0].id ? matchup.user[0].online = true : ''
+            )
+        }).leaving((user) => {
+            matchups.forEach(matchup =>
+                user.id == matchup.user[0].id ? matchup.user[0].online = false : ''
+            )
+        })
+
 
     const handleSetActiveChat = (matchupId, session, friendId) => {
 
@@ -47,7 +67,7 @@ const Chat = () => {
 
     const handleOpenChat = () => {
         const chatbox = document.querySelector('#chatbox');
-        if(chatbox) {
+        if (chatbox) {
             chatbox.scrollTop = chatbox.scrollHeight;
         }
     }
@@ -68,10 +88,10 @@ const Chat = () => {
             {matchups.map(matchup =>
                 matchup &&
                 <div
-                onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}
-                className="chat-box">
+                    onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}
+                    className="chat-box">
                     <img
-                        src="https://image.flaticon.com/icons/png/512/1077/1077114.png" 
+                        src="https://image.flaticon.com/icons/png/512/1077/1077114.png"
                         width="30px"
                         className="profile-img"
                     />
