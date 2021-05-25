@@ -24,6 +24,8 @@ const ChatWindow = ({ active, matchup, closeChat }) => {
             console.log('subscribing to session chat ' + matchup.session.id)
             
             
+            echo.join(`Chat.${matchup.session.id}.presence`).here((users) => console.log(users));
+
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
                 const f = e;
                 if (f.chat.user_id !== parseInt(localStorage.getItem('user_id')))
