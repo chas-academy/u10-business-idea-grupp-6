@@ -4,12 +4,8 @@ import Pusher from 'pusher-js';
 
 window.Pusher = require('pusher-js');
 
-<<<<<<< HEAD
 // const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api'
 const apiBaseURL = 'http://u10.test/api';
-=======
-const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api';
->>>>>>> 862a9de124440e22d64c29918c3459b5d641e4d4
 
 axios.defaults.withCredentials = true;
 
@@ -51,7 +47,8 @@ export const echo = new Echo({
     return {
       authorize: (socketId, callback) => {
         axios.post(`${apiBaseURL}/broadcasting/auth`, {
-           socket_id: socketId, channel_name: channel.name })
+          socket_id: socketId, channel_name: channel.name
+        })
           .then(response => {
             callback(false, response.data)
           })

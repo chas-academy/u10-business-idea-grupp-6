@@ -5,42 +5,37 @@ import './ChatWindow.scss';
 const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     const [inputValue, setInputValue] = useState(""),
-          [messageLog, setMessageLog] = useState([]),
-          [newMessages, setNewMessages] = useState([]);
+        [messageLog, setMessageLog] = useState([]),
+        [newMessages, setNewMessages] = useState([]);
 
-<<<<<<< HEAD
-=======
     const read = () => {
         POST('session/' + matchup.session.id + '/read');
     }
->>>>>>> 862a9de124440e22d64c29918c3459b5d641e4d4
 
     useEffect(() => {
         openChat()
         if (active) {
-            if(!(messageLog.length))
-            {
+            if (!(messageLog.length)) {
                 POST('session/' + matchup.session.id + '/chats').then(data => {
-                setMessageLog((previousState) => [...data.data.data]);
+                    setMessageLog((previousState) => [...data.data.data]);
                 });
             }
             read();
             console.log('subscribing to session chat ' + matchup.session.id)
-            
-            
+
+
             echo.join(`Chat.${matchup.session.id}.presence`).here((users) => console.log(users));
 
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
                 read();
                 const f = e;
-                if (f.chat.user_id !== parseInt(localStorage.getItem('user_id')))
-                {
+                if (f.chat.user_id !== parseInt(localStorage.getItem('user_id'))) {
                     f.chat.type = 1;
                     f.chat.sent_at = "Just now";
                 }
                 setNewMessages((previousState) => [...previousState, f]);
             })
-        } 
+        }
     }, [active])
 
     useEffect(() => {
@@ -61,11 +56,10 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
         closeChat();
     }
 
-<<<<<<< HEAD
     return <>
         {active &&
             <div class="chat-modal">
-                 <img
+                <img
                     src="https://image.flaticon.com/icons/png/512/860/860790.png"
                     width="40px"
                     className="back-arrow"
@@ -74,51 +68,46 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
                 <h1 className="chatwindow-title">
                     {matchup.user[0].profile.display_name}
                 </h1>
-               
+
 
                 <div id="chatbox" className="chatbox">
-                    {messageLog.map(i => 
-                        <div className={parseInt(i.type) ?  "received" : "sent"}>
+                    {messageLog.map(i =>
+                        <div className={parseInt(i.type) ? "received" : "sent"}>
                             <div className="chatbox-bubble">
                                 <p key={i.id}
                                 >
-                                {i.content}
+                                    {i.content}
                                 </p>
                                 <p className="chatbox-sent">
-                                {i.send_at}
+                                    {i.send_at}
                                 </p>
+                            </div>
                         </div>
-                </div>
-                
-=======
-                    <p className={i.type ? "received" : "sent"}>
-                    {i.content}
-                </p>
->>>>>>> 862a9de124440e22d64c29918c3459b5d641e4d4
 
-                )}
-                {newMessages.map(i => 
-                    
-                        <p key={i.id}
-                        className={i.chat.type ? "received" : "sent"}
-                        >
-                        {i.content}
-                        </p>
-                    
+
                     )}
-            
-                    </div>
-                    <div className="chatwindow">
-                        <form onSubmit={submit}>
+                    {newMessages.map(i =>
 
-                            <input 
-                                type="text" 
-                                name="message" 
-                                onChange={(e) => setInputValue(e.target.value)} 
-                                className="chatwindow-textarea"
-                                value={inputValue}
-                                placeholder={"Message " + matchup.user[0].profile.display_name}
-                            />
+                        <p key={i.id}
+                            className={i.chat.type ? "received" : "sent"}
+                        >
+                            {i.content}
+                        </p>
+
+                    )}
+
+                </div>
+                <div className="chatwindow">
+                    <form onSubmit={submit}>
+
+                        <input
+                            type="text"
+                            name="message"
+                            onChange={(e) => setInputValue(e.target.value)}
+                            className="chatwindow-textarea"
+                            value={inputValue}
+                            placeholder={"Message " + matchup.user[0].profile.display_name}
+                        />
                     </form>
                 </div>
             </div>
