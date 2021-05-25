@@ -53,7 +53,9 @@ const Chat = () => {
     const confirmation = window.confirm("Are you sure you want to remove this match? This is permanent.");
     if(confirmation) POST('match/delete', {
       matchup_id: id
-    }).then(data => console.log(data));
+    }).then(data => {
+      setMatchups((previousState) => previousState.filter(i => i.id !== id))
+    });
   }
 
   const handleCloseChat = () => setActiveChat(null);
