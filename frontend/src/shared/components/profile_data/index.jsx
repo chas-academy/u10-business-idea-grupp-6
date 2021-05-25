@@ -12,7 +12,12 @@ const ProfileData = ({ data, preferences }) => {
       <h3>{data.display_name || "User hasn't selected a display name"}</h3>
       
       <div className="showcase-container">
+
+        <p>games</p>
+
         <Showcase data={preferences.games} type="game"/>
+
+        <p>genres</p>
 
         <Showcase data={preferences.genres} type="genre"/>
       </div>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Showcase.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const Showcase = ({ data, type }) => {
   const [items, setItems] = useState(),
@@ -32,14 +34,25 @@ const Showcase = ({ data, type }) => {
   }
 
   return (
-    <div className="showcase" >
-      <button onClick={left}>&#9664;</button>
+    <div className="showcase">
+      
+      <FontAwesomeIcon 
+        className={(position.min > 0) ? 'arrow-icon' : 'arrow-icon disabled'}
+        onClick={left} 
+        icon={faChevronLeft}
+      />
+
       <div className="item-container">
         {items?.map(item =>
           <div className="item">{item[type]}</div>
         )}
       </div>
-      <button onClick={right}>&#9654;</button>
+
+      <FontAwesomeIcon 
+        className={(position.max < data.length) ? 'arrow-icon' : 'arrow-icon disabled'}
+        onClick={right} 
+        icon={faChevronRight}
+      />
     </div>
   )
 }

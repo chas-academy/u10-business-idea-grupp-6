@@ -46,6 +46,10 @@ const Match = () => {
           {
             "id": 2,
             "genre": "arpg"
+          },
+          {
+            "id": 1,
+            "genre": "mmo"
           }
         ],
         "games": [
