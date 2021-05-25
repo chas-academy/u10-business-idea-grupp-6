@@ -1,7 +1,7 @@
 import React from 'react';
 import './ButtonSubmit.scss';
 
-const ButtonSubmit = ({name}) => {
+const ButtonSubmit = ({ name }) => {
   return (
     <>
       <button
@@ -11,7 +11,7 @@ const ButtonSubmit = ({name}) => {
         {name}
       </button>
     </>
-  )
-}
+  );
+};
 
 export default ButtonSubmit;

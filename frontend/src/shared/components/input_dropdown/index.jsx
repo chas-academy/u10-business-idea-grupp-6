@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import './InputDropdown.scss';
 import AsyncSelect from 'react-select/async';
 import { DROPDOWN } from '../../services/preferences';
 import { POST } from '../../services/requests';
 
-const InputDropdown = ({placeholder, type, data, defaults}) => {
+const InputDropdown = ({ placeholder, type, data, defaults }) => {
   const [selectedOption, setSelectedOption] = useState([]),
         [defaultValue, setDefaultValue] = useState([]),
         [options, setOptions] = useState();
 
-  useEffect(() => { 
-    const formatted = data?.map(i => ({
+  useEffect(() => {
+    const formatted = data?.map((i) => ({
       value: i[type],
       label: i[type],
-      id: i.id
+      id: i.id,
     }));
     setOptions(formatted);
   }, [data]);
 
-  useEffect(() => { 
-    const formatted = defaults?.map(i => ({
+  useEffect(() => {
+    const formatted = defaults?.map((i) => ({
       value: i[type],
       label: i[type],
-      id: i.id
+      id: i.id,
     }));
-    
+
     setDefaultValue(formatted);
     setSelectedOption(formatted);
   }, [defaults]);
 
   const promiseOptions = (inputValue) =>
-    new Promise(resolve => resolve(filterOptions(inputValue))
-  );
+    new Promise((resolve) => resolve(filterOptions(inputValue)));
 
   const filterOptions = (inputValue) =>
-    options.filter(i => i.label.toLowerCase().includes(inputValue.toLowerCase())
-  );
+    options.filter((i) =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
 
   const handleChange = (elem) => {
     DROPDOWN(elem, selectedOption, type);
     setSelectedOption(elem);
     setDefaultValue(elem);
-  }
+  };
 
   return (
     <>
@@ -57,14 +57,14 @@ const InputDropdown = ({placeholder, type, data, defaults}) => {
         onChange={(e) => handleChange(e)}
       />
     </>
-  )
-}
+  );
+};
 
 export default InputDropdown;
 
 // Styling
 const customStyles = {
-  control: base => ({
+  control: (base) => ({
     ...base,
     background: '#24212E',
     border: 'solid 1px #ffffff1f',
@@ -77,8 +77,7 @@ const customStyles = {
       border: 'solid 1px white',
     },
   }),
-    indicatorSeparator: () => ({
-  }),
+  indicatorSeparator: () => ({}),
   option: () => ({
     color: 'black',
     margin: '10px',
@@ -87,30 +86,30 @@ const customStyles = {
     color: 'white',
   }),
   clearIndicator: () => ({
-    display: 'none'
+    display: 'none',
   }),
-  multiValue: base => ({
+  multiValue: (base) => ({
     ...base,
     height: '25px',
     borderRadius: '7px',
     background: '#454556',
     color: 'white',
   }),
-  multiValueLabel: base => ({
+  multiValueLabel: (base) => ({
     ...base,
     marginTop: '3px',
     height: '40px',
     color: 'white',
   }),
-  multiValueRemove: base => ({
+  multiValueRemove: (base) => ({
     ...base,
     cursor: 'pointer',
     ':hover': {
       color: 'white',
-      opacity: '0.5'
+      opacity: '0.5',
     },
   }),
-  NoOptionsMessage: base => ({
-    content: 'text'
-  })
-}
+  NoOptionsMessage: (base) => ({
+    content: 'text',
+  }),
+};
