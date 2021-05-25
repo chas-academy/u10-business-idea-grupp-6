@@ -75,7 +75,9 @@ const Chat = () => {
 
       {matchups.map(matchup =>
         matchup &&
-        <div className="chat-box">
+        <div 
+        className="chat-box"
+        >
           <div
             onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}
           >
@@ -90,27 +92,28 @@ const Chat = () => {
             {/* write user info here */}
           </div>
           <span className="chat-options-wrapper">
-          <span
-            className="chat-options"
-            onClick={(e) => {
-              e.preventDefault();
-              setOptionModal((previousState) => previousState === matchup.id ? null : matchup.id)
-            }}>
-              <FontAwesomeIcon icon={faEllipsisV} />
-            </span>
+          
+            <span
+              className="chat-options"
+              onClick={(e) => {
+                e.preventDefault();
+                setOptionModal((previousState) => previousState === matchup.id ? null : matchup.id)
+              }}>
+                <FontAwesomeIcon icon={faEllipsisV} />
+              </span>
 
-            <div className={`chat-options-modal ${optionModal === matchup.id && "shown"}`}
-            >
-              <span
-                className="un-match"
-                onClick={() => { handleUnmatch(matchup.id) }}
+              <div 
+              className={`chat-options-modal ${optionModal === matchup.id && "shown"}`}
               >
-                Un-match
+                <span
+                  className="un-match"
+                  onClick={() => { handleUnmatch(matchup.id) }}
+                >
+                  Un-match
+                </span>
+              </div>
             </span>
-            </div>
-          </span>
-
-        </div>
+          </div>
       )}
       {matchups.map(matchup =>
 
