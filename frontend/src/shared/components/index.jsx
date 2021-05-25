@@ -3,9 +3,10 @@ import ButtonLink from './button_link/';
 import Input from './input/';
 import InputDropdown from './input_dropdown/';
 import InputPassword from './input_password/';
-import Slider from './slider/';
 import MessageError from './message_error/';
 import Modal from "./modal/";
+import ProfileMenu from './profile_menu/';
+import Slider from './slider/';
 import Switch from './switch/'
 import Textarea from './textarea/';
 
@@ -15,9 +16,10 @@ export {
   Input,
   InputDropdown,
   InputPassword,
-  Slider,
-  Switch,
   MessageError,
   Modal,
-  Textarea
-}
+  ProfileMenu,
+  Slider,
+  Switch,
+  Textarea,
+};

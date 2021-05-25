@@ -8,6 +8,7 @@ import {
   ButtonSubmit,
   MessageError,
   Modal,
+  ProfileMenu
 } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
 
@@ -62,6 +63,10 @@ const EditProfile = () => {
 
   return (
     <>
+      <ProfileMenu
+       
+      />
+
       <h1 className="profile-title">
         Edit Profile
       </h1>

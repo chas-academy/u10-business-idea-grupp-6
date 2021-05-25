@@ -1,0 +1,15 @@
+@import 'global.scss';
+
+.profile-menu-btn {
+  position: relative;
+  margin: 0 auto;
+  width: 50px;
+  height: 40px;
+  top: 0;
+  left: 180px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  place-items: center;
+  cursor: pointer;
+}
