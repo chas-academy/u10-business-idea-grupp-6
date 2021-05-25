@@ -12,10 +12,10 @@ const Textarea = ({placeholder, name, getState, currentValue}) => {
   return (
     <>
       <textarea
-        className="textarea"
+        className='textarea'
         name={name}
         placeholder={placeholder}
-        value={currentValue}
+        value={currentValue || value}
         onChange={(e) => inputValue(e.target.value)}
       />
     </>
