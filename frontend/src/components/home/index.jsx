@@ -2,6 +2,8 @@
 import React from 'react';
 import './Home.scss';
 import { ButtonLink } from "../../shared/components/";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCommentDots } from '@fortawesome/free-solid-svg-icons'
 
 const Home = () => {
   return (
@@ -30,17 +32,14 @@ const Home = () => {
         />
 
         <ButtonLink
-          classValue="button-link small light"
-          name="Chat"
-          link="/chat"
+        link="/chat"
+        >
+          <FontAwesomeIcon
+            className="icon icon-medium"
+            icon={faCommentDots}
           />
-        
-        <ButtonLink
-          classValue="button-link small light"
-          name="Match"
-          link="/match"
-        />
-        
+        </ButtonLink>
+
       </div>
     </>
   )
