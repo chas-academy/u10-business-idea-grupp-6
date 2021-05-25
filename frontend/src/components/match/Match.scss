@@ -1,8 +1,8 @@
 @import "global.scss";
 
 @mixin match-button() {
-  height: 60px;
-  width: 60px;
+  height: 3.75rem;
+  width: 3.75rem;
   background-color: $color-super-dark-gray;
   color: white;
   border: none;
@@ -10,42 +10,44 @@
   cursor: pointer;
 }
 
-.match-container {
-  margin: 0 auto;
-  margin-top: 50px;
-  background-color: $color-dark-gray;
-  border-radius: $rounded-md;
-  max-width: 800px;
-  padding-bottom: 100px;
-  position: relative;
+.match {
+  .container {
+    margin: 0 auto;
+    margin-top: 3.125rem;
+    background-color: $color-dark-gray;
+    border-radius: $rounded-md;
+    max-width: 50rem;
+    padding-bottom: 6.25rem;
+    position: relative;
 
-  .match-like {
-    @include match-button();
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    .like {
+      @include match-button();
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.25rem;
+    }
+
+    .dislike {
+      @include match-button();
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+    }
   }
 
-  .match-dislike {
-    @include match-button();
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-  }
-}
-
-.spinner {
-  animation-name: spin;
-  animation-duration: 1.3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  height: 50px;
-  width: 50px;
-  margin: 2rem auto;
-  display: none;
-
-  &.shown {
-    display: block;
+  .img {
+    animation-name: spin;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    height: 3.125rem;
+    width: 3.125rem;
+    margin: 2rem auto;
+    display: none;
+  
+    &.shown {
+      display: block;
+    }
   }
 }
 

@@ -13,12 +13,12 @@ const Preferences = () => {
   }, [])
 
   return (
-    <>
-      <h1 className="preferences-title">
+    <div className="preferences">
+      <h1>
         Setup Preferences
       </h1>
 
-      <div className="preferences-container" >
+      <div className="container" >
 
         <h2>Favorite games</h2>
 
@@ -80,7 +80,7 @@ const Preferences = () => {
         )}
 
       </div>
-    </>
+    </div>
   )
 }
 

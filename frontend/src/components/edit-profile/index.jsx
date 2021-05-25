@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./EditProfile.scss";
-// import { Link } from "react-router-dom";
-import {
-  Input,
-  InputDropdown,
-  Textarea,
-  ButtonSubmit,
-  MessageError,
-  Modal,
-} from "../../shared/components/";
+import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, Modal} from "../../shared/components/";
 import { PATCH, GET } from "../../shared/services/requests";
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(""),
-        [oldDisplayName, setOldDisplayName] = useState(""),
-     // [country, setCountry] = useState(""),
-     // [imgPath, setImgPath] = useState(''),
-        [body, setBody] = useState(""),
-        [errorDisplayName, setErrorDisplayName] = useState(null);
+    [oldDisplayName, setOldDisplayName] = useState(""),
+    // [country, setCountry] = useState(""),
+    // [imgPath, setImgPath] = useState(''),
+    [body, setBody] = useState(""),
+    [errorDisplayName, setErrorDisplayName] = useState(null);
 
   const getDisplayName = (e) => setDisplayName(e),
     // getCountry = (e) => setCountry(e),
@@ -46,29 +38,34 @@ const EditProfile = () => {
       body: body,
     };
 
-    if(displayName !== oldDisplayName)
-    {
+    if (displayName !== oldDisplayName) {
       data.display_name = displayName
     }
 
-      PATCH(`user/${userId}`, data)
-        .then((data) => {
-          console.log("Profile successfully updated!");
-        })
-        .catch((error) => {
-          console.log(error);
-          setErrorDisplayName(error.response.data.error.display_name);
-        });
-    }
+    PATCH(`user/${userId}`, data)
+      .then((data) => {
+        console.log("Profile successfully updated!");
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorDisplayName(error.response.data.error.display_name);
+      });
+  }
 
   return (
-    <>
-      <h1 className="profile-title">Edit Profile</h1>
-      <h2 className="profile-sub-title">
+    <div className="edit-profile">
+
+      <h1>
+        Edit Profile
+      </h1>
+
+      <h2>
         This is your public profile that other people can see
       </h2>
 
-      <form className="profile-form" onSubmit={submit}>
+      <form
+        onSubmit={submit}>
+
         {errorDisplayName && <MessageError message={errorDisplayName} />}
 
         <Input
@@ -97,7 +94,7 @@ const EditProfile = () => {
 
         <ButtonSubmit name="Update Profile" />
       </form>
-    </>
+    </div>
   );
 }
 

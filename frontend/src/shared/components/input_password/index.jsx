@@ -22,11 +22,10 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
   };
 
   return (
-    <>
-      <div className="input-password">
+    <div className="input-password">
+      <div>
         <input
           name="password"
-          className="input-text"
           type={toggle ? "password" : "text"}
           placeholder={placeholder}
           value={pwdValue}
@@ -34,21 +33,18 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
         />
         <input
           id={idPwd}
-          className="checkbox"
           type="checkbox"
           onChange={toggleInputType}
         />
         <label
-          className="toggle-label"
           htmlFor={idPwd}
         />
       </div>
 
       { getStateConf &&
-        <div className="input-password">
+        <div>
           <input
             name="password_confirmation"
-            className="input-text"
             type={toggle ? "password" : "text"}
             placeholder="Password Confirmation"
             value={pwdConfValue}
@@ -56,7 +52,7 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
           />
         </div>
       }
-    </>
+    </div>
   );
 };
 
