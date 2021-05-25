@@ -10,13 +10,13 @@
     background-color: $color-white;
     color: $color-black;
     padding: 5px 10px;
-    width: 25%;
+    width: 100%;
     max-width: 190px;
     border-radius: $rounded-lg;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0 10px;
-    font-size: $font-sm;
+    font-size: $font-xs;
   }
 }
