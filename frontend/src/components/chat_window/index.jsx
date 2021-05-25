@@ -8,6 +8,12 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
           [messageLog, setMessageLog] = useState([]),
           [newMessages, setNewMessages] = useState([]);
 
+<<<<<<< HEAD
+=======
+    const read = () => {
+        POST('session/' + matchup.session.id + '/read');
+    }
+>>>>>>> 862a9de124440e22d64c29918c3459b5d641e4d4
 
     useEffect(() => {
         openChat()
@@ -18,16 +24,19 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
                 setMessageLog((previousState) => [...data.data.data]);
                 });
             }
+            read();
             console.log('subscribing to session chat ' + matchup.session.id)
             
             
             echo.join(`Chat.${matchup.session.id}.presence`).here((users) => console.log(users));
 
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
+                read();
                 const f = e;
                 if (f.chat.user_id !== parseInt(localStorage.getItem('user_id')))
                 {
                     f.chat.type = 1;
+                    f.chat.sent_at = "Just now";
                 }
                 setNewMessages((previousState) => [...previousState, f]);
             })
@@ -52,6 +61,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
         closeChat();
     }
 
+<<<<<<< HEAD
     return <>
         {active &&
             <div class="chat-modal">
@@ -80,6 +90,11 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
                         </div>
                 </div>
                 
+=======
+                    <p className={i.type ? "received" : "sent"}>
+                    {i.content}
+                </p>
+>>>>>>> 862a9de124440e22d64c29918c3459b5d641e4d4
 
                 )}
                 {newMessages.map(i => 
