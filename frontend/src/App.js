@@ -45,7 +45,7 @@ const App = () => {
       <main>
 
 
-        {isAuth && <button className="button-link" onClick={logout}>Log out</button>}
+        {/* {isAuth && <button className="button-link" onClick={logout}>Log out</button>} */}
         <Router>
           
           <Notification
