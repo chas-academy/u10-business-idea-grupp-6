@@ -121,7 +121,7 @@ const App = () => {
             component={EditProfile}
             isAuth={isAuth}
           />
-          {isAuth ? <Menu /> : false}
+          {isAuth && <Menu /> }
         </Router>
       </main>
     </>
