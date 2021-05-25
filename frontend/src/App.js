@@ -43,11 +43,9 @@ const App = () => {
 
   return (
     <>
+    <Router>
       <main>
-
-
         {isAuth && <button className="button-link" onClick={logout}>Log out</button>}
-        <Router>
           
           <Notification
             auth={isAuth}
@@ -121,10 +119,13 @@ const App = () => {
             component={EditProfile}
             isAuth={isAuth}
           />
-          {isAuth && <Menu /> }
-        </Router>
-      </main>
+        </main>
+        <nav>
+          {isAuth && <Menu />}
+        </nav>
+      </Router>
     </>
+    
   );
 };
 

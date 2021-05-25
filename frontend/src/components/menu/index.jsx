@@ -8,7 +8,8 @@ import { faHouseUser } from "@fortawesome/free-solid-svg-icons";
 const Menu = () => {
   return (
     <>
-      <div className="nav-container">
+    <div className="nav-background">
+    <div className="nav-container">
         <NavLink exact to="/" className="icon icon-medium" activeClassName="active-link">
           <FontAwesomeIcon icon={faHouseUser} />
         </NavLink>
@@ -21,6 +22,7 @@ const Menu = () => {
           <FontAwesomeIcon icon={faUserCircle} />
         </NavLink>
       </div>
+    </div>
     </>
   );
 };
