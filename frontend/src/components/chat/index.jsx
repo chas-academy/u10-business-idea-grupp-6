@@ -13,9 +13,7 @@ const Chat = () => {
 
     useEffect(() => {
         GET('match/all').then(data => {
-            // console.log(data);
             setMatchups(data.data);
-            console.log(data)
         })
         const uid = localStorage.getItem('user_id');
 
@@ -29,7 +27,6 @@ const Chat = () => {
     const handleSetActiveChat = (matchupId, session, friendId) => {
 
         if (session) {
-            // console.log('session is active since before')
             setActiveChat(session.id);
         }
         else {
@@ -47,6 +44,13 @@ const Chat = () => {
     }
 
     const handleCloseChat = () => setActiveChat(null);
+
+    const handleOpenChat = () => {
+        const chatbox = document.querySelector('#chatbox');
+        if(chatbox) {
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    }
 
     return (
         <>
@@ -71,7 +75,7 @@ const Chat = () => {
                         width="30px"
                         className="profile-img"
                     />
-                    <p className="">
+                    <p className="chat-displayname">
                         {matchup.user[0].profile.display_name}
                     </p>
                     {/* write user info here */}
@@ -83,6 +87,7 @@ const Chat = () => {
                     active={(activeChat && matchup.session) && activeChat === matchup.session.id ? true : false}
                     matchup={matchup}
                     closeChat={handleCloseChat}
+                    openChat={handleOpenChat}
                     key={matchup.user[0].id}
                 />
 

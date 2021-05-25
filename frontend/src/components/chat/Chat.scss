@@ -22,3 +22,11 @@
 .profile-img {
     float: left;
 }
+
+.chat-displayname {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-size: $font-lg;
+}
