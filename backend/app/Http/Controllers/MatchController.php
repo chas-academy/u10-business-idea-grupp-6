@@ -68,19 +68,6 @@ class MatchController extends Controller
 
         $query->whereKeyNot($this->user->id);
 
-        foreach($this->getDemands() as $demand => $idsArray)
-        {
-            if(count($idsArray))
-                $query->whereHas('miscs', function($q) use($demand, $idsArray)
-                {
-                    foreach($idsArray as $id)
-                    {
-                        $q->where('miscs.id', $id);
-                    }
-                    
-                });
-        }
-
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
             if(count($idsArray))
@@ -92,13 +79,25 @@ class MatchController extends Controller
 
         $collection = $query->get();
 
+        // miscs
+        foreach($this->getDemands() as $demand => $idsArray)
+        {
+            if(count($idsArray))
+            {
+                $objects = $this->user->{$demand};
+
+                $collection = $collection->filter(function($u) use ($objects, $demand){
+                    return count($objects->diff($u->{$demand})) === 0;
+                });
+            }
+        }
+
         $sortable = $this->getSortable();
 
         $sortedCollection = $collection->sort(function ($a, $b) use ($sortable) {
             // this is quite query heavy
             if($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
                 return -1;
-          
             return 1;
         });
 

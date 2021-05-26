@@ -1,19 +1,19 @@
-import { Route, BrowserRouter as Router } from "react-router-dom";
-import ProtectedRoute from "./guard/protected_route";
-import React, { useState, useEffect } from "react";
-import Home from "./components/home/";
-import Register from "./components/register/";
-import Login from "./components/login/";
-import Verified from "./components/verified";
-import AlreadyVerified from "./components/already_verified";
-import EditProfile from "./components/edit-profile";
-import ChangePassword from "./components/change_password";
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import ProtectedRoute from './guard/protected_route';
+import React, { useState, useEffect } from 'react';
+import Home from './components/home/';
+import Register from './components/register/';
+import Login from './components/login/';
+import Verified from './components/verified';
+import AlreadyVerified from './components/already_verified';
+import EditProfile from './components/edit-profile';
+import ChangePassword from './components/change_password';
 import Verify from './components/verify';
 import Notification from './components/notification';
 import Chat from './components/chat';
 import Preferences from './components/preferences/';
-import Match from "./components/match";
-import Menu from './components/menu';
+import Match from './components/match';
+import Profile from './components/profile/';
 import { GET } from './shared/services/requests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -70,98 +70,107 @@ const App = () => {
           <FontAwesomeIcon icon={faSpinner} className="spinner shown large" />
         </span>
       }
-      
+
       {isAuth && <button onClick={logout}>Log out</button>}
-    
-       <Router>
-         <main>
-            <Notification
-              auth={isAuth}
-            />
 
-            <Route
-              path="/"
-              exact
-              component={Home}
-            />
+    <Router>
+      <main>
 
-            <Route
-              path="/register"
-              render={(props) => (
-                <Register 
-                  {...props} 
-                  getToken={getIsAuth} 
-                  getAuthLoading={getAuthLoading} 
-                />
-              )}
-            />
+          <Notification
+            auth={isAuth}
+          />
 
-            <Route
-              path="/login"
-              render={(props) => (
-                <Login 
-                  {...props} 
-                  getToken={getIsAuth} 
-                  getAuthLoading={getAuthLoading}
-                />
-              )}
-            />
+          <Route
+            path="/"
+            exact
+            component={Home}
+          />
 
-            <Route
-              path="/match"
-              exact
-              component={Match}
-            />
+          <Route
+            path="/register"
+            render={(props) => (
+              <Register 
+                {...props} 
+                getToken={getIsAuth} 
+                getAuthLoading={getAuthLoading} 
+              />
+            )}
+          />
 
-            <ProtectedRoute
-              path="/chat"
-              exact
-              component={Chat}
-              isAuth={isAuth}
-            />
+          <Route
+            path="/login"
+            render={(props) => (
+              <Login 
+                {...props} 
+                getToken={getIsAuth} 
+                getAuthLoading={getAuthLoading}
+              />
+            )}
+          />
 
-            <ProtectedRoute
-              path="/verified"
-              exact
-              component={Verified}
-              isAuth={isAuth}
-            />
+          <Route
+            path="/match"
+            exact
+            component={Match}
+          />
 
-            <ProtectedRoute
-              path="/already-verified"
-              exact
-              component={AlreadyVerified}
-              isAuth={isAuth}
-            />
+          <ProtectedRoute
+            path="/chat"
+            exact
+            component={Chat}
+            isAuth={isAuth}
+          />
 
-            <ProtectedRoute
-              path="/verify"
-              exact
-              component={Verify}
-              isAuth={isAuth}
-            />
+          <ProtectedRoute
+            path="/verified"
+            exact
+            component={Verified}
+            isAuth={isAuth}
+          />
 
-            <ProtectedRoute
-              path="/preferences"
-              exact
-              component={Preferences}
-              isAuth={isAuth}
-            />
+          <ProtectedRoute
+            path="/already-verified"
+            exact
+            component={AlreadyVerified}
+            isAuth={isAuth}
+          />
 
-            <ProtectedRoute
-              path="/change-password"
-              exact
-              component={ChangePassword}
-              isAuth={isAuth}
-            />
+          <ProtectedRoute
+            path="/verify"
+            exact
+            component={Verify}
+            isAuth={isAuth}
+          />
 
-            <Route
-              path="/edit-profile"
-              exact
-              component={EditProfile}
-              isAuth={isAuth}
-            />
-          </main>
+          <ProtectedRoute
+            path="/preferences"
+            exact
+            component={Preferences}
+            isAuth={isAuth}
+          />
+
+          <ProtectedRoute
+            path="/change-password"
+            exact
+            component={ChangePassword}
+            isAuth={isAuth}
+          />
+
+          <ProtectedRoute
+            path="/profile"
+            exact
+            component={Profile}
+            isAuth={isAuth}
+          />
+
+          <Route
+            path="/edit-profile"
+            exact
+            component={EditProfile}
+            isAuth={isAuth}
+          />
+
+        </main>
         <nav>
           {isAuth && <Menu />}
         </nav>

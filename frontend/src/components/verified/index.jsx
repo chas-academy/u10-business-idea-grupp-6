@@ -13,7 +13,7 @@ const Verified = () => {
       <ButtonLink
         classValue="button-link light"
         name="Setup Your Profile"
-        link="#"
+        link="/edit-profile"
       />
     </div>
   )

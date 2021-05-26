@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { echo, POST } from '../../shared/services/requests';
 import './ChatWindow.scss';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     const [inputValue, setInputValue] = useState(""),
           [messageLog, setMessageLog] = useState([]),
-          [newMessages, setNewMessages] = useState([]);
+          [newMessages, setNewMessages] = useState([]),
+          [chatDisabled, setChatDisabled] = useState(false);
 
 
     useEffect(() => {
@@ -19,7 +22,6 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
                 });
             }
             console.log('subscribing to session chat ' + matchup.session.id)
-            
             
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
                 const f = e;
@@ -38,11 +40,15 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     const submit = (e) => {
         e.preventDefault();
+        setChatDisabled(true)
         POST('send/' + matchup.session.id, {
             content: inputValue,
             to_user: matchup.user[0].id
+        }).then(() => {
+          openChat()
+          setChatDisabled(false)
+          setInputValue("");
         })
-        setInputValue("");
     }
 
     const toggleChat = () => {
@@ -50,64 +56,60 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
         closeChat();
     }
 
-    return <>
-        {active &&
-            <div class="chat-modal">
-                 <img
-                    src="https://image.flaticon.com/icons/png/512/860/860790.png"
-                    width="40px"
-                    className="back-arrow"
-                    onClick={toggleChat}
-                />
-                <h1 className="chatwindow-title">
-                    {matchup.user[0].profile.display_name}
-                </h1>
-               
-
-                <div id="chatbox" className="chatbox">
-                    {messageLog.map(i => 
-                        <div className={parseInt(i.type) ?  "received" : "sent"}>
-                            <div className="chatbox-bubble">
-                                <p key={i.id}
-                                >
-                                {i.content}
-                                </p>
-                                <p className="chatbox-sent">
-                                {i.send_at}
-                                </p>
-                        </div>
+    return (
+      <>
+        {active && (
+          <div className="chat-modal">
+            <FontAwesomeIcon
+              icon={faAngleLeft}
+              className="back-arrow"
+              onClick={toggleChat}
+            />
+            <h3 className="chatwindow-title">
+              <Link 
+                to={{
+                  pathname: '/profile', 
+                  data: {data: matchup.user[0]}
+                }}
+                >
+                  {matchup.user[0].profile.display_name}
+              </Link>
+            </h3>
+        
+            <div id="chatbox" className="chatbox">
+              {messageLog.map((i) => (
+                <div className={parseInt(i.type) ? "received" : "sent"}>
+                  <div className="chatbox-bubble">
+                    <p key={i.id}>{i.content}</p>
+                    <p className="chatbox-sent">{i.send_at}</p>
+                  </div>
                 </div>
-                
-
-                )}
-                {newMessages.map(i => 
-                    
-                        <p key={i.id}
-                        className={i.chat.type ? "received" : "sent"}
-                        >
-                        {i.content}
-                        </p>
-                    
-                    )}
-            
-                    </div>
-                    <div className="chatwindow">
-                        <form onSubmit={submit}>
-
-                            <input 
-                                type="text" 
-                                name="message" 
-                                onChange={(e) => setInputValue(e.target.value)} 
-                                className="chatwindow-textarea"
-                                value={inputValue}
-                                placeholder={"Message " + matchup.user[0].profile.display_name}
-                            />
-                    </form>
-                </div>
+              ))}
+              {newMessages.map((i) => (
+                <p key={i.id} className={i.chat.type ? "received" : "sent"}>
+                  {i.content}
+                </p>
+              ))}
             </div>
-        }
-
-    </>
+            <div className="chatwindow">
+              <form onSubmit={submit}>
+                <input
+                  type="text"
+                  name="message"
+                  disabled={chatDisabled}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  className={`chatwindow-textarea ${chatDisabled && "sending"}`}
+                  value={inputValue}
+                  placeholder={
+                    "Message " + matchup.user[0].profile.display_name
+                  }
+                />
+              </form>
+            </div>
+          </div>
+        )}
+      </>
+    );
 }
 
 export default ChatWindow

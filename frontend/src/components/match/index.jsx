@@ -7,8 +7,8 @@ import { faGlobe, faLifeRing, faSpinner, faTruckLoading } from '@fortawesome/fre
 
 const Match = () => {
   const [matches, setMatches] = useState([]),
-    [current, setCurrent] = useState(),
-    [loading, setLoading] = useState(false);
+        [current, setCurrent] = useState(),
+        [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -23,8 +23,7 @@ const Match = () => {
 
   useEffect(() => {
     const [first] = matches;
-   
-    console.log(first);
+
     setCurrent(first);
   }, [matches]);
 
@@ -60,6 +59,7 @@ const Match = () => {
 
   return (
     <div className="match">
+
       {!loading &&
         <div className="container">
           {current &&
@@ -98,6 +98,7 @@ const Match = () => {
         hidden={!loading}
         icon={faSpinner}
       />
+      
     </div>
   )
 }

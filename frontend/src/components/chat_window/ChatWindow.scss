@@ -8,6 +8,7 @@
     top: 50%;
     width: 90%;
     height: 90%; 
+    height: 800px;
     transform: translate(-50%, -50%);
     background-color: rgb(15, 15, 15);
 }
@@ -30,7 +31,11 @@
 }
 
 .chatwindow-title {
+    padding: 0 1rem;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .chatbox {
@@ -71,8 +76,12 @@
     outline: none;
     padding: 0 10px;
     color: $color-white;
-}
 
+    &.sending {
+        background-color: $color-light-gray;
+        opacity: 0.7;
+    }
+}
 .chatwindow-send {
     margin: 0 auto;
     display: block;
@@ -97,6 +106,7 @@
 
 .back-arrow {
     margin-left: 20px;
+    font-size: $font-lg;
     cursor: pointer;
     float: left;
 }
