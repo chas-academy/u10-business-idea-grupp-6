@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import ProtectedRoute from './guard/protected_route';
 import React, { useState, useEffect } from 'react';
 import Home from './components/home/';
+import Menu from './components/menu/';
 import Register from './components/register/';
 import Login from './components/login/';
 import Verified from './components/verified';
