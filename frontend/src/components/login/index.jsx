@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { echo, POST } from '../../shared/services/requests';
 
-const Login = ({getToken}) => {
+const Login = ({getToken, getAuthLoading}) => {
   const [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
         [error, setError] = useState(null),
@@ -20,8 +20,9 @@ const Login = ({getToken}) => {
       password: pwd
     }
     
+    getAuthLoading(true);
     POST('login', data).then(data => {
-      
+      getAuthLoading(false);
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('user_id', data.data.user.id);
       getToken(localStorage.getItem('token'));
@@ -35,6 +36,7 @@ const Login = ({getToken}) => {
 
       setRedirect(true);
     }).catch(error => {
+      getAuthLoading(false);
       setError(error.response.data.message);
     })
   };

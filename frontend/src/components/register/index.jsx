@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { POST } from "../../shared/services/requests";
 
-const Register = ({getToken}) => {
+const Register = ({getToken, getAuthLoading}) => {
   const [name, setName] = useState(''),
         [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
@@ -28,12 +28,15 @@ const Register = ({getToken}) => {
       password_confirmation: pwdConf
     }
     
+    getAuthLoading(true);
     POST('register', data).then(data => {
+      getAuthLoading(false);
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('user_id', data.data.user.id);
       getToken(localStorage.getItem('token'));
       setRedirectVerify(true);
     }).catch(error => {
+      getAuthLoading(false);
       setErrorEmail(error.response.data.errors.email);
       setErrorPwd(error.response.data.errors.password);
     })
