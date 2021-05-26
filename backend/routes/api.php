@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
     // this route is for giving the frontend a list of all current matchups made with other users
     Route::get('/match/all', [MatchController::class, 'currentMatchups'])->name('currentMatchups');
 
+    Route::post('/match/delete', [MatchController::class, 'deleteMatchup']);
     // this route is for saving interactions from users
     Route::post('/interactions', [InteractionController::class, 'store']);
 

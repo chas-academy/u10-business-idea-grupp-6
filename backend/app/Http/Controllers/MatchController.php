@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\MatchupCollection;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
+use App\Models\Interaction;
+use App\Models\Matchup;
+use App\Models\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -109,6 +112,35 @@ class MatchController extends Controller
     public function currentMatchups()
     {
         return response(new MatchupCollection($this->user->matchups));
+    }
+
+
+    public function deleteMatchup(Request $request)
+    {
+
+        if($matchup = Matchup::find($request->matchup_id))
+            if($matchup->users->contains('id', $this->user->id))
+            {
+                $userB = $matchup->users->filter(fn($i) => $i->id !== $this->user->id)->first();
+                
+                if($session = Session::where([
+                    ['user_a_id', $this->user->id],
+                    ['user_b_id', $userB->id]])
+                ->orWhere([
+                    ['user_a_id', $userB->id],
+                    ['user_b_id', $this->user->id]
+                ]))
+                    $session->delete();
+                    
+                $interaction = Interaction::where([
+                    ['subject_user_id', $this->user->id],
+                    ['object_user_id', $userB->id]])
+                    ->update(['likes' => 0]);
+            
+                $matchup->users()->detach([$this->user->id, $userB->id]);
+                $matchup->delete();
+                return response(201);
+            }
     }
     //------------------------------------------------------------------
 
