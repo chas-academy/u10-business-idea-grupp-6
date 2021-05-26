@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { GET, POST } from '../../shared/services/requests'
-import spinner from '../../shared/assets/icons/spinning-wheel.svg'
 import './Match.scss';
 import ProfileData from '../../shared/components/profile_data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
