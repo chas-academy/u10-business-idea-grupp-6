@@ -71,9 +71,10 @@ const App = () => {
         </span>
       }
 
+      {isAuth && <button onClick={logout}>Log out</button>}
+
+    <Router>
       <main>
-        {isAuth && <button onClick={logout}>Log out</button>}
-        <Router>
 
           <Notification
             auth={isAuth}
@@ -169,9 +170,11 @@ const App = () => {
             isAuth={isAuth}
           />
 
-        </Router>
-
-      </main>
+        </main>
+        <nav>
+          {isAuth && <Menu />}
+        </nav>
+      </Router>
     </>
   );
 };
