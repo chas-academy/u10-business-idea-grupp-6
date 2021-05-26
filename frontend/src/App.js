@@ -13,6 +13,7 @@ import Notification from './components/notification';
 import Chat from './components/chat';
 import Preferences from './components/preferences/';
 import Match from "./components/match";
+import Profile from "./components/profile/";
 import { GET } from './shared/services/requests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -152,6 +153,13 @@ const App = () => {
             path="/change-password"
             exact
             component={ChangePassword}
+            isAuth={isAuth}
+          />
+
+          <ProtectedRoute
+            path="/profile"
+            exact
+            component={Profile}
             isAuth={isAuth}
           />
 
