@@ -11,7 +11,7 @@ const AlreadyVerified = () => {
       </h1>
 
       <ButtonLink
-        classValue="link light"
+        classValue="button-link light"
         name="Setup Your Profile"
         link="#"
       />
