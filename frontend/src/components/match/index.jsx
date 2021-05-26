@@ -1,190 +1,63 @@
 import React, { useEffect, useState } from 'react'
 import { GET, POST } from '../../shared/services/requests'
 import spinner from '../../shared/assets/icons/spinning-wheel.svg'
-
-
 import './Match.scss';
 import ProfileData from '../../shared/components/profile_data';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe, faLifeRing, faSpinner, faTruckLoading } from '@fortawesome/free-solid-svg-icons';
 
 const Match = () => {
   const [matches, setMatches] = useState([]),
     [current, setCurrent] = useState(),
     [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   setLoading(true);
+  useEffect(() => {
+    setLoading(true);
 
-  //   GET('match')
-  //     .then(data => {
+    GET('match')
+      .then(data => {
 
-  //       setLoading(false);
-  //       setMatches(data.data)
-
-  //     });
-  // }, []);
+        setLoading(false);
+        setMatches(data.data)
+      });
+  }, []);
 
   useEffect(() => {
-    // const [first] = matches;
-    const first = {
-      "id": 141,
-      "profile": {
-        "id": 141,
-        "user_id": 141,
-        "display_name": "Hannes",
-        "country": "Sweden",
-        "img_path": null,
-        "body": "Kom och spela Fortnite med mig pls! Jag har mammas kreditkort :D ",
-        "created_at": "2021-05-24T08:27:17.000000Z",
-        "updated_at": "2021-05-24T08:27:17.000000Z"
-      },
-      "preferences": {
-        "genres": [
-          {
-            "id": 3,
-            "genre": "fps"
-          },
-          {
-            "id": 2,
-            "genre": "arpg"
-          },
-          {
-            "id": 1,
-            "genre": "mmo"
-          }
-        ],
-        "games": [
-          {
-            "id": 3,
-            "game": "Fortnite",
-            "genre": {
-              "id": 4,
-              "genre": "arpg"
-            }
-          },
-          {
-            "id": 3,
-            "game": "World of Warcraft",
-            "genre": {
-              "id": 4,
-              "genre": "mmo"
-            }
-          },
-          {
-            "id": 3,
-            "game": "Minecraft",
-            "genre": {
-              "id": 4,
-              "genre": "mmo"
-            }
-          },
-          {
-            "id": 3,
-            "game": "Roblox",
-            "genre": {
-              "id": 4,
-              "genre": "mmo"
-            }
-          },
-          {
-            "id": 3,
-            "game": "Snake",
-            "genre": {
-              "id": 4,
-              "genre": "mmo"
-            }
-          },
-          {
-            "id": 3,
-            "game": "Gta V",
-            "genre": {
-              "id": 4,
-              "genre": "mmo"
-            }
-          }
-        ],
-        "player_types": [
-          {
-            "id": 1,
-            "player_type": "casual"
-          },
-          {
-            "id": 2,
-            "player_type": "competetive"
-          }
-        ],
-        "langs": [
-          {
-            "id": 1,
-            "lang": "Swedish",
-            "native": "Svenska",
-            "code": "SE"
-          },
-          {
-            "id": 2,
-            "lang": "Arabic",
-            "native": "عربى",
-            "code": "AR"
-          }
-        ],
-        "times": [
-          {
-            "interval": "weekday",
-            "from": 19,
-            "to": 21,
-            "available": 0
-          },
-          {
-            "interval": "weekend",
-            "from": 19,
-            "to": 21,
-            "available": 0
-          }
-        ],
-        "miscs": [
-          {
-            "id": 1,
-            "misc": "Non-aggressive language"
-          }
-        ]
-      },
-      "online": false,
-      "session": null,
-      "timezone_offset": 0
-    };
+    const [first] = matches;
+   
     console.log(first);
     setCurrent(first);
-    // }, [matches]);
   }, [matches]);
 
-  // const like = () => {
-  //   setLoading(true)
+  const like = () => {
+    setLoading(true)
 
-  //   POST('interactions', {
-  //     object_user_id: current.id,
-  //     likes: 1
-  //   }).then(data => {
-  //     setLoading(false)
+    POST('interactions', {
+      object_user_id: current.id,
+      likes: 1
+    }).then(data => {
+      setLoading(false)
 
-  //     const [, ...rest] = matches;
+      const [, ...rest] = matches;
 
-  //     setMatches(rest);
-  //   })
-  // };
+      setMatches(rest);
+    })
+  };
 
-  // const dislike = () => {
-  //   setLoading(true)
+  const dislike = () => {
+    setLoading(true)
 
-  //   POST('interactions', {
-  //     object_user_id: current.id,
-  //     likes: 0
-  //   }).then(data => {
-  //     setLoading(false)
+    POST('interactions', {
+      object_user_id: current.id,
+      likes: 0
+    }).then(data => {
+      setLoading(false)
 
-  //     const [, ...rest] = matches;
+      const [, ...rest] = matches;
 
-  //     setMatches(rest);
-  //   })
-  // };
+      setMatches(rest);
+    })
+  };
 
   return (
     <div className="match">
@@ -200,7 +73,7 @@ const Match = () => {
           <button
             className="like"
             disabled={loading}
-          // onClick={like}
+            onClick={like}
           >
             YUP
           </button>
@@ -208,26 +81,26 @@ const Match = () => {
           <button
             className="dislike"
             disabled={loading}
-          // onClick={dislike}
+            onClick={dislike}
           >
             NOPE
           </button>
 
           {!matches.length &&
             <p>
-              {/* No more matches! Please wait a minute before trying to refresh to get some more. :) */}
+              No more matches! Please wait a minute before trying to refresh to get some more. :)
             </p>
           }
         </div>
       }
 
-      <img className={`${loading && "shown"} spinner`}
+      <FontAwesomeIcon 
+        className={`${loading && "shown"} spinner`}
         hidden={!loading}
-        src={spinner}
+        icon={faSpinner}
       />
     </div>
   )
 }
-
 
 export default Match;
