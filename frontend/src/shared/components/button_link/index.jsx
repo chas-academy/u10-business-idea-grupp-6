@@ -5,7 +5,11 @@ import "./ButtonLink.scss";
 const ButtonLink = ({ name, link, classValue, children }) => {
   return (
     <>
-      <Link exact to={link} className={classValue}>
+      <Link 
+        exact 
+        to={link} 
+        className={classValue}
+       >
         {name}
         {children}
       </Link>
