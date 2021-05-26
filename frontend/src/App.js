@@ -12,6 +12,7 @@ import Verify from './components/verify';
 import Notification from './components/notification';
 import Chat from './components/chat';
 import Preferences from './components/preferences/';
+import Match from "./components/match";
 import { GET } from './shared/services/requests';
 
 const App = () => {
@@ -42,19 +43,17 @@ const App = () => {
   return (
     <>
       <main>
-        {isAuth && (
-          <button
-            className="button-link"
-            onClick={logout}
-          >
+        {isAuth && 
+          <button onClick={logout}>
             Log out
           </button>
-        )}
-
-
-        {/* {isAuth && <button className="button-link" onClick={logout}>Log out</button>} */}
+        }
+        
         <Router>
-          <Notification auth={isAuth} />
+
+          <Notification
+            auth={isAuth}
+          />
 
           <Route
             path="/"
@@ -72,6 +71,12 @@ const App = () => {
             path="/login"
             render={(props) =>
               <Login {...props} getToken={getIsAuth} />}
+          />
+
+          <Route
+            path="/match"
+            exact
+            component={Match}
           />
 
           <ProtectedRoute
