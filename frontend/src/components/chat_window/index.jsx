@@ -3,7 +3,7 @@ import { echo, POST } from '../../shared/services/requests';
 import './ChatWindow.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import { Link, Redirect, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     const [inputValue, setInputValue] = useState(""),
@@ -66,7 +66,14 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
               onClick={toggleChat}
             />
             <h3 className="chatwindow-title">
-                {matchup.user[0].profile.display_name}
+              <Link 
+                to={{
+                  pathname: '/profile', 
+                  data: {data: matchup.user[0]}
+                }}
+                >
+                  {matchup.user[0].profile.display_name}
+              </Link>
             </h3>
         
             <div id="chatbox" className="chatbox">
