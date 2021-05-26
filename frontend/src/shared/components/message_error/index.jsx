@@ -3,13 +3,11 @@ import "./MessageError.scss";
 
 const MessageError = ({ message }) => {
   return (
-    <>
-      <div 
-        className="message" 
-        >
+    <div className="message" >
+      <div>
         {message}
       </div>
-    </>
+    </div>
   );
 }
 

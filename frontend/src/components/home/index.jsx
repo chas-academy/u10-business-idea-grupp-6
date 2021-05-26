@@ -7,18 +7,20 @@ import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 
 const Home = () => {
   return (
-    <>
-      <h1 className="home-title">
+    <div className="home">
+      
+      <h1>
         Title
       </h1>
-      <p className="home-text">
+
+      <p>
         Lorem ipsum dolor sit amet, consectetur 
         adipiscing elit. Nam vestibulum neque
         augue, ac gravida est finibus eget. Sed 
         maximus, nisi at rutrum vehicula, turpis 
       </p>
 
-      <div className="home-container">
+      <div>
         <ButtonLink 
           classValue="button-link small light" 
           name="Register" 
@@ -30,18 +32,8 @@ const Home = () => {
           name="Login" 
           link="/login"
         />
-
-        <ButtonLink
-        link="/chat"
-        >
-          <FontAwesomeIcon
-            className="icon icon-medium"
-            icon={faCommentDots}
-          />
-        </ButtonLink>
-
       </div>
-    </>
+    </div>
   )
 }
 

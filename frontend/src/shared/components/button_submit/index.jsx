@@ -3,14 +3,11 @@ import './ButtonSubmit.scss';
 
 const ButtonSubmit = ({name}) => {
   return (
-    <>
-      <button
-        className="button-submit"
-        type="submit"
-      >
+    <div className="button-submit">
+      <button type="submit">
         {name}
       </button>
-    </>
+    </div>
   )
 }
 

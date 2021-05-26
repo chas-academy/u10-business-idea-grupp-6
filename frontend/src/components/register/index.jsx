@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { POST } from "../../shared/services/requests";
 
-const Register = ({getToken}) => {
+const Register = ({getToken, getAuthLoading}) => {
   const [name, setName] = useState(''),
         [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
@@ -28,12 +28,17 @@ const Register = ({getToken}) => {
       password_confirmation: pwdConf
     }
     
+    getAuthLoading(true);
     POST('register', data).then(data => {
+      getAuthLoading(false);
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('user_id', data.data.user.id);
+      localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
+      
       getToken(localStorage.getItem('token'));
       setRedirectVerify(true);
     }).catch(error => {
+      getAuthLoading(false);
       setErrorEmail(error.response.data.errors.email);
       setErrorPwd(error.response.data.errors.password);
     })
@@ -42,17 +47,16 @@ const Register = ({getToken}) => {
   if(redirectVerify) return <Redirect to="/verify"/>;
   
   return (
-    <>
-      <h1 className="register-title">
+    <div className="register">
+      <h1>
         Sign Up Now
       </h1>
 
-      <h2 className="register-sub-title">
+      <h2>
         Please fill in the details and create an account
       </h2>
 
       <form 
-        className="register-form"
         onSubmit={submit}>
 
         <Input 
@@ -84,16 +88,16 @@ const Register = ({getToken}) => {
 
       </form>
 
-      <p className="register-text">
+      <p>
         Already have an account?
         <Link
-          className="register-link"
+          className="link"
           to="/login"
         >
           Log In
         </Link>
       </p>
-    </>
+    </div>
   );
 };
 
