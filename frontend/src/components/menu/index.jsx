@@ -1,9 +1,9 @@
-import React from "react";
-import "./Menu.scss";
-import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCommentDots, faUserCircle } from "@fortawesome/free-regular-svg-icons";
-import { faHouseUser } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import './Menu.scss';
+import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCommentDots, faUserCircle } from '@fortawesome/free-regular-svg-icons';
+import { faHouseUser } from '@fortawesome/free-solid-svg-icons';
 
 const Menu = () => {
   return (
