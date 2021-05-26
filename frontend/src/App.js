@@ -13,7 +13,7 @@ import Notification from './components/notification';
 import Chat from './components/chat';
 import Preferences from './components/preferences/';
 import { GET } from './shared/services/requests';
-import Menu from "./components/menu";
+import Menu from './components/menu';
 
   
 const App = () => {
