@@ -3,13 +3,56 @@
 .profile-menu-btn {
   position: relative;
   margin: 0 auto;
-  width: 50px;
-  height: 40px;
+  width: 3.125;
+  height: 2.5rem;
   top: 0;
-  left: 180px;
+  left: 11.25rem;
   background-color: transparent;
   border: none;
   box-shadow: none;
   place-items: center;
   cursor: pointer;
+}
+
+.menu-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+}
+
+.menu-modal {
+  display: grid;
+  row-gap: 1.25rem;
+  grid-auto-rows: min-content;
+  place-items: center start;
+  position: absolute;
+  padding: 1.25rem;
+  font-size: $font-md;
+  right: 0;
+  left: 14.063rem;
+  margin-left: auto;
+  margin-right: auto;
+  top: 5.625rem;
+  bottom: 2.5rem;
+  width: fit-content;
+  height: fit-content;
+  background: $color-light-gray;
+  color: $color-white;
+  border: none;
+  border-radius: $rounded-sm;
+}
+
+.hidden-btn {
+  display: none;
+}
+
+.navlink {
+  @include paragraph-link();
+  opacity: 1;
+  &:active, &:focus, &:hover {
+    color: $color-super-light-gray;
+  }
 }
