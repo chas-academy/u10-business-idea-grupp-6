@@ -11,7 +11,8 @@ const Chat = () => {
   const [matchups, setMatchups] = useState([]),
     [activeChat, setActiveChat] = useState(null),
     [showChat, setShowChat] = useState([]),
-    [optionModal, setOptionModal] = useState(null);
+    [optionModal, setOptionModal] = useState(null),
+    [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
@@ -33,16 +34,21 @@ const Chat = () => {
       setActiveChat(session.id);
     }
     else {
-      POST('session/create', {
-        friend_id: friendId
-      }).then(data => {
-        setActiveChat(data.data.data.id);
-        const newMatchups = [...matchups];
-        const index = newMatchups.findIndex(i => i.id === matchupId)
-        newMatchups[index].session = data.data.data;
-        setMatchups(newMatchups);
-        setShowChat(true);
-      });
+      if(!loading)
+      {
+        setLoading(true)
+        POST('session/create', {
+          friend_id: friendId
+        }).then(data => {
+          setLoading(false);
+          setActiveChat(data.data.data.id);
+          const newMatchups = [...matchups];
+          const index = newMatchups.findIndex(i => i.id === matchupId)
+          newMatchups[index].session = data.data.data;
+          setMatchups(newMatchups);
+          setShowChat(true);
+        }).catch((error) => setLoading(false))
+      }
     }
   }
 

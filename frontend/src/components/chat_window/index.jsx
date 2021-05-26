@@ -21,7 +21,6 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
             }
             console.log('subscribing to session chat ' + matchup.session.id)
             
-            
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
                 const f = e;
                 if (f.chat.user_id !== parseInt(localStorage.getItem('user_id')))
@@ -54,7 +53,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
     return (
       <>
         {active && (
-          <div class="chat-modal">
+          <div className="chat-modal">
             <FontAwesomeIcon
               icon={faAngleLeft}
               className="back-arrow"
