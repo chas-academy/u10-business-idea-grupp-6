@@ -64,13 +64,19 @@ const App = () => {
           <Route
             path="/register"
             render={(props) =>
-              <Register {...props} getToken={getIsAuth} />}
+              <Register 
+                {...props} 
+                getToken={getIsAuth} 
+              />}
           />
 
           <Route
             path="/login"
             render={(props) =>
-              <Login {...props} getToken={getIsAuth} />}
+              <Login 
+                {...props} 
+                getToken={getIsAuth} 
+              />}
           />
 
           <Route
