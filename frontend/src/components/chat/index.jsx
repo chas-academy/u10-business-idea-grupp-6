@@ -84,9 +84,9 @@ const Chat = () => {
         matchup &&
         <div 
         className="chat-box"
+        onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}
         >
           <div
-            onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}
           >
             <img
               src="https://image.flaticon.com/icons/png/512/1077/1077114.png"
@@ -98,12 +98,14 @@ const Chat = () => {
             </p>
             {/* write user info here */}
           </div>
-          <span className="chat-options-wrapper">
-          
+          <span 
+          className="chat-options-wrapper"
+          >
             <span
               className="chat-options"
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 setOptionModal((previousState) => previousState === matchup.id ? null : matchup.id)
               }}>
                 <FontAwesomeIcon icon={faEllipsisV} />
