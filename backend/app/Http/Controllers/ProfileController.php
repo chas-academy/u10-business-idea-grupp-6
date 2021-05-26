@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\UserResource;
+use App\Models\Matchup;
 
 class ProfileController extends Controller
 {
@@ -72,5 +73,15 @@ class ProfileController extends Controller
     public function getPreferences()
     {
         return new UserResource(auth('sanctum')->user());
+    }
+
+    public function viewProfile(User $user)
+    {
+        $matchups = $user->matchups;
+        $matchups->filter(fn($m) => $m->users->contains($this->user->id));
+        if(count($matchups) !== 0)
+            return response(new UserResource($user));
+
+        return response(403);
     }
 }

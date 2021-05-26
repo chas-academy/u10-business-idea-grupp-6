@@ -4,7 +4,7 @@ import { echo, GET, POST } from '../../shared/services/requests';
 import { ButtonLink, ButtonSubmit } from "../../shared/components/";
 import ChatWindow from '../chat_window';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsisV, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Chat = () => {
 
@@ -100,19 +100,24 @@ const Chat = () => {
                   )
                 }
               >
+                {matchup.user[0].profile.img_path ?
+                // <img
+                //   src="https://image.flaticon.com/icons/png/512/1077/1077114.png"
+                //   width="30px"
+                //   className="profile-img"
+                // />
                 <img
                   src="https://image.flaticon.com/icons/png/512/1077/1077114.png"
                   width="30px"
                   className="profile-img"
-                />
+                /> : <FontAwesomeIcon icon={faUser} className="profile-img"/>
+                }
                 <p
                   className="chat-displayname"
                   aria-label={matchup.user[0].profile.display_name || "User hasn't selected a display name"}
                   title={matchup.user[0].profile.display_name || "User hasn't selected a display name"}
                 >
-                  {matchup.user[0].profile.display_name?.length > 17
-                    ? matchup.user[0].profile.display_name.substr(0, 17) + "..."
-                    : matchup.user[0].profile.display_name}
+                  {matchup.user[0].profile.display_name}
                 </p>
                 {/* write user info here */}
 
