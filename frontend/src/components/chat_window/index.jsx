@@ -14,23 +14,30 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     useEffect(() => {
         openChat()
+        read();
         if (active) {
             if (!(messageLog.length)) {
                 POST('session/' + matchup.session.id + '/chats').then(data => {
                     setMessageLog((previousState) => [...data.data.data]);
                 });
             }
-            read();
-            console.log('subscribing to session chat ' + matchup.session.id)
+            /* Fungerar ej än
+            echo.private(`Chat.${matchup.session.id}`).listen('MsgReadEvent', (e) =>
+                messageLog.forEach(
+                    message => (console.log(message))
+                )
+            )
+            */
 
-
-            echo.join(`Chat.${matchup.session.id}.presence`).here((users) => console.log(users));
+            // echo.join(`Chat.${matchup.session.id}.presence`).here((users) => console.log(users));
 
             echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
-                read();
+
                 const f = e;
                 if (f.chat.user_id !== parseInt(localStorage.getItem('user_id'))) {
                     f.chat.type = 1;
+                    //Lägg till if not read at null och displaya i jsx
+                    f.chat.read_at = null;
                     f.chat.sent_at = "Just now";
                 }
                 setNewMessages((previousState) => [...previousState, f]);
@@ -58,7 +65,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     return <>
         {active &&
-            <div class="chat-modal">
+            <div className="chat-modal">
                 <img
                     src="https://image.flaticon.com/icons/png/512/860/860790.png"
                     width="40px"

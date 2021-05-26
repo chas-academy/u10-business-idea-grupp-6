@@ -19,7 +19,10 @@ const Chat = () => {
     useEffect(() => {
         GET('match/all').then(data => {
             setMatchups(data.data);
-            console.log(data.data)
+            // Increment Count
+            echo.private(`Chat.${data.data[0].session.id}`).listen('PrivateChatEvent', (e) =>
+                setUnreadCount(data.data[0].session.unreadCount += 1)
+            )
             setUnreadCount(data.data[0].session.unreadCount)
         })
         const uid = localStorage.getItem('user_id');
@@ -32,7 +35,7 @@ const Chat = () => {
             });
     }, [])
 
-    let testChat;
+    // Join Chat online/Offline
 
     echo.join(`Chat`).here((users) => {
         matchups.forEach(matchup => {
@@ -68,7 +71,7 @@ const Chat = () => {
             POST('session/create', {
                 friend_id: friendId
             }).then(data => {
-                setUnreadCount(0);
+
                 setActiveChat(data.data.data.id);
                 const newMatchups = [...matchups];
                 const index = newMatchups.findIndex(i => i.id === matchupId)
@@ -100,7 +103,7 @@ const Chat = () => {
                     classValue="button-link" />
 
             </div>}
-            {testChat}
+
             {matchups.map(matchup =>
                 matchup &&
                 <div
