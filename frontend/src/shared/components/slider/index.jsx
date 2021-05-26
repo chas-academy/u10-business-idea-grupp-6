@@ -106,7 +106,7 @@ const Slider = ({name, defaults}) => {
         </p> 
       </div>
 
-      <div className={(toggle) ? '' : 'hidden'}>
+      <div className={(!toggle) && 'hidden'}>
         <input 
           type="range" 
           id={`${name}-start`} 

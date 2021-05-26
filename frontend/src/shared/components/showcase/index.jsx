@@ -37,7 +37,7 @@ const Showcase = ({ data, type }) => {
     <div className="showcase">
       
       <FontAwesomeIcon 
-        className={(position.min > 0) ? 'arrow-icon' : 'arrow-icon disabled'}
+        className={`${!(position.min > 0)  && 'disabled'} arrow-icon`}
         onClick={left} 
         icon={faChevronLeft}
       />
@@ -49,7 +49,7 @@ const Showcase = ({ data, type }) => {
       </div>
 
       <FontAwesomeIcon 
-        className={(position.max < data.length) ? 'arrow-icon' : 'arrow-icon disabled'}
+        className={`${!(position.max < data.length)  && 'disabled'} arrow-icon`}
         onClick={right} 
         icon={faChevronRight}
       />
