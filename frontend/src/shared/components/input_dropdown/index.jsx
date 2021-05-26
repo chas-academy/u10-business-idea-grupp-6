@@ -1,61 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import './InputDropdown.scss';
-import AsyncSelect from 'react-select/async';
-import { DROPDOWN } from '../../services/preferences';
-import { POST } from '../../services/requests';
+import Select from 'react-select';
 
-const InputDropdown = ({ placeholder, type, data, defaults }) => {
-  const [selectedOption, setSelectedOption] = useState([]),
-        [defaultValue, setDefaultValue] = useState([]),
-        [options, setOptions] = useState();
+const InputDropdown = ({ placeholder, data, defaults, getState }) => {
+  const [options, setOptions] = useState();
 
   useEffect(() => {
-    const formatted = data?.map((i) => ({
-      value: i[type],
-      label: i[type],
-      id: i.id,
+    const formatted = data?.map((i, index) => ({
+      value: i.name,
+      label: i.name,
+      id: index,
     }));
     setOptions(formatted);
-  }, [data]);
 
-  useEffect(() => {
-    const formatted = defaults?.map((i) => ({
-      value: i[type],
-      label: i[type],
-      id: i.id,
-    }));
-
-    setDefaultValue(formatted);
-    setSelectedOption(formatted);
-  }, [defaults]);
-
-  const promiseOptions = (inputValue) =>
-    new Promise((resolve) => resolve(filterOptions(inputValue)));
-
-  const filterOptions = (inputValue) =>
-    options.filter((i) =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
+  }, []);
 
   const handleChange = (elem) => {
-    DROPDOWN(elem, selectedOption, type);
-    setSelectedOption(elem);
-    setDefaultValue(elem);
+    getState(elem.value);
   };
 
   return (
     <>
-      <AsyncSelect
-        cacheOptions
-        value={defaultValue}
+      {defaults && <Select
+        defaultInputValue={defaults}
         placeholder={placeholder}
-        loadOptions={promiseOptions}
+        options={options}
         styles={customStyles}
-        isMulti
-        closeMenuOnSelect={false}
         className="input-dropdown"
         onChange={(e) => handleChange(e)}
-      />
+      />}
     </>
   );
 };
@@ -67,6 +40,7 @@ const customStyles = {
   control: (base) => ({
     ...base,
     background: '#24212E',
+    color: 'white',
     border: 'solid 1px #ffffff1f',
     borderRadius: '17px',
     padding: '10px',
@@ -85,22 +59,6 @@ const customStyles = {
   input: () => ({
     color: 'white',
   }),
-  clearIndicator: () => ({
-    display: 'none',
-  }),
-  multiValue: (base) => ({
-    ...base,
-    height: '25px',
-    borderRadius: '7px',
-    background: '#454556',
-    color: 'white',
-  }),
-  multiValueLabel: (base) => ({
-    ...base,
-    marginTop: '3px',
-    height: '40px',
-    color: 'white',
-  }),
   multiValueRemove: (base) => ({
     ...base,
     cursor: 'pointer',
@@ -111,5 +69,8 @@ const customStyles = {
   }),
   NoOptionsMessage: (base) => ({
     content: 'text',
+  }),
+  singleValue: (base) => ({
+      color: 'white',
   }),
 };

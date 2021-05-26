@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import './Preferences.scss';
-import { Slider, InputDropdown, Input, Switch } from '../../shared/components/';
-import { OPTIONS, PREFERENCES } from '../../shared/services/preferences';
+import './Preferences.scss'
+import { Slider, InputDropdownMulti, Input, Switch } from "../../shared/components/";
+import { OPTIONS, PREFERENCES } from "../../shared/services/preferences";
 
 const Preferences = () => {
   const [options, setOptions] = useState(),
@@ -20,9 +20,11 @@ const Preferences = () => {
 
       <div className="container" >
 
-        <InputDropdown
-          placeholder="Search games"
-          type="game"
+        <h2>Favorite games</h2>
+
+        <InputDropdownMulti 
+          placeholder="Search games" 
+          type="game" 
           data={options?.games}
           defaults={defaults?.games}
         />
@@ -43,9 +45,10 @@ const Preferences = () => {
           Appealing genres
         </h2>
 
-        <InputDropdown
-          placeholder="Search genres"
-          type="genre"
+
+        <InputDropdownMulti 
+          placeholder="Search genres" 
+          type="genre" 
           data={options?.genres}
           defaults={defaults?.genres}
         />
@@ -66,9 +69,9 @@ const Preferences = () => {
           Preferred languages
         </h2>
 
-        <InputDropdown
-          placeholder="Search languages"
-          type="lang"
+        <InputDropdownMulti 
+          placeholder="Search languages" 
+          type="lang" 
           data={options?.langs}
           defaults={defaults?.langs}
         />
