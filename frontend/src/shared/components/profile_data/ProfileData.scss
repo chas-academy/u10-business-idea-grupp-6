@@ -1,4 +1,4 @@
-@import 'global.scss';
+@import "global.scss";
 
 .profile-data {
   
@@ -13,16 +13,56 @@
   }
 
   h3 {
-    padding-top: .625rem;
+    padding-top: 0.625rem;
     margin-left: 7.5rem;
+    font-size: $font-lg;
   }
-  
+
+  span {
+    display: flex;
+    margin-left: 7.5rem;
+
+    h4 {
+      padding-top: 0.625rem;
+      margin-right: 0.625rem;
+      font-weight: 400;
+      font-size: $font-md;
+    }
+
+    h5 {
+      padding-top: 0.625rem;
+      margin-right: 0.625rem;
+      font-weight: 300;
+      font-size: $font-sm;
+    }
+  }
+
+  p {
+    padding-top: 0.625rem;
+    margin-left: 7.5rem;
+    opacity: 0.5;
+    font-weight: 300;
+    font-size: $font-xs;
+  }
+
   .showcase-container {
-    margin-top: 8.125rem;
+    margin-top: 2.5rem;
 
     p {
       margin-left: 12%;
-      margin-bottom: .625rem;
+      margin-bottom: 0.625rem;
+      font-size: $font-md;
     }
+  }
+
+  p:last-child {
+    background-color: $color-black;
+    min-height: 6.25rem;
+    font-size: $font-sm;
+    opacity: 1;
+    border: $border;
+    border-radius: $rounded-md;
+    padding: 0.9375rem;
+    margin: 0 1.25rem;
   }
 }
