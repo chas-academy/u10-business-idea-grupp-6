@@ -3,11 +3,13 @@ import { echo, POST } from '../../shared/services/requests';
 import './ChatWindow.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { Link, Redirect, Route } from 'react-router-dom';
 const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     const [inputValue, setInputValue] = useState(""),
           [messageLog, setMessageLog] = useState([]),
-          [newMessages, setNewMessages] = useState([]);
+          [newMessages, setNewMessages] = useState([]),
+          [chatDisabled, setChatDisabled] = useState(false);
 
 
     useEffect(() => {
@@ -38,13 +40,13 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     const submit = (e) => {
         e.preventDefault();
-        document.querySelector('.chatwindow-textarea').classList.add('sending');
+        setChatDisabled(true)
         POST('send/' + matchup.session.id, {
             content: inputValue,
             to_user: matchup.user[0].id
         }).then(() => {
           openChat()
-          document.querySelector('.chatwindow-textarea').classList.remove('sending');
+          setChatDisabled(false)
           setInputValue("");
         })
     }
@@ -64,9 +66,9 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
               onClick={toggleChat}
             />
             <h3 className="chatwindow-title">
-              {matchup.user[0].profile.display_name}
+                {matchup.user[0].profile.display_name}
             </h3>
-
+        
             <div id="chatbox" className="chatbox">
               {messageLog.map((i) => (
                 <div className={parseInt(i.type) ? "received" : "sent"}>
@@ -87,8 +89,9 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
                 <input
                   type="text"
                   name="message"
+                  disabled={chatDisabled}
                   onChange={(e) => setInputValue(e.target.value)}
-                  className="chatwindow-textarea"
+                  className={`chatwindow-textarea ${chatDisabled && "sending"}`}
                   value={inputValue}
                   placeholder={
                     "Message " + matchup.user[0].profile.display_name

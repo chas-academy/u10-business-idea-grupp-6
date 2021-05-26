@@ -78,9 +78,9 @@
     color: $color-white;
 
     &.sending {
-        background-color: $color-super-light-gray;
+        background-color: $color-light-gray;
+        opacity: 0.7;
     }
-
 }
 .chatwindow-send {
     margin: 0 auto;
