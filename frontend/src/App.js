@@ -13,10 +13,10 @@ import Notification from './components/notification';
 import Chat from './components/chat';
 import Preferences from './components/preferences/';
 import Match from "./components/match";
+import Menu from './components/menu';
 import { GET } from './shared/services/requests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
@@ -70,101 +70,102 @@ const App = () => {
           <FontAwesomeIcon icon={faSpinner} className="spinner shown large" />
         </span>
       }
+      
+      {isAuth && <button onClick={logout}>Log out</button>}
+    
+       <Router>
+         <main>
+            <Notification
+              auth={isAuth}
+            />
 
-      <main>
-        {isAuth && <button onClick={logout}>Log out</button>}
-        <Router>
+            <Route
+              path="/"
+              exact
+              component={Home}
+            />
 
-          <Notification
-            auth={isAuth}
-          />
+            <Route
+              path="/register"
+              render={(props) => (
+                <Register 
+                  {...props} 
+                  getToken={getIsAuth} 
+                  getAuthLoading={getAuthLoading} 
+                />
+              )}
+            />
 
-          <Route
-            path="/"
-            exact
-            component={Home}
-          />
+            <Route
+              path="/login"
+              render={(props) => (
+                <Login 
+                  {...props} 
+                  getToken={getIsAuth} 
+                  getAuthLoading={getAuthLoading}
+                />
+              )}
+            />
 
-          <Route
-            path="/register"
-            render={(props) => (
-              <Register 
-                {...props} 
-                getToken={getIsAuth} 
-                getAuthLoading={getAuthLoading} 
-              />
-            )}
-          />
+            <Route
+              path="/match"
+              exact
+              component={Match}
+            />
 
-          <Route
-            path="/login"
-            render={(props) => (
-              <Login 
-                {...props} 
-                getToken={getIsAuth} 
-                getAuthLoading={getAuthLoading}
-              />
-            )}
-          />
+            <ProtectedRoute
+              path="/chat"
+              exact
+              component={Chat}
+              isAuth={isAuth}
+            />
 
-          <Route
-            path="/match"
-            exact
-            component={Match}
-          />
+            <ProtectedRoute
+              path="/verified"
+              exact
+              component={Verified}
+              isAuth={isAuth}
+            />
 
-          <ProtectedRoute
-            path="/chat"
-            exact
-            component={Chat}
-            isAuth={isAuth}
-          />
+            <ProtectedRoute
+              path="/already-verified"
+              exact
+              component={AlreadyVerified}
+              isAuth={isAuth}
+            />
 
-          <ProtectedRoute
-            path="/verified"
-            exact
-            component={Verified}
-            isAuth={isAuth}
-          />
+            <ProtectedRoute
+              path="/verify"
+              exact
+              component={Verify}
+              isAuth={isAuth}
+            />
 
-          <ProtectedRoute
-            path="/already-verified"
-            exact
-            component={AlreadyVerified}
-            isAuth={isAuth}
-          />
+            <ProtectedRoute
+              path="/preferences"
+              exact
+              component={Preferences}
+              isAuth={isAuth}
+            />
 
-          <ProtectedRoute
-            path="/verify"
-            exact
-            component={Verify}
-            isAuth={isAuth}
-          />
+            <ProtectedRoute
+              path="/change-password"
+              exact
+              component={ChangePassword}
+              isAuth={isAuth}
+            />
 
-          <ProtectedRoute
-            path="/preferences"
-            exact
-            component={Preferences}
-            isAuth={isAuth}
-          />
-
-          <ProtectedRoute
-            path="/change-password"
-            exact
-            component={ChangePassword}
-            isAuth={isAuth}
-          />
-
-          <Route
-            path="/edit-profile"
-            exact
-            component={EditProfile}
-            isAuth={isAuth}
-          />
-
-        </Router>
-
-      </main>
+            <Route
+              path="/edit-profile"
+              exact
+              component={EditProfile}
+              isAuth={isAuth}
+            />
+          </main>
+        <nav>
+          {isAuth && <Menu />}
+        </nav>
+      </Router>
     </>
   );
 };

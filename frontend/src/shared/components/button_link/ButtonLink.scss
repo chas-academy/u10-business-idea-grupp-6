@@ -1,4 +1,4 @@
-@import 'global.scss';
+@import "global.scss";
 
 .button-link {
   @include button();
@@ -8,7 +8,7 @@
   max-width: 45%;
 }
 
-.dark{
+.dark {
   background: $color-dark-gray;
   color: $color-white;
 }
