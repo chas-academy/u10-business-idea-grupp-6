@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Preferences.scss'
+import './Preferences.scss';
 import { Slider, InputDropdownMulti, Input, Switch } from "../../shared/components/";
 import { OPTIONS, PREFERENCES } from "../../shared/services/preferences";
 
@@ -20,7 +20,9 @@ const Preferences = () => {
 
       <div className="container" >
 
-        <h2>Favorite games</h2>
+        <h2>
+          Favorite games
+        </h2>
 
         <InputDropdownMulti 
           placeholder="Search games" 
@@ -29,7 +31,9 @@ const Preferences = () => {
           defaults={defaults?.games}
         />
 
-        <h2>When do you play</h2>
+        <h2>
+          When do you play
+        </h2>
 
         <Slider
           name="weekday"
@@ -45,7 +49,6 @@ const Preferences = () => {
           Appealing genres
         </h2>
 
-
         <InputDropdownMulti 
           placeholder="Search genres" 
           type="genre" 
@@ -57,10 +60,11 @@ const Preferences = () => {
           Type of player
         </h2>
 
-        {options?.player_types.map((type) => (
-          <Switch
-            type="player_type"
+        {options?.player_types.map((type, idx) => (
+          <Switch 
+            type="player_type" 
             data={type}
+            key={idx}
             defaults={defaults?.player_types}
           />
         ))}
@@ -79,18 +83,19 @@ const Preferences = () => {
         <h2>
           Optional
         </h2>
-
-        {options?.miscs.map((misc) => (
-          <Switch
-            type="misc"
-            data={misc}
+        
+        {options?.miscs.map((misc, idx) => (
+          <Switch 
+            type="misc" 
+            data={misc} 
+            key={idx}
             defaults={defaults?.miscs}
           />
         ))}
 
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Preferences;

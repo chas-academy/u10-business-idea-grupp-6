@@ -9,7 +9,7 @@ import {
 } from '../../shared/components/';
 import { POST } from '../../shared/services/requests';
 
-const Register = ({ getToken }) => {
+const Register = ({getToken, getAuthLoading}) => {
   const [name, setName] = useState(''),
         [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
@@ -29,20 +29,25 @@ const Register = ({ getToken }) => {
       name: name,
       email: email,
       password: pwd,
-      password_confirmation: pwdConf,
+      password_confirmation: pwdConf
     };
-
+    
+    getAuthLoading(true);
     POST('register', data)
-      .then((data) => {
+      .then(data => {
+        getAuthLoading(false);
         localStorage.setItem('token', data.data.token);
         localStorage.setItem('user_id', data.data.user.id);
+        localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
+      
         getToken(localStorage.getItem('token'));
         setRedirectVerify(true);
       })
-      .catch((error) => {
+      .catch(error => {
+        getAuthLoading(false);
         setErrorEmail(error.response.data.errors.email);
         setErrorPwd(error.response.data.errors.password);
-      });
+      })
   };
 
   if (redirectVerify) return <Redirect to="/verify" />;

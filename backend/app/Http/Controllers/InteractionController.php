@@ -23,7 +23,8 @@ class InteractionController extends Controller
      */
     public function store(Request $request)
     {
-        Interaction::create([
+        if($request->object_user_id !== $this->user->id)
+            Interaction::create([
             'subject_user_id' => $this->user->id,
             'object_user_id' => $request->object_user_id,
             'likes' => $request->likes

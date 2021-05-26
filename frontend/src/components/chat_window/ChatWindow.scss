@@ -1,8 +1,112 @@
 @import 'global.scss';
 
-.received{
-    text-align: left;
+.chat-modal {
+    padding: 50px 0 100px 0;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90%;
+    height: 90%; 
+    height: 800px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(15, 15, 15);
 }
-.sent{
-    text-align: right;
+
+.received {
+    margin: 30px;
+    background-color: $color-dark-gray;
+    min-width: 80%;
+    border-radius: 40px 40px 40px 0;
+    padding: 25px;
+    align-items: flex-start;
+}
+.sent {
+    align-self: flex-end;
+    margin: 30px 10px;
+    background-color: $color-light-gray;
+    min-width: 80%;
+    border-radius: 40px 40px 0 40px;
+    padding: 25px;
+}
+
+.chatwindow-title {
+    padding: 0 1rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chatbox {
+    display: flex;
+    flex-flow: column;
+    margin: 40px 0 0 0;
+    min-height: 600px;
+    max-height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: $color-dark-gray;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: $color-dark-gray;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: $color-light-gray;
+}
+
+.chatwindow-textarea {
+    margin-top: 80px;
+    background-color: $color-dark-gray;
+    border: 1px solid $color-light-gray;
+    border-radius: 20px;
+    display: block;
+    margin: auto;
+    width: 90%;
+    height: 60px;
+    outline: none;
+    padding: 0 10px;
+    color: $color-white;
+
+    &.sending {
+        background-color: $color-light-gray;
+        opacity: 0.7;
+    }
+}
+.chatwindow-send {
+    margin: 0 auto;
+    display: block;
+}
+
+.chatbox-bubble {
+    display: flex;
+    justify-content: space-between;
+}
+
+.received > .chatbox-bubble > .chatbox-sent {
+    font-size: $font-sm;
+    color: $color-super-light-gray;
+    margin-left: 10px;
+}
+
+.sent > .chatbox-bubble > .chatbox-sent {
+    font-size: $font-sm;
+    color: $color-black;
+    margin-left: 10px;
+}
+
+.back-arrow {
+    margin-left: 20px;
+    font-size: $font-lg;
+    cursor: pointer;
+    float: left;
 }
