@@ -52,10 +52,11 @@ const Preferences = () => {
         
         <h2>Type of player</h2>
 
-        { options?.player_types.map(type => 
+        { options?.player_types.map((type, idx) => 
           <Switch 
             type="player_type" 
             data={type}
+            key={idx}
             defaults={defaults?.player_types}
           /> 
         )}
@@ -71,10 +72,11 @@ const Preferences = () => {
 
         <h2>Optional</h2>
         
-        { options?.miscs.map(misc => 
+        { options?.miscs.map((misc, idx) => 
           <Switch 
             type="misc" 
             data={misc} 
+            key={idx}
             defaults={defaults?.miscs}
           />
         )}
