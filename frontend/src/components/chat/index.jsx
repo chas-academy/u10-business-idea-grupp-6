@@ -8,21 +8,31 @@ const Chat = () => {
 
     const [matchups, setMatchups] = useState([]),
         [activeChat, setActiveChat] = useState(null),
-        [showChat, setShowChat] = useState([]);
+        [showChat, setShowChat] = useState([]),
+        [userStatus, setUserStatus] = useState(null),
+        [unreadCount, setUnreadCount] = useState(null);
+
+
+
 
 
     useEffect(() => {
         GET('match/all').then(data => {
             setMatchups(data.data);
+            console.log(data.data)
+            setUnreadCount(data.data[0].session.unreadCount)
         })
         const uid = localStorage.getItem('user_id');
 
+
         echo.private('App.Models.User.' + uid)
-            .listen('MatchupSuccessful', (e) => {
+            .listen(' ', (e) => {
                 const newMatchup = e.matchupData.matchup;
                 setMatchups((previousState) => [...previousState, newMatchup])
             });
     }, [])
+
+    let testChat;
 
     echo.join(`Chat`).here((users) => {
         matchups.forEach(matchup => {
@@ -32,17 +42,22 @@ const Chat = () => {
                 }
             })
         })
+        console.log(users)
     })
         .joining((user) => {
             matchups.forEach(matchup =>
                 user.id == matchup.user[0].id ? matchup.user[0].online = true : ''
             )
+            console.log(user.id + ' ' + 'is Online')
+            setUserStatus('Online')
         }).leaving((user) => {
             matchups.forEach(matchup =>
                 user.id == matchup.user[0].id ? matchup.user[0].online = false : ''
             )
-        })
+            console.log(user.id + ' ' + 'is Offline')
+            setUserStatus('Offline')
 
+        })
 
     const handleSetActiveChat = (matchupId, session, friendId) => {
 
@@ -53,6 +68,7 @@ const Chat = () => {
             POST('session/create', {
                 friend_id: friendId
             }).then(data => {
+                setUnreadCount(0);
                 setActiveChat(data.data.data.id);
                 const newMatchups = [...matchups];
                 const index = newMatchups.findIndex(i => i.id === matchupId)
@@ -84,17 +100,20 @@ const Chat = () => {
                     classValue="button-link" />
 
             </div>}
-
+            {testChat}
             {matchups.map(matchup =>
                 matchup &&
                 <div
-                    onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id)}
+                    onClick={() => handleSetActiveChat(matchup.id, matchup.session, matchup.user[0].id, setUnreadCount(0))}
                     className="chat-box">
                     <img
                         src="https://image.flaticon.com/icons/png/512/1077/1077114.png"
                         width="30px"
                         className="profile-img"
                     />
+                    <h1>{userStatus}</h1>
+                    <h1>Messages not read: {unreadCount}</h1>
+
                     <p className="chat-displayname">
                         {matchup.user[0].profile.display_name}
                     </p>
