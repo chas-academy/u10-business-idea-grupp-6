@@ -9,7 +9,7 @@ import {
 } from '../../shared/components/';
 import { echo, POST } from '../../shared/services/requests';
 
-const Login = ({ getToken }) => {
+const Login = ({getToken, getAuthLoading}) => {
   const [email, setEmail] = useState(''),
         [pwd, setPwd] = useState(''),
         [error, setError] = useState(null),
@@ -22,27 +22,31 @@ const Login = ({ getToken }) => {
     event.preventDefault();
     const data = {
       email: email,
-      password: pwd,
-    };
+      password: pwd
+    }
+    
+    getAuthLoading(true);
+    POST('login', data).then(data => {
+      getAuthLoading(false);
+      localStorage.setItem('token', data.data.token);
+      localStorage.setItem('user_id', data.data.user.id);
+      localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
+      
+      getToken(localStorage.getItem('token'));
 
-    POST('login', data)
-      .then((data) => {
-        localStorage.setItem('token', data.data.token);
-        localStorage.setItem('user_id', data.data.user.id);
-        getToken(localStorage.getItem('token'));
+      echo
+        .private('App.Models.User.' + localStorage.getItem('user_id'))
+        .listen('MatchupSuccessful', (e) => {
+          // if you get a match, will print to console
+          console.log(e);
+        });
 
-        echo
-          .private('App.Models.User.' + localStorage.getItem('user_id'))
-          .listen('MatchupSuccessful', (e) => {
-            // if you get a match, will print to console
-            console.log(e);
-          });
-
-        setRedirect(true);
-      })
-      .catch((error) => {
+      setRedirect(true);
+    })
+      .catch(error => {
+        getAuthLoading(false);
         setError(error.response.data.message);
-      });
+      })
   };
 
   if (redirect) return <Redirect to="/preferences" />;
@@ -57,9 +61,7 @@ const Login = ({ getToken }) => {
         Please login to continue
       </h2>
 
-      <form 
-        onSubmit={submit}
-      >
+      <form onSubmit={submit}>
 
         {error && <MessageError message={error} />}
 
@@ -81,7 +83,7 @@ const Login = ({ getToken }) => {
       </form>
 
       <p>
-        Dont have an account?
+        Don't have an account?
         <Link
           className="link"
           to="/register"
@@ -90,7 +92,7 @@ const Login = ({ getToken }) => {
         </Link>
       </p>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

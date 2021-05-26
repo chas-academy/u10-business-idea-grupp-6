@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\MatchupCollection;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
+use App\Models\Interaction;
+use App\Models\Matchup;
+use App\Models\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -65,19 +68,6 @@ class MatchController extends Controller
 
         $query->whereKeyNot($this->user->id);
 
-        foreach($this->getDemands() as $demand => $idsArray)
-        {
-            if(count($idsArray))
-                $query->whereHas('miscs', function($q) use($demand, $idsArray)
-                {
-                    foreach($idsArray as $id)
-                    {
-                        $q->where('miscs.id', $id);
-                    }
-                    
-                });
-        }
-
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
             if(count($idsArray))
@@ -89,13 +79,25 @@ class MatchController extends Controller
 
         $collection = $query->get();
 
+        // miscs
+        foreach($this->getDemands() as $demand => $idsArray)
+        {
+            if(count($idsArray))
+            {
+                $objects = $this->user->{$demand};
+
+                $collection = $collection->filter(function($u) use ($objects, $demand){
+                    return count($objects->diff($u->{$demand})) === 0;
+                });
+            }
+        }
+
         $sortable = $this->getSortable();
 
         $sortedCollection = $collection->sort(function ($a, $b) use ($sortable) {
             // this is quite query heavy
             if($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
                 return -1;
-          
             return 1;
         });
 
@@ -109,6 +111,35 @@ class MatchController extends Controller
     public function currentMatchups()
     {
         return response(new MatchupCollection($this->user->matchups));
+    }
+
+
+    public function deleteMatchup(Request $request)
+    {
+
+        if($matchup = Matchup::find($request->matchup_id))
+            if($matchup->users->contains('id', $this->user->id))
+            {
+                $userB = $matchup->users->filter(fn($i) => $i->id !== $this->user->id)->first();
+                
+                if($session = Session::where([
+                    ['user_a_id', $this->user->id],
+                    ['user_b_id', $userB->id]])
+                ->orWhere([
+                    ['user_a_id', $userB->id],
+                    ['user_b_id', $this->user->id]
+                ]))
+                    $session->delete();
+                    
+                $interaction = Interaction::where([
+                    ['subject_user_id', $this->user->id],
+                    ['object_user_id', $userB->id]])
+                    ->update(['likes' => 0]);
+            
+                $matchup->users()->detach([$this->user->id, $userB->id]);
+                $matchup->delete();
+                return response(201);
+            }
     }
     //------------------------------------------------------------------
 

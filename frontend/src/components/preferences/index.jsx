@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Preferences.scss';
-import { Slider, InputDropdown, Input, Switch } from '../../shared/components/';
-import { OPTIONS, PREFERENCES } from '../../shared/services/preferences';
+import { Slider, InputDropdownMulti, Input, Switch } from "../../shared/components/";
+import { OPTIONS, PREFERENCES } from "../../shared/services/preferences";
 
 const Preferences = () => {
   const [options, setOptions] = useState(),
@@ -20,14 +20,20 @@ const Preferences = () => {
 
       <div className="container" >
 
-        <InputDropdown
-          placeholder="Search games"
-          type="game"
+        <h2>
+          Favorite games
+        </h2>
+
+        <InputDropdownMulti 
+          placeholder="Search games" 
+          type="game" 
           data={options?.games}
           defaults={defaults?.games}
         />
 
-        <h2>When do you play</h2>
+        <h2>
+          When do you play
+        </h2>
 
         <Slider
           name="weekday"
@@ -43,9 +49,9 @@ const Preferences = () => {
           Appealing genres
         </h2>
 
-        <InputDropdown
-          placeholder="Search genres"
-          type="genre"
+        <InputDropdownMulti 
+          placeholder="Search genres" 
+          type="genre" 
           data={options?.genres}
           defaults={defaults?.genres}
         />
@@ -54,10 +60,11 @@ const Preferences = () => {
           Type of player
         </h2>
 
-        {options?.player_types.map((type) => (
-          <Switch
-            type="player_type"
+        {options?.player_types.map((type, idx) => (
+          <Switch 
+            type="player_type" 
             data={type}
+            key={idx}
             defaults={defaults?.player_types}
           />
         ))}
@@ -66,9 +73,9 @@ const Preferences = () => {
           Preferred languages
         </h2>
 
-        <InputDropdown
-          placeholder="Search languages"
-          type="lang"
+        <InputDropdownMulti 
+          placeholder="Search languages" 
+          type="lang" 
           data={options?.langs}
           defaults={defaults?.langs}
         />
@@ -76,18 +83,19 @@ const Preferences = () => {
         <h2>
           Optional
         </h2>
-
-        {options?.miscs.map((misc) => (
-          <Switch
-            type="misc"
-            data={misc}
+        
+        {options?.miscs.map((misc, idx) => (
+          <Switch 
+            type="misc" 
+            data={misc} 
+            key={idx}
             defaults={defaults?.miscs}
           />
         ))}
 
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Preferences;

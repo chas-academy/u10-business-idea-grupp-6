@@ -9,6 +9,7 @@ use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\PreferencePayloadController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TimeController;
+use App\Http\Controllers\VerifyAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
@@ -47,11 +48,15 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],  function () {
     // this route is for giving the frontend a list of all current matchups made with other users
     Route::get('/match/all', [MatchController::class, 'currentMatchups'])->name('currentMatchups');
 
+    Route::post('/match/delete', [MatchController::class, 'deleteMatchup']);
     // this route is for saving interactions from users
     Route::post('/interactions', [InteractionController::class, 'store']);
 
     // route for updating user's time preferences. frequently requested
     Route::patch('/times', TimeController::class);
+
+    // for checking authentication
+    Route::get('/verify-auth', VerifyAuthController::class);
 
     Route::get('/user/prefs', [ProfileController::class, 'getPreferences']);
     Route::get('/user/{user}', [ProfileController::class, 'getProfile']);
