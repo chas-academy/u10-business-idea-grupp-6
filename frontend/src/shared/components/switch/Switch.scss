@@ -1,16 +1,16 @@
 @import "global.scss";
 
-.switch-container {
+.switch {
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
+  max-width: 25rem;
+  margin-bottom: 1.25rem;
 
-  .switch-checkbox {
+  input {
    @include checkbox();
   }
 
-  .switch-checkbox-label {
-    margin-left: 10px;
+  label {
+    margin-left: .625rem;
     @include checkbox-label();
   }
 }

@@ -44,16 +44,16 @@ const Login = ({getToken}) => {
   if(redirect) return <Redirect to="/preferences"/>;
 
   return (
-    <>
-      <h1 className="login-title">
+    <div className="login">
+      <h1>
         Log In Now
       </h1>
-      <h2 className="login-sub-title">
+
+      <h2>
         Please login to continue
       </h2>
 
       <form 
-        className="login-form"
         onSubmit={submit}
       >
         {error && <MessageError message = {error}/>}
@@ -77,16 +77,16 @@ const Login = ({getToken}) => {
 
       </form>
 
-      <p className="login-text">
+      <p>
         Dont have an account?
         <Link
-          className="login-link"
+          className="link"
           to="/register"
         >
           Register
         </Link>
       </p>
-    </>
+    </div>
   )
 }
 

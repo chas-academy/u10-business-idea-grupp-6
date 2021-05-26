@@ -42,9 +42,9 @@ const Showcase = ({ data, type }) => {
         icon={faChevronLeft}
       />
 
-      <div className="item-container">
+      <div>
         {items?.map(item =>
-          <div className="item">{item[type]}</div>
+          <span>{item[type]}</span>
         )}
       </div>
 

@@ -36,17 +36,16 @@ const ChangePassword = () => {
   };
 
   return (
-    <>
-      <h1 className="edit-title">
+    <div className="edit-password">
+      <h1>
         Change Password
       </h1>
 
-      <h2 className="edit-sub-title">
+      <h2>
         Please fill in the details if you want to change your password
       </h2>
 
       <form
-        className="edit-form"
         onSubmit={submit}>
 
         {errorCurrentPwd && <MessageError message={errorCurrentPwd} />}
@@ -70,7 +69,7 @@ const ChangePassword = () => {
 
       </form>
 
-    </>
+    </div>
   );
 };
 

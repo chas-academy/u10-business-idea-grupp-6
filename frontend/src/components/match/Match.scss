@@ -1,8 +1,8 @@
 @import "global.scss";
 
 @mixin match-button() {
-  height: 60px;
-  width: 60px;
+  height: 3.75rem;
+  width: 3.75rem;
   background-color: $color-super-dark-gray;
   color: white;
   border: none;
@@ -11,27 +11,29 @@
   box-shadow: 0px 10px 13px -7px #0000005d, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
-.match-container {
-  margin: 0 auto;
-  margin-top: 50px;
-  background-color: $color-dark-gray;
-  border-radius: $rounded-md;
-  max-width: 800px;
-  padding-bottom: 100px;
-  position: relative;
+.match {
+  .container {
+    margin: 0 auto;
+    margin-top: 3.125rem;
+    background-color: $color-dark-gray;
+    border-radius: $rounded-md;
+    max-width: 50rem;
+    padding-bottom: 6.25rem;
+    position: relative;
 
-  .match-like {
-    @include match-button();
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-  }
+    .like {
+      @include match-button();
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.25rem;
+    }
 
-  .match-dislike {
-    @include match-button();
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+    .dislike {
+      @include match-button();
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+    }
   }
 }
 
@@ -44,11 +46,6 @@
   width: 6.25rem;
   margin: 2rem auto;
   display: none;
-
-  &.shown {
-    display: block;
-  }
-}
 
 @keyframes spin {
   from {

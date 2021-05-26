@@ -8,8 +8,8 @@ import { faGlobe, faLifeRing, faSpinner, faTruckLoading } from '@fortawesome/fre
 
 const Match = () => {
   const [matches, setMatches] = useState([]),
-        [current, setCurrent] = useState(),
-        [loading, setLoading] = useState(false);
+    [current, setCurrent] = useState(),
+    [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -60,9 +60,9 @@ const Match = () => {
   };
 
   return (
-    <>
+    <div className="match">
       {!loading &&
-        <div className="match-container">
+        <div className="container">
           {current &&
             <ProfileData
               data={current.profile}
@@ -71,15 +71,15 @@ const Match = () => {
           }
 
           <button
-            className="match-like"
+            className="like"
             disabled={loading}
             onClick={like}
           >
-            LIKE
+            YUP
           </button>
 
           <button
-            className="match-dislike"
+            className="dislike"
             disabled={loading}
             onClick={dislike}
           >
@@ -87,9 +87,9 @@ const Match = () => {
           </button>
 
           {!matches.length &&
-            <div>
+            <p>
               No more matches! Please wait a minute before trying to refresh to get some more. :)
-            </div>
+            </p>
           }
         </div>
       }
@@ -99,10 +99,8 @@ const Match = () => {
         hidden={!loading}
         icon={faSpinner}
       />
-
-    </>
+    </div>
   )
 }
-
 
 export default Match;
