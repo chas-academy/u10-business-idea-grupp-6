@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { PATCH, POST } from './requests';
 
-// const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api';
-const apiBaseURL = 'http://u10.test/api';
+const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api';
 
 
 axios.defaults.withCredentials = true;
