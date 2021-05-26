@@ -50,3 +50,46 @@ main {
     font-size: 3rem;
   }
 }
+
+.spinner {
+  animation-name: spin;
+  animation-duration: 1.3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  height: 6.25rem;
+  width: 6.25rem;
+  margin: 2rem auto;
+  display: none;
+
+  &.shown {
+    display: block;
+  }
+
+  &.large {
+    font-size: 10rem;
+  }
+}
+
+.spinner-overlay {
+  display: none;
+  z-index: 10;
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(71, 71, 71, 0.349);
+
+  &.shown {
+    display: block;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

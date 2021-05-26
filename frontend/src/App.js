@@ -14,14 +14,18 @@ import Chat from './components/chat';
 import Preferences from './components/preferences/';
 import Match from "./components/match";
 import { GET } from './shared/services/requests';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
-
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
+        [authLoading, setAuthLoading] = useState(false);
+  
   const logout = () => {
+    setAuthLoading(true);
     GET('logout').then(data => {
-
+      setAuthLoading(false);
       setIsAuth(null);
 
       localStorage.removeItem('token');
@@ -30,7 +34,7 @@ const App = () => {
 
       window.location.reload();
     }).catch(e => {
-
+      setAuthLoading(false);
       setIsAuth(null);
 
       localStorage.removeItem('token');
@@ -41,12 +45,34 @@ const App = () => {
     })
   }
 
-  const getIsAuth = e => setIsAuth(e);
+  useEffect(() => {
+    if (isAuth && (
+      !window.location.pathname.includes('verify') &&
+      !window.location.pathname.includes('register'))
+      ){
+        setAuthLoading(true);
+        GET('verify-auth').then((data) => {
+          setAuthLoading(false);
+        
+          if(data.status !== 200)
+            logout();
+      }).catch((error) => logout());
+    }
+  }, [isAuth])
 
+  const getIsAuth = e => setIsAuth(e),
+        getAuthLoading = e => setAuthLoading(e);
+  
   return (
     <>
+      {authLoading &&
+        <span className="spinner-overlay shown">
+          <FontAwesomeIcon icon={faSpinner} className="spinner shown large" />
+        </span>
+      }
+
       <main>
-        {isAuth && <button onClick={logout}>Log out</button>}
+        {isAuth && <button className="button-link" onClick={logout}>Log out</button>}
         <Router>
 
           <Notification
@@ -62,14 +88,14 @@ const App = () => {
           <Route
             path="/register"
             render={(props) => (
-              <Register {...props} getToken={getIsAuth} />
+              <Register {...props} getToken={getIsAuth} getAuthLoading={getAuthLoading} />
             )}
           />
 
           <Route
             path="/login"
             render={(props) => (
-              <Login {...props} getToken={getIsAuth} />
+              <Login {...props} getToken={getIsAuth} getAuthLoading={getAuthLoading}/>
             )}
           />
 
@@ -129,6 +155,7 @@ const App = () => {
           />
 
         </Router>
+
       </main>
     </>
   );
