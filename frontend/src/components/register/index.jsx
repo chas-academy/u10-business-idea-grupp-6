@@ -48,19 +48,17 @@ const Register = ({ getToken }) => {
   if (redirectVerify) return <Redirect to="/verify" />;
 
   return (
-    <>
-      <h1 className="register-title">
+    <div className="register">
+      <h1>
         Sign Up Now
       </h1>
 
-      <h2 className="register-sub-title">
+      <h2>
         Please fill in the details and create an account
       </h2>
 
-      <form
-        className="register-form"
-        onSubmit={submit}
-      >
+      <form 
+        onSubmit={submit}>
 
         <Input
           type="text"
@@ -91,16 +89,16 @@ const Register = ({ getToken }) => {
 
       </form>
 
-      <p className="register-text">
+      <p>
         Already have an account?
         <Link
-          className="register-link"
+          className="link"
           to="/login"
         >
           Log In
         </Link>
       </p>
-    </>
+    </div>
   );
 };
 

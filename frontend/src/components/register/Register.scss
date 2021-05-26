@@ -1,34 +1,29 @@
 @import "global.scss";
 
-.register-title {
-  text-align: center;
-  font-size: $font-lg;
-  margin-bottom: 15px;
-  margin-top: 50px;
-}
+.register{
+  
+  h1 {
+    @include title();
+  }
 
-.register-sub-title {
-  text-align: center;
-  font-size: $font-md;
-  margin-bottom: 40px;
-}
+  h2 {
+    @include sub-title();
+  }
 
-.register-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
+  form {
+    @include flex(
+      space-between, 
+      center, 
+      column
+    )
+  }
 
-.register-text {
-  margin-top: 20px;
-  text-align: center;
-  font-size: $font-sm;
-}
+  p {
+    @include paragraph();
+  }
 
-.register-link {
-  color: $color-white;
-  opacity: 0.5;
-  margin-left: 5px;
-  text-decoration: none;
+  .link {
+    @include paragraph-link();
+
+  }
 }

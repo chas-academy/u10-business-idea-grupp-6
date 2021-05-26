@@ -13,15 +13,12 @@ const Preferences = () => {
   }, []);
 
   return (
-    <>
-      <h1 className="preferences-title">
+    <div className="preferences">
+      <h1>
         Setup Preferences
       </h1>
 
-      <div className="preferences-container">
-        <h2>
-          Favorite games
-        </h2>
+      <div className="container" >
 
         <InputDropdown
           placeholder="Search games"
@@ -89,8 +86,8 @@ const Preferences = () => {
         ))}
 
       </div>
-    </>
-  );
-};
+    </div>
+  )
+}
 
 export default Preferences;

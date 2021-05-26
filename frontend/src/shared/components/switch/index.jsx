@@ -12,20 +12,16 @@ const Switch = ({ type, data, defaults }) => {
   const handleChange = (event) => SWITCH(type, data.id);
 
   return (
-    <div className="switch-container">
-      <input
-        className="switch-checkbox"
-        type="checkbox"
-        id={data[type]}
-        onChange={(e) => handleChange(e)}
-      />
+    <div className="switch">
+        <input 
+          type="checkbox" 
+          id={data[type]} 
+          onChange={(e) => handleChange(e)}
+        />
 
-      <label
-        className="switch-checkbox-label"
-        htmlFor={data[type]}
-      >
-        {data[type]}
-      </label>
+        <label htmlFor={data[type]}>
+          {data[type]}
+        </label>
     </div>
   );
 };
