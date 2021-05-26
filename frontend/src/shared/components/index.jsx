@@ -21,7 +21,6 @@ export {
   InputPassword,
   MessageError,
   Modal,
-  ProfileMenu,
   Slider,
   Showcase,
   Switch,
