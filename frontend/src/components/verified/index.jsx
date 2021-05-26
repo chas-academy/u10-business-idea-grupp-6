@@ -4,19 +4,18 @@ import { ButtonLink } from "../../shared/components";
 
 const Verified = () => {
   return (
-    <>
-      <h1 className="verified-title">
+    <div className="verified">
+
+      <h1>
         Email is verified succesfully!
       </h1>
 
-      <div className="verified-container">
-        <ButtonLink 
-          classValue="button-link light"
-          name="Setup Your Profile"
-          link="#"
-        />
-      </div>
-    </>
+      <ButtonLink
+        classValue="button-link light"
+        name="Setup Your Profile"
+        link="#"
+      />
+    </div>
   )
 }
 

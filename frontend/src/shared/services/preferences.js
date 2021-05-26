@@ -3,6 +3,7 @@ import { PATCH, POST } from './requests';
 
 const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api';
 
+
 axios.defaults.withCredentials = true;
 
 const tables = [

@@ -1,5 +1,10 @@
 @import 'global.scss';
 
 .button-submit {
-  @include button();
+  width: 100%;
+  max-width: 25rem;
+  
+  button {
+    @include button();
+  }
 }

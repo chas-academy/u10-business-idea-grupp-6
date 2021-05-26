@@ -1,27 +1,23 @@
 @import 'global.scss';
 
-.home-title {
-  text-align: center;
-  font-size: $font-xl;
-  margin-bottom: 15px;
-  margin-top: 200px;
-}
+.home {
+  
+  h1 {
+   @include large-title();
+  }
 
-.home-container {
-  margin: auto;
-  margin-top: 200px;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 400px;
-}
+  p {
+   @include paragraph();
+   opacity: 0.5;
+   margin-bottom: 12.5rem;
+  }
 
-.home-text {
-  text-align: center;
-  opacity: 0.5;
-  width: 100%;
-  max-width: 270px;
-  margin: auto;
-  margin-top: 20px;
-  font-size: $font-sm;
+  div {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 25rem;
+  }
+
 }

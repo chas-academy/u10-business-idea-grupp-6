@@ -12,9 +12,10 @@ import Verify from './components/verify';
 import Notification from './components/notification';
 import Chat from './components/chat';
 import Preferences from './components/preferences/';
+import Match from "./components/match";
 import { GET } from './shared/services/requests';
 
-  
+
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token'));
 
@@ -25,14 +26,16 @@ const App = () => {
 
       localStorage.removeItem('token');
       localStorage.removeItem('user_id');
+      localStorage.removeItem('timezone_offset');
 
-    window.location.reload();
+      window.location.reload();
     }).catch(e => {
 
       setIsAuth(null);
 
       localStorage.removeItem('token');
       localStorage.removeItem('user_id');
+      localStorage.removeItem('timezone_offset');
 
       window.location.reload();
     })
@@ -43,18 +46,16 @@ const App = () => {
   return (
     <>
       <main>
-
-
-        {isAuth && <button className="button-link" onClick={logout}>Log out</button>}
+        {isAuth && <button onClick={logout}>Log out</button>}
         <Router>
-          
+
           <Notification
             auth={isAuth}
           />
 
           <Route
             path="/"
-            exact 
+            exact
             component={Home}
           />
 
@@ -72,39 +73,45 @@ const App = () => {
             )}
           />
 
+          <Route
+            path="/match"
+            exact
+            component={Match}
+          />
+
           <ProtectedRoute
             path="/chat"
-            exact 
+            exact
             component={Chat}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/verified"
-            exact 
+            exact
             component={Verified}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/already-verified"
-            exact 
+            exact
             component={AlreadyVerified}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/verify"
-            exact 
+            exact
             component={Verify}
             isAuth={isAuth}
           />
 
           <ProtectedRoute
             path="/preferences"
-            exact 
+            exact
             component={Preferences}
-            isAuth={isAuth} 
+            isAuth={isAuth}
           />
 
           <ProtectedRoute
