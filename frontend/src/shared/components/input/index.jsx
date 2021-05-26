@@ -10,16 +10,15 @@ const Input = ({ placeholder, type, name, getState, currentValue }) => {
   };
 
   return (
-    <>
+    <div className="input">
       <input
-        className="input"
         name={name}
         type={type}
         placeholder={placeholder}
         value={currentValue}
         onChange={(e) => inputValue(e.target.value)}
       />
-    </>
+    </div>
   );
 };
 
