@@ -2,8 +2,12 @@
 
 #notification {
     position: absolute;
-    display: block;
+    width: 100%;
+    max-width: 25rem;
+    transform: translate(-50%);
+    left: 50%;
     z-index: 5;
-    background-color: $color-dark-gray;
-    color: $color-white;
+    background-color: transparent;
+    border-radius: $rounded-lg;
+    box-shadow: 0px .625rem .8125rem -0.4375rem #000000b7;
 }

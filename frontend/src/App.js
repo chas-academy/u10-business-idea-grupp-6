@@ -72,7 +72,7 @@ const App = () => {
       }
 
       <main>
-        {isAuth && <button className="button-link" onClick={logout}>Log out</button>}
+        {isAuth && <button onClick={logout}>Log out</button>}
         <Router>
 
           <Notification
@@ -88,14 +88,22 @@ const App = () => {
           <Route
             path="/register"
             render={(props) => (
-              <Register {...props} getToken={getIsAuth} getAuthLoading={getAuthLoading} />
+              <Register 
+                {...props} 
+                getToken={getIsAuth} 
+                getAuthLoading={getAuthLoading} 
+              />
             )}
           />
 
           <Route
             path="/login"
             render={(props) => (
-              <Login {...props} getToken={getIsAuth} getAuthLoading={getAuthLoading}/>
+              <Login 
+                {...props} 
+                getToken={getIsAuth} 
+                getAuthLoading={getAuthLoading}
+              />
             )}
           />
 
