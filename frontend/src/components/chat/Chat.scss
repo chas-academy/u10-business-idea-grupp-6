@@ -22,9 +22,8 @@
 }
 
 .profile-img {
-    // float: left;
+    font-size: 2.5rem;
 }
-
 
 .chat-options-wrapper{
     position: relative;
@@ -68,8 +67,9 @@
 
 .chat-displayname {
     text-align: center;
-
-    // display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     word-wrap: break-word;
     justify-content: center;
     align-content: center;
