@@ -72,8 +72,12 @@
     outline: none;
     padding: 0 10px;
     color: $color-white;
-}
 
+    &.sending {
+        background-color: $color-super-light-gray;
+    }
+
+}
 .chatwindow-send {
     margin: 0 auto;
     display: block;

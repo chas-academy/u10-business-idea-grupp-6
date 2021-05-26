@@ -38,11 +38,15 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
     const submit = (e) => {
         e.preventDefault();
+        document.querySelector('.chatwindow-textarea').classList.add('sending');
         POST('send/' + matchup.session.id, {
             content: inputValue,
             to_user: matchup.user[0].id
+        }).then(() => {
+          openChat()
+          document.querySelector('.chatwindow-textarea').classList.remove('sending');
+          setInputValue("");
         })
-        setInputValue("");
     }
 
     const toggleChat = () => {

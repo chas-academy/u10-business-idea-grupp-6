@@ -72,6 +72,10 @@ const Chat = () => {
         }
     }
 
+    document.body.addEventListener('click', () => {
+      setOptionModal(null)
+    })
+
     return (
       <>
         <h1 className="chat-title">Chat Room</h1>
