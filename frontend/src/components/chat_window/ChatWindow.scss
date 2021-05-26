@@ -1,7 +1,7 @@
 @import 'global.scss';
 
 .chat-modal {
-    padding-top: 50px;
+    padding: 50px 0 100px 0;
     z-index: 1;
     position: absolute;
     left: 50%;
@@ -36,8 +36,9 @@
 .chatbox {
     display: flex;
     flex-flow: column;
-    margin: 40px 0;
-    max-height: 500px;
+    margin: 40px 0 0 0;
+    min-height: 600px;
+    max-height: 600px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -64,7 +65,7 @@
     border: 1px solid $color-light-gray;
     border-radius: 20px;
     display: block;
-    margin: 0 auto;
+    margin: auto;
     width: 90%;
     height: 60px;
     outline: none;
@@ -82,13 +83,20 @@
     justify-content: space-between;
 }
 
-.chatbox-sent {
-    font-size: $font-xs;
+.received > .chatbox-bubble > .chatbox-sent {
+    font-size: $font-sm;
     color: $color-super-light-gray;
+    margin-left: 10px;
+}
+
+.sent > .chatbox-bubble > .chatbox-sent {
+    font-size: $font-sm;
+    color: $color-black;
     margin-left: 10px;
 }
 
 .back-arrow {
     margin-left: 20px;
     cursor: pointer;
+    float: left;
 }

@@ -16,9 +16,7 @@ const Chat = () => {
 
   useEffect(() => {
     GET('match/all').then(data => {
-      // console.log(data);
       setMatchups(data.data);
-      console.log(data)
     })
     const uid = localStorage.getItem('user_id');
 
@@ -32,7 +30,6 @@ const Chat = () => {
   const handleSetActiveChat = (matchupId, session, friendId) => {
 
     if (session) {
-      // console.log('session is active since before')
       setActiveChat(session.id);
     }
     else {
@@ -58,16 +55,26 @@ const Chat = () => {
     });
   }
 
+
   const handleCloseChat = () => setActiveChat(null);
 
-  return (
-    <>
-      <h1 className="chat-title">
-        Chat Room
+
+    const handleOpenChat = () => {
+        const chatbox = document.querySelector('#chatbox');
+        if(chatbox) {
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    }
+
+    return (
+        <>
+            <h1 className="chat-title">
+                Chat Room
             </h1>
 
       {matchups.length === 0 && <div>You have no more matches...
                 <ButtonLink
+
           name="Match"
           classValue="button-link" />
 
@@ -86,7 +93,7 @@ const Chat = () => {
               width="30px"
               className="profile-img"
             />
-            <p className="">
+            <p className="chat-displayname">
               {matchup.user[0].profile.display_name}
             </p>
             {/* write user info here */}
@@ -115,15 +122,14 @@ const Chat = () => {
             </span>
           </div>
       )}
-      {matchups.map(matchup =>
-
+      {matchups.map((matchup) =>
         <ChatWindow
           active={(activeChat && matchup.session) && activeChat === matchup.session.id ? true : false}
           matchup={matchup}
           closeChat={handleCloseChat}
+          openChat={handleOpenChat}
           key={matchup.user[0].id}
         />
-
       )}
     </>
   )

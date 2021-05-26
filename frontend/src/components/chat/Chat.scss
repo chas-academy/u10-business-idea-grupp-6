@@ -23,6 +23,7 @@
     float: left;
 }
 
+
 .chat-options-wrapper{
     position: relative;
     display: block;
@@ -63,3 +64,10 @@
 
 }
 
+.chat-displayname {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    font-size: $font-lg;
+}
