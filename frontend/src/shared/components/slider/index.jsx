@@ -95,11 +95,10 @@ const Slider = ({ name, defaults }) => {
 
   return (
     <div className="slider">
-      <div className="slider-checkbox-container">
-        <input
-          className="slider-checkbox"
-          type="checkbox"
-          id={name}
+      <div>
+        <input 
+          type="checkbox" 
+          id={name} 
           onChange={toggleInputType}
           onClick={toggleHandler}
         />
@@ -110,15 +109,15 @@ const Slider = ({ name, defaults }) => {
           {name}
         </label>
 
-        <p className="slider-data">
-          {toggle ? `${sliderValue.start}:00 to ${sliderValue.end}:00` : `never`}
-        </p>
+        <p>
+          { toggle ? `${sliderValue.start}:00 to ${sliderValue.end}:00` : `never` }
+        </p> 
       </div>
 
-      <div className={toggle ? "slider-middle" : "slider-middle hidden"}>
-        <input
-          type="range"
-          id={`${name}-start`}
+      <div className={(!toggle) && 'hidden'}>
+        <input 
+          type="range" 
+          id={`${name}-start`} 
           defaultValue="0"
           onMouseUp={submit}
         />
@@ -130,12 +129,12 @@ const Slider = ({ name, defaults }) => {
           onMouseUp={submit}
         />
 
-        <div className="slider-container">
-          <div className="slider-track" />
-          <div className={`slider-range ${name}-range`} />
-          <div className={`slider-thumb start ${name}-start`} />
-          <div className={`slider-thumb end ${name}-end`} />
-        </div>
+        <span className="slider-container">
+          <span className="slider-track"/>
+          <span className={`slider-range ${name}-range`}/>
+          <span className={`slider-thumb start ${name}-start`}/>
+          <span className={`slider-thumb end ${name}-end`}/>
+        </span>
       </div>
     </div>
   );

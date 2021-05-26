@@ -1,29 +1,19 @@
 @import "global.scss";
 
-.verify-title {
-  text-align: center;
-  font-size: $font-xl;
-  margin-bottom: 15px;
-  margin-top: 200px;
+.verify {
+  margin: auto;
+  max-width: 25rem;
+
+  h1{
+    @include large-title();
+    margin-top: 12.5rem;
+  }
+
+  p {
+    @include paragraph();
+    opacity: 0.5;
+    margin-bottom: 12.5rem;
+  }
 }
 
-.verify-container {
-  margin: auto;
-  margin-top: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
-}
 
-.verify-text {
-  text-align: center;
-  opacity: 0.5;
-  width: 100%;
-  max-width: 270px;
-  margin: auto;
-  margin-top: 20px;
-  font-size: $font-sm;
-}

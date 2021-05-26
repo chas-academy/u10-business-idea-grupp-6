@@ -4,22 +4,23 @@ $color-black:      #191720;
 $color-dark-gray:  #24212E;
 $color-light-gray: #454556;
 $color-super-light-gray: #777797;
+$color-super-dark-gray: #191720;
 
 //FONT-SIZE
-$font-xs: 12px;
-$font-sm: 14px;
-$font-md: 16px;
-$font-lg: 24px;
-$font-xl: 40px;
+$font-xs: 0.75rem;
+$font-sm: 0.875rem;
+$font-md: 1rem;
+$font-lg: 1.5rem;
+$font-xl: 2.5rem;
 
 //BORDER
 $border: solid 1px #ffffff1f;
 $border-hover: solid 1px #bdbdbd;
-
+$border-error: 1px solid #D8000C;
 //BORDER-RADIUS
-$rounded-sm: 10px;
-$rounded-md: 17px;
-$rounded-lg: 20px;
+$rounded-sm: 0.625rem;
+$rounded-md: 1.0625rem;
+$rounded-lg: 1.25rem;
 
 //FONT
 $font-roboto: 'Roboto', sans-serif;

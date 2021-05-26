@@ -1,0 +1,37 @@
+@import "global.scss";
+
+.showcase {
+  margin-bottom: 1.875rem;
+  display: flex;
+  justify-content: space-between;
+
+  .arrow-icon {
+    margin: auto 4%;
+    cursor: pointer;
+
+    &.disabled {
+      opacity: 0.3;
+    }
+  }
+
+  div {
+    width: 100%;
+    column-gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(4.375rem, 1fr) minmax(4.375rem, 1fr));
+    grid-gap: 1.25rem;
+
+    span {
+      @include center();
+      margin: 0;
+      text-align: center;
+      background-color: $color-dark-gray;
+      padding: .625rem;
+      width: 100%;
+      border-radius: $rounded-lg;
+      font-size: $font-xs;
+      border: $border;
+      box-shadow: 0 .625rem .8125rem -0.4375rem #0000005d;
+    }
+  }
+}

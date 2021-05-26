@@ -58,19 +58,21 @@ const EditProfile = () => {
         console.log(error);
         setErrorDisplayName(error.response.data.error.display_name);
       });
-  };
+  }
 
   return (
-    <>
-      <h1 className="profile-title">
+    <div className="edit-profile">
+
+      <h1>
         Edit Profile
       </h1>
 
-      <h2 className="profile-sub-title">
+      <h2>
         This is your public profile that other people can see
       </h2>
 
-      <form className="profile-form" onSubmit={submit}>
+      <form
+        onSubmit={submit}>
 
         {errorDisplayName && <MessageError message={errorDisplayName} />}
 
@@ -107,7 +109,7 @@ const EditProfile = () => {
         <ButtonSubmit name="Update Profile" />
 
       </form>
-    </>
+    </div>
   );
 };
 
