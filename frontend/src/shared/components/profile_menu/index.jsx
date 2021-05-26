@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../index';
 
-const ProfileMenu = () => {
+const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name}) => {
   const openMenuBtn = (
     <FontAwesomeIcon
-      id="profileMenu"
+      // id="profileMenu"
       icon={faEllipsisH}
       className="icon icon-medium"
     />
@@ -22,27 +22,27 @@ const ProfileMenu = () => {
     <>
       <NavLink
         exact
-        to='/preferences'
-        className='navlink'
-        activeClassName='navlink'
+        to={navLink1}
+        className="navlink"
+        activeClassName="navlink"
       >
-        Set preferences
+        {navLink1Name}
       </NavLink>
 
       <NavLink
         exact
-        to='/change-password'
-        className='navlink'
-        activeClassName='navlink'
+        to={navLink2}
+        className="navlink"
+        activeClassName="navlink"
       >
-        Change password
+        {navLink2Name}
       </NavLink>
 
       <NavLink
         exact
-        to='/login'
-        className='navlink'
-        activeClassName='navlink'
+        to="/login"
+        className="navlink"
+        activeClassName="navlink"
       >
         Log out (placeholder)
       </NavLink>

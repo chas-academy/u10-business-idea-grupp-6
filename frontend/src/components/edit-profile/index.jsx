@@ -71,8 +71,11 @@ const EditProfile = () => {
   return (
     <div className="edit-profile">
 
-      <ProfileMenu 
-      
+      <ProfileMenu
+        navLink1="/preferences"
+        navLink1Name="Set preferences"
+        navLink2="/change-password"
+        navLink2Name="Change password"
       />
 
       <h1>

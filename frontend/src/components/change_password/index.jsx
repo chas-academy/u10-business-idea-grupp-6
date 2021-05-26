@@ -7,6 +7,7 @@ import {
   InputPassword,
   ButtonSubmit,
   MessageError,
+  ProfileMenu,
 } from '../../shared/components';
 import { PATCH } from '../../shared/services/requests';
 
@@ -43,17 +44,19 @@ const ChangePassword = () => {
 
   return (
     <div className="edit-password">
-      <h1>
-        Change Password
-      </h1>
 
-      <h2>
-        Please fill in the details if you want to change your password
-      </h2>
+      <ProfileMenu
+        navLink1="/preferences"
+        navLink1Name="Set preferences"
+        navLink2="/edit-profile"
+        navLink2Name="Edit profile"
+      />
 
-      <form
-        onSubmit={submit}>
+      <h1>Change Password</h1>
 
+      <h2>Please fill in the details if you want to change your password</h2>
+
+      <form onSubmit={submit}>
         {errorCurrentPwd && <MessageError message={errorCurrentPwd} />}
 
         <InputPassword
@@ -72,9 +75,7 @@ const ChangePassword = () => {
         />
 
         <ButtonSubmit name="Update" />
-
       </form>
-
     </div>
   );
 };
