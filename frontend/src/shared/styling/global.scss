@@ -57,9 +57,6 @@ main {
   animation-duration: 1.3s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  height: 6.25rem;
-  width: 6.25rem;
-  margin: 2rem auto;
   display: none;
 
   &.shown {
@@ -67,6 +64,7 @@ main {
   }
 
   &.large {
+    margin: 45vh auto; 
     font-size: 10rem;
   }
 }
