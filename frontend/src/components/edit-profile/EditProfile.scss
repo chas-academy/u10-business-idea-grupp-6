@@ -1,4 +1,4 @@
-@import 'global.scss';
+@import "global.scss";
 
 .edit-profile {
   h1 {
@@ -53,4 +53,8 @@
 .button-modal {
   @include button();
   margin-bottom: 1.875rem;
+}
+
+.close-btn {
+  display: none;
 }

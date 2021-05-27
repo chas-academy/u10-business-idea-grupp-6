@@ -11,20 +11,28 @@ import {
   ProfileMenu
 } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
-
+// import default_profile_image from '../../shared/assets/images/default_profile_image.png';
+// import enzo from '../../shared/assets/images/enzo.png';
+// import hannes from '../../shared/assets/images/hannes.png';
+// import jamil from '../../shared/assets/images/jamil.png';
+// import karin from '../../shared/assets/images/karin.png';
+// import mehrdad from '../../shared/assets/images/mehrdad.png';
+// import nouman from '../../shared/assets/images/nouman.png';
+// import oskar from '../../shared/assets/images/oskar.png';
+// import simon from '../../shared/assets/images/simon.png';
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(''),
         [oldDisplayName, setOldDisplayName] = useState(''),
         [country, setCountry] = useState(''),
-        // [imgPath, setImgPath] = useState(''),
+        [imgPath, setImgPath] = useState('default_profile_image'),
         [body, setBody] = useState(''),
         [errorDisplayName, setErrorDisplayName] = useState(null),
         [options, setOptions] = useState(countries);
 
   const getDisplayName = (e) => setDisplayName(e),
         getCountry = (e) => setCountry(e),
-        // getImgPath = (e) => setImgPath(e),
+        getImgPath = (e) => setImgPath(e),
         getBody = (e) => setBody(e);
 
   const userId = localStorage.getItem('user_id');
@@ -35,6 +43,7 @@ const EditProfile = () => {
         setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
         setCountry(data.data.country)
+        setImgPath(data.data.img_path)
         setBody(data.data.body);
       })
       .catch((error) => {
@@ -48,7 +57,7 @@ const EditProfile = () => {
 
     const data = {
       country: country,
-      // img_path: imgPath,
+      img_path: imgPath,
       body: body,
     };
 
@@ -67,6 +76,46 @@ const EditProfile = () => {
         setErrorDisplayName(error.response.data.error.display_name);
       });
   }
+
+  const modalContent = (
+    <>
+      <img onClick={e=>setPicPath(e)} path="enzo" src={require('../../shared/assets/images/enzo.png').default} />
+      {/* <img src={default_profile_image}/> */}
+      {/* <img data-path={enzo} onClick={e=>setPicPath(e)} src={enzo}/>
+      <img onClick={e=>setPicPath(e)} src={hannes}/>
+      <img src={jamil}/>
+      <img src={karin}/>
+      <img src={mehrdad}/>
+      <img src={nouman}/>
+      <img src={oskar}/>
+      <img src={simon}/> */}
+    </>
+  )
+
+  // const modalContent = {
+  //   default_profile_image: default_profile_image,
+  //   enzo: enzo,
+  //   jamil: jamil,
+  //   hannes: hannes,
+  //   karin: karin,
+  //   mehrdad: mehrdad,
+  //   nouman: nouman,
+  //   oskar: oskar,
+  //   simon: simon
+  // };
+
+  const setPicPath = (e) => {
+    console.log(e.target.attributes.path.value);
+    setImgPath(e.target.attributes.path.value);
+  }
+  const clickPic = (
+    <>
+      <img
+       src={require(`../../shared/assets/images/${imgPath}.png`).default}
+      >
+      </img>
+    </>
+  )
 
   return (
     <div className="edit-profile">
@@ -101,11 +150,11 @@ const EditProfile = () => {
         />
 
         <Modal
-          modalContent="Hello Modal!"
+          modalContent={modalContent}
           openBtnClass="button-modal"
-          closeBtnClass="button-modal"
-          openBtnText="Open Modal"
-          closeBtnText="Close Modal"
+          closeBtnClass="close-btn"
+          openBtnText={clickPic}
+          closeBtnText=""
           modalClass="modal"
           modalOverlayClass="modal-overlay"
         />
