@@ -7,13 +7,13 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
         [pwdConfValue, setPwdConfValue] = useState('');
 
   const inputValue = (input) => {
-        setPwdValue(input);
-        getState(input);
+    setPwdValue(input);
+    getState(input);
   };
 
   const inputConfValue = (input) => {
-        setPwdConfValue(input);
-        getStateConf(input);
+    setPwdConfValue(input);
+    getStateConf(input);
   };
 
   const toggleInputType = () => {

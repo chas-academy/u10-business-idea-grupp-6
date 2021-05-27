@@ -5,8 +5,8 @@ const Input = ({ placeholder, type, name, getState, currentValue }) => {
   const [value, setValue] = useState('');
 
   const inputValue = (input) => {
-        setValue(input);
-        getState(input);
+    setValue(input);
+    getState(input);
   };
 
   return (

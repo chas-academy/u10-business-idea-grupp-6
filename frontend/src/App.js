@@ -25,17 +25,23 @@ const App = () => {
 
   const logout = () => {
     setAuthLoading(true);
-    GET('logout').then(data => {
-      setAuthLoading(false);
-      setIsAuth(null);
+    GET('logout')
+      .then(data => {
+        setAuthLoading(false);
+        setIsAuth(null);
 
         localStorage.removeItem('token');
         localStorage.removeItem('user_id');
 
-      window.location.reload();
-    }).catch(e => {
-      setAuthLoading(false);
-      setIsAuth(null);
+        window.location.reload();
+      })
+      .catch(e => {
+        setAuthLoading(false);
+        setIsAuth(null);
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('timezone_offset');
 
         window.location.reload();
       });
@@ -47,23 +53,27 @@ const App = () => {
       !window.location.pathname.includes('register'))
     ) {
       setAuthLoading(true);
-      GET('verify-auth').then((data) => {
-        setAuthLoading(false);
+      GET('verify-auth')
+        .then((data) => {
+          setAuthLoading(false);
 
-        if (data.status !== 200)
-          logout();
-      }).catch((error) => logout());
+          if (data.status !== 200)
+            logout();
+        }).catch((error) => logout());
     }
   }, [isAuth])
 
   const getIsAuth = e => setIsAuth(e),
-    getAuthLoading = e => setAuthLoading(e);
+        getAuthLoading = e => setAuthLoading(e);
 
   return (
     <>
       {authLoading &&
         <span className="spinner-overlay shown">
-          <FontAwesomeIcon icon={faSpinner} className="spinner shown large" />
+          <FontAwesomeIcon
+            icon={faSpinner}
+            className="spinner shown large"
+          />
         </span>
       }
 
