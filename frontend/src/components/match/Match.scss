@@ -35,6 +35,29 @@
       left: 1.25rem;
     }
   }
+
+  .container-nomatch{
+    height: 26rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .nomatch{
+      margin: 0 auto;
+      margin-top: 3.125rem;
+      max-width: 50rem;
+      height: 6.25rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
 }
 
 .spinner {
