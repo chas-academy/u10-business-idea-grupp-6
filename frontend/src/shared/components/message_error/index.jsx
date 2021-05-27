@@ -1,5 +1,5 @@
-import React from "react";
-import "./MessageError.scss";
+import React from 'react';
+import './MessageError.scss';
 
 const MessageError = ({ message }) => {
   return (
@@ -9,6 +9,6 @@ const MessageError = ({ message }) => {
       </div>
     </div>
   );
-}
+};
 
 export default MessageError;

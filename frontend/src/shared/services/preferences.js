@@ -33,13 +33,29 @@ export const PREFERENCES = () => {
   .then(response => response.data.data.preferences);
 }
 
-export const DROPDOWN = (elem, diff, type) => {
-
+export const DROPDOWNMULTI = (elem, diff, type) => {
   const id = elem
   .filter(item => !diff.includes(item))
   .concat(diff.filter(item => !elem.includes(item)))
   [0]
   ?.id;
+
+  if(id) {
+    const data = {
+      model: `${type}s`,
+      model_id: id
+    }
+
+    POST('prefs', data).then(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
+  }
+}
+
+export const DROPDOWN = (elem, type) => {
+  const id = elem.id;
 
   if(id) {
     const data = {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Switch.scss';
-import { SWITCH } from "../../services/preferences";
+import { SWITCH } from '../../services/preferences';
 
-const Switch = ({type, data, defaults}) => {
-
+const Switch = ({ type, data, defaults }) => {
   useEffect(() => {
-    document.getElementById(data[type]).checked = 
-    defaults?.some(elem => elem.id === data.id);
-  }, [defaults])
+    document.getElementById(data[type]).checked = defaults?.some(
+      (elem) => elem.id === data.id
+    );
+  }, [defaults]);
 
   const handleChange = (event) => SWITCH(type, data.id);
 
@@ -23,7 +23,7 @@ const Switch = ({type, data, defaults}) => {
           {data[type]}
         </label>
     </div>
-  )
-}
+  );
+};
 
 export default Switch;

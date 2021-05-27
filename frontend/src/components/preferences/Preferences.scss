@@ -4,6 +4,7 @@
 
   h1 {
     @include title();
+    margin-top: 1rem;
   }
 
   .container {

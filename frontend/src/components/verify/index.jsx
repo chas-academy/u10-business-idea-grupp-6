@@ -1,9 +1,9 @@
-import React from "react";
-import "./Verify.scss";
-import { ButtonSubmit } from "../../shared/components";
+import React from 'react';
+import './Verify.scss';
+import { ButtonSubmit } from '../../shared/components';
 
 const Verify = () => {
-  const submit = () => console.log("This is just a placeholder");
+  const submit = () => console.log('This is just a placeholder');
 
   return (
     <div className="verify">
