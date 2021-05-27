@@ -2,32 +2,41 @@ import React, { useEffect, useState } from 'react'
 import { echo, POST } from '../../shared/services/requests';
 import './ChatWindow.scss';
 
-const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
+const ChatWindow = ({ active, matchup, closeChat, openChat, readChat }) => {
 
     const [inputValue, setInputValue] = useState(""),
         [messageLog, setMessageLog] = useState([]),
         [newMessages, setNewMessages] = useState([]);
 
     const read = () => {
-        POST('session/' + matchup.session.id + '/read');
+        if(matchup.session?.id){
+            POST('session/' + matchup.session?.id + '/read');
+            console.log('reading chat')
+            readChat(matchup.id)
+        }
+        
     }
 
     useEffect(() => {
         openChat()
-        read();
+        
         if (active) {
+            read();
             if (!(messageLog.length)) {
                 POST('session/' + matchup.session.id + '/chats').then(data => {
                     setMessageLog((previousState) => [...data.data.data]);
                 });
             }
-            /* Fungerar ej än
+            // Fungerar ej än
             echo.private(`Chat.${matchup.session.id}`).listen('MsgReadEvent', (e) =>
+            {console.log("msgreadevent, ", e);
+            const chat = e.chat;
+            
                 messageLog.forEach(
                     message => (console.log(message))
-                )
-            )
-            */
+                )}
+            )//detta behövs nödvändigtvis inte tycker jag
+            
 
             // echo.join(`Chat.${matchup.session.id}.presence`).here((users) => console.log(users));
 
