@@ -11,7 +11,7 @@ import {
 } from '../../shared/components';
 import { PATCH } from '../../shared/services/requests';
 
-const ChangePassword = () => {
+const ChangePassword = ({logoutHandler}) => {
   const [currentPwd, setCurrentPwd] = useState(''),
         [newPwd, setNewPwd] = useState(''),
         [newPwdConf, setNewPwdConf] = useState(''),
@@ -52,6 +52,7 @@ const ChangePassword = () => {
         navLink2Name="Edit profile"
         navLink3="/preferences"
         navLink3Name="Set preferences"
+        logoutHandler={logoutHandler}
       />
 
       <h1>Change Password</h1>

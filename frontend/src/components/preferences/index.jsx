@@ -3,7 +3,7 @@ import './Preferences.scss';
 import { Slider, InputDropdownMulti, Input, Switch, ProfileMenu } from "../../shared/components/";
 import { OPTIONS, PREFERENCES } from "../../shared/services/preferences";
 
-const Preferences = () => {
+const Preferences = ({logoutHandler}) => {
   const [options, setOptions] = useState(),
         [defaults, setDefaults] = useState();
 
@@ -22,6 +22,7 @@ const Preferences = () => {
         navLink2Name="Edit profile"
         navLink3="/change-password"
         navLink3Name="Change password"
+        logoutHandler={logoutHandler}
       />
 
       <h1>

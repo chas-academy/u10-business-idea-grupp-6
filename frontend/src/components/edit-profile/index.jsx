@@ -13,7 +13,7 @@ import { PATCH, GET } from '../../shared/services/requests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-const EditProfile = () => {
+const EditProfile = ({logoutHandler}) => {
   const [displayName, setDisplayName] = useState(''),
         [oldDisplayName, setOldDisplayName] = useState(''),
         [country, setCountry] = useState(''),
@@ -112,6 +112,7 @@ const EditProfile = () => {
         navLink2Name="Set preferences"
         navLink3="/change-password"
         navLink3Name="Change password"
+        logoutHandler={logoutHandler}
       />
       
       {!loading && <>
