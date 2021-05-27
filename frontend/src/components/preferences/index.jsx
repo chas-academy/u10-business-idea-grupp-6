@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Preferences.scss';
-import { Slider, InputDropdownMulti, Input, Switch } from "../../shared/components/";
+import { Slider, InputDropdownMulti, Input, Switch, ProfileMenu } from "../../shared/components/";
 import { OPTIONS, PREFERENCES } from "../../shared/services/preferences";
 
 const Preferences = () => {
@@ -14,6 +14,14 @@ const Preferences = () => {
 
   return (
     <div className="preferences">
+
+      <ProfileMenu
+        navLink1="/edit-profile"
+        navLink1Name="Edit profile"
+        navLink2="/change-password"
+        navLink2Name="Change password"
+      />
+
       <h1>
         Setup Preferences
       </h1>

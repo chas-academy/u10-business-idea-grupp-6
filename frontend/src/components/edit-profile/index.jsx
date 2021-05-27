@@ -8,6 +8,7 @@ import {
   ButtonSubmit,
   MessageError,
   Modal,
+  ProfileMenu
 } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
 
@@ -15,7 +16,7 @@ import { PATCH, GET } from '../../shared/services/requests';
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(''),
         [oldDisplayName, setOldDisplayName] = useState(''),
-        [country, setCountry] = useState(""),
+        [country, setCountry] = useState(''),
         // [imgPath, setImgPath] = useState(''),
         [body, setBody] = useState(''),
         [errorDisplayName, setErrorDisplayName] = useState(null),
@@ -70,6 +71,13 @@ const EditProfile = () => {
   return (
     <div className="edit-profile">
 
+      <ProfileMenu
+        navLink1="/preferences"
+        navLink1Name="Set preferences"
+        navLink2="/change-password"
+        navLink2Name="Change password"
+      />
+
       <h1>
         Edit Profile
       </h1>
@@ -79,7 +87,8 @@ const EditProfile = () => {
       </h2>
 
       <form
-        onSubmit={submit}>
+        onSubmit={submit}
+      >
 
         {errorDisplayName && <MessageError message={errorDisplayName} />}
 
@@ -93,8 +102,12 @@ const EditProfile = () => {
 
         <Modal
           modalContent="Hello Modal!"
-          openModalBtnClass="button-modal"
-          closeModalBtnClass="button-modal"
+          openBtnClass="button-modal"
+          closeBtnClass="button-modal"
+          openBtnText="Open Modal"
+          closeBtnText="Close Modal"
+          modalClass="modal"
+          modalOverlayClass="modal-overlay"
         />
 
         <InputDropdown

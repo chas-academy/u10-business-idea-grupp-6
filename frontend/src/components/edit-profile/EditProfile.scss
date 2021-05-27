@@ -1,20 +1,56 @@
 @import 'global.scss';
 
 .edit-profile {
-
   h1 {
-   @include title();
+    @include title();
+    margin-top: 1rem;
   }
 
   h2 {
-   @include sub-title();
+    @include sub-title();
   }
 
   form {
-    @include flex(
-      space-between, 
-      center, 
-      column
-    );
+    @include flex(space-between, center, column);
   }
+}
+
+.modal {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  background: $color-dark-gray;
+  color: $color-white;
+  height: 100%;
+  max-height: 650px;
+  width: 100%;
+  min-width: 250px;
+  max-width: 400px;
+  border: none;
+  border-radius: $rounded-sm;
+  overflow: auto;
+  outline: none;
+  padding: 20px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  // the $color-black var in rgba to make it transparent w/o affecting children
+  background-color: rgba(25, 23, 32, 0.6);
+  z-index: 11;
+}
+
+.button-modal {
+  @include button();
+  margin-bottom: 1.875rem;
 }

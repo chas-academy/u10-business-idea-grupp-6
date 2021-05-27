@@ -9,6 +9,7 @@ import Slider from './slider/';
 import Showcase from './showcase/';
 import Switch from './switch/';
 import Modal from './modal/';
+import ProfileMenu from './profile_menu';
 import Textarea from './textarea/';
 
 export {
@@ -18,10 +19,11 @@ export {
   InputDropdownMulti,
   InputDropdown,
   InputPassword,
+  MessageError,
   Modal,
   Slider,
   Showcase,
   Switch,
-  MessageError,
+  ProfileMenu,
   Textarea,
 };
