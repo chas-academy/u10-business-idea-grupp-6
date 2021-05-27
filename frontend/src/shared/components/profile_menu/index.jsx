@@ -6,7 +6,7 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../index';
 import { GET } from '../../services/requests';
 
-const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name}) => {
+const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, navLink3Name}) => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
         [authLoading, setAuthLoading] = useState(false);
 
