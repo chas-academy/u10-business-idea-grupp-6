@@ -20,7 +20,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
-    [authLoading, setAuthLoading] = useState(false);
+        [authLoading, setAuthLoading] = useState(false);
 
   const logout = () => {
     setAuthLoading(true);
@@ -108,25 +108,7 @@ const App = () => {
                   />
                 )}
               />
-
-              <Route
-                path="/verified"
-                exact
-                component={Verified}
-              />
-
-              <Route
-                path="/already-verified"
-                exact
-                component={AlreadyVerified}
-              />
-
-              <Route
-                path="/verify"
-                exact
-                component={Verify}
-              />
-
+              
               <Route
                 component={Home}
               />
@@ -170,6 +152,24 @@ const App = () => {
                 path="/edit-profile"
                 exact
                 component={EditProfile}
+              />
+
+              <Route
+                path="/verified"
+                exact
+                component={Verified}
+              />
+
+              <Route
+                path="/already-verified"
+                exact
+                component={AlreadyVerified}
+              />
+
+              <Route
+                path="/verify"
+                exact
+                component={Verify}
               />
 
               <Route

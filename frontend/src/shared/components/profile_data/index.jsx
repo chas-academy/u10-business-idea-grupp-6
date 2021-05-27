@@ -31,14 +31,19 @@ const ProfileData = ({ data, preferences }) => {
       </p>
 
       <div className="showcase-container">
+        {preferences.games && <>
+          <p>games</p>
 
-        <p>games</p>
+          <Showcase data={preferences.games} type="game" />
+        </>
+        }
 
-        <Showcase data={preferences.games} type="game" />
+        {preferences.games && <>
+          <p>genres</p>
 
-        <p>genres</p>
-
-        <Showcase data={preferences.genres} type="genre" />
+          <Showcase data={preferences.genres} type="game" />
+        </>
+        }
       </div>
 
 
