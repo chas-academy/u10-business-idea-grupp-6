@@ -24,11 +24,6 @@ const Notification = ({ auth }) => {
             }`
           );
         });
-
-      //THIS DOESNT WORK!!!!!!!
-      // echo.join('Chat').here((user) => {
-      //     console.log(user)
-      // });
     }
   }, [auth]);
 
