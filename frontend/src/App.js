@@ -18,6 +18,7 @@ import Profile from './components/profile/';
 import { GET } from './shared/services/requests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import YourProfile from './components/your_profile';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
@@ -154,6 +155,13 @@ const App = () => {
             path="/profile"
             exact
             component={Profile}
+          />
+
+          <Route
+            path="/your-profile"
+            exact
+            component={YourProfile}
+            isAuth={isAuth}
           />
           
           <Route
