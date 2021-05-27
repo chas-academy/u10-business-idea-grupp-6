@@ -4,12 +4,12 @@ import AsyncSelect from 'react-select/async';
 import { DROPDOWN } from '../../services/preferences';
 import { POST } from '../../services/requests';
 
-const InputDropdown = ({placeholder, type, data, defaults}) => {
+const InputDropdown = ({ placeholder, type, data, defaults }) => {
   const [selectedOption, setSelectedOption] = useState([]),
         [defaultValue, setDefaultValue] = useState([]),
         [options, setOptions] = useState();
 
-  useEffect(() => { 
+  useEffect(() => {
     const formatted = data?.map(i => ({
       value: i[type],
       label: i[type],
@@ -18,24 +18,24 @@ const InputDropdown = ({placeholder, type, data, defaults}) => {
     setOptions(formatted);
   }, [data]);
 
-  useEffect(() => { 
+  useEffect(() => {
     const formatted = defaults?.map(i => ({
       value: i[type],
       label: i[type],
       id: i.id
     }));
-    
+
     setDefaultValue(formatted);
     setSelectedOption(formatted);
   }, [defaults]);
 
   const promiseOptions = (inputValue) =>
     new Promise(resolve => resolve(filterOptions(inputValue))
-  );
+    );
 
   const filterOptions = (inputValue) =>
     options.filter(i => i.label.toLowerCase().includes(inputValue.toLowerCase())
-  );
+    );
 
   const handleChange = (elem) => {
     DROPDOWN(elem, selectedOption, type);
@@ -55,6 +55,8 @@ const InputDropdown = ({placeholder, type, data, defaults}) => {
         closeMenuOnSelect={false}
         className="input-dropdown"
         onChange={(e) => handleChange(e)}
+        menuPortalTarget={document.body}
+        menuPosition={"absolute"} 
       />
     </>
   )
@@ -77,11 +79,12 @@ const customStyles = {
       border: 'solid 1px white',
     },
   }),
-    indicatorSeparator: () => ({
+  indicatorSeparator: () => ({
   }),
   option: () => ({
     color: 'black',
     margin: '10px',
+    zIndex: 9999
   }),
   input: () => ({
     color: 'white',
@@ -112,5 +115,9 @@ const customStyles = {
   }),
   NoOptionsMessage: base => ({
     content: 'text'
+  }),
+  menuPortal: base => ({
+    ...base,
+    zIndex: 9999
   })
 }
