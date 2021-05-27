@@ -5,7 +5,7 @@ import { PREFERENCES } from "../../shared/services/preferences";
 import { GET } from '../../shared/services/requests';
 import { ProfileMenu } from '../../shared/components';
 
-const YourProfile = () => {
+const YourProfile = ({logoutHandler}) => {
   const [userData, setUserData] = useState(),
         [preferences, setPreferences] = useState(),
         [loading, setLoading] = useState(false);
@@ -43,10 +43,10 @@ const YourProfile = () => {
         navLink2Name="Set preferences"
         navLink3="/change-password"
         navLink3Name="Change password"
-          
+        logoutHandler={logoutHandler}
         />
       <div className="profile">
-        {!loading &&
+        {!loading && userData &&
         <ProfileData
           data={userData}
           preferences={preferences}

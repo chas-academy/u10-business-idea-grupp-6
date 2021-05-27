@@ -147,13 +147,24 @@ const App = () => {
               <Route
                 path="/preferences"
                 exact
-                component={Preferences}
+                render={(props) => (
+                  <Preferences
+                    {...props}
+                    logoutHandler={logout}
+                  />
+                )}
+                
               />
 
               <Route
                 path="/change-password"
                 exact
-                component={ChangePassword}
+                render={(props) => (
+                  <ChangePassword
+                    {...props}
+                    logoutHandler={logout}
+                  />
+                )}
               />
 
               <Route
@@ -165,13 +176,23 @@ const App = () => {
               <Route
                 path="/edit-profile"
                 exact
-                component={EditProfile}
+                render={(props) => (
+                  <EditProfile
+                    {...props}
+                    logoutHandler={logout}
+                  />
+                )}
               />
 
               <Route
                 path="/your-profile"
                 exact
-                component={YourProfile}
+                render={(props) => (
+                  <YourProfile
+                    {...props}
+                    logoutHandler={logout}
+                  />
+                )}
               />
 
               <Route

@@ -6,29 +6,7 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../index';
 import { GET } from '../../services/requests';
 
-const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, navLink3Name}) => {
-  const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
-        [authLoading, setAuthLoading] = useState(false);
-
-  const logout = () => {
-    setAuthLoading(true);
-    GET('logout')
-      .then((data) => {
-        setAuthLoading(false);
-        setIsAuth(null);
-
-        localStorage.removeItem('token');
-        localStorage.removeItem('user_id');
-
-        window.location.reload();
-      })
-      .catch((e) => {
-        setAuthLoading(false);
-        setIsAuth(null);
-
-        window.location.reload();
-      });
-  };
+const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, navLink3Name, logoutHandler}) => {
   
   const openMenuBtn = (
     <FontAwesomeIcon
@@ -71,7 +49,7 @@ const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, 
         to="/"
         className="navlink"
         activeClassName="navlink"
-        onClick={logout}
+        onClick={logoutHandler}
       >
         Log out
       </NavLink>
