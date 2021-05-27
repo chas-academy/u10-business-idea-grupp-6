@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProfileMenu.scss';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../index';
+import { GET } from '../../services/requests';
 
 const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name}) => {
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
+        [authLoading, setAuthLoading] = useState(false);
+
+  const logout = () => {
+    setAuthLoading(true);
+    GET('logout')
+      .then((data) => {
+        setAuthLoading(false);
+        setIsAuth(null);
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+
+        window.location.reload();
+      })
+      .catch((e) => {
+        setAuthLoading(false);
+        setIsAuth(null);
+
+        window.location.reload();
+      });
+  };
+  
   const openMenuBtn = (
     <FontAwesomeIcon
-      // id="profileMenu"
       icon={faEllipsisH}
       className="icon icon-medium"
     />
   );
-
-  // const profileMenu = document.querySelector('#profileMenu');
-  // const menuModal = document.querySelector('.menu-modal')
-  // menuModal.appendChild(profileMenu);
 
   const modalMenu = (
     <>
@@ -40,11 +59,12 @@ const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name}) => {
 
       <NavLink
         exact
-        to="/login"
+        to="/"
         className="navlink"
         activeClassName="navlink"
+        onClick={logout}
       >
-        Log out (placeholder)
+        Log out
       </NavLink>
     </>
   );
