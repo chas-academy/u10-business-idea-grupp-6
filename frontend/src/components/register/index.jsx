@@ -31,12 +31,12 @@ const Register = ({getToken, getAuthLoading}) => {
     getAuthLoading(true);
     POST('register', data).then(data => {
       getAuthLoading(false);
+      setRedirectVerify(true);
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('user_id', data.data.user.id);
       localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
       
       getToken(localStorage.getItem('token'));
-      setRedirectVerify(true);
     }).catch(error => {
       getAuthLoading(false);
       setErrorEmail(error.response.data.errors.email);
