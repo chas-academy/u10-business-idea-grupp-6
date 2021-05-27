@@ -59,7 +59,6 @@ const Match = () => {
 
   return (
     <div className="match">
-
       {!loading &&
         <div className="container">
           {current &&

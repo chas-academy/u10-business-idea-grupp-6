@@ -24,9 +24,11 @@
 }
 
 body {
-  @include center();
+  display: flex;
+  justify-content: center;
   color: $color-white;
   background-color: $color-black;
+  height: 100vh;
 }
 
 main {
@@ -44,11 +46,11 @@ main {
   }
 
   &.icon-medium {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   &.icon-large {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
