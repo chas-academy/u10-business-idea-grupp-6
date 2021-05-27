@@ -1,5 +1,4 @@
-import { Route, BrowserRouter as Router } from 'react-router-dom';
-import ProtectedRoute from './guard/protected_route';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Home from './components/home/';
 import Menu from './components/menu/';
@@ -21,8 +20,8 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
-        [authLoading, setAuthLoading] = useState(false);
-  
+    [authLoading, setAuthLoading] = useState(false);
+
   const logout = () => {
     setAuthLoading(true);
     GET('logout').then(data => {
@@ -50,20 +49,20 @@ const App = () => {
     if (isAuth && (
       !window.location.pathname.includes('verify') &&
       !window.location.pathname.includes('register'))
-      ){
-        setAuthLoading(true);
-        GET('verify-auth').then((data) => {
-          setAuthLoading(false);
-        
-          if(data.status !== 200)
-            logout();
+    ) {
+      setAuthLoading(true);
+      GET('verify-auth').then((data) => {
+        setAuthLoading(false);
+
+        if (data.status !== 200)
+          logout();
       }).catch((error) => logout());
     }
   }, [isAuth])
 
   const getIsAuth = e => setIsAuth(e),
-        getAuthLoading = e => setAuthLoading(e);
-  
+    getAuthLoading = e => setAuthLoading(e);
+
   return (
     <>
       {authLoading &&
@@ -72,104 +71,113 @@ const App = () => {
         </span>
       }
 
-      {isAuth && <button onClick={logout}>Log out</button>}
-
-    <Router>
-      <main>
+      <Router>
+        <main>
+          {isAuth && <button onClick={logout}>Log out</button>}
 
           <Notification
             auth={isAuth}
           />
 
-          <Route
-            path="/"
-            exact
-            component={Home}
-          />
-
-          <Route
-            path="/register"
-            render={(props) => (
-              <Register 
-                {...props} 
-                getToken={getIsAuth} 
-                getAuthLoading={getAuthLoading} 
+          {!isAuth && <>
+            <Switch>
+              <Route
+                path="/"
+                exact
+                component={Home}
               />
-            )}
-          />
 
-          <Route
-            path="/login"
-            render={(props) => (
-              <Login 
-                {...props} 
-                getToken={getIsAuth} 
-                getAuthLoading={getAuthLoading}
+              <Route
+                path="/register"
+                render={(props) => (
+                  <Register
+                    {...props}
+                    getToken={getIsAuth}
+                    getAuthLoading={getAuthLoading}
+                  />
+                )}
               />
-            )}
-          />
 
-          <Route
-            path="/match"
-            exact
-            component={Match}
-          />
+              <Route
+                path="/login"
+                render={(props) => (
+                  <Login
+                    {...props}
+                    getToken={getIsAuth}
+                    getAuthLoading={getAuthLoading}
+                  />
+                )}
+              />
 
-          <ProtectedRoute
-            path="/chat"
-            exact
-            component={Chat}
-            isAuth={isAuth}
-          />
+              <Route
+                component={Home}
+              />
+            </Switch>
 
-          <ProtectedRoute
-            path="/verified"
-            exact
-            component={Verified}
-            isAuth={isAuth}
-          />
+          </>}
 
-          <ProtectedRoute
-            path="/already-verified"
-            exact
-            component={AlreadyVerified}
-            isAuth={isAuth}
-          />
+          {isAuth && <>
+            <Switch>
+              <Route
+                path="/"
+                exact
+                component={Match}
+              />
 
-          <ProtectedRoute
-            path="/verify"
-            exact
-            component={Verify}
-            isAuth={isAuth}
-          />
+              <Route
+                path="/chat"
+                exact
+                component={Chat}
+              />
 
-          <ProtectedRoute
-            path="/preferences"
-            exact
-            component={Preferences}
-            isAuth={isAuth}
-          />
+              <Route
+                path="/verified"
+                exact
+                component={Verified}
+              />
 
-          <ProtectedRoute
-            path="/change-password"
-            exact
-            component={ChangePassword}
-            isAuth={isAuth}
-          />
+              <Route
+                path="/already-verified"
+                exact
+                component={AlreadyVerified}
+              />
 
-          <Route
-            path="/profile"
-            exact
-            component={Profile}
-          />
-          
-          <Route
-            path="/edit-profile"
-            exact
-            component={EditProfile}
-            isAuth={isAuth}
-          />
+              <Route
+                path="/verify"
+                exact
+                component={Verify}
+              />
 
+              <Route
+                path="/preferences"
+                exact
+                component={Preferences}
+              />
+
+              <Route
+                path="/change-password"
+                exact
+                component={ChangePassword}
+              />
+
+              <Route
+                path="/profile"
+                exact
+                component={Profile}
+              />
+
+              <Route
+                path="/edit-profile"
+                exact
+                component={EditProfile}
+              />
+
+              <Route
+                component={Match}
+              />
+            </Switch>
+          </>
+          }
         </main>
         <nav>
           {isAuth && <Menu />}
