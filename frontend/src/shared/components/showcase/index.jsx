@@ -43,8 +43,8 @@ const Showcase = ({ data, type }) => {
       />
 
       <div>
-        {items?.map(item =>
-          <span>{item[type]}</span>
+        {items?.map((i, idx) =>
+          <span key={idx}>{i[type]}</span>
         )}
       </div>
 

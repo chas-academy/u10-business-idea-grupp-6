@@ -15,14 +15,14 @@ const ProfileData = ({ data, preferences }) => {
       </h3>
 
       <span>
-        {preferences.player_types.map((i) => {
-          return <h4>{i.player_type}</h4>
+        {preferences.player_types.map((i, idx) => {
+          return <h4 key={idx}>{i.player_type}</h4>
         })}
       </span>
 
       <span>
-        {preferences.langs.map((i) => {
-          return <h5>{i.lang}</h5>
+        {preferences.langs.map((i, idx) => {
+          return <h5 key={idx}>{i.lang}</h5>
         })}
       </span>
 
