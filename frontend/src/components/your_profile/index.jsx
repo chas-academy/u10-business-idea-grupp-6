@@ -18,8 +18,6 @@ const YourProfile = () => {
     GET(`user/${userId}`)
       .then((data) => {
         setUserData(data.data);
-        console.log(data);
-        console.log(data.data);
       })
       .catch((error) => {
         console.log(error);
