@@ -69,7 +69,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
               <Link 
                 to={{
                   pathname: '/profile', 
-                  data: {data: matchup.user[0]}
+                  data: {user: matchup.user[0]}
                 }}
                 >
                   {matchup.user[0].profile.display_name}
