@@ -49,7 +49,7 @@ const Login = ({getToken, getAuthLoading}) => {
       })
   };
 
-  if (redirect) return <Redirect to="/preferences" />;
+  if (redirect) return <Redirect to="/edit-profile" />;
 
   return (
     <div className="login">
