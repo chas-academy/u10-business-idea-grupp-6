@@ -79,7 +79,6 @@ const App = () => {
 
       <Router>
         <main>
-          {isAuth && <button onClick={logout}>Log out</button>}
 
           <Notification
             auth={isAuth}
