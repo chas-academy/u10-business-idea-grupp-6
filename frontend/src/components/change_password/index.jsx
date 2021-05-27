@@ -46,10 +46,12 @@ const ChangePassword = () => {
     <div className="edit-password">
 
       <ProfileMenu
-        navLink1="/preferences"
-        navLink1Name="Set preferences"
+        navLink1="/your-profile"
+        navLink1Name="Your profile"
         navLink2="/edit-profile"
         navLink2Name="Edit profile"
+        navLink3="/preferences"
+        navLink3Name="Set preferences"
       />
 
       <h1>Change Password</h1>

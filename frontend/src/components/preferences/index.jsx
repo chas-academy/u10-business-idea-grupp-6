@@ -16,10 +16,12 @@ const Preferences = () => {
     <div className="preferences">
 
       <ProfileMenu
-        navLink1="/edit-profile"
-        navLink1Name="Edit profile"
-        navLink2="/change-password"
-        navLink2Name="Change password"
+        navLink1="/your-profile"
+        navLink1Name="Your profile"
+        navLink2="/edit-profile"
+        navLink2Name="Edit profile"
+        navLink3="/change-password"
+        navLink3Name="Change password"
       />
 
       <h1>

@@ -42,8 +42,8 @@ const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name}) => {
       <NavLink
         exact
         to={navLink1}
-        className="navlink"
-        activeClassName="navlink"
+        className='navlink'
+        activeClassName='navlink'
       >
         {navLink1Name}
       </NavLink>
@@ -51,17 +51,26 @@ const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name}) => {
       <NavLink
         exact
         to={navLink2}
-        className="navlink"
-        activeClassName="navlink"
+        className='navlink'
+        activeClassName='navlink'
       >
         {navLink2Name}
       </NavLink>
 
       <NavLink
         exact
-        to="/"
-        className="navlink"
-        activeClassName="navlink"
+        to={navLink3}
+        className='navlink'
+        activeClassName='navlink'
+      >
+        {navLink3Name}
+      </NavLink>
+
+      <NavLink
+        exact
+        to='/'
+        className='navlink'
+        activeClassName='navlink'
         onClick={logout}
       >
         Log out

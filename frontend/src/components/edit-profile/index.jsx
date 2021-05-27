@@ -68,10 +68,12 @@ const EditProfile = () => {
     <div className="edit-profile">
 
       <ProfileMenu
-        navLink1="/preferences"
-        navLink1Name="Set preferences"
-        navLink2="/change-password"
-        navLink2Name="Change password"
+        navLink1="/your-profile"
+        navLink1Name="Your profile"
+        navLink2="/preferences"
+        navLink2Name="Set preferences"
+        navLink3="/change-password"
+        navLink3Name="Change password"
       />
       
       {!loading && <>
