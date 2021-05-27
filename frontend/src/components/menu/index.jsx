@@ -10,7 +10,7 @@ const Menu = () => {
     <>
     <div className="nav-background">
       <div className="nav-container">
-        <NavLink exact to="/match" className="icon icon-medium" activeClassName="active-link">
+        <NavLink exact to="/" className="icon icon-medium" activeClassName="active-link">
           <FontAwesomeIcon icon={faHouseUser} />
         </NavLink>
 

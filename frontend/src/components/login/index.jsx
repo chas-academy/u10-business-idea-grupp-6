@@ -23,6 +23,7 @@ const Login = ({getToken, getAuthLoading}) => {
     getAuthLoading(true);
     POST('login', data).then(data => {
       getAuthLoading(false);
+      setRedirect(true);
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('user_id', data.data.user.id);
       localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
@@ -36,14 +37,13 @@ const Login = ({getToken, getAuthLoading}) => {
         console.log(e)
       });
 
-      setRedirect(true);
     }).catch(error => {
       getAuthLoading(false);
       setError(error.response.data.message);
     })
   };
 
-  if(redirect) return <Redirect to="/preferences"/>;
+  if(redirect) return <Redirect to="/"/>;
 
   return (
     <div className="login">
