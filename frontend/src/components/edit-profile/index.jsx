@@ -18,6 +18,7 @@ const EditProfile = () => {
         [oldDisplayName, setOldDisplayName] = useState(''),
         [country, setCountry] = useState(''),
         [body, setBody] = useState(''),
+        [img, setImg] = useState(null),
         [errorDisplayName, setErrorDisplayName] = useState(null),
         [loading, setLoading] = useState(false);
 
@@ -27,6 +28,17 @@ const EditProfile = () => {
 
   const userId = localStorage.getItem('user_id');
 
+  const images = [
+    'enzo',
+    'hannes',
+    'karin',
+    'jamil',
+    'nouman',
+    'oskar',
+    'simon',
+    'mehrdad',
+  ];
+
   useEffect(() => {
     setLoading(true);
 
@@ -35,6 +47,7 @@ const EditProfile = () => {
         setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
         setCountry(data.data.country)
+        setImg(data.data.img_path)
         setBody(data.data.body);
         setLoading(false);
       })
@@ -48,6 +61,7 @@ const EditProfile = () => {
 
     const data = {
       country: country,
+      img_path: img,
       body: body,
     };
 
@@ -63,6 +77,30 @@ const EditProfile = () => {
         setErrorDisplayName(error.response.data.error.display_name);
       });
   }
+
+  const modalContent = (
+    <>
+      {images.map((path, idx) => {
+        return <img
+                key={idx} 
+                onClick={e=>setImgPath(e)} 
+                path={path} 
+                src={require(`../../shared/assets/images/${path}.png`).default} 
+              />
+      })}
+    </>
+  );
+
+  const setImgPath = (e) => {
+    setImg(e.target.attributes.path.value);
+  }
+
+  const modalImage = (<>
+    {img ? 
+      <img src={require(`../../shared/assets/images/${img}.png`).default}/> :
+      <img src={require(`../../shared/assets/images/default_profile_image.png`).default} />
+    }
+  </>);
 
   return (
     <div className="edit-profile">
@@ -91,22 +129,22 @@ const EditProfile = () => {
     
           {errorDisplayName && <MessageError message={errorDisplayName} />}
   
+          <Modal
+            modalContent={modalContent}
+            openBtnClass="button-modal"
+            closeBtnClass="button-modal"
+            openBtnText={modalImage}
+            closeBtnText="Close Modal"
+            modalClass="modal"
+            modalOverlayClass="modal-overlay"
+          />
+
           <Input
             type="text"
             placeholder="Display Name"
             currentValue={displayName}
             name="display_name"
             getState={getDisplayName}
-          />
-  
-          <Modal
-            modalContent="Hello Modal!"
-            openBtnClass="button-modal"
-            closeBtnClass="button-modal"
-            openBtnText="Open Modal"
-            closeBtnText="Close Modal"
-            modalClass="modal"
-            modalOverlayClass="modal-overlay"
           />
   
           <InputDropdown

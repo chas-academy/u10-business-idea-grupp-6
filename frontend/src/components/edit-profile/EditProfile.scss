@@ -17,10 +17,12 @@
 
 .modal {
   display: grid;
-  place-items: center;
   position: absolute;
-  top: 40px;
-  bottom: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr) minmax(10rem, 1fr));
+  place-items: center;
+  grid-gap: 1.25rem;
+  top: 2.5rem;
+  bottom: 2.5rem;
   margin-left: auto;
   margin-right: auto;
   left: 0;
@@ -28,15 +30,15 @@
   background: $color-dark-gray;
   color: $color-white;
   height: 100%;
-  max-height: 650px;
+  max-height: 35rem;
   width: 100%;
-  min-width: 250px;
-  max-width: 400px;
+  min-width: 15.625rem;
+  max-width: 25rem;
   border: none;
   border-radius: $rounded-sm;
   overflow: auto;
   outline: none;
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 .modal-overlay {
@@ -45,12 +47,18 @@
   left: 0;
   right: 0;
   bottom: 0;
-  // the $color-black var in rgba to make it transparent w/o affecting children
-  background-color: rgba(25, 23, 32, 0.6);
+  background-color: #19172099;
   z-index: 11;
 }
 
 .button-modal {
   @include button();
   margin-bottom: 1.875rem;
+}
+
+img {
+  width: 3.75rem;
+  image-rendering: pixelated;
+  border-radius: $rounded-sm;
+  cursor: pointer;
 }
