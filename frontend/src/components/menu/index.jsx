@@ -2,7 +2,7 @@ import React from 'react';
 import './Menu.scss';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentAlt, faCompass, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCommentAlt, faUserCircle, faGamepad } from '@fortawesome/free-solid-svg-icons';
 
 const Menu = () => {
 
@@ -23,7 +23,7 @@ const Menu = () => {
             activeClassName="active-link"
           >
             <FontAwesomeIcon
-              icon={faCompass}
+              icon={faGamepad}
             />
           </NavLink>
 

@@ -13,7 +13,8 @@
       center, 
       column
     );
-  
+    
+   
     h2 {
       width: 100%;
       margin-left: 1.25rem;
@@ -24,6 +25,15 @@
       margin-bottom: .9375rem;
     }
   }
-}
 
+  .loading {
+    @include flex(
+      space-between, 
+      center, 
+      column
+    );
+  
+    margin-top: 3rem;
+  }
+}
 

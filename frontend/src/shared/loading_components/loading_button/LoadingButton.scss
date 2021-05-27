@@ -1,0 +1,7 @@
+@import "global.scss";
+
+.loading-button {
+    @include button();
+    margin-bottom: 1.875rem;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

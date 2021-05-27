@@ -4,8 +4,9 @@ import ProfileData from '../../shared/components/profile_data';
 import { PREFERENCES } from "../../shared/services/preferences";
 import { GET } from '../../shared/services/requests';
 import { ProfileMenu } from '../../shared/components';
+import { LoadingProfileCard } from '../../shared/loading_components';
 
-const YourProfile = ({logoutHandler}) => {
+const YourProfile = ({ logoutHandler }) => {
   const [userData, setUserData] = useState(),
         [preferences, setPreferences] = useState(),
         [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ const YourProfile = ({logoutHandler}) => {
   }, []);
 
   return (
-    <>
+    <div className="your-profile">
       <ProfileMenu
         navLink1="/edit-profile"
         navLink1Name="Edit profile"
@@ -42,16 +43,23 @@ const YourProfile = ({logoutHandler}) => {
         navLink3="/change-password"
         navLink3Name="Change password"
         logoutHandler={logoutHandler}
-        />
-      <div className="profile">
-        {!loading && userData &&
-        <ProfileData
-          data={userData}
-          preferences={preferences}
-        />
-        }
-      </div>
-    </>
+      />
+
+      {!loading && userData &&
+        <div className="profile">
+          <ProfileData
+            data={userData}
+            preferences={preferences}
+          />
+        </div>
+      }
+
+      {loading &&
+        <div className="loading">
+          <LoadingProfileCard />
+        </div>
+      }
+    </div>
   );
 };
 

@@ -7,7 +7,11 @@ const ProfileData = ({ data, preferences }) => {
 
   return (
     <div className="profile-data">
-      <img src={data.img_path || defaultProfileImg} />
+
+      {data.img_path ? 
+        <img src={require(`../../assets/images/${data.img_path}.png`).default}/> : 
+        <img src={require('../../assets/images/default_profile_image.png').default}/>
+      }
 
       <h3>
         {data.display_name ||
@@ -31,19 +35,13 @@ const ProfileData = ({ data, preferences }) => {
       </p>
 
       <div className="showcase-container">
-        {preferences.games && <>
-          <p>games</p>
+        <p>games</p>
 
-          <Showcase data={preferences.games} type="game" />
-        </>
-        }
+        <Showcase data={preferences.games} type="game" />
 
-        {preferences.games && <>
-          <p>genres</p>
+        <p>genres</p>
 
-          <Showcase data={preferences.genres} type="game" />
-        </>
-        }
+        <Showcase data={preferences.genres} type="genre" />
       </div>
 
 

@@ -4,24 +4,25 @@ import './Match.scss';
 import ProfileData from '../../shared/components/profile_data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { LoadingProfileCard } from '../../shared/loading_components';
 
 const Match = () => {
   const [matches, setMatches] = useState([]),
-        [current, setCurrent] = useState(),
-        [loading, setLoading] = useState(false),
-        [status, setStatus] = useState(true); // This state needs to be used in order for the matches to not show up before loading
+    [current, setCurrent] = useState(),
+    [loading, setLoading] = useState(false),
+    [status, setStatus] = useState(true); // This state needs to be used in order for the matches to not show up before loading
 
   useEffect(() => {
     setLoading(true);
     setStatus(true)
 
     GET('match')
-    .then(data => {
+      .then(data => {
 
-      setStatus(false)
-      setLoading(false);
-      setMatches(data.data)
-    });
+        setStatus(false)
+        setLoading(false);
+        setMatches(data.data)
+      });
   }, []);
 
   useEffect(() => {
@@ -64,7 +65,7 @@ const Match = () => {
 
   return (
     <div className="match">
-      {!loading && matches.length && !status ?
+      {(!loading && matches.length !== 0 && !status) &&
         <div className="container">
           {current &&
             <ProfileData
@@ -90,24 +91,24 @@ const Match = () => {
           </button>
 
         </div>
-        : 
-        !loading && !matches.length && !status &&
-          <div className="container-nomatch">
-            <div className="nomatch">
-                <p>
-                  No more matches! Please wait a minute before trying to refresh to get some more.
-                </p>
-            </div>
-          </div>
       }
 
+      {!loading && !matches.length && !status &&
+        <div className="container-nomatch">
+          <div className="nomatch">
+            <p>
+              No more matches! Please wait a minute before trying to refresh to get some more.
+                </p>
+          </div>
+        </div>
+      }
 
-      <FontAwesomeIcon 
-        className={`${loading && "shown"} spinner`}
-        hidden={!loading}
-        icon={faSpinner}
-      />
-      
+      {loading &&
+        <div className="loading">
+          <LoadingProfileCard />
+        </div>
+      }
+
     </div>
   )
 }

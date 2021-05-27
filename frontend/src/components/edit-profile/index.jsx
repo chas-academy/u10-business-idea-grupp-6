@@ -12,6 +12,7 @@ import {
 import { PATCH, GET } from '../../shared/services/requests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { LoadingButton, LoadingInput, LoadingTextarea } from '../../shared/loading_components';
 
 const EditProfile = ({logoutHandler}) => {
   const [displayName, setDisplayName] = useState(''),
@@ -115,7 +116,6 @@ const EditProfile = ({logoutHandler}) => {
         logoutHandler={logoutHandler}
       />
       
-      {!loading && <>
           <h1>
             Edit Profile
           </h1>
@@ -123,7 +123,8 @@ const EditProfile = ({logoutHandler}) => {
           <h2>
             This is your public profile that other people can see
           </h2>
-    
+
+      {!loading && <>
           <form
             onSubmit={submit}
           >
@@ -169,12 +170,16 @@ const EditProfile = ({logoutHandler}) => {
         </>
       }
 
-      <FontAwesomeIcon 
-        className={`${loading && "shown"} spinner`}
-        hidden={!loading}
-        icon={faSpinner}
-      />
-      
+      {loading && 
+        <div className="loading"> 
+          <LoadingButton/>
+          <LoadingInput/>
+          <LoadingInput/>
+          <LoadingTextarea/>
+          <LoadingButton/>
+        </div>
+      }
+
     </div>
   );
 };
