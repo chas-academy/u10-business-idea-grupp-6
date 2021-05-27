@@ -67,8 +67,6 @@ const App = () => {
         </span>
       }
 
-      {isAuth && <button onClick={logout}>Log out</button>}
-
     <Router>
       <main>
 
