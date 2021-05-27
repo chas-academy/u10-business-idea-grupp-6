@@ -27,8 +27,6 @@
 
 .chat-options-wrapper{
     position: relative;
-    // display: block;
-    // width: 100%;
 
     .chat-options-modal {
         display: none;
@@ -52,17 +50,15 @@
     }
 }
 .chat-options {
-    // float: right;
     padding: 0.5em;
     border-radius: 5px;
     font-size: $font-lg;
     background-color: none;
+    
     &:hover {
         transition: all 100ms;
         background-color: $color-dark-gray;
     }
-
-
 }
 
 .chat-displayname {
