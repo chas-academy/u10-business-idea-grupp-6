@@ -172,56 +172,6 @@ const EditProfile = () => {
         </>
       }
 
-      <h1>
-        Edit Profile
-      </h1>
-
-      <h2>
-        This is your public profile that other people can see
-      </h2>
-
-      <form
-        onSubmit={submit}
-      >
-
-        {errorDisplayName && <MessageError message={errorDisplayName} />}
-
-        <Input
-          type="text"
-          placeholder="Display Name"
-          currentValue={displayName}
-          name="display_name"
-          getState={getDisplayName}
-        />
-
-        <Modal
-          modalContent={modalContent}
-          openBtnClass="button-modal"
-          closeBtnClass="close-btn"
-          openBtnText={clickPic}
-          closeBtnText=""
-          modalClass="modal"
-          modalOverlayClass="modal-overlay"
-        />
-
-        <InputDropdown
-          placeholder="Select country"
-          type="lang"
-          data={options}
-          defaults={country}
-          getState={getCountry}
-        />
-
-        <Textarea
-          name="body"
-          placeholder="Write something about yourself..."
-          currentValue={body}
-          getState={getBody}
-        />
-
-        <ButtonSubmit name="Update Profile" />
-
-      </form>
       <FontAwesomeIcon 
         className={`${loading && "shown"} spinner`}
         hidden={!loading}
