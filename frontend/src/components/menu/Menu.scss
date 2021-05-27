@@ -2,7 +2,7 @@
 
 .menu {
   width: 85%;
-  max-width: 45rem;
+  max-width: 35rem;
   margin-bottom: 1.25rem;
   position: fixed;
   z-index: 9;
@@ -17,7 +17,7 @@
     width: 100%;
     height: 4rem;
     justify-content: space-between;
-    padding: 0 2.25rem;
+    padding: 0 15%;
     background-color: $color-dark-gray;
     border: $border;
     
