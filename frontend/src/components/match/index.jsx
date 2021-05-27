@@ -8,17 +8,20 @@ import { faGlobe, faLifeRing, faSpinner, faTruckLoading } from '@fortawesome/fre
 const Match = () => {
   const [matches, setMatches] = useState([]),
         [current, setCurrent] = useState(),
-        [loading, setLoading] = useState(false);
+        [loading, setLoading] = useState(false),
+        [status, setStatus] = useState(true); // This state needs to be used in order for the matches to not show up before loading
 
   useEffect(() => {
     setLoading(true);
+    setStatus(true)
 
     GET('match')
-      .then(data => {
+    .then(data => {
 
-        setLoading(false);
-        setMatches(data.data)
-      });
+      setStatus(false)
+      setLoading(false);
+      setMatches(data.data)
+    });
   }, []);
 
   useEffect(() => {
@@ -35,6 +38,7 @@ const Match = () => {
       likes: 1
     }).then(data => {
       setLoading(false)
+      setStatus(false)
 
       const [, ...rest] = matches;
 
@@ -50,6 +54,7 @@ const Match = () => {
       likes: 0
     }).then(data => {
       setLoading(false)
+      setStatus(false)
 
       const [, ...rest] = matches;
 
@@ -59,7 +64,7 @@ const Match = () => {
 
   return (
     <div className="match">
-      {!loading &&
+      {!loading && matches.length && !status ?
         <div className="container">
           {current &&
             <ProfileData
@@ -84,13 +89,18 @@ const Match = () => {
             NOPE
           </button>
 
-          {!matches.length &&
-            <p>
-              No more matches! Please wait a minute before trying to refresh to get some more. :)
-            </p>
-          }
         </div>
+        : 
+        !loading && !matches.length && !status &&
+          <div className="container-nomatch">
+            <div className="nomatch">
+                <p>
+                  No more matches! Please wait a minute before trying to refresh to get some more.
+                </p>
+            </div>
+          </div>
       }
+
 
       <FontAwesomeIcon 
         className={`${loading && "shown"} spinner`}
