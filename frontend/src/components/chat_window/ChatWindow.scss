@@ -7,7 +7,7 @@
     left: 50%;
     top: 50%;
     width: 90%;
-    // height: 90%; 
+    height: 90%; 
     height: 800px;
     transform: translate(-50%, -50%);
     background-color: rgb(15, 15, 15);
@@ -31,7 +31,11 @@
 }
 
 .chatwindow-title {
+    padding: 0 1rem;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .chatbox {
@@ -74,9 +78,9 @@
     color: $color-white;
 
     &.sending {
-        background-color: $color-super-light-gray;
+        background-color: $color-light-gray;
+        opacity: 0.7;
     }
-
 }
 .chatwindow-send {
     margin: 0 auto;
