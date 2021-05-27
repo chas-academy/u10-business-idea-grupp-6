@@ -110,6 +110,24 @@ const App = () => {
               />
 
               <Route
+                path="/verified"
+                exact
+                component={Verified}
+              />
+
+              <Route
+                path="/already-verified"
+                exact
+                component={AlreadyVerified}
+              />
+
+              <Route
+                path="/verify"
+                exact
+                component={Verify}
+              />
+
+              <Route
                 component={Home}
               />
             </Switch>
@@ -128,24 +146,6 @@ const App = () => {
                 path="/chat"
                 exact
                 component={Chat}
-              />
-
-              <Route
-                path="/verified"
-                exact
-                component={Verified}
-              />
-
-              <Route
-                path="/already-verified"
-                exact
-                component={AlreadyVerified}
-              />
-
-              <Route
-                path="/verify"
-                exact
-                component={Verify}
               />
 
               <Route
