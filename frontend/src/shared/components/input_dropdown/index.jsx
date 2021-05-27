@@ -12,7 +12,6 @@ const InputDropdown = ({ placeholder, data, defaults, getState }) => {
       id: index,
     }));
     setOptions(formatted);
-
   }, []);
 
   const handleChange = (elem) => {
@@ -21,7 +20,7 @@ const InputDropdown = ({ placeholder, data, defaults, getState }) => {
 
   return (
     <>
-      {defaults && <Select
+      {<Select
         defaultInputValue={defaults}
         placeholder={placeholder}
         options={options}

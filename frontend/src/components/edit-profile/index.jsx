@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './EditProfile.scss';
-// import { Link } from "react-router-dom";
 import {
   Input,
   InputDropdown,
@@ -11,36 +10,37 @@ import {
   ProfileMenu
 } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(''),
         [oldDisplayName, setOldDisplayName] = useState(''),
         [country, setCountry] = useState(''),
-        // [imgPath, setImgPath] = useState(''),
         [body, setBody] = useState(''),
         [errorDisplayName, setErrorDisplayName] = useState(null),
-        [options, setOptions] = useState(countries);
+        [loading, setLoading] = useState(false);
 
   const getDisplayName = (e) => setDisplayName(e),
         getCountry = (e) => setCountry(e),
-        // getImgPath = (e) => setImgPath(e),
         getBody = (e) => setBody(e);
 
   const userId = localStorage.getItem('user_id');
 
   useEffect(() => {
+    setLoading(true);
+
     GET(`user/${userId}`)
       .then((data) => {
         setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
         setCountry(data.data.country)
         setBody(data.data.body);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
-
   }, []);
 
   const submit = (event) => {
@@ -48,11 +48,8 @@ const EditProfile = () => {
 
     const data = {
       country: country,
-      // img_path: imgPath,
       body: body,
     };
-
-    console.log(data);
 
     if (displayName !== oldDisplayName) {
       data.display_name = displayName;
@@ -63,7 +60,6 @@ const EditProfile = () => {
         console.log('Profile successfully updated!');
       })
       .catch((error) => {
-        console.log(error);
         setErrorDisplayName(error.response.data.error.display_name);
       });
   }
@@ -77,64 +73,72 @@ const EditProfile = () => {
         navLink2="/change-password"
         navLink2Name="Change password"
       />
+      
+      {!loading && <>
+          <h1>
+            Edit Profile
+          </h1>
+    
+          <h2>
+            This is your public profile that other people can see
+          </h2>
+    
+          <form
+            onSubmit={submit}
+          >
+    
+          {errorDisplayName && <MessageError message={errorDisplayName} />}
+  
+          <Input
+            type="text"
+            placeholder="Display Name"
+            currentValue={displayName}
+            name="display_name"
+            getState={getDisplayName}
+          />
+  
+          <Modal
+            modalContent="Hello Modal!"
+            openBtnClass="button-modal"
+            closeBtnClass="button-modal"
+            openBtnText="Open Modal"
+            closeBtnText="Close Modal"
+            modalClass="modal"
+            modalOverlayClass="modal-overlay"
+          />
+  
+          <InputDropdown
+            placeholder="Select country"
+            type="lang"
+            data={countries}
+            defaults={country}
+            getState={getCountry}
+          />
+  
+          <Textarea
+            name="body"
+            placeholder="Write something about yourself..."
+            currentValue={body}
+            getState={getBody}
+          />
+  
+          <ButtonSubmit name="Update Profile" />
+    
+          </form>
+        </>
+      }
 
-      <h1>
-        Edit Profile
-      </h1>
-
-      <h2>
-        This is your public profile that other people can see
-      </h2>
-
-      <form
-        onSubmit={submit}
-      >
-
-        {errorDisplayName && <MessageError message={errorDisplayName} />}
-
-        <Input
-          type="text"
-          placeholder="Display Name"
-          currentValue={displayName}
-          name="display_name"
-          getState={getDisplayName}
-        />
-
-        <Modal
-          modalContent="Hello Modal!"
-          openBtnClass="button-modal"
-          closeBtnClass="button-modal"
-          openBtnText="Open Modal"
-          closeBtnText="Close Modal"
-          modalClass="modal"
-          modalOverlayClass="modal-overlay"
-        />
-
-        <InputDropdown
-          placeholder="Select country"
-          type="lang"
-          data={options}
-          defaults={country}
-          getState={getCountry}
-        />
-
-        <Textarea
-          name="body"
-          placeholder="Write something about yourself..."
-          currentValue={body}
-          getState={getBody}
-        />
-
-        <ButtonSubmit name="Update Profile" />
-
-      </form>
+      <FontAwesomeIcon 
+        className={`${loading && "shown"} spinner`}
+        hidden={!loading}
+        icon={faSpinner}
+      />
+      
     </div>
   );
 };
 
 export default EditProfile;
-
-//<a href="https://www.freepik.com/vectors/hand">Hand vector created by freepik - www.freepik.com</a>
 
 const countries = [
   { "name": "Afghanistan", "code": "AF" },
@@ -142,7 +146,7 @@ const countries = [
   { "name": "Albania", "code": "AL" },
   { "name": "Algeria", "code": "DZ" },
   { "name": "American Samoa", "code": "AS" },
-  { "name": "AndorrA", "code": "AD" },
+  { "name": "Andorra", "code": "AD" },
   { "name": "Angola", "code": "AO" },
   { "name": "Anguilla", "code": "AI" },
   { "name": "Antarctica", "code": "AQ" },
