@@ -4,6 +4,7 @@ import './ChatWindow.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+
 const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
   const [inputValue, setInputValue] = useState(""),

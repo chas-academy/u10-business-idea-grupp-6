@@ -3,7 +3,7 @@ import { GET, POST } from '../../shared/services/requests'
 import './Match.scss';
 import ProfileData from '../../shared/components/profile_data';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faLifeRing, faSpinner, faTruckLoading } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const Match = () => {
   const [matches, setMatches] = useState([]),

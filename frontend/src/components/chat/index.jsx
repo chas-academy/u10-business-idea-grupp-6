@@ -3,16 +3,16 @@ import './Chat.scss';
 import { echo, GET, POST } from '../../shared/services/requests';
 import { ButtonLink, ButtonSubmit } from "../../shared/components/";
 import ChatWindow from '../chat_window';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisV, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisV, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const Chat = () => {
 
   const [matchups, setMatchups] = useState([]),
-    [activeChat, setActiveChat] = useState(null),
-    [showChat, setShowChat] = useState([]),
-    [optionModal, setOptionModal] = useState(null),
-    [loading, setLoading] = useState(false);
+        [activeChat, setActiveChat] = useState(null),
+        [showChat, setShowChat] = useState([]),
+        [optionModal, setOptionModal] = useState(null),
+        [loading, setLoading] = useState(false);
 
   useEffect(() => {
     GET('match/all').then((data) => {
@@ -20,7 +20,8 @@ const Chat = () => {
     })
     const uid = localStorage.getItem('user_id');
 
-    echo.private('App.Models.User.' + uid)
+    echo
+      .private('App.Models.User.' + uid)
       .listen('MatchupSuccessful', (e) => {
         const newMatchup = e.matchupData.matchup;
         setMatchups((previousState) => [...previousState, newMatchup])
@@ -39,7 +40,8 @@ const Chat = () => {
         setLoading(true)
         POST('session/create', {
           friend_id: friendId
-        }).then(data => {
+        })
+        .then(data => {
           setLoading(false);
           setActiveChat(data.data.data.id);
 
@@ -49,7 +51,8 @@ const Chat = () => {
 
           setMatchups(newMatchups);
           setShowChat(true);
-        }).catch((error) => setLoading(false))
+        })
+        .catch((error) => setLoading(false))
       }
     }
   }
@@ -59,7 +62,8 @@ const Chat = () => {
 
     if (confirmation) POST('match/delete', {
       matchup_id: id
-    }).then(data => {
+    })
+    .then(data => {
       setMatchups((previousState) => previousState.filter(i => i.id !== id))
     });
   }
@@ -164,4 +168,4 @@ const Chat = () => {
   );
 }
 
-export default Chat
+export default Chat;

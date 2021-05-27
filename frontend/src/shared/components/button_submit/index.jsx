@@ -1,7 +1,7 @@
 import React from 'react';
 import './ButtonSubmit.scss';
 
-const ButtonSubmit = ({name}) => {
+const ButtonSubmit = ({ name }) => {
   return (
     <div className="button-submit">
       <button type="submit">

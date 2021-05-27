@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import "./Textarea.scss";
+import React, { useState } from 'react';
+import './Textarea.scss';
 
-const Textarea = ({placeholder, name, getState, currentValue}) => {
-  const [value, setValue] = useState("");
+const Textarea = ({ placeholder, name, getState, currentValue }) => {
+  const [value, setValue] = useState('');
 
   const inputValue = (input) => {
-    setValue(input);
-    getState(input);
+        setValue(input);
+        getState(input);
   };
 
   return (
@@ -14,7 +14,7 @@ const Textarea = ({placeholder, name, getState, currentValue}) => {
       <textarea
         name={name}
         placeholder={placeholder}
-        value={currentValue}
+        value={currentValue || value}
         onChange={(e) => inputValue(e.target.value)}
       />
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
-import "./AlreadyVerified.scss";
-import { ButtonLink } from "../../shared/components";
+import './AlreadyVerified.scss';
+import { ButtonLink } from '../../shared/components';
 
 const AlreadyVerified = () => {
   return (

@@ -66,26 +66,4 @@
 
 }
 
-.spinner {
-  animation-name: spin;
-  animation-duration: 1.3s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  height: 8.25rem;
-  width: 8.25rem;
-  margin: 2rem auto;
-  display: none;
-}
 
-.shown {
-  display: block;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

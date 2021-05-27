@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import "./Register.scss";
+import React, { useState } from 'react';
+import './Register.scss';
 import { Link, Redirect } from 'react-router-dom';
-import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
-import { POST } from "../../shared/services/requests";
+import {
+  Input,
+  InputPassword,
+  ButtonSubmit,
+  MessageError,
+} from '../../shared/components/';
+import { POST } from '../../shared/services/requests';
 
 const Register = ({getToken, getAuthLoading}) => {
   const [name, setName] = useState(''),
@@ -13,12 +18,11 @@ const Register = ({getToken, getAuthLoading}) => {
         [errorEmail, setErrorEmail] = useState(null),
         [errorPwd, setErrorPwd] = useState(null);
 
-
   const getName = (e) => setName(e),
         getEmail = (e) => setEmail(e),
         getPwd = (e) => setPwd(e),
         getPwdConf = (e) => setPwdConf(e);
-  
+
   const submit = (event) => {
     event.preventDefault();
     const data = {
@@ -26,26 +30,27 @@ const Register = ({getToken, getAuthLoading}) => {
       email: email,
       password: pwd,
       password_confirmation: pwdConf
-    }
+    };
     
     getAuthLoading(true);
-    POST('register', data).then(data => {
-      getAuthLoading(false);
-      setRedirectVerify(true);
-      localStorage.setItem('token', data.data.token);
-      localStorage.setItem('user_id', data.data.user.id);
-      localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
-      
-      getToken(localStorage.getItem('token'));
-    }).catch(error => {
-      getAuthLoading(false);
-      setErrorEmail(error.response.data.errors.email);
-      setErrorPwd(error.response.data.errors.password);
-    })
+    POST('register', data)
+      .then(data => {
+        getAuthLoading(false);
+        setRedirectVerify(true);
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('user_id', data.data.user.id);
+        localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
+        getToken(localStorage.getItem('token'));
+      })
+      .catch(error => {
+        getAuthLoading(false);
+        setErrorEmail(error.response.data.errors.email);
+        setErrorPwd(error.response.data.errors.password);
+      })
   };
 
-  if(redirectVerify) return <Redirect to="/verify"/>;
-  
+  if (redirectVerify) return <Redirect to="/verify" />;
+
   return (
     <div className="register">
       <h1>
@@ -59,23 +64,23 @@ const Register = ({getToken, getAuthLoading}) => {
       <form 
         onSubmit={submit}>
 
-        <Input 
+        <Input
           type="text"
           placeholder="Name"
           name="name"
           getState={getName}
         />
 
-        {errorEmail && <MessageError message = {errorEmail}/>}
-        
-        <Input 
+        {errorEmail && <MessageError message={errorEmail} />}
+
+        <Input
           type="email"
           placeholder="Email"
           name="email"
           getState={getEmail}
         />
-        
-        {errorPwd && <MessageError message = {errorPwd}/>}
+
+        {errorPwd && <MessageError message={errorPwd} />}
 
         <InputPassword
           getState={getPwd}

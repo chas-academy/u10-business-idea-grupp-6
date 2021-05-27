@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import './Login.scss'
+import React, { useState } from 'react';
+import './Login.scss';
 import { Link, Redirect } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
 import { echo, POST } from '../../shared/services/requests';
@@ -21,26 +21,20 @@ const Login = ({getToken, getAuthLoading}) => {
     }
     
     getAuthLoading(true);
-    POST('login', data).then(data => {
-      getAuthLoading(false);
-      setRedirect(true);
-      localStorage.setItem('token', data.data.token);
-      localStorage.setItem('user_id', data.data.user.id);
-      localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
+    POST('login', data)
+      .then(data => {
+        getAuthLoading(false);
+        setRedirect(true);
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('user_id', data.data.user.id);
+        localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
       
-      getToken(localStorage.getItem('token'));
-
-      echo.private('App.Models.User.' + localStorage.getItem('user_id'))
-      .listen('MatchupSuccessful', (e) => {
-
-        // if you get a match, will print to console
-        console.log(e)
-      });
-
-    }).catch(error => {
-      getAuthLoading(false);
-      setError(error.response.data.message);
+        getToken(localStorage.getItem('token'));
     })
+      .catch(error => {
+        getAuthLoading(false);
+        setError(error.response.data.message);
+      })
   };
 
   if(redirect) return <Redirect to="/"/>;
@@ -89,7 +83,7 @@ const Login = ({getToken, getAuthLoading}) => {
         </Link>
       </p>
     </div>
-  )
-}
+  );
+};
 
 export default Login;

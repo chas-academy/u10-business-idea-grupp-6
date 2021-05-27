@@ -17,6 +17,7 @@ import Profile from './components/profile/';
 import { GET } from './shared/services/requests';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import YourProfile from './components/your_profile';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
@@ -24,26 +25,27 @@ const App = () => {
 
   const logout = () => {
     setAuthLoading(true);
-    GET('logout').then(data => {
-      setAuthLoading(false);
-      setIsAuth(null);
+    GET('logout')
+      .then(data => {
+        setAuthLoading(false);
+        setIsAuth(null);
 
-      localStorage.removeItem('token');
-      localStorage.removeItem('user_id');
-      localStorage.removeItem('timezone_offset');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
 
-      window.location.reload();
-    }).catch(e => {
-      setAuthLoading(false);
-      setIsAuth(null);
+        window.location.reload();
+      })
+      .catch(e => {
+        setAuthLoading(false);
+        setIsAuth(null);
 
-      localStorage.removeItem('token');
-      localStorage.removeItem('user_id');
-      localStorage.removeItem('timezone_offset');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('timezone_offset');
 
-      window.location.reload();
-    })
-  }
+        window.location.reload();
+      });
+  };
 
   useEffect(() => {
     if (isAuth && (
@@ -51,12 +53,13 @@ const App = () => {
       !window.location.pathname.includes('register'))
     ) {
       setAuthLoading(true);
-      GET('verify-auth').then((data) => {
-        setAuthLoading(false);
+      GET('verify-auth')
+        .then((data) => {
+          setAuthLoading(false);
 
-        if (data.status !== 200)
-          logout();
-      }).catch((error) => logout());
+          if (data.status !== 200)
+            logout();
+        }).catch((error) => logout());
     }
   }, [isAuth])
 
@@ -67,13 +70,15 @@ const App = () => {
     <>
       {authLoading &&
         <span className="spinner-overlay shown">
-          <FontAwesomeIcon icon={faSpinner} className="spinner shown large" />
+          <FontAwesomeIcon
+            icon={faSpinner}
+            className="spinner shown large"
+          />
         </span>
       }
 
       <Router>
         <main>
-          {isAuth && <button onClick={logout}>Log out</button>}
 
           <Notification
             auth={isAuth}
@@ -133,13 +138,24 @@ const App = () => {
               <Route
                 path="/preferences"
                 exact
-                component={Preferences}
+                render={(props) => (
+                  <Preferences
+                    {...props}
+                    logoutHandler={logout}
+                  />
+                )}
+                
               />
 
               <Route
                 path="/change-password"
                 exact
-                component={ChangePassword}
+                render={(props) => (
+                  <ChangePassword
+                    {...props}
+                    logoutHandler={logout}
+                  />
+                )}
               />
 
               <Route
@@ -151,7 +167,23 @@ const App = () => {
               <Route
                 path="/edit-profile"
                 exact
-                component={EditProfile}
+                render={(props) => (
+                  <EditProfile
+                    {...props}
+                    logoutHandler={logout}
+                  />
+                )}
+              />
+
+              <Route
+                path="/your-profile"
+                exact
+                render={(props) => (
+                  <YourProfile
+                    {...props}
+                    logoutHandler={logout}
+                  />
+                )}
               />
 
               <Route

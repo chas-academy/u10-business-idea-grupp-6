@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import "./InputPassword.scss";
+import React, { useState } from 'react';
+import './InputPassword.scss';
 
 const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
   const [toggle, setToggle] = useState(true),
         [pwdValue, setPwdValue] = useState(''),
         [pwdConfValue, setPwdConfValue] = useState('');
-
 
   const inputValue = (input) => {
     setPwdValue(input);
@@ -29,16 +28,19 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
           type={toggle ? "password" : "text"}
           placeholder={placeholder}
           value={pwdValue}
-          onChange={e => inputValue(e.target.value)}
+          onChange={(e) => inputValue(e.target.value)}
         />
+
         <input
           id={idPwd}
           type="checkbox"
           onChange={toggleInputType}
         />
+
         <label
           htmlFor={idPwd}
         />
+
       </div>
 
       { getStateConf &&
@@ -48,7 +50,7 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
             type={toggle ? "password" : "text"}
             placeholder="Password Confirmation"
             value={pwdConfValue}
-            onChange={e => inputConfValue(e.target.value)}
+            onChange={(e) => inputConfValue(e.target.value)}
           />
         </div>
       }
