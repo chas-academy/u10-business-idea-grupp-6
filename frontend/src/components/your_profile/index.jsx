@@ -3,6 +3,7 @@ import './YourProfile.scss';
 import ProfileData from '../../shared/components/profile_data';
 import { PREFERENCES } from "../../shared/services/preferences";
 import { GET } from '../../shared/services/requests';
+import { ProfileMenu } from '../../shared/components';
 
 const YourProfile = () => {
   const [userData, setUserData] = useState(),
