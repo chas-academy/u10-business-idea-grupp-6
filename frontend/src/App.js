@@ -152,13 +152,12 @@ const App = () => {
             isAuth={isAuth}
           />
 
-          <ProtectedRoute
+          <Route
             path="/profile"
             exact
             component={Profile}
-            isAuth={isAuth}
           />
-
+          
           <Route
             path="/edit-profile"
             exact

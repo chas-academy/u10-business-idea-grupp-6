@@ -5,14 +5,14 @@ import ProfileData from '../../shared/components/profile_data';
 const Profile = (props) => {
 
   useEffect(() => {
-    if(!props.location.data) return window.history.back();
-  },[]);
+    if(!props.location.data) window.history.back();
+  },[props]);
 
   return (
     <div className="profile">
       {props.location.data && <ProfileData
-        data={props.location.data?.data.profile}
-        preferences={props.location.data?.data.preferences}
+        data={props.location.data?.user.profile}
+        preferences={props.location.data?.user.preferences}
       />}
     </div>
   )

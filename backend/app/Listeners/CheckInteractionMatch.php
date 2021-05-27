@@ -36,12 +36,25 @@ class CheckInteractionMatch
             ->where('object_user_id', $interaction->subject_user_id)
             ->where('likes', true)
             ->first())
+        {
+            $oldMatchup = $interaction->subject_user->matchups->filter(fn($m)=> $m->users->contains($interaction->object_user));
+            
+            if(count($oldMatchup))
             {
-            $matchup = Matchup::create();
+                $oldMatchup = $oldMatchup[0];
 
-            $matchup->users()
-            ->attach([$interaction->subject_user_id, $interaction->object_user_id]);
-            MatchupSuccessful::dispatch($matchup);
+                MatchupSuccessful::dispatch($oldMatchup);
             }
+            else 
+            {
+                $matchup = Matchup::create();
+
+                $matchup
+                    ->users()
+                    ->attach([$interaction->subject_user_id, $interaction->object_user_id]);
+            
+                MatchupSuccessful::dispatch($matchup);
+            }
+        }
     }
 }

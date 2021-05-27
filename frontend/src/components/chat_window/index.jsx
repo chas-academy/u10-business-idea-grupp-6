@@ -56,25 +56,25 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
     closeChat();
   }
 
-  return (
-    <>
-      {active && (
-        <div className="chat-modal">
-          <FontAwesomeIcon
-            icon={faAngleLeft}
-            className="back-arrow"
-            onClick={toggleChat}
-          />
-          <h3 className="chatwindow-title">
-            <Link 
-              to={{
-                pathname: '/profile', 
-                data: {data: matchup.user[0]}
-              }}
-            >
-              {matchup.user[0].profile.display_name}
-            </Link>
-          </h3>
+    return (
+      <>
+        {active && (
+          <div className="chat-modal">
+            <FontAwesomeIcon
+              icon={faAngleLeft}
+              className="back-arrow"
+              onClick={toggleChat}
+            />
+            <h3 className="chatwindow-title">
+              <Link 
+                to={{
+                  pathname: '/profile', 
+                  data: {user: matchup.user[0]}
+                }}
+                >
+                  {matchup.user[0].profile.display_name}
+              </Link>
+            </h3>
         
           <div id="chatbox" className="chatbox">
               {messageLog.map((i) => (
