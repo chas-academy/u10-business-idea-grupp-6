@@ -108,25 +108,7 @@ const App = () => {
                   />
                 )}
               />
-
-              <Route
-                path="/verified"
-                exact
-                component={Verified}
-              />
-
-              <Route
-                path="/already-verified"
-                exact
-                component={AlreadyVerified}
-              />
-
-              <Route
-                path="/verify"
-                exact
-                component={Verify}
-              />
-
+              
               <Route
                 component={Home}
               />
@@ -170,6 +152,24 @@ const App = () => {
                 path="/edit-profile"
                 exact
                 component={EditProfile}
+              />
+
+              <Route
+                path="/verified"
+                exact
+                component={Verified}
+              />
+
+              <Route
+                path="/already-verified"
+                exact
+                component={AlreadyVerified}
+              />
+
+              <Route
+                path="/verify"
+                exact
+                component={Verify}
               />
 
               <Route
