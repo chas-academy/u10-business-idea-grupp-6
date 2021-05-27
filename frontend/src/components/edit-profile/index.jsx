@@ -17,17 +17,27 @@ const EditProfile = () => {
   const [displayName, setDisplayName] = useState(''),
         [oldDisplayName, setOldDisplayName] = useState(''),
         [country, setCountry] = useState(''),
-        [imgPath, setImgPath] = useState('default_profile_image'),
         [body, setBody] = useState(''),
+        [img, setImg] = useState(null),
         [errorDisplayName, setErrorDisplayName] = useState(null),
         [loading, setLoading] = useState(false);
 
   const getDisplayName = (e) => setDisplayName(e),
         getCountry = (e) => setCountry(e),
-        getImgPath = (e) => setImgPath(e),
         getBody = (e) => setBody(e);
 
   const userId = localStorage.getItem('user_id');
+
+  const images = [
+    'enzo',
+    'hannes',
+    'karin',
+    'jamil',
+    'nouman',
+    'oskar',
+    'simon',
+    'mehrdad',
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -37,7 +47,7 @@ const EditProfile = () => {
         setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
         setCountry(data.data.country)
-        setImgPath(data.data.img_path)
+        setImg(data.data.img_path)
         setBody(data.data.body);
         setLoading(false);
       })
@@ -51,7 +61,7 @@ const EditProfile = () => {
 
     const data = {
       country: country,
-      img_path: imgPath,
+      img_path: img,
       body: body,
     };
 
@@ -70,43 +80,27 @@ const EditProfile = () => {
 
   const modalContent = (
     <>
-      <img onClick={e=>setPicPath(e)} path="enzo" src={require('../../shared/assets/images/enzo.png').default} />
-      {/* <img src={default_profile_image}/> */}
-      {/* <img data-path={enzo} onClick={e=>setPicPath(e)} src={enzo}/>
-      <img onClick={e=>setPicPath(e)} src={hannes}/>
-      <img src={jamil}/>
-      <img src={karin}/>
-      <img src={mehrdad}/>
-      <img src={nouman}/>
-      <img src={oskar}/>
-      <img src={simon}/> */}
+      {images.map((path, idx) => {
+        return <img
+                key={idx} 
+                onClick={e=>setImgPath(e)} 
+                path={path} 
+                src={require(`../../shared/assets/images/${path}.png`).default} 
+              />
+      })}
     </>
-  )
+  );
 
-  // const modalContent = {
-  //   default_profile_image: default_profile_image,
-  //   enzo: enzo,
-  //   jamil: jamil,
-  //   hannes: hannes,
-  //   karin: karin,
-  //   mehrdad: mehrdad,
-  //   nouman: nouman,
-  //   oskar: oskar,
-  //   simon: simon
-  // };
-
-  const setPicPath = (e) => {
-    console.log(e.target.attributes.path.value);
-    setImgPath(e.target.attributes.path.value);
+  const setImgPath = (e) => {
+    setImg(e.target.attributes.path.value);
   }
-  const clickPic = (
-    <>
-      <img
-       src={require(`../../shared/assets/images/${imgPath}.png`).default}
-      >
-      </img>
-    </>
-  )
+
+  const modalImage = (<>
+    {img ? 
+      <img src={require(`../../shared/assets/images/${img}.png`).default}/> :
+      <img src={require(`../../shared/assets/images/default_profile_image.png`).default} />
+    }
+  </>);
 
   return (
     <div className="edit-profile">
@@ -133,22 +127,22 @@ const EditProfile = () => {
     
           {errorDisplayName && <MessageError message={errorDisplayName} />}
   
+          <Modal
+            modalContent={modalContent}
+            openBtnClass="button-modal"
+            closeBtnClass="button-modal"
+            openBtnText={modalImage}
+            closeBtnText="Close Modal"
+            modalClass="modal"
+            modalOverlayClass="modal-overlay"
+          />
+
           <Input
             type="text"
             placeholder="Display Name"
             currentValue={displayName}
             name="display_name"
             getState={getDisplayName}
-          />
-  
-          <Modal
-            modalContent="Hello Modal!"
-            openBtnClass="button-modal"
-            closeBtnClass="button-modal"
-            openBtnText="Open Modal"
-            closeBtnText="Close Modal"
-            modalClass="modal"
-            modalOverlayClass="modal-overlay"
           />
   
           <InputDropdown

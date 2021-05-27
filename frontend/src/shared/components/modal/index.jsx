@@ -30,12 +30,6 @@ const Modal = ({
         ariaHideApp={false}
       >
         {modalContent}
-        <button
-          className={closeBtnClass}
-          onClick={(e) => toggleModal(false)}
-        >
-          {closeBtnText}
-        </button>
       </ReactModal>
     </>
   );
