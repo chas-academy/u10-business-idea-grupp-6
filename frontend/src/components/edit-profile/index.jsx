@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './EditProfile.scss';
-// import { Link } from "react-router-dom";
 import {
   Input,
   InputDropdown,
@@ -11,15 +10,8 @@ import {
   ProfileMenu
 } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
-// import default_profile_image from '../../shared/assets/images/default_profile_image.png';
-// import enzo from '../../shared/assets/images/enzo.png';
-// import hannes from '../../shared/assets/images/hannes.png';
-// import jamil from '../../shared/assets/images/jamil.png';
-// import karin from '../../shared/assets/images/karin.png';
-// import mehrdad from '../../shared/assets/images/mehrdad.png';
-// import nouman from '../../shared/assets/images/nouman.png';
-// import oskar from '../../shared/assets/images/oskar.png';
-// import simon from '../../shared/assets/images/simon.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const EditProfile = () => {
   const [displayName, setDisplayName] = useState(''),
@@ -28,7 +20,7 @@ const EditProfile = () => {
         [imgPath, setImgPath] = useState('default_profile_image'),
         [body, setBody] = useState(''),
         [errorDisplayName, setErrorDisplayName] = useState(null),
-        [options, setOptions] = useState(countries);
+        [loading, setLoading] = useState(false);
 
   const getDisplayName = (e) => setDisplayName(e),
         getCountry = (e) => setCountry(e),
@@ -38,6 +30,8 @@ const EditProfile = () => {
   const userId = localStorage.getItem('user_id');
 
   useEffect(() => {
+    setLoading(true);
+
     GET(`user/${userId}`)
       .then((data) => {
         setOldDisplayName(data.data.display_name);
@@ -45,11 +39,11 @@ const EditProfile = () => {
         setCountry(data.data.country)
         setImgPath(data.data.img_path)
         setBody(data.data.body);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
-
   }, []);
 
   const submit = (event) => {
@@ -61,8 +55,6 @@ const EditProfile = () => {
       body: body,
     };
 
-    console.log(data);
-
     if (displayName !== oldDisplayName) {
       data.display_name = displayName;
     }
@@ -72,7 +64,6 @@ const EditProfile = () => {
         console.log('Profile successfully updated!');
       })
       .catch((error) => {
-        console.log(error);
         setErrorDisplayName(error.response.data.error.display_name);
       });
   }
@@ -126,6 +117,60 @@ const EditProfile = () => {
         navLink2="/change-password"
         navLink2Name="Change password"
       />
+      
+      {!loading && <>
+          <h1>
+            Edit Profile
+          </h1>
+    
+          <h2>
+            This is your public profile that other people can see
+          </h2>
+    
+          <form
+            onSubmit={submit}
+          >
+    
+          {errorDisplayName && <MessageError message={errorDisplayName} />}
+  
+          <Input
+            type="text"
+            placeholder="Display Name"
+            currentValue={displayName}
+            name="display_name"
+            getState={getDisplayName}
+          />
+  
+          <Modal
+            modalContent="Hello Modal!"
+            openBtnClass="button-modal"
+            closeBtnClass="button-modal"
+            openBtnText="Open Modal"
+            closeBtnText="Close Modal"
+            modalClass="modal"
+            modalOverlayClass="modal-overlay"
+          />
+  
+          <InputDropdown
+            placeholder="Select country"
+            type="lang"
+            data={countries}
+            defaults={country}
+            getState={getCountry}
+          />
+  
+          <Textarea
+            name="body"
+            placeholder="Write something about yourself..."
+            currentValue={body}
+            getState={getBody}
+          />
+  
+          <ButtonSubmit name="Update Profile" />
+    
+          </form>
+        </>
+      }
 
       <h1>
         Edit Profile
@@ -177,13 +222,17 @@ const EditProfile = () => {
         <ButtonSubmit name="Update Profile" />
 
       </form>
+      <FontAwesomeIcon 
+        className={`${loading && "shown"} spinner`}
+        hidden={!loading}
+        icon={faSpinner}
+      />
+      
     </div>
   );
 };
 
 export default EditProfile;
-
-//<a href="https://www.freepik.com/vectors/hand">Hand vector created by freepik - www.freepik.com</a>
 
 const countries = [
   { "name": "Afghanistan", "code": "AF" },
@@ -191,7 +240,7 @@ const countries = [
   { "name": "Albania", "code": "AL" },
   { "name": "Algeria", "code": "DZ" },
   { "name": "American Samoa", "code": "AS" },
-  { "name": "AndorrA", "code": "AD" },
+  { "name": "Andorra", "code": "AD" },
   { "name": "Angola", "code": "AO" },
   { "name": "Anguilla", "code": "AI" },
   { "name": "Antarctica", "code": "AQ" },
