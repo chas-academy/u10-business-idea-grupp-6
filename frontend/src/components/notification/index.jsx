@@ -14,7 +14,6 @@ const Notification = ({ auth }) => {
       echo
         .private('App.Models.User.' + uid)
         .listen('MatchupSuccessful', (e) => {
-          // console.log(e)
           const otherUser = e.matchupData.users.find(
             (user) => user.id !== parseInt(uid)
           );

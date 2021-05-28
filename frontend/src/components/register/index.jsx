@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import './Register.scss';
 import { Link, Redirect } from 'react-router-dom';
-import {
-  Input,
-  InputPassword,
-  ButtonSubmit,
-  MessageError,
-} from '../../shared/components/';
+import { Input, InputPassword, ButtonSubmit, MessageError} from '../../shared/components/';
 import { POST } from '../../shared/services/requests';
 
 const Register = ({getToken, getAuthLoading}) => {

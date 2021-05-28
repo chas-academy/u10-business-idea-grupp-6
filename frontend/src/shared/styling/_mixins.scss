@@ -43,6 +43,19 @@
   }
 }
 
+@mixin match-button() {
+  @include center();
+  height: 3.75rem;
+  width: 3.75rem;
+  background-color: $color-super-dark-gray;
+  color: white;
+  border: none;
+  border-radius: $rounded-sm;
+  cursor: pointer;
+  box-shadow: 0px .625rem .8125rem -0.4375rem #0000005d;
+}
+
+
 //INPUT
 @mixin input-field() {
   position: relative;
@@ -129,7 +142,7 @@
   padding: 0 1.25rem;
 }
 
-
+//TEXT
 @mixin large-title() {
   text-align: center;
     font-size: $font-xl;
@@ -162,4 +175,3 @@
   margin-left: .3125rem;
   text-decoration: none;
 }
-

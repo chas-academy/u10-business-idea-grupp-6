@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Login.scss';
 import { Link, Redirect } from 'react-router-dom';
 import { Input, InputPassword, ButtonSubmit, MessageError } from "../../shared/components/";
-import { echo, POST } from '../../shared/services/requests';
+import { POST } from '../../shared/services/requests';
 
 const Login = ({getToken, getAuthLoading}) => {
   const [email, setEmail] = useState(''),

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ProfileMenu.scss';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../index';
-import { GET } from '../../services/requests';
 
 const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, navLink3Name, logoutHandler}) => {
   
