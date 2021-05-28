@@ -30,7 +30,8 @@ class MatchController extends Controller
         //{
         //    abort(403);
         //}
-
+        if($this->user !== null)
+        {
         $this->setDelimiters([
             'player_types',
             'langs'
@@ -46,6 +47,7 @@ class MatchController extends Controller
         $this->setTimes([
             'times'
         ]);
+        }
     }
 
 
