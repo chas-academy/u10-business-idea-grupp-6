@@ -66,20 +66,9 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
-            BelongsToMany::make('Roles')
-                ->fields(function () {
-                    return [
-                        Text::make('Notes'),
-                    ];
-                }),
+            BelongsToMany::make('Roles')->sortable(),
 
-
-            BelongsToMany::make('Games')
-                ->fields(function () {
-                    return [
-                        Text::make('Notes'),
-                    ];
-                }),
+            BelongsToMany::make('Games')->sortable(),
 
             Password::make('Password')
                 ->onlyOnForms()

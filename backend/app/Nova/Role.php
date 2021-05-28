@@ -48,7 +48,7 @@ class Role extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsToMany::make('Users')->fields(new RoleUserFields)
+            BelongsToMany::make('Users')->sortable(),
         ];
     }
 
