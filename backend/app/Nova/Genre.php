@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Genre extends Resource
@@ -28,7 +29,7 @@ class Genre extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'genre'
     ];
 
     /**
@@ -41,6 +42,10 @@ class Genre extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+
+            Text::make('Genre')
+                ->sortable()
+                ->rules('required', 'max:255'),
         ];
     }
 

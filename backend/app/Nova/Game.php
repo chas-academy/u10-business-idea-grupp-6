@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Game extends Resource
@@ -22,6 +23,13 @@ class Game extends Resource
      * @var string
      */
     public static $title = 'id';
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['genre'];
 
     /**
      * The columns that should be searched.
@@ -47,7 +55,7 @@ class Game extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Genre_id')
+            BelongsTo::make('Genre')
                 ->sortable()
                 ->rules('required', 'max:255'),
         ];

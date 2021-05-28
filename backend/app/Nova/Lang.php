@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Lang extends Resource
@@ -28,7 +29,7 @@ class Lang extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'lang', 'native', 'code'
     ];
 
     /**
@@ -41,6 +42,14 @@ class Lang extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+
+            Text::make('Lang')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Native')
+                ->sortable()
+                ->rules('required', 'max:255'),
         ];
     }
 
