@@ -52,7 +52,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan nova:publish"
+            "@php artisan nova:install && @php artisan nova:publish"
         ]
     },
     "extra": {
