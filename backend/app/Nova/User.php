@@ -7,6 +7,9 @@ use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
 
 class User extends Resource
 {
@@ -25,12 +28,19 @@ class User extends Resource
     public static $title = 'name';
 
     /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['roles', 'games'];
+
+    /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id', 'name', 'email'
     ];
 
     /**
@@ -55,6 +65,21 @@ class User extends Resource
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
+
+            BelongsToMany::make('Roles')
+                ->fields(function () {
+                    return [
+                        Text::make('Notes'),
+                    ];
+                }),
+
+
+            BelongsToMany::make('Games')
+                ->fields(function () {
+                    return [
+                        Text::make('Notes'),
+                    ];
+                }),
 
             Password::make('Password')
                 ->onlyOnForms()

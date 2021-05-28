@@ -22,7 +22,7 @@ class Game extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'game';
 
     /**
      * The relationships that should be eager loaded on index queries.

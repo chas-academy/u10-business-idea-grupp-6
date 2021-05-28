@@ -5,23 +5,24 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Genre extends Resource
+class Role extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Genre::class;
+    public static $model = \App\Models\Role::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'genre';
+    public static $title = 'role';
 
     /**
      * The columns that should be searched.
@@ -29,7 +30,7 @@ class Genre extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'genre'
+        'id', 'role'
     ];
 
     /**
@@ -43,9 +44,11 @@ class Genre extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            Text::make('Genre')
+            Text::make('Role')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            BelongsToMany::make('Users')->fields(new RoleUserFields)
         ];
     }
 
