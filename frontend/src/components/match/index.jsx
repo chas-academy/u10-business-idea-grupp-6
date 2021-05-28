@@ -8,18 +8,15 @@ import { LoadingProfileCard } from '../../shared/loading_components';
 
 const Match = () => {
   const [matches, setMatches] = useState([]),
-    [current, setCurrent] = useState(),
-    [loading, setLoading] = useState(false),
-    [status, setStatus] = useState(true); // This state needs to be used in order for the matches to not show up before loading
+      [current, setCurrent] = useState(),
+      [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    setStatus(true)
 
     GET('match')
       .then(data => {
 
-        setStatus(false)
         setLoading(false);
         setMatches(data.data)
       });
@@ -39,7 +36,6 @@ const Match = () => {
       likes: 1
     }).then(data => {
       setLoading(false)
-      setStatus(false)
 
       const [, ...rest] = matches;
 
@@ -55,7 +51,6 @@ const Match = () => {
       likes: 0
     }).then(data => {
       setLoading(false)
-      setStatus(false)
 
       const [, ...rest] = matches;
 
@@ -65,14 +60,12 @@ const Match = () => {
 
   return (
     <div className="match">
-      {(!loading && matches.length !== 0 && !status) &&
+      {(!loading && current) &&
         <div className="container">
-          {current &&
-            <ProfileData
-              data={current.profile}
-              preferences={current.preferences}
-            />
-          }
+          <ProfileData
+            data={current.profile}
+            preferences={current.preferences}
+          />
 
           <button
             className="like"
@@ -93,14 +86,10 @@ const Match = () => {
         </div>
       }
 
-      {!loading && !matches.length && !status &&
-        <div className="container-nomatch">
-          <div className="nomatch">
-            <p>
-              No more matches! Please wait a minute before trying to refresh to get some more.
-                </p>
-          </div>
-        </div>
+      {(!loading && !current) &&
+        <p className="no-match-text">
+          No more matches! Please wait a minute before trying to refresh to get some more.
+        </p>
       }
 
       {loading &&

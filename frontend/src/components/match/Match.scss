@@ -27,22 +27,12 @@
       left: 1.25rem;
     }
   }
-  .container-nomatch {
-    .nomatch {
-      margin: 0 auto;
-      margin-top: 3.125rem;
-      max-width: 35rem;
-      height: 6.25rem;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
 
-    p {
-      font-size: $font-sm;
-      animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
+  .no-match-text {
+    @include center();
+    margin-top: 10rem;
+    font-size: $font-sm;
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   .loading {
