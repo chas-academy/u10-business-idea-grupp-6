@@ -26,10 +26,10 @@ class MatchController extends Controller
     {
         $this->user = auth('sanctum')->user();
 
-        if($this->user === null)
-        {
-            abort(403);
-        }
+        //if($this->user === null)
+        //{
+        //    abort(403);
+        //}
 
         $this->setDelimiters([
             'player_types',
