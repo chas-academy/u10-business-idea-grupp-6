@@ -21,7 +21,7 @@ import YourProfile from './components/your_profile';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('token')),
-    [authLoading, setAuthLoading] = useState(false);
+        [authLoading, setAuthLoading] = useState(false);
 
   const logout = () => {
     setAuthLoading(true);

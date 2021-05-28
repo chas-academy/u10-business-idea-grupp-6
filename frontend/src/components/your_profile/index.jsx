@@ -4,8 +4,9 @@ import ProfileData from '../../shared/components/profile_data';
 import { PREFERENCES } from "../../shared/services/preferences";
 import { GET } from '../../shared/services/requests';
 import { ProfileMenu } from '../../shared/components';
+import { LoadingProfileCard } from '../../shared/loading_components';
 
-const YourProfile = ({logoutHandler}) => {
+const YourProfile = ({ logoutHandler }) => {
   const [userData, setUserData] = useState(),
         [preferences, setPreferences] = useState(),
         [offset, setOffset] = useState(),
@@ -31,7 +32,7 @@ const YourProfile = ({logoutHandler}) => {
   }, []);
 
   return (
-    <>
+    <div className="your-profile">
       <ProfileMenu
         navLink1="/edit-profile"
         navLink1Name="Edit profile"
@@ -50,7 +51,7 @@ const YourProfile = ({logoutHandler}) => {
         />
         }
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,23 +1,15 @@
 @import "global.scss";
 
-@mixin match-button() {
-  height: 3.75rem;
-  width: 3.75rem;
-  background-color: $color-super-dark-gray;
-  color: white;
-  border: none;
-  border-radius: $rounded-sm;
-  cursor: pointer;
-  box-shadow: 0px 10px 13px -7px #0000005d, 5px 5px 15px 5px rgba(0,0,0,0);
-}
-
 .match {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+
   .container {
-    margin: 0 auto;
-    margin-top: 3.125rem;
+    width: 100%;
     background-color: $color-dark-gray;
     border-radius: $rounded-md;
-    max-width: 50rem;
+    max-width: 35rem;
     padding-bottom: 6.25rem;
     position: relative;
 
@@ -36,28 +28,15 @@
     }
   }
 
-  .container-nomatch{
-    height: 26rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    .nomatch{
-      margin: 0 auto;
-      margin-top: 3.125rem;
-      max-width: 50rem;
-      height: 6.25rem;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    p {
-      font-size: 1.2rem;
-    }
+  .no-match-text {
+    @include center();
+    margin-top: 10rem;
+    font-size: $font-sm;
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
+  .loading {
+    width: 100%;
+    max-width: 35rem;
+  }
 }
-
-

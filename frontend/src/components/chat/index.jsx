@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Chat.scss';
 import { echo, GET, POST } from '../../shared/services/requests';
-import { ButtonLink, ButtonSubmit } from "../../shared/components/";
+import { ButtonLink } from "../../shared/components/";
 import ChatWindow from '../chat_window';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -86,6 +86,7 @@ const Chat = () => {
           You have no more matches...
           <ButtonLink 
           name="Match" 
+          link="/"
           classValue="button-link" 
           />
 

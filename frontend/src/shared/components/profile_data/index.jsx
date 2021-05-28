@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './ProfileData.scss';
-import defaultProfileImg from '../../assets/images/default_profile_image.png';
 import Showcase from '../showcase';
 
 const ProfileData = ({ data, preferences, offset }) => {
 
   return (
     <div className="profile-data">
-      <img src={data.img_path || defaultProfileImg} />
+
+      {data.img_path ? 
+        <img src={require(`../../assets/images/${data.img_path}.png`).default}/> : 
+        <img src={require('../../assets/images/default_profile_image.png').default}/>
+      }
 
       <h3>
         {data.display_name ||
@@ -15,14 +18,14 @@ const ProfileData = ({ data, preferences, offset }) => {
       </h3>
 
       <span>
-        {preferences.player_types.map((i) => {
-          return <h4>{i.player_type}</h4>
+        {preferences.player_types.map((i, idx) => {
+          return <h4 key={idx}>{i.player_type}</h4>
         })}
       </span>
       
       <span>
-        {preferences.langs.map((i) => {
-          return <h5>{i.lang}</h5>
+        {preferences.langs.map((i, idx) => {
+          return <h5 key={idx}>{i.lang}</h5>
         })}
       </span>
 
@@ -35,7 +38,6 @@ const ProfileData = ({ data, preferences, offset }) => {
       </p>
 
       <div className="showcase-container">
-
         <p>games</p>
 
         <Showcase data={preferences.games} type="game" />

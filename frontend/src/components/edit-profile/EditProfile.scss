@@ -1,6 +1,7 @@
 @import 'global.scss';
 
 .edit-profile {
+
   h1 {
     @include title();
     margin-top: 1rem;
@@ -12,6 +13,16 @@
 
   form {
     @include flex(space-between, center, column);
+  }
+
+  .loading {
+    @include flex(
+      space-between, 
+      center, 
+      column
+    );
+
+    margin-top: 3rem;
   }
 }
 
@@ -62,3 +73,4 @@ img {
   border-radius: $rounded-sm;
   cursor: pointer;
 }
+
