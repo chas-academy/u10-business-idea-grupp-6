@@ -24,7 +24,8 @@ const Register = ({getToken, getAuthLoading}) => {
       name: name,
       email: email,
       password: pwd,
-      password_confirmation: pwdConf
+      password_confirmation: pwdConf,
+      timezone_offset: new Date().getTimezoneOffset() / -60
     };
     
     getAuthLoading(true);

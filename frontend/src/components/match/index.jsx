@@ -60,10 +60,13 @@ const Match = () => {
     <div className="match">
       {(!loading && current) &&
         <div className="container">
-          <ProfileData
-            data={current.profile}
-            preferences={current.preferences}
-          />
+          {current &&
+            <ProfileData
+              data={current.profile}
+              preferences={current.preferences}
+              offset={current.timezone_offset}
+            />
+          }
 
           <button
             className="like"

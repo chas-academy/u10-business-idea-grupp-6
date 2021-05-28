@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './YourProfile.scss';
 import ProfileData from '../../shared/components/profile_data';
-import { PREFERENCES } from "../../shared/services/preferences";
 import { GET } from '../../shared/services/requests';
 import { ProfileMenu } from '../../shared/components';
 import { LoadingProfileCard } from '../../shared/loading_components';
@@ -9,27 +8,21 @@ import { LoadingProfileCard } from '../../shared/loading_components';
 const YourProfile = ({ logoutHandler }) => {
   const [userData, setUserData] = useState(),
         [preferences, setPreferences] = useState(),
+        [offset, setOffset] = useState(),
         [loading, setLoading] = useState(false);
-
-  const userId = localStorage.getItem('user_id');
 
   useEffect(() => {
     setLoading(true);
 
-    GET(`user/${userId}`)
-      .then((data) => {
-        setUserData(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    PREFERENCES()
-      .then((preferences) => {
-        setPreferences(preferences);
-        console.log(preferences);
-        setLoading(false);
-      });
+    GET(`user/prefs`).then(data => {
+      setUserData(data.data.data.profile);
+      setPreferences(data.data.data.preferences);
+      setOffset(data.data.data.timezone_offset);
+      setLoading(false);
+    }).catch(error => {
+      console.log(error);
+      setLoading(false);
+    })
 
   }, []);
 
@@ -43,20 +36,20 @@ const YourProfile = ({ logoutHandler }) => {
         navLink3="/change-password"
         navLink3Name="Change password"
         logoutHandler={logoutHandler}
-      />
-
+        />
       {!loading && userData &&
         <div className="profile">
           <ProfileData
             data={userData}
             preferences={preferences}
+            offset={offset}
           />
         </div>
       }
 
       {loading &&
         <div className="loading">
-          <LoadingProfileCard />
+          <LoadingProfileCard/>
         </div>
       }
     </div>
