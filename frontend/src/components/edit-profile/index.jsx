@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './EditProfile.scss';
-import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, Modal, ProfileMenu } from '../../shared/components/';
+import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, MessageSuccess, Modal, ProfileMenu } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
 import { LoadingButton, LoadingInput, LoadingTextarea } from '../../shared/loading_components';
 

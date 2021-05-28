@@ -5,6 +5,7 @@ import InputDropdownMulti from './input_dropdown_multi';
 import InputDropdown from './input_dropdown';
 import InputPassword from './input_password/';
 import MessageError from './message_error/';
+import MessageSuccess from './message_success/';
 import Slider from './slider/';
 import Showcase from './showcase/';
 import Switch from './switch/';
@@ -20,6 +21,7 @@ export {
   InputDropdown,
   InputPassword,
   MessageError,
+  MessageSuccess,
   Modal,
   Slider,
   Showcase,
