@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ProfileMenu.scss';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +6,7 @@ import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../index';
 
 const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, navLink3Name, logoutHandler}) => {
+  const [openModal, setOpenModal] = useState(false);
   
   const openMenuBtn = (
     <FontAwesomeIcon
@@ -61,11 +62,11 @@ const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, 
       <Modal
         modalContent={modalMenu}
         openBtnClass="profile-menu-btn"
-        closeBtnClass="hidden-btn"
         openBtnText={openMenuBtn}
-        closeBtnText=""
         modalClass="menu-modal"
         modalOverlayClass="menu-modal-overlay"
+        isModalOpen={openModal}
+        btnOpenEvent={() => setOpenModal(true)}
       />
     </>
   );

@@ -11,7 +11,8 @@ const EditProfile = ({logoutHandler}) => {
         [body, setBody] = useState(''),
         [img, setImg] = useState(null),
         [errorDisplayName, setErrorDisplayName] = useState(null),
-        [loading, setLoading] = useState(false);
+        [loading, setLoading] = useState(false),
+        [openModal, setOpenModal] = useState(false);
 
   const getDisplayName = (e) => setDisplayName(e),
         getCountry = (e) => setCountry(e),
@@ -37,8 +38,8 @@ const EditProfile = ({logoutHandler}) => {
       .then((data) => {
         setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
-        setCountry(data.data.country)
-        setImg(data.data.img_path)
+        setCountry(data.data.country);
+        setImg(data.data.img_path);
         setBody(data.data.body);
         setLoading(false);
       })
@@ -67,24 +68,29 @@ const EditProfile = ({logoutHandler}) => {
       .catch((error) => {
         setErrorDisplayName(error.response.data.error.display_name);
       });
-  }
+  };
 
   const modalContent = (
     <>
       {images.map((path, idx) => {
-        return <img
-                key={idx} 
-                onClick={e=>setImgPath(e)} 
-                path={path} 
-                src={require(`../../shared/assets/images/${path}.png`).default} 
-              />
+        return (
+          <img
+            key={idx}
+            onClick={(e) => {
+              setImgPath(e);
+              setOpenModal(false);
+              }}
+            path={path}
+            src={require(`../../shared/assets/images/${path}.png`).default}
+          />
+        );
       })}
     </>
   );
 
   const setImgPath = (e) => {
     setImg(e.target.attributes.path.value);
-  }
+  };
 
   const modalImage = (
     <>
@@ -125,11 +131,11 @@ const EditProfile = ({logoutHandler}) => {
             <Modal
               modalContent={modalContent}
               openBtnClass="button-modal"
-              closeBtnClass="button-modal"
               openBtnText={modalImage}
-              closeBtnText="Close Modal"
               modalClass="modal"
               modalOverlayClass="modal-overlay"
+              isModalOpen={openModal}
+              btnOpenEvent={() => setOpenModal(true)}
             />
 
             <div class="input-wrap">
