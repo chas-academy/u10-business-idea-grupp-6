@@ -14,7 +14,6 @@ const Showcase = ({ data, type }) => {
     const filtered = data
       .filter((i, index) => index >= position.min && index < position.max);
 
-    console.log(filtered);
     setItems(filtered);
   }, [position]);
 

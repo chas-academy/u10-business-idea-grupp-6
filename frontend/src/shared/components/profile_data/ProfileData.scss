@@ -1,8 +1,8 @@
 @import "global.scss";
 
 .profile-data {
-    width: 100%;
-    
+  width: 100%;
+
   img {
     position: absolute;
     width: 6.875rem;
@@ -77,6 +77,14 @@
     padding: 0.9375rem;
     margin: 0 1.25rem;
   }
+
+  .times {
+    margin-left: 1.75rem;
+    padding-bottom: 1.75rem;
+    flex-direction: column;
+
+    h5::first-letter{
+      text-transform: uppercase;
+    }
+  }
 }
-
-
