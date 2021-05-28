@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Game extends Resource
@@ -28,7 +29,7 @@ class Game extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'game', 'genre_id'
     ];
 
     /**
@@ -41,6 +42,14 @@ class Game extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+
+            Text::make('Game')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Text::make('Genre_id')
+                ->sortable()
+                ->rules('required', 'max:255'),
         ];
     }
 
