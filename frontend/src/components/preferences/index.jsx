@@ -110,16 +110,16 @@ const Preferences = ({ logoutHandler }) => {
 
       {!options &&
         <div className="loading">
-          <LoadingInput></LoadingInput>
-          <LoadingSwitch></LoadingSwitch>
-          <LoadingSwitch></LoadingSwitch>
-          <LoadingInput></LoadingInput>
-          <LoadingSwitch></LoadingSwitch>
-          <LoadingSwitch></LoadingSwitch>
-          <LoadingSwitch></LoadingSwitch>
-          <LoadingInput></LoadingInput>
-          <LoadingSwitch></LoadingSwitch>
-          <LoadingSwitch></LoadingSwitch>
+          <LoadingInput/>
+          <LoadingSwitch/>
+          <LoadingSwitch/>
+          <LoadingInput/>
+          <LoadingSwitch/>
+          <LoadingSwitch/>
+          <LoadingSwitch/>
+          <LoadingInput/>
+          <LoadingSwitch/>
+          <LoadingSwitch/>
         </div>
       }
     </div>

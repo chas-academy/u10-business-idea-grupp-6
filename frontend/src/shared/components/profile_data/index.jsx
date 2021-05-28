@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProfileData.scss';
+import defaultProfileImg from '../../assets/images/default_profile_image.png';
 import Showcase from '../showcase';
 
 const ProfileData = ({ data, preferences, offset }) => {
 
+  console.log(preferences);
+
   return (
     <div className="profile-data">
 
-      {data.img_path ? 
-        <img src={require(`../../assets/images/${data.img_path}.png`).default}/> : 
-        <img src={require('../../assets/images/default_profile_image.png').default}/>
+      {data.img_path ?
+        <img src={require(`../../assets/images/${data.img_path}.png`).default} /> :
+        <img src={require('../../assets/images/default_profile_image.png').default} />
       }
 
       <h3>
@@ -17,27 +20,27 @@ const ProfileData = ({ data, preferences, offset }) => {
           "User hasn't selected a display name"}
       </h3>
 
+
       <span>
-        {preferences.player_types.map((i, idx) => {
-          return <h4 key={idx}>{i.player_type}</h4>
-        })}
+        {preferences?.player_types.length ?
+          preferences.player_types.map((i) => <h4>{i.player_type}</h4>) :
+          <h4>All types</h4>
+        }
       </span>
-      
+
       <span>
-        {preferences.langs.map((i, idx) => {
-          return <h5 key={idx}>{i.lang}</h5>
-        })}
+        {preferences?.langs.length ?
+          preferences.langs.map((i) => <h5>{i.lang}</h5>) :
+          <h5>All languages</h5>
+        }
       </span>
 
       <p>
-        {offset}
-      </p>
-
-      <p>
-        {data.country}
+        {data.country || ''}
       </p>
 
       <div className="showcase-container">
+
         <p>games</p>
 
         <Showcase data={preferences.games} type="game" />
@@ -47,6 +50,12 @@ const ProfileData = ({ data, preferences, offset }) => {
         <Showcase data={preferences.genres} type="genre" />
       </div>
 
+      <span className="times">
+        {preferences?.times.map((i) => {
+          return i.available === 1 &&
+            <h5>{`${i.interval}s ${i.from} to ${i.to} UTC +(${offset})`}</h5>
+        })}
+      </span>
 
       <p>
         {data.body ||

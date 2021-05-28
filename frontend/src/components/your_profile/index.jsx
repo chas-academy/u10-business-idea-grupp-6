@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './YourProfile.scss';
 import ProfileData from '../../shared/components/profile_data';
-import { PREFERENCES } from "../../shared/services/preferences";
 import { GET } from '../../shared/services/requests';
 import { ProfileMenu } from '../../shared/components';
 import { LoadingProfileCard } from '../../shared/loading_components';
@@ -12,18 +11,14 @@ const YourProfile = ({ logoutHandler }) => {
         [offset, setOffset] = useState(),
         [loading, setLoading] = useState(false);
 
-  const userId = localStorage.getItem('user_id');
-
   useEffect(() => {
     setLoading(true);
-
 
     GET(`user/prefs`).then(data => {
       setUserData(data.data.data.profile);
       setPreferences(data.data.data.preferences);
       setOffset(data.data.data.timezone_offset);
-      console.log(data)
-        setLoading(false);
+      setLoading(false);
     }).catch(error => {
       console.log(error);
       setLoading(false);
@@ -42,15 +37,21 @@ const YourProfile = ({ logoutHandler }) => {
         navLink3Name="Change password"
         logoutHandler={logoutHandler}
         />
-      <div className="profile">
-        {!loading && userData &&
-        <ProfileData
-          data={userData}
-          preferences={preferences}
-          offset={offset}
-        />
-        }
-      </div>
+      {!loading && userData &&
+        <div className="profile">
+          <ProfileData
+            data={userData}
+            preferences={preferences}
+            offset={offset}
+          />
+        </div>
+      }
+
+      {loading &&
+        <div className="loading">
+          <LoadingProfileCard/>
+        </div>
+      }
     </div>
   );
 };
