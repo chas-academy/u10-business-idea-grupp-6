@@ -12,17 +12,24 @@
   }
 
   form {
-    @include flex(space-between, center, column);
+    @include flex(center, stretch, row);
+    flex-wrap: wrap;
+    > * {
+      flex: 1 100%;
+    }
+    @include media(">1025px") {
+      max-width: 25rem;
+      margin: 0 auto;
+    }
   }
 
   .loading {
-    @include flex(
-      space-between, 
-      center, 
-      column
-    );
-
+    @include flex(space-between, center, column);
     margin-top: 3rem;
+  }
+
+  .input-wrap, .button-modal {
+    flex: 1 50%;
   }
 }
 
@@ -62,13 +69,24 @@
   z-index: 11;
 }
 
+.input-wrap {
+  padding-left: 1.875rem;
+  width: 100%;
+  max-width: 18rem;
+}
+
 .button-modal {
   @include button();
+  height: 9.375rem;
+  width: 100%;
+  max-width: 7rem;
   margin-bottom: 1.875rem;
 }
 
 img {
-  width: 3.75rem;
+  width: 6.875rem;
+  height: 8.75rem;
+  object-fit: scale-down;
   image-rendering: pixelated;
   border-radius: $rounded-sm;
   cursor: pointer;

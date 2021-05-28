@@ -107,7 +107,7 @@ const EditProfile = ({logoutHandler}) => {
         navLink3Name="Change password"
         logoutHandler={logoutHandler}
       />
-      
+
       <h1>
         Edit Profile
       </h1>
@@ -116,63 +116,61 @@ const EditProfile = ({logoutHandler}) => {
         This is your public profile that other people can see
       </h2>
 
-      {!loading && 
+      {!loading && (
         <>
-          <form
-            onSubmit={submit}
-          >
-    
-          {errorDisplayName && <MessageError message={errorDisplayName} />}
-  
-          <Modal
-            modalContent={modalContent}
-            openBtnClass="button-modal"
-            closeBtnClass="button-modal"
-            openBtnText={modalImage}
-            closeBtnText="Close Modal"
-            modalClass="modal"
-            modalOverlayClass="modal-overlay"
-          />
+          <form onSubmit={submit}>
 
-          <Input
-            type="text"
-            placeholder="Display Name"
-            currentValue={displayName}
-            name="display_name"
-            getState={getDisplayName}
-          />
-  
-          <InputDropdown
-            placeholder="Select country"
-            type="lang"
-            data={countries}
-            defaults={country}
-            getState={getCountry}
-          />
-  
-          <Textarea
-            name="body"
-            placeholder="Write something about yourself..."
-            currentValue={body}
-            getState={getBody}
-          />
-  
-          <ButtonSubmit name="Update Profile" />
-    
+            {errorDisplayName && <MessageError message={errorDisplayName} />}
+
+            <Modal
+              modalContent={modalContent}
+              openBtnClass="button-modal"
+              closeBtnClass="button-modal"
+              openBtnText={modalImage}
+              closeBtnText="Close Modal"
+              modalClass="modal"
+              modalOverlayClass="modal-overlay"
+            />
+
+            <div class="input-wrap">
+              <Input
+                type="text"
+                placeholder="Display Name"
+                currentValue={displayName}
+                name="display_name"
+                getState={getDisplayName}
+              />
+
+              <InputDropdown
+                placeholder="Select country"
+                type="lang"
+                data={countries}
+                defaults={country}
+                getState={getCountry}
+              />
+            </div>
+
+            <Textarea
+              name="body"
+              placeholder="Write something about yourself..."
+              currentValue={body}
+              getState={getBody}
+            />
+
+            <ButtonSubmit name="Update Profile" />
           </form>
         </>
-      }
+      )}
 
-      {loading && 
-        <div className="loading"> 
-          <LoadingButton/>
-          <LoadingInput/>
-          <LoadingInput/>
-          <LoadingTextarea/>
-          <LoadingButton/>
+      {loading && (
+        <div className="loading">
+          <LoadingButton />
+          <LoadingInput />
+          <LoadingInput />
+          <LoadingTextarea />
+          <LoadingButton />
         </div>
-      }
-
+      )}
     </div>
   );
 };
