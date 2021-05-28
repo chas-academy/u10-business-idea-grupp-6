@@ -23,7 +23,6 @@
     "require-dev": {
         "arielmejiadev/json-api-auth": "^1.0",
         "facade/ignition": "^2.5",
-        "laravel/nova": "~3.0",
         "laravel/sanctum": "^2.10",
         "laravel/tinker": "^2.6",
         "laravel/sail": "^1.0.1",
