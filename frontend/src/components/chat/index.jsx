@@ -4,7 +4,7 @@ import { echo, GET, POST } from '../../shared/services/requests';
 import { ButtonLink } from "../../shared/components/";
 import ChatWindow from '../chat_window';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisV, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faUser, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const Chat = () => {
 
@@ -12,10 +12,12 @@ const Chat = () => {
         [activeChat, setActiveChat] = useState(null),
         [showChat, setShowChat] = useState([]),
         [optionModal, setOptionModal] = useState(null),
-        [loading, setLoading] = useState(false);
+        [loading, setLoading] = useState(false),
+        [status, setStatus] = useState(false);
 
   useEffect(() => {
     GET('match/all').then((data) => {
+      setStatus(true);
       setMatchups(data.data);
     })
     const uid = localStorage.getItem('user_id');
@@ -81,13 +83,13 @@ const Chat = () => {
     <>
       <h1 className="chat-title">Chat Room</h1>
 
-      {matchups.length === 0 && (
+      {matchups.length === 0 && status && (
         <div>
           You have no more matches...
-          <ButtonLink 
+          <ButtonLink
           name="Match" 
           link="/"
-          classValue="button-link" 
+          classValue="button-match" 
           />
 
         </div>
@@ -165,6 +167,9 @@ const Chat = () => {
           key={matchup.user[0].id}
         />
       ))}
+
+      {!loading && !status && <FontAwesomeIcon icon ={faSpinner} className= "spinner shown"/>}
+
     </>
   );
 }
