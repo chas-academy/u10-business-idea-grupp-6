@@ -8,6 +8,16 @@ use Laravel\Nova\Resource as NovaResource;
 abstract class Resource extends NovaResource
 {
     /**
+     * Determine if the given resource is authorizable.
+     *
+     * @return bool
+     */
+    public static function authorizable()
+    {
+        return false;
+    }
+
+    /**
      * Build an "index" query for the given resource.
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
