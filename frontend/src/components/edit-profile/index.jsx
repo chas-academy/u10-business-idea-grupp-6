@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './EditProfile.scss';
-import {
-  Input,
-  InputDropdown,
-  Textarea,
-  ButtonSubmit,
-  MessageError,
-  Modal,
-  ProfileMenu
-} from '../../shared/components/';
+import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, Modal, ProfileMenu } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { LoadingButton, LoadingInput, LoadingTextarea } from '../../shared/loading_components';
 
 const EditProfile = ({logoutHandler}) => {
   const [displayName, setDisplayName] = useState(''),
@@ -95,12 +86,14 @@ const EditProfile = ({logoutHandler}) => {
     setImg(e.target.attributes.path.value);
   }
 
-  const modalImage = (<>
-    {img ? 
-      <img src={require(`../../shared/assets/images/${img}.png`).default}/> :
-      <img src={require(`../../shared/assets/images/default_profile_image.png`).default} />
-    }
-  </>);
+  const modalImage = (
+    <>
+      {img ? 
+        <img src={require(`../../shared/assets/images/${img}.png`).default}/> :
+        <img src={require(`../../shared/assets/images/default_profile_image.png`).default}/>
+      }
+    </>
+  );
 
   return (
     <div className="edit-profile">
@@ -115,15 +108,16 @@ const EditProfile = ({logoutHandler}) => {
         logoutHandler={logoutHandler}
       />
       
-      {!loading && <>
-          <h1>
-            Edit Profile
-          </h1>
-    
-          <h2>
-            This is your public profile that other people can see
-          </h2>
-    
+      <h1>
+        Edit Profile
+      </h1>
+
+      <h2>
+        This is your public profile that other people can see
+      </h2>
+
+      {!loading && 
+        <>
           <form
             onSubmit={submit}
           >
@@ -169,12 +163,16 @@ const EditProfile = ({logoutHandler}) => {
         </>
       }
 
-      <FontAwesomeIcon 
-        className={`${loading && "shown"} spinner`}
-        hidden={!loading}
-        icon={faSpinner}
-      />
-      
+      {loading && 
+        <div className="loading"> 
+          <LoadingButton/>
+          <LoadingInput/>
+          <LoadingInput/>
+          <LoadingTextarea/>
+          <LoadingButton/>
+        </div>
+      }
+
     </div>
   );
 };

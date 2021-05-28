@@ -54,6 +54,7 @@ const customStyles = {
   option: () => ({
     color: 'black',
     margin: '10px',
+    zIndex: 9999
   }),
   input: () => ({
     color: 'white',

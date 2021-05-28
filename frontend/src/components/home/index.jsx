@@ -1,8 +1,6 @@
 import React from 'react';
 import './Home.scss';
 import { ButtonLink } from '../../shared/components/';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
 
 const Home = () => {
   return (

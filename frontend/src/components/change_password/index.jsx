@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import './ChangePassword.scss';
-import { Link } from 'react-router-dom';
-import {
-  Input,
-  InputPassword,
-  ButtonSubmit,
-  MessageError,
-  ProfileMenu,
-} from '../../shared/components';
+import { InputPassword, ButtonSubmit, MessageError, ProfileMenu } from '../../shared/components';
 import { PATCH } from '../../shared/services/requests';
 
 const ChangePassword = ({logoutHandler}) => {

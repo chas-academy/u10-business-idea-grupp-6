@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import './InputDropdownMulti.scss';
 import AsyncSelect from 'react-select/async';
 import { DROPDOWNMULTI } from '../../services/preferences';
-import { POST } from '../../services/requests';
 
 const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
   const [selectedOption, setSelectedOption] = useState([]),

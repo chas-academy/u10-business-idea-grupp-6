@@ -24,17 +24,20 @@
 }
 
 body {
-  @include center();
+  display: flex;
+  justify-content: center;
   color: $color-white;
   background-color: $color-black;
+  height: 100vh;
 }
 
 main {
   width: 78vw;
+  max-width: 80rem;
   height: 100%;
   padding: 30px 0;
-  text-align: center;
   margin-bottom:80px;
+  position: relative;
 }
 
 .icon {
@@ -45,11 +48,11 @@ main {
   }
 
   &.icon-medium {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   &.icon-large {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -67,7 +70,7 @@ main {
 
   &.large {
     margin: 45vh auto; 
-    font-size: 10rem;
+    font-size: 3rem;
   }
 }
 
@@ -91,5 +94,14 @@ main {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: .4;
+  }
+  50% {
+    opacity: .1;
   }
 }

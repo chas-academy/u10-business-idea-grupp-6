@@ -1,21 +1,27 @@
 @import "global.scss";
 
 .profile-data {
-  
+    width: 100%;
+    
   img {
     position: absolute;
     width: 6.875rem;
     height: 8.75rem;
-    object-fit: cover;
+    object-fit: scale-down;
+    background-color: $color-white;
     border-radius: $rounded-md;
     top: -0.625rem;
     left: -0.625rem;
   }
 
   h3 {
+    padding-right: 1.25rem;
     padding-top: 0.625rem;
     margin-left: 7.5rem;
     font-size: $font-lg;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   span {
@@ -27,6 +33,9 @@
       margin-right: 0.625rem;
       font-weight: 400;
       font-size: $font-md;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     h5 {
@@ -34,6 +43,9 @@
       margin-right: 0.625rem;
       font-weight: 300;
       font-size: $font-sm;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
@@ -66,3 +78,5 @@
     margin: 0 1.25rem;
   }
 }
+
+
