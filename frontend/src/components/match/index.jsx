@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { GET, POST } from '../../shared/services/requests'
 import './Match.scss';
 import ProfileData from '../../shared/components/profile_data';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { LoadingProfileCard } from '../../shared/loading_components';
 
 const Match = () => {
   const [matches, setMatches] = useState([]),
-      [current, setCurrent] = useState(),
-      [loading, setLoading] = useState(false);
+        [current, setCurrent] = useState(),
+        [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
