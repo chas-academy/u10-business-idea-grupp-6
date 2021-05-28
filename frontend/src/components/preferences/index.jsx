@@ -84,7 +84,7 @@ const Preferences = ({ logoutHandler }) => {
 
           <h2>
             Preferred languages
-              </h2>
+          </h2>
 
           <InputDropdownMulti
             placeholder="Search languages"
@@ -95,7 +95,7 @@ const Preferences = ({ logoutHandler }) => {
 
           <h2>
             Optional
-              </h2>
+          </h2>
 
           {options?.miscs.map((misc, idx) => (
             <Switch
