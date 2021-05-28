@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import './Register.scss';
 import { Link, Redirect } from 'react-router-dom';
-import {
-  Input,
-  InputPassword,
-  ButtonSubmit,
-  MessageError,
-} from '../../shared/components/';
+import { Input, InputPassword, ButtonSubmit, MessageError} from '../../shared/components/';
 import { POST } from '../../shared/services/requests';
 
 const Register = ({getToken, getAuthLoading}) => {
@@ -29,7 +24,8 @@ const Register = ({getToken, getAuthLoading}) => {
       name: name,
       email: email,
       password: pwd,
-      password_confirmation: pwdConf
+      password_confirmation: pwdConf,
+      timezone_offset: new Date().getTimezoneOffset() / -60
     };
     
     getAuthLoading(true);

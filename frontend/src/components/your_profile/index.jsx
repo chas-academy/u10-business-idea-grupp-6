@@ -8,6 +8,7 @@ import { ProfileMenu } from '../../shared/components';
 const YourProfile = ({logoutHandler}) => {
   const [userData, setUserData] = useState(),
         [preferences, setPreferences] = useState(),
+        [offset, setOffset] = useState(),
         [loading, setLoading] = useState(false);
 
   const userId = localStorage.getItem('user_id');
@@ -15,20 +16,17 @@ const YourProfile = ({logoutHandler}) => {
   useEffect(() => {
     setLoading(true);
 
-    GET(`user/${userId}`)
-      .then((data) => {
-        setUserData(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
 
-    PREFERENCES()
-      .then((preferences) => {
-        setPreferences(preferences);
-        console.log(preferences);
+    GET(`user/prefs`).then(data => {
+      setUserData(data.data.data.profile);
+      setPreferences(data.data.data.preferences);
+      setOffset(data.data.data.timezone_offset);
+      console.log(data)
         setLoading(false);
-      });
+    }).catch(error => {
+      console.log(error);
+      setLoading(false);
+    })
 
   }, []);
 
@@ -48,6 +46,7 @@ const YourProfile = ({logoutHandler}) => {
         <ProfileData
           data={userData}
           preferences={preferences}
+          offset={offset}
         />
         }
       </div>

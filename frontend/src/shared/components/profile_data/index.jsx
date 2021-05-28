@@ -3,7 +3,7 @@ import './ProfileData.scss';
 import defaultProfileImg from '../../assets/images/default_profile_image.png';
 import Showcase from '../showcase';
 
-const ProfileData = ({ data, preferences }) => {
+const ProfileData = ({ data, preferences, offset }) => {
 
   return (
     <div className="profile-data">
@@ -19,12 +19,16 @@ const ProfileData = ({ data, preferences }) => {
           return <h4>{i.player_type}</h4>
         })}
       </span>
-
+      
       <span>
         {preferences.langs.map((i) => {
           return <h5>{i.lang}</h5>
         })}
       </span>
+
+      <p>
+        {offset}
+      </p>
 
       <p>
         {data.country}

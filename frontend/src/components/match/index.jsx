@@ -70,6 +70,7 @@ const Match = () => {
             <ProfileData
               data={current.profile}
               preferences={current.preferences}
+              offset={current.timezone_offset}
             />
           }
 
