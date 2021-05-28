@@ -13,7 +13,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/nova": "*",
+        "laravel/nova": "~3.0",
         "pusher/pusher-php-server": "^7.0",
         "fakerphp/faker": "^1.9.1",
         "laravel/sanctum": "^2.10",
