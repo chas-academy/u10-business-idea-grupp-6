@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/api/*',
-        'nova/login'
+        'nova/login',
+        'nova/dashboards/main'
     ];
 }
