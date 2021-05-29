@@ -16,6 +16,4 @@ use Laravel\Nova\Nova;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Nova::routes();
+})
