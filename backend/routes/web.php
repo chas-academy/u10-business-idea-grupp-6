@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\MatchController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Nova\Nova;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,4 +16,4 @@ use Laravel\Nova\Nova;
 
 Route::get('/', function () {
     return view('welcome');
-})
+});
