@@ -38,8 +38,8 @@ const EditProfile = ({logoutHandler}) => {
       .then((data) => {
         setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
-        setCountry(data.data.country)
-        setImg(data.data.img_path)
+        setCountry(data.data.country);
+        setImg(data.data.img_path);
         setBody(data.data.body);
         setLoading(false);
       })
@@ -65,11 +65,11 @@ const EditProfile = ({logoutHandler}) => {
       .then((data) => {
         setSuccess('Profile successfully updated!');
         setOldDisplayName(displayName);
-        setErrorDisplayName(null)
+        setErrorDisplayName(null);
       })
       .catch((error) => {
         setErrorDisplayName(error.response.data.error.display_name);
-        setSuccess(null)
+        setSuccess(null);
       });
   }
 

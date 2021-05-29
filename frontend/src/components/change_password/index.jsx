@@ -27,14 +27,14 @@ const ChangePassword = ({logoutHandler}) => {
 
     PATCH(`user/${userId}/password`, data)
       .then((res) => {
-        setSuccess('Password updated successfully!')
+        setSuccess('Password updated successfully!');
         setErrorCurrentPwd(null);
         setErrorNewPwd(null);
       })
       .catch((error) => {
         setErrorCurrentPwd(error.response.data.error.current_password);
         setErrorNewPwd(error.response.data.error.password);
-        setSuccess(null)
+        setSuccess(null);
       });
   };
 

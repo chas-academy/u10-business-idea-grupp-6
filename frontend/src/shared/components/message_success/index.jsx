@@ -1,16 +1,14 @@
-import React from 'react'
+import React from 'react';
 import './MessageSuccess.scss';
 
 const MessageSuccess = ({ message }) => {
-    return (
-        <div>
-            <div className="message-success">
-                <div>
-                    {message}
-                </div>
-            </div>
-        </div>
-    )
+  return (
+    <>
+      <div className="message-success">
+        {message}
+      </div>
+    </>
+  )
 }
 
-export default MessageSuccess
+export default MessageSuccess;
