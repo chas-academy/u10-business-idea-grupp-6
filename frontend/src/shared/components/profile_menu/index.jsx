@@ -67,6 +67,7 @@ const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, 
         modalOverlayClass="menu-modal-overlay"
         isModalOpen={openModal}
         btnOpenEvent={() => setOpenModal(true)}
+        closeEvent={() => setOpenModal(false)}
       />
     </>
   );
