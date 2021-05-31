@@ -9,21 +9,22 @@ const Modal = ({
   modalClass,
   modalOverlayClass,
   isModalOpen,
+  closeEvent,
   btnOpenEvent
 }) => {
-  // const [openModal, setOpenModal] = useState(false);
-
-  // const toggleModal = (e) => setOpenModal(e);
 
   return (
     <>
-      <button className={openBtnClass} onClick={btnOpenEvent}>
+      <button
+        type="button"
+        className={openBtnClass}
+        onClick={btnOpenEvent}>
         {openBtnText}
       </button>
 
       <ReactModal
         isOpen={isModalOpen || false}
-        // onRequestClose={(e) => toggleModal(false)}
+        onRequestClose={closeEvent}
         className={modalClass}
         overlayClassName={modalOverlayClass}
         shouldCloseOnOverlayClick={true}

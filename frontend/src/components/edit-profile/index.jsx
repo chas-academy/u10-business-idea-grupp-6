@@ -142,6 +142,7 @@ const EditProfile = ({logoutHandler}) => {
               modalOverlayClass="modal-overlay"
               isModalOpen={openModal}
               btnOpenEvent={() => setOpenModal(true)}
+              closeEvent={() => setOpenModal(false)}
             />
 
             <div className="input-wrap">
