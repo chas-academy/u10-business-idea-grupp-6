@@ -7,9 +7,9 @@ const ProfileData = ({ data, preferences }) => {
   return (
     <div className="profile-data">
 
-      {data.img_path ? 
-        <img src={require(`../../assets/images/${data.img_path}.png`).default}/> : 
-        <img src={require('../../assets/images/default_profile_image.png').default}/>
+      {data.img_path ?
+        <img src={require(`../../assets/images/${data.img_path}.png`).default} alt="image" /> :
+        <img src={require('../../assets/images/default_profile_image.png').default} alt="profile image" />
       }
 
       <h3>
@@ -43,7 +43,6 @@ const ProfileData = ({ data, preferences }) => {
         <Showcase data={preferences.genres} type="genre" />
       </div>
 
-
       <p>
         {data.body ||
           `User hasn't chosen a body... Here's some lorem ipsum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero omnis nulla hic quae iste obcaecati, consequuntur velit minus rerum. Non veritatis reiciendis quos magni corrupti enim molestias, dolor fugit ipsum?
@@ -54,7 +53,3 @@ const ProfileData = ({ data, preferences }) => {
 }
 
 export default ProfileData;
-
-
-
-
