@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './EditProfile.scss';
-import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, Modal, ProfileMenu } from '../../shared/components/';
+import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, MessageSuccess, Modal, ProfileMenu } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
 import { LoadingButton, LoadingInput, LoadingTextarea } from '../../shared/loading_components';
 
@@ -11,7 +11,8 @@ const EditProfile = ({logoutHandler}) => {
         [body, setBody] = useState(''),
         [img, setImg] = useState(null),
         [errorDisplayName, setErrorDisplayName] = useState(null),
-        [loading, setLoading] = useState(false);
+        [loading, setLoading] = useState(false),
+        [success, setSuccess] = useState(null);
 
   const getDisplayName = (e) => setDisplayName(e),
         getCountry = (e) => setCountry(e),
@@ -37,8 +38,8 @@ const EditProfile = ({logoutHandler}) => {
       .then((data) => {
         setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
-        setCountry(data.data.country)
-        setImg(data.data.img_path)
+        setCountry(data.data.country);
+        setImg(data.data.img_path);
         setBody(data.data.body);
         setLoading(false);
       })
@@ -62,10 +63,13 @@ const EditProfile = ({logoutHandler}) => {
 
     PATCH(`user/${userId}`, data)
       .then((data) => {
-        console.log('Profile successfully updated!');
+        setSuccess('Profile successfully updated!');
+        setOldDisplayName(displayName);
+        setErrorDisplayName(null);
       })
       .catch((error) => {
         setErrorDisplayName(error.response.data.error.display_name);
+        setSuccess(null);
       });
   }
 
@@ -122,7 +126,7 @@ const EditProfile = ({logoutHandler}) => {
             onSubmit={submit}
           >
     
-          {errorDisplayName && <MessageError message={errorDisplayName} />}
+          {errorDisplayName ? <MessageError message={errorDisplayName} /> : success && <MessageSuccess message={success}/> }
   
           <Modal
             modalContent={modalContent}

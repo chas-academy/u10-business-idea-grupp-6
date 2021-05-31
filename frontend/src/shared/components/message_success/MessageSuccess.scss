@@ -1,0 +1,9 @@
+@import "global.scss";
+
+.message-success {
+  @include message();
+  color: #270;
+  background-color: #DFF2BF;
+  border: $border-success;
+  margin-bottom: 1.875rem;
+}
