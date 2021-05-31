@@ -78,7 +78,7 @@ const App = () => {
       }
 
       <Router>
-        <main id="main">
+        <main>
 
           <Notification
             auth={isAuth}
