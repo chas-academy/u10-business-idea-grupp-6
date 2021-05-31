@@ -81,7 +81,7 @@ const EditProfile = ({ logoutHandler }) => {
           onClick={e => setImgPath(e)}
           path={path}
           src={require(`../../shared/assets/images/${path}.png`).default}
-          alt=""
+          alt="image"
         />
       })}
     </>
