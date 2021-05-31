@@ -110,11 +110,14 @@ const Chat = () => {
               }
             >
               {matchup.user[0].profile.img_path ?
-                <img
-                  src={matchup.user[0].profile.img_path}
-                  width="30px"
+                <img 
+                  src={require(`../../shared/assets/images/${matchup.user[0].profile.img_path}.png`).default}
                   className="profile-img"
-                /> : <FontAwesomeIcon icon={faUser} className="profile-img" />
+                /> :
+                <img 
+                  src={require('../../shared/assets/images/default_profile_image.png').default} 
+                  className="profile-img"
+                />
               }
               <p
                 className="chat-displayname"

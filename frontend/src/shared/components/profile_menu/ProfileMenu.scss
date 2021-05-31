@@ -23,14 +23,22 @@
 
 .menu-modal {
   display: grid;
+  width: 10rem;
+  float: right;
+  margin-right: 11vw;
   row-gap: 1.25rem;
-  position: absolute;
   padding: 1.25rem;
   font-size: $font-sm;
-  top: 1rem;
-  right: 7rem;
   background: $color-light-gray;
   border-radius: $rounded-sm;
+
+  @include media('>1660px') {
+    position: absolute;
+    float: none;
+    left:50%;
+    width: 12.5rem;
+    margin-left: 27.5rem;
+  }
 }
 
 .hidden-btn {

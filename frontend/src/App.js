@@ -210,10 +210,10 @@ const App = () => {
             </Switch>
           </>
           }
+          <nav>
+            {isAuth && <Menu />}
+          </nav>
         </main>
-        <nav>
-          {isAuth && <Menu />}
-        </nav>
       </Router>
     </>
   );

@@ -22,7 +22,10 @@
 }
 
 .profile-img {
-    font-size: 2.5rem;
+    object-fit: scale-down;
+    border-radius: $rounded-sm;
+    width: 3.125rem;
+    height: 3.125rem;
 }
 
 .chat-options-wrapper{
