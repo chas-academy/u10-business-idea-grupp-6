@@ -78,7 +78,7 @@ const App = () => {
       }
 
       <Router>
-        <main>
+        <main id="main">
 
           <Notification
             auth={isAuth}
@@ -210,10 +210,10 @@ const App = () => {
             </Switch>
           </>
           }
+          <nav>
+            {isAuth && <Menu />}
+          </nav>
         </main>
-        <nav>
-          {isAuth && <Menu />}
-        </nav>
       </Router>
     </>
   );
