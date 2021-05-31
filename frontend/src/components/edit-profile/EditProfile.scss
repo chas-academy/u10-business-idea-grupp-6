@@ -109,3 +109,8 @@ img {
   border-radius: $rounded-sm;
   cursor: pointer;
 }
+
+.messages {
+  display: flex;
+  justify-content: center;
+}

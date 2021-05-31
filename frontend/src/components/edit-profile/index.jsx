@@ -128,9 +128,11 @@ const EditProfile = ({logoutHandler}) => {
 
       {!loading && (
         <>
-          <form onSubmit={submit}>
+        <div className="messages">
+          {errorDisplayName ? <MessageError message={errorDisplayName} /> : success && <MessageSuccess message={success}/> }
+        </div>
 
-            {errorDisplayName ? <MessageError message={errorDisplayName} /> : success && <MessageSuccess message={success}/> }
+          <form onSubmit={submit}>
 
             <Modal
               modalContent={modalContent}
