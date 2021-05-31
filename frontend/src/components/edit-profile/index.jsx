@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './EditProfile.scss';
-import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, Modal, ProfileMenu } from '../../shared/components/';
+import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, MessageSuccess,Modal, ProfileMenu } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
 import { LoadingButton, LoadingInput, LoadingTextarea } from '../../shared/loading_components';
 
@@ -12,6 +12,7 @@ const EditProfile = ({logoutHandler}) => {
         [img, setImg] = useState(null),
         [errorDisplayName, setErrorDisplayName] = useState(null),
         [loading, setLoading] = useState(false),
+        [success, setSuccess] = useState(null),
         [openModal, setOpenModal] = useState(false);
 
   const getDisplayName = (e) => setDisplayName(e),
@@ -63,10 +64,13 @@ const EditProfile = ({logoutHandler}) => {
 
     PATCH(`user/${userId}`, data)
       .then((data) => {
-        console.log('Profile successfully updated!');
+        setSuccess('Profile successfully updated!');
+        setOldDisplayName(displayName);
+        setErrorDisplayName(null);
       })
       .catch((error) => {
         setErrorDisplayName(error.response.data.error.display_name);
+        setSuccess(null);
       });
   };
 
@@ -126,7 +130,7 @@ const EditProfile = ({logoutHandler}) => {
         <>
           <form onSubmit={submit}>
 
-            {errorDisplayName && <MessageError message={errorDisplayName} />}
+            {errorDisplayName ? <MessageError message={errorDisplayName} /> : success && <MessageSuccess message={success}/> }
 
             <Modal
               modalContent={modalContent}
