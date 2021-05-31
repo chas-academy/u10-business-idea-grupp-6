@@ -4,7 +4,8 @@ import Pusher from 'pusher-js';
 
 window.Pusher = require('pusher-js');
 
-const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api';
+// const apiBaseURL = 'https://u10-backend-staging.herokuapp.com/api';
+const apiBaseURL = 'http://tenta.designproducers.se/api';
 
 axios.defaults.withCredentials = true;
 
