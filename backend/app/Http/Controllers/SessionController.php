@@ -11,7 +11,7 @@ class SessionController extends Controller
 {
     public function create(Request $request)
     {
-        if($session = Session::where('user_a_id', $request->friend_id)->where('user_b_id',  auth('sanctum')->user()->id))
+        if($session = Session::where('user_a_id', $request->friend_id)->where('user_b_id',  auth('sanctum')->user()->id)->first())
         {
             $modifiedSession = new SessionResource($session);
         }
