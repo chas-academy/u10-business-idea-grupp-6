@@ -8,8 +8,8 @@ const ProfileData = ({ data, preferences }) => {
     <div className="profile-data">
 
       {data.img_path ?
-        <img src={require(`../../assets/images/${data.img_path}.png`).default} alt="image" /> :
-        <img src={require('../../assets/images/default_profile_image.png').default} alt="profile image" />
+        <img src={require(`../../assets/images/${data.img_path}.png`).default} alt="profile image" /> :
+        <img src={require('../../assets/images/default_profile_image.png').default} alt="default profile image" />
       }
 
       <h3>
