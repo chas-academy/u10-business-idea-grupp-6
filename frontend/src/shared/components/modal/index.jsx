@@ -17,7 +17,7 @@ const Modal = ({
 
   return (
     <>
-      <button className={openBtnClass} onClick={(e) => toggleModal(true)}>
+      <button id="btn" className={openBtnClass} onClick={(e) => toggleModal(true)}>
         {openBtnText}
       </button>
 
@@ -28,6 +28,7 @@ const Modal = ({
         overlayClassName={modalOverlayClass}
         shouldCloseOnOverlayClick={true}
         ariaHideApp={false}
+        parentSelector={() => document.querySelector('#btn')}
       >
         {modalContent}
       </ReactModal>

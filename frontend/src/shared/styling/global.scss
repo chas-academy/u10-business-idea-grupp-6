@@ -19,7 +19,7 @@
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
   -webkit-text-fill-color: $color-white;
-  -webkit-box-shadow: 0 0 0px 1000px $color-dark-gray inset;
+  -webkit-box-shadow: 0 0 0px 62.5rem $color-dark-gray inset;
   }
 }
 
@@ -29,19 +29,20 @@ body {
   color: $color-white;
   background-color: $color-black;
   height: 100vh;
+  position: relative;
 }
 
 main {
   width: 78vw;
   max-width: 80rem;
   height: 100%;
-  padding: 30px 0;
-  margin-bottom:80px;
+  padding: 1.875rem 0;
+  margin-bottom: 5rem;
   position: relative;
 }
 
 nav {
-  height: 100px;
+  height: 6.25rem;
 }
 
 .icon {
