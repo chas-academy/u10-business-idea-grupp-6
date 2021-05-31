@@ -13,7 +13,7 @@ const Profile = (props) => {
       {props.location.data && <ProfileData
         data={props.location.data?.user.profile}
         preferences={props.location.data?.user.preferences}
-        offset={props.localtion.data?.user.timezone_offset}
+        offset={props.location.data?.user.timezone_offset}
       />}
     </div>
   )
