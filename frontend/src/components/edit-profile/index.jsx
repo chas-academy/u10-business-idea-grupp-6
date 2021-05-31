@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './EditProfile.scss';
-import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, Modal, ProfileMenu } from '../../shared/components/';
+import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, MessageSuccess, Modal, ProfileMenu } from '../../shared/components/';
 import { PATCH, GET } from '../../shared/services/requests';
 import { LoadingButton, LoadingInput, LoadingTextarea } from '../../shared/loading_components';
 
@@ -11,7 +11,9 @@ const EditProfile = ({logoutHandler}) => {
         [body, setBody] = useState(''),
         [img, setImg] = useState(null),
         [errorDisplayName, setErrorDisplayName] = useState(null),
-        [loading, setLoading] = useState(false);
+        [loading, setLoading] = useState(false),
+        [openModal, setOpenModal] = useState(false),
+        [success, setSuccess] = useState(null);
 
   const getDisplayName = (e) => setDisplayName(e),
         getCountry = (e) => setCountry(e),
@@ -37,8 +39,8 @@ const EditProfile = ({logoutHandler}) => {
       .then((data) => {
         setOldDisplayName(data.data.display_name);
         setDisplayName(data.data.display_name);
-        setCountry(data.data.country)
-        setImg(data.data.img_path)
+        setCountry(data.data.country);
+        setImg(data.data.img_path);
         setBody(data.data.body);
         setLoading(false);
       })
@@ -62,29 +64,37 @@ const EditProfile = ({logoutHandler}) => {
 
     PATCH(`user/${userId}`, data)
       .then((data) => {
-        console.log('Profile successfully updated!');
+        setSuccess('Profile successfully updated!');
+        setOldDisplayName(displayName);
+        setErrorDisplayName(null);
       })
       .catch((error) => {
         setErrorDisplayName(error.response.data.error.display_name);
+        setSuccess(null);
       });
-  }
+  };
 
   const modalContent = (
     <>
       {images.map((path, idx) => {
-        return <img
-                key={idx} 
-                onClick={e=>setImgPath(e)} 
-                path={path} 
-                src={require(`../../shared/assets/images/${path}.png`).default} 
-              />
+        return (
+          <img
+            key={idx}
+            onClick={(e) => {
+              setImgPath(e);
+              setOpenModal(false);
+              }}
+            path={path}
+            src={require(`../../shared/assets/images/${path}.png`).default}
+          />
+        );
       })}
     </>
   );
 
   const setImgPath = (e) => {
     setImg(e.target.attributes.path.value);
-  }
+  };
 
   const modalImage = (
     <>
@@ -107,7 +117,7 @@ const EditProfile = ({logoutHandler}) => {
         navLink3Name="Change password"
         logoutHandler={logoutHandler}
       />
-      
+
       <h1>
         Edit Profile
       </h1>
@@ -116,63 +126,61 @@ const EditProfile = ({logoutHandler}) => {
         This is your public profile that other people can see
       </h2>
 
-      {!loading && 
+      {!loading && (
         <>
-          <form
-            onSubmit={submit}
-          >
-    
-          {errorDisplayName && <MessageError message={errorDisplayName} />}
-  
-          <Modal
-            modalContent={modalContent}
-            openBtnClass="button-modal"
-            closeBtnClass="button-modal"
-            openBtnText={modalImage}
-            closeBtnText="Close Modal"
-            modalClass="modal"
-            modalOverlayClass="modal-overlay"
-          />
+          <form onSubmit={submit}>
 
-          <Input
-            type="text"
-            placeholder="Display Name"
-            currentValue={displayName}
-            name="display_name"
-            getState={getDisplayName}
-          />
-  
-          <InputDropdown
-            placeholder="Select country"
-            type="lang"
-            data={countries}
-            defaults={country}
-            getState={getCountry}
-          />
-  
-          <Textarea
-            name="body"
-            placeholder="Write something about yourself..."
-            currentValue={body}
-            getState={getBody}
-          />
-  
-          <ButtonSubmit name="Update Profile" />
-    
+            {errorDisplayName ? <MessageError message={errorDisplayName} /> : success && <MessageSuccess message={success}/> }
+
+            <Modal
+              modalContent={modalContent}
+              openBtnClass="button-modal"
+              openBtnText={modalImage}
+              modalClass="modal"
+              modalOverlayClass="modal-overlay"
+              isModalOpen={openModal}
+              btnOpenEvent={() => setOpenModal(true)}
+            />
+
+            <div class="input-wrap">
+              <Input
+                type="text"
+                placeholder="Display Name"
+                currentValue={displayName}
+                name="display_name"
+                getState={getDisplayName}
+              />
+
+              <InputDropdown
+                placeholder="Select country"
+                type="lang"
+                data={countries}
+                defaults={country}
+                getState={getCountry}
+              />
+            </div>
+
+            <Textarea
+              name="body"
+              placeholder="Write something about yourself..."
+              currentValue={body}
+              getState={getBody}
+            />
+
+            <ButtonSubmit name="Update Profile" />
           </form>
         </>
-      }
+      )}
 
-      {loading && 
-        <div className="loading"> 
-          <LoadingButton/>
-          <LoadingInput/>
-          <LoadingInput/>
-          <LoadingTextarea/>
-          <LoadingButton/>
+      {loading && (
+        <div className="loading">
+          <LoadingButton />
+          <LoadingInput />
+          <LoadingInput />
+          <LoadingTextarea />
+          <LoadingButton />
         </div>
-      }
-
+      )}
     </div>
   );
 };
