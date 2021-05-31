@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ChangePassword.scss';
-import { InputPassword, ButtonSubmit, MessageError, ProfileMenu } from '../../shared/components';
+import { InputPassword, ButtonSubmit, MessageError, MessageSuccess, ProfileMenu } from '../../shared/components';
 import { PATCH } from '../../shared/services/requests';
 
 const ChangePassword = ({logoutHandler}) => {
@@ -8,7 +8,8 @@ const ChangePassword = ({logoutHandler}) => {
         [newPwd, setNewPwd] = useState(''),
         [newPwdConf, setNewPwdConf] = useState(''),
         [errorCurrentPwd, setErrorCurrentPwd] = useState(null),
-        [errorNewPwd, setErrorNewPwd] = useState(null);
+        [errorNewPwd, setErrorNewPwd] = useState(null),
+        [success, setSuccess] = useState(null)
 
   const getCurrentPwd = (e) => setCurrentPwd(e),
         getNewPwd = (e) => setNewPwd(e),
@@ -26,11 +27,14 @@ const ChangePassword = ({logoutHandler}) => {
 
     PATCH(`user/${userId}/password`, data)
       .then((res) => {
-        console.log('Success!!');
+        setSuccess('Password updated successfully!');
+        setErrorCurrentPwd(null);
+        setErrorNewPwd(null);
       })
       .catch((error) => {
         setErrorCurrentPwd(error.response.data.error.current_password);
         setErrorNewPwd(error.response.data.error.password);
+        setSuccess(null);
       });
   };
 
@@ -52,7 +56,7 @@ const ChangePassword = ({logoutHandler}) => {
       <h2>Please fill in the details if you want to change your password</h2>
 
       <form onSubmit={submit}>
-        {errorCurrentPwd && <MessageError message={errorCurrentPwd} />}
+        {success ? <MessageSuccess message = {success} /> : errorCurrentPwd && <MessageError message={errorCurrentPwd} />}
 
         <InputPassword
           placeholder="Current Password"

@@ -23,6 +23,8 @@
     "require-dev": {
         "arielmejiadev/json-api-auth": "^1.0",
         "facade/ignition": "^2.5",
+        "laravel/sanctum": "^2.10",
+        "laravel/tinker": "^2.6",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
@@ -50,6 +52,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan nova:install && php artisan nova:publish && php artisan migrate"
         ]
     },
     "extra": {
