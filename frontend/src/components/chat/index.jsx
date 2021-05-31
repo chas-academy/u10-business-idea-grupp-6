@@ -26,8 +26,8 @@ const Chat = () => {
       .private('App.Models.User.' + uid)
       .listen('MatchupSuccessful', (e) => {
         const newMatchup = e.matchupData.matchup;
-        newMatchup.users = newMatchup.users.filter(i => i.id !== parseInt(uid));
-        setMatchups((previousState) => [...previousState, newMatchup])
+        newMatchup.user = e.matchupData.users.filter(i => i.id !== parseInt(uid));
+        setMatchups((previousState) => [...previousState, newMatchup]);
       });
     document.body.addEventListener('click', () => {
       setOptionModal(null)
