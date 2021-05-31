@@ -2,6 +2,11 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\GameCount;
+use App\Nova\Metrics\GamesPerGenre;
+use App\Nova\Metrics\UserCount;
+use App\Nova\Metrics\UsersPerDay;
+
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -57,7 +62,12 @@ class Misc extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new UserCount,
+            new GameCount,
+            new UsersPerDay,
+            new GamesPerGenre
+        ];
     }
 
     /**

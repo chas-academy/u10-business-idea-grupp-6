@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\GameCount;
+use App\Nova\Metrics\GamesPerGenre;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -69,7 +71,10 @@ class Game extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new GameCount,
+            new GamesPerGenre
+        ];
     }
 
     /**
