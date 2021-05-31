@@ -15,7 +15,10 @@ const Modal = ({
 
   return (
     <>
-      <button className={openBtnClass} onClick={btnOpenEvent}>
+      <button
+        type="button"
+        className={openBtnClass}
+        onClick={btnOpenEvent}>
         {openBtnText}
       </button>
 
