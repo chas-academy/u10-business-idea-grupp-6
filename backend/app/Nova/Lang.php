@@ -8,12 +8,19 @@ use App\Nova\Metrics\UserCount;
 use App\Nova\Metrics\UsersPerDay;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Lang extends Resource
 {
+    public static $group = 'App Settings';
     /**
      * The model the resource corresponds to.
      *
@@ -55,6 +62,8 @@ class Lang extends Resource
             Text::make('Native')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            BelongsToMany::make('Users')->sortable(),
         ];
     }
 
