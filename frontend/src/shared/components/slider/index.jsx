@@ -63,7 +63,7 @@ const Slider = ({ name, defaults }) => {
 
     inputStart.addEventListener('input', setStartValue);
     inputEnd.addEventListener('input', setEndValue);
-  }, [defaults]);
+  }, [defaults, name]);
 
   const addEventListeners = (input, thumb) => {
     input.addEventListener('mouseover', () => {

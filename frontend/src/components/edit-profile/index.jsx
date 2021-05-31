@@ -47,7 +47,7 @@ const EditProfile = ({logoutHandler}) => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [userId]);
 
   const submit = (event) => {
     event.preventDefault();
@@ -85,6 +85,7 @@ const EditProfile = ({logoutHandler}) => {
               setOpenModal(false);
               }}
             path={path}
+            alt={path}
             src={require(`../../shared/assets/images/${path}.png`).default}
           />
         );
@@ -99,8 +100,14 @@ const EditProfile = ({logoutHandler}) => {
   const modalImage = (
     <>
       {img ? 
-        <img src={require(`../../shared/assets/images/${img}.png`).default}/> :
-        <img src={require(`../../shared/assets/images/default_profile_image.png`).default}/>
+        <img 
+          src={require(`../../shared/assets/images/${img}.png`).default}
+          alt={img}
+        /> :
+        <img 
+          src={require(`../../shared/assets/images/default_profile_image.png`).default}
+          alt="default_profile_image"
+        />
       }
     </>
   );
