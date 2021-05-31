@@ -142,7 +142,7 @@ const EditProfile = ({logoutHandler}) => {
               btnOpenEvent={() => setOpenModal(true)}
             />
 
-            <div class="input-wrap">
+            <div className="input-wrap">
               <Input
                 type="text"
                 placeholder="Display Name"
@@ -174,9 +174,11 @@ const EditProfile = ({logoutHandler}) => {
 
       {loading && (
         <div className="loading">
-          <LoadingButton />
-          <LoadingInput />
-          <LoadingInput />
+          <div className="loading-modal-img" />
+          <div className="input-wrap">
+            <LoadingInput />
+            <LoadingInput />
+          </div>
           <LoadingTextarea />
           <LoadingButton />
         </div>
