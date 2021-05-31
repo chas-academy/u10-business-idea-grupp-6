@@ -1,7 +1,6 @@
 @import 'global.scss';
 
 .edit-profile {
-
   h1 {
     @include title();
     margin-top: 1rem;
@@ -17,9 +16,21 @@
     > * {
       flex: 1 100%;
     }
-    @include media(">1025px") {
+    @include media('>1025px') {
       max-width: 25rem;
       margin: 0 auto;
+    }
+
+    @include media('<374px') {
+      @include flex(space-between, center, column);
+      .input-wrap {
+        padding-left: 0;
+        max-width: 25rem;
+      }
+
+      .button-modal {
+        max-width: 25rem;
+      }
     }
   }
 
@@ -28,7 +39,8 @@
     margin-top: 3rem;
   }
 
-  .input-wrap, .button-modal {
+  .input-wrap,
+  .button-modal {
     flex: 1 50%;
   }
 }
@@ -36,7 +48,10 @@
 .modal {
   display: grid;
   position: absolute;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr) minmax(10rem, 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(10rem, 1fr) minmax(10rem, 1fr)
+  );
   place-items: center;
   grid-gap: 1.25rem;
   top: 2.5rem;
@@ -94,4 +109,3 @@ img {
   border-radius: $rounded-sm;
   cursor: pointer;
 }
-
