@@ -81,11 +81,14 @@
   width: 100%;
   max-width: 7rem;
   margin-bottom: 1.875rem;
+
+  img {
+    height: 8.75rem;
+  }
 }
 
 img {
   width: 6.875rem;
-  height: 8.75rem;
   object-fit: scale-down;
   image-rendering: pixelated;
   border-radius: $rounded-sm;
