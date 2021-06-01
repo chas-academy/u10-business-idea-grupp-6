@@ -4,13 +4,12 @@ import { echo, GET, POST } from '../../shared/services/requests';
 import { ButtonLink } from "../../shared/components/";
 import ChatWindow from '../chat_window';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisV, faUser, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const Chat = () => {
 
   const [matchups, setMatchups] = useState([]),
         [activeChat, setActiveChat] = useState(null),
-        [showChat, setShowChat] = useState([]),
         [optionModal, setOptionModal] = useState(null),
         [loading, setLoading] = useState(false),
         [status, setStatus] = useState(false);
@@ -53,7 +52,6 @@ const Chat = () => {
           newMatchups[index].session = data.data.data;
 
           setMatchups(newMatchups);
-          setShowChat(true);
         })
         .catch((error) => setLoading(false))
       }
