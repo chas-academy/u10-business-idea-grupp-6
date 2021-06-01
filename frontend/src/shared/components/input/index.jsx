@@ -17,6 +17,7 @@ const Input = ({ placeholder, type, name, getState, currentValue }) => {
         placeholder={placeholder}
         value={currentValue || value }
         onChange={(e) => inputValue(e.target.value)}
+        maxLength="255"
       />
     </div>
   );
