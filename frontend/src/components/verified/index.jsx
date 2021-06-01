@@ -16,7 +16,7 @@ const Verified = () => {
         link="/edit-profile"
       />
     </div>
-  )
-}
+  );
+};
 
 export default Verified;

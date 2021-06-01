@@ -42,6 +42,7 @@ const Preferences = ({ logoutHandler }) => {
             type="game"
             data={options?.games}
             defaults={defaults?.games}
+            id="input-choose-games"
           />
 
           <h2>
@@ -67,6 +68,7 @@ const Preferences = ({ logoutHandler }) => {
             type="genre"
             data={options?.genres}
             defaults={defaults?.genres}
+            id="input-choose-genres"
           />
 
           <h2>
@@ -91,6 +93,7 @@ const Preferences = ({ logoutHandler }) => {
             type="lang"
             data={options?.langs}
             defaults={defaults?.langs}
+            id="input-choose-lang"
           />
 
           <h2>

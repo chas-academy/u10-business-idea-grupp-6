@@ -65,6 +65,7 @@ const Register = ({getToken, getAuthLoading}) => {
           placeholder="Name"
           name="name"
           getState={getName}
+          id="register-name"
         />
 
         {errorEmail && <MessageError message={errorEmail} />}
@@ -74,6 +75,7 @@ const Register = ({getToken, getAuthLoading}) => {
           placeholder="Email"
           name="email"
           getState={getEmail}
+          id="register-email"
         />
 
         {errorPwd && <MessageError message={errorPwd} />}
@@ -82,12 +84,15 @@ const Register = ({getToken, getAuthLoading}) => {
           getState={getPwd}
           getStateConf={getPwdConf}
           placeholder="Password"
-          idToggleText="togglePwd"
+          idToggleText="toggle-pwd"
           idPwd="pwd"
-          idPwdConf="pwdConf"
+          idPwdConf="pwd-conf"
         />
 
-        <ButtonSubmit name="Register" />
+        <ButtonSubmit
+          name="Register"
+          id="register-btn"
+        />
 
       </form>
 

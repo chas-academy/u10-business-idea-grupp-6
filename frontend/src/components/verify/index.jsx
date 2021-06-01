@@ -19,6 +19,7 @@ const Verify = () => {
       <ButtonSubmit
         name="Send Email Again"
         submit={submit}
+        id="send-again-btn"
       />
     </div>
   );

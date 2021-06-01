@@ -1,15 +1,14 @@
 @import 'global.scss';
 
 .home {
-  
   h1 {
-   @include large-title();
+    @include large-title();
   }
 
   p {
-   @include paragraph();
-   opacity: 0.5;
-   margin-bottom: 12.5rem;
+    @include paragraph();
+    opacity: 0.5;
+    margin-bottom: 12.5rem;
   }
 
   div {
@@ -19,5 +18,4 @@
     width: 100%;
     max-width: 25rem;
   }
-
 }

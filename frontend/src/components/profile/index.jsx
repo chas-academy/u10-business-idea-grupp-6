@@ -10,13 +10,14 @@ const Profile = (props) => {
 
   return (
     <div className="profile">
-      {props.location.data && <ProfileData
+      {props.location.data && 
+      <ProfileData
         data={props.location.data?.user.profile}
         preferences={props.location.data?.user.preferences}
         offset={props.location.data?.user.timezone_offset}
       />}
     </div>
-  )
-}
+  );
+};
 
 export default Profile;

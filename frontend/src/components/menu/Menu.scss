@@ -1,4 +1,4 @@
-@import "global.scss";
+@import 'global.scss';
 
 .menu {
   width: 85%;
@@ -9,8 +9,8 @@
   transform: translate(-50%);
   bottom: 0;
   left: 50%;
-    
-    div {
+
+  div {
     @include center();
     border-radius: $rounded-md;
     display: flex;
@@ -20,19 +20,16 @@
     padding: 0 15%;
     background-color: $color-dark-gray;
     border: $border;
-    
+
     .icon {
       opacity: 0.6;
       &:hover {
         opacity: 1;
       }
     }
-  
-    .active-link{
+
+    .active-link {
       opacity: 1;
     }
   }
 }
-
-
-

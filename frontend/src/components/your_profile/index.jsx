@@ -14,15 +14,17 @@ const YourProfile = ({ logoutHandler }) => {
   useEffect(() => {
     setLoading(true);
 
-    GET(`user/prefs`).then(data => {
-      setUserData(data.data.data.profile);
-      setPreferences(data.data.data.preferences);
-      setOffset(data.data.data.timezone_offset);
-      setLoading(false);
-    }).catch(error => {
-      console.log(error);
-      setLoading(false);
-    })
+    GET(`user/prefs`)
+      .then(data => {
+        setUserData(data.data.data.profile);
+        setPreferences(data.data.data.preferences);
+        setOffset(data.data.data.timezone_offset);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setLoading(false);
+      })
 
   }, []);
 
