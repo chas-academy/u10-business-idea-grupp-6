@@ -77,6 +77,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
             />
             <h3 className="chatwindow-title">
               <Link
+                className="link"
                 to={{
                   pathname: '/profile',
                   data: { user: matchup.user[0] }
@@ -87,6 +88,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
             </h3>
           </div>
           <div id="chatbox" className="chatbox">
+            <div className="shadow"/>
             {messageLog.map((i) => (
               <div className={parseInt(i.type) ? "received" : "sent"}>
                 <div className="chatbox-bubble">
