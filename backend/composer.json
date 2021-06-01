@@ -18,8 +18,7 @@
         "fakerphp/faker": "^1.9.1",
         "laravel/sanctum": "^2.10",
         "laravel/tinker": "^2.6",
-        "phpseclib/bcmath_compat": "1.0.4",
-        "gamerhub/gamer-hub": "*"
+        "phpseclib/bcmath_compat": "1.0.4"
     },
     "require-dev": {
         "arielmejiadev/json-api-auth": "^1.0",
@@ -72,10 +71,6 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/GamerHub"
         }
     ],
     "minimum-stability": "dev",
