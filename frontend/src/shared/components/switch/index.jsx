@@ -7,7 +7,7 @@ const Switch = ({ type, data, defaults }) => {
     document.getElementById(data[type]).checked = defaults?.some(
       (elem) => elem.id === data.id
     );
-  }, [defaults, data, type]);
+  }, [defaults]);
 
   const handleChange = (event) => SWITCH(type, data.id);
 

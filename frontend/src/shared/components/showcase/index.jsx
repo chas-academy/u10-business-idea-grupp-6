@@ -15,7 +15,7 @@ const Showcase = ({ data, type }) => {
       .filter((i, index) => index >= position.min && index < position.max);
 
     setItems(filtered);
-  }, [position, data]);
+  }, [position]);
 
   const left = () => {
     if (position.min > 0) setPosition(prevState => ({
