@@ -1,26 +1,177 @@
 //GRID
-@mixin grid-row($amount: auto-fit, $size: 1fr, $gap: 1rem) {
-    display: grid;
-    grid-template-rows: repeat($amount, $size);
-    row-gap:$gap;
-}
-
-@mixin grid-col($amount: auto-fit, $size: 1fr, $gap: 1rem) {
-    display: grid;
-    grid-template-columns: repeat($amount, $size);
-    column-gap:$gap;
-}
-
 @mixin center() {
-    display: grid;
-    place-items: center;
+  display: grid;
+  place-items: center;
+}
+
+// HIDE
+@mixin hidden() {
+  visibility: hidden;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
 }
 
 //FLEX
-@mixin flex($justify: flex-start, $align: flex-start, $direction: row) {
-    display: flex;
-    justify-items: $justify;
-    justify-items: $align;
-    justify-items: $direction;
+@mixin flex($justify, $align, $direction) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
 }
 
+//BUTTON
+@mixin button() {
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: $color-white;
+  color: $color-black;
+  height: 3.75rem;
+  width: 100%;
+  max-width: 25rem;
+  border: none;
+  border-radius: $rounded-md;
+  font-size: $font-sm;
+  font-weight: 400;
+  cursor: pointer;
+  transition: transform 0.1s;
+  text-decoration: none;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@mixin match-button() {
+  @include center();
+  height: 3.75rem;
+  width: 3.75rem;
+  background-color: $color-super-dark-gray;
+  color: white;
+  border: none;
+  border-radius: $rounded-sm;
+  cursor: pointer;
+  box-shadow: 0px .625rem .8125rem -0.4375rem #0000005d;
+}
+
+
+//INPUT
+@mixin input-field() {
+  position: relative;
+  display: flex;
+  background: $color-dark-gray;
+  color: $color-white;
+  height: 3.75rem;
+  width: 100%;
+  max-width: 25rem;
+  border: $border;
+  border-radius: $rounded-md;
+  font-size: $font-sm;
+  font-weight: 400;
+  cursor: text;
+  margin-bottom: 1.875rem;
+  padding: 0 1.25rem;
+
+  &:hover {
+    border: $border-hover;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+//CHECKBOX
+@mixin checkbox() {
+  display: none;
+
+  &:checked + label {
+    background: $color-light-gray;
+  }
+
+  &:checked + label:after {
+    left: calc(100% - 0.3125rem);
+    transform: translateX(-100%);
+  }
+}
+
+@mixin checkbox-label() {
+  cursor: pointer;
+  text-indent: 3.9375rem;
+  line-height: 1.8;
+  border: $border;
+  width: 3.375rem;
+  height: 1.75rem;
+  background: $color-dark-gray;
+  display: block;
+  border-radius: 6.25rem;
+  position: relative;
+  white-space: nowrap;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0.3125rem;
+    left: 0.3125rem;
+    width: 1rem;
+    height: 1rem;
+    background: $color-white;
+    border-radius: 5.625rem;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    border: $border-hover;
+  }
+}
+
+// MESSAGE
+@mixin message() {
+  position: relative;
+  display: flex;
+  height: 3.75rem;
+  width: 100%;
+  max-width: 25rem;
+  border-radius: $rounded-md;
+  font-size: $font-sm;
+  font-weight: 400;
+  cursor: text;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.25rem;
+}
+
+//TEXT
+@mixin large-title() {
+  text-align: center;
+    font-size: $font-xl;
+    margin-bottom: .9375rem;
+    margin-top: 12.5rem;
+}
+
+@mixin title() {
+  text-align: center;
+  font-size: $font-lg;
+  margin-bottom: .9375rem;
+  margin-top: 3.125rem;
+}
+
+@mixin sub-title() {
+  text-align: center;
+  font-size: $font-md;
+  margin-bottom: 2.5rem;
+}
+
+@mixin paragraph {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: $font-sm;
+}
+
+@mixin paragraph-link {
+  color: $color-white;
+  opacity: 0.5;
+  margin-left: .3125rem;
+  text-decoration: none;
+}

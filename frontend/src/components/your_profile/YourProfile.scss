@@ -1,0 +1,23 @@
+@import "global.scss";
+
+.your-profile {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+
+    .profile {
+        width: 100%;
+        margin: 0 auto;
+        background-color: $color-dark-gray;
+        border-radius: $rounded-md;
+        max-width: 35rem;
+        padding-bottom: 6.25rem;
+        position: relative;
+    }
+
+    .loading {
+        @include flex(space-between, center, column);
+        width: 100%;
+        max-width: 35rem;
+    }
+}

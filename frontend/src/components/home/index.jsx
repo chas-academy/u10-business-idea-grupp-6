@@ -1,21 +1,37 @@
-import React from 'react'
+import React from 'react';
 import './Home.scss';
+import { ButtonLink } from '../../shared/components/';
 
-export default function Home() {
-    return (
-        <>
-            <div className="grid">
-                <div>Vi</div>
-                <div>Älskar</div>
-                <div>Scss</div>
-                <div>,</div>
-                <div></div>
-                <div>Och</div>
-                <div>Grupp</div>
-                <div>6</div>
-                <div>Är</div>
-                <div>Bäst</div>
-            </div>
-        </>
-    )
-}
+const Home = () => {
+  return (
+    <div className="home">
+      
+      <h1>
+        Title
+      </h1>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur 
+        adipiscing elit. Nam vestibulum neque
+        augue, ac gravida est finibus eget. Sed 
+        maximus, nisi at rutrum vehicula, turpis 
+      </p>
+
+      <div>
+        <ButtonLink 
+          classValue="button-link small light" 
+          name="Register" 
+          link="/register"
+        />
+
+        <ButtonLink
+          classValue="button-link small dark"
+          name="Login"
+          link="/login"
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Home;

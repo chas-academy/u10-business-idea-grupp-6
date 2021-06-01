@@ -1,0 +1,90 @@
+@import "global.scss";
+
+.profile-data {
+  width: 100%;
+
+  img {
+    position: absolute;
+    width: 6.875rem;
+    height: 8.75rem;
+    object-fit: scale-down;
+    background-color: $color-white;
+    border-radius: $rounded-md;
+    top: -0.625rem;
+    left: -0.625rem;
+  }
+
+  h3 {
+    padding-right: 1.25rem;
+    padding-top: 0.625rem;
+    margin-left: 7.5rem;
+    font-size: $font-lg;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  span {
+    display: flex;
+    margin-left: 7.5rem;
+
+    h4 {
+      padding-top: 0.625rem;
+      margin-right: 0.625rem;
+      font-weight: 400;
+      font-size: $font-md;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    h5 {
+      padding-top: 0.625rem;
+      margin-right: 0.625rem;
+      font-weight: 300;
+      font-size: $font-sm;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  p {
+    padding-top: 0.625rem;
+    margin-left: 7.5rem;
+    opacity: 0.5;
+    font-weight: 300;
+    font-size: $font-xs;
+  }
+
+  .showcase-container {
+    margin-top: 2.5rem;
+
+    p {
+      margin-left: 12%;
+      margin-bottom: 0.625rem;
+      font-size: $font-md;
+    }
+  }
+
+  p:last-child {
+    background-color: $color-black;
+    min-height: 6.25rem;
+    font-size: $font-sm;
+    opacity: 1;
+    border: $border;
+    border-radius: $rounded-md;
+    padding: 0.9375rem;
+    margin: 0 1.25rem;
+  }
+
+  .times {
+    margin-left: 1.75rem;
+    padding-bottom: 1.75rem;
+    flex-direction: column;
+
+    h5::first-letter{
+      text-transform: uppercase;
+    }
+  }
+}

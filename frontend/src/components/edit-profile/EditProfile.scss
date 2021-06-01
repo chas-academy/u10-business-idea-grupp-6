@@ -1,0 +1,140 @@
+@import 'global.scss';
+
+.edit-profile {
+  h1 {
+    @include title();
+    margin-top: 1rem;
+  }
+
+  h2 {
+    @include sub-title();
+  }
+
+  form {
+    @include flex(center, stretch, row);
+    flex-wrap: wrap;
+    > * {
+      flex: 1 100%;
+    }
+    @include media('>1025px') {
+      max-width: 25rem;
+      margin: 0 auto;
+    }
+
+    @include media('<374px') {
+      @include flex(space-between, center, column);
+      .input-wrap {
+        padding-left: 0;
+        max-width: 25rem;
+      }
+
+      .button-modal {
+        max-width: 25rem;
+      }
+    }
+  }
+
+  .loading {
+    @include flex(center, stretch, row);
+    flex-wrap: wrap;
+    > * {
+      flex: 1 100%;
+    }
+    @include media('>1025px') {
+      max-width: 25rem;
+      margin: 0 auto;
+    }
+
+    @include media('<374px') {
+      @include flex(space-between, center, column);
+      .input-wrap {
+        padding-left: 0;
+        max-width: 25rem;
+      }
+    }
+    .loading-modal-img {
+      height: 9.375rem;
+      width: 100%;
+      max-width: 7rem;
+      background-color: $color-white;
+      border-radius: $rounded-lg;
+    }
+
+    margin-top: 3rem;
+  }
+  
+  .input-wrap,
+  .button-modal {
+    flex: 1 50%;
+  }
+}
+
+.modal {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(10rem, 1fr) minmax(10rem, 1fr)
+  );
+  place-items: center;
+  grid-gap: 1.25rem;
+  top: 2.5rem;
+  bottom: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  background: $color-dark-gray;
+  color: $color-white;
+  height: 100%;
+  max-height: 35rem;
+  width: 100%;
+  min-width: 15.625rem;
+  max-width: 25rem;
+  border: none;
+  border-radius: $rounded-sm;
+  overflow: auto;
+  outline: none;
+  padding: 1.25rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #19172099;
+  z-index: 11;
+}
+
+.input-wrap {
+  padding-left: 1.875rem;
+  width: 100%;
+  max-width: 18rem;
+}
+
+.button-modal {
+  @include button();
+  height: 9.375rem;
+  width: 100%;
+  max-width: 7rem;
+  margin-bottom: 1.875rem;
+
+  img {
+    height: 8.75rem;
+  }
+}
+
+img {
+  width: 6.875rem;
+  object-fit: scale-down;
+  image-rendering: pixelated;
+  border-radius: $rounded-sm;
+  cursor: pointer;
+}
+
+.messages {
+  display: flex;
+  justify-content: center;
+}

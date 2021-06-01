@@ -1,0 +1,38 @@
+@import "global.scss";
+
+.menu {
+  width: 85%;
+  max-width: 35rem;
+  margin-bottom: 1.25rem;
+  position: fixed;
+  z-index: 9;
+  transform: translate(-50%);
+  bottom: 0;
+  left: 50%;
+    
+    div {
+    @include center();
+    border-radius: $rounded-md;
+    display: flex;
+    width: 100%;
+    height: 4rem;
+    justify-content: space-between;
+    padding: 0 15%;
+    background-color: $color-dark-gray;
+    border: $border;
+    
+    .icon {
+      opacity: 0.6;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  
+    .active-link{
+      opacity: 1;
+    }
+  }
+}
+
+
+

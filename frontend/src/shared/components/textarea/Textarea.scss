@@ -1,0 +1,13 @@
+@import 'global.scss';
+
+.textarea {
+  width: 100%;
+  max-width: 25rem;
+
+  textarea {
+    @include input-field();
+    height: 12.5rem;
+    padding: 1.25rem;
+    resize: none;
+  }
+}

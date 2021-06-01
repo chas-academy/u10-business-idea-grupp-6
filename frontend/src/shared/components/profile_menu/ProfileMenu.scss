@@ -1,0 +1,54 @@
+@import 'global.scss';
+
+.profile-menu-btn {
+  position: absolute;
+  background-color: transparent;
+  height: 2.5rem;
+  top: 1rem;
+  right: 2rem;
+  float: right;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+  cursor: pointer;
+}
+
+.menu-modal {
+  display: grid;
+  width: 10rem;
+  float: right;
+  margin-right: 11vw;
+  row-gap: 1.25rem;
+  padding: 1.25rem;
+  font-size: $font-sm;
+  background: $color-light-gray;
+  border-radius: $rounded-sm;
+
+  @include media('>1660px') {
+    position: absolute;
+    float: none;
+    left:50%;
+    width: 12.5rem;
+    margin-left: 27.5rem;
+  }
+}
+
+.hidden-btn {
+  display: none;
+}
+
+.navlink {
+  @include paragraph-link();
+  opacity: 1;
+  &:active, &:focus, &:hover {
+    color: $color-super-light-gray;
+  }
+}

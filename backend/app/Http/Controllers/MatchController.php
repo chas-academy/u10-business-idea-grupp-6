@@ -2,102 +2,147 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MatchupCollection;
+use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
+use App\Models\Interaction;
+use App\Models\Matchup;
+use App\Models\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class MatchController extends Controller
 {
-    public User $user;
+    public $user;
 
     private $delimiters = null;
     private $sortable   = null;
     private $demands    = null;
     private $times      = null;
 
+
+
     public function __construct()
     {
-        // $this->user = auth()->user();
-        $this->user = User::find(9); //debug
-        
+        $this->user = auth('sanctum')->user();
+
+        //if($this->user === null)
+        //{
+        //    abort(403);
+        //}
+        if($this->user !== null)
+        {
         $this->setDelimiters([
             'player_types',
             'langs'
-            ]);
+        ]);
 
         $this->setSortable('games');
 
         if($this->user->miscs)
             $this->setDemands([
-                'miscs' 
+                'miscs'
             ]);
-        
+
         $this->setTimes([
-            'times' 
+            'times'
         ]);
-        
+        }
     }
+
+
 
     public function match()
     {  
-        // pick out all related tables needed for filtering
         $keys = array_keys(array_merge_recursive(
                 $this->getDelimiters(), 
-                $this->getDemands(),
-                $this->getTimes()
+                $this->getDemands()
         ));
 
         $query = User::with(
-            ...$keys
+            ...$keys,
         );
-        
-        foreach($this->getDemands() as $demand => $idsArray)
-        {
-            if($idsArray)
-                $query->whereHas('miscs', function($q) use($demand)
-                {
-                    $q->where('miscs.id', $demand);
-                });
-        }
 
+
+        // only get users that haven't been swiped on yet
+        if(count($subject_interactions_objects = $this->user->subject_interactions->pluck('object_user_id')))
+            $query->whereNotIn('id', $subject_interactions_objects);
+
+        $query->whereKeyNot($this->user->id);
 
         foreach($this->getDelimiters() as $delimiter => $idsArray)
         {
-            if($idsArray)
+            if(count($idsArray))
                 $query->whereHas($delimiter, function($q) use($idsArray, $delimiter)
-                { 
+                {
                     $q->where("$delimiter.id", $idsArray);
                 });
         }
 
-        $times = $this->getTimes()['times'];
-    
-        if($times)
-        {
-            $query->whereHas('times', function($q) use ($times)
-                {
-                    // match those that have a time with the interval of choosing
-                    $q->where('times.interval', $times);
-                });
-        }
-
-        // execute
         $collection = $query->get();
 
-        // this is a single sorting parameter right now
+        // miscs
+        foreach($this->getDemands() as $demand => $idsArray)
+        {
+            if(count($idsArray))
+            {
+                $objects = $this->user->{$demand};
+
+                $collection = $collection->filter(function($u) use ($objects, $demand){
+                    return count($objects->diff($u->{$demand})) === 0;
+                });
+            }
+        }
+
         $sortable = $this->getSortable();
 
-        $collection->sort(function($a, $b) use ($sortable)
-        {
+        $sortedCollection = $collection->sort(function ($a, $b) use ($sortable) {
             // this is quite query heavy
             if($this->user->count_matches($a, $sortable) > $this->user->count_matches($b, $sortable))
                 return -1;
             return 1;
         });
-        // dd($collection); //debug
-        return response()->json($collection);
+
+        return response(new UserCollection($sortedCollection));
+    }
+    
+
+    /**
+     * Returns all of a user's matches
+     */
+    public function currentMatchups()
+    {
+        return response(new MatchupCollection($this->user->matchups));
     }
 
 
+    public function deleteMatchup(Request $request)
+    {
+
+        if($matchup = Matchup::find($request->matchup_id))
+            if($matchup->users->contains('id', $this->user->id))
+            {
+                $userB = $matchup->users->filter(fn($i) => $i->id !== $this->user->id)->first();
+                
+                if($session = Session::where([
+                    ['user_a_id', $this->user->id],
+                    ['user_b_id', $userB->id]])
+                ->orWhere([
+                    ['user_a_id', $userB->id],
+                    ['user_b_id', $this->user->id]
+                ]))
+                    $session->delete();
+                    
+                $interaction = Interaction::where([
+                    ['subject_user_id', $this->user->id],
+                    ['object_user_id', $userB->id]])
+                    ->update(['likes' => 0]);
+            
+                $matchup->users()->detach([$this->user->id, $userB->id]);
+                $matchup->delete();
+                return response(201);
+            }
+    }
     //------------------------------------------------------------------
 
 
@@ -121,7 +166,7 @@ class MatchController extends Controller
     public function setDemands($arrayOfStrings)
     {
         $demands = [];
-        
+
         foreach($arrayOfStrings as $key => $value)
         {
             $demands[$value] = $this->user->{$value}->pluck('id')->toArray();
@@ -136,9 +181,10 @@ class MatchController extends Controller
 
         foreach($arrayOfStrings as $key => $value)
         {
-            $times[$value] = $this->user->{$value}->pluck('interval')->toArray();
+            $times[$value] = $this->user->{$value}()->select('interval', 'available')->get()->filter(fn($i)=> $i->available === 1)
+            ->toArray();
         }
-        
+
         $this->times = $times;
     }
 
@@ -151,7 +197,7 @@ class MatchController extends Controller
     {
         return $this->delimiters;
     }
-    
+
     public function getSortable()
     {
         return $this->sortable;

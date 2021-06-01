@@ -1,0 +1,11 @@
+@import "global.scss";
+
+.already-verified {
+  margin: auto;
+  max-width: 25rem;
+
+  h1{
+    @include large-title();
+    margin-bottom: 12.5rem;
+  }
+}

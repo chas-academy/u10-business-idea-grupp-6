@@ -58,6 +58,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class);
     }
 
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
     public function games()
     {
         return $this->belongsToMany(Game::class);
@@ -88,6 +93,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Time::class);
     }
 
+    public function subject_interactions()
+    {
+        return $this->hasMany(Interaction::class, 'subject_user_id');
+    }
+
+    public function object_interactions()
+    {
+        return $this->hasMany(Interaction::class, 'object_user_id');
+    }
+
+    public function matchups()
+    {
+        return $this->belongsToMany(Matchup::class);
+    }
+
+    // ----
     public function count_matches(User $user, string $related_table): int
     {
         $a = $user->{$related_table}->pluck('id')->toArray();

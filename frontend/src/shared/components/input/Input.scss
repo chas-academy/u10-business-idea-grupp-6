@@ -1,0 +1,10 @@
+@import "global.scss";
+
+.input {
+  width: 100%;
+  max-width: 25rem;
+
+  input {
+    @include input-field();
+  }
+}

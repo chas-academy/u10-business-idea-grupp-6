@@ -1,0 +1,134 @@
+@import "global.scss";
+
+@mixin thumb() {
+  pointer-events: all;
+	width: 3.125rem;
+	height: 3.125rem;
+	border-radius: 0;
+	border: 0 none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+  -ms-appearance: none;
+}
+
+.slider {
+  width: 100%;
+  max-width: 25rem;
+  margin-bottom: 1.25rem;
+
+  div:first-child {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 .625rem;
+
+    input {
+     @include checkbox();
+    }
+  
+    label {
+      margin-right: 5.3125rem;
+      @include checkbox-label();
+    }
+  
+    p {
+      margin-top: .375rem;
+    }
+  }
+
+  div:last-child {
+    @include center();
+    position: relative;
+    transition: all 0.4s ease-out; 
+    padding-top: 1.25rem;
+    padding-bottom: .625rem;
+
+    input[type=range] {
+      cursor: pointer;
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      height: .625rem;
+      width: 100%;
+      opacity: 0;
+    
+      &::-webkit-slider-thumb {
+        @include thumb();
+      }
+    
+      &::-moz-range-thumb {
+        @include thumb();
+      }
+    
+      &::-ms-thumb {
+        @include thumb();
+      }
+    }
+
+    .slider-container {
+      width: 95%;
+      height: .3125rem;
+      position: relative;
+      z-index: 1;
+
+      @include media('<=phone') {
+        height: .625rem;
+      }
+  
+      .slider-track {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: .3125rem;
+        background-color: $color-dark-gray;
+        border: $border;
+      }
+      
+      .slider-range {
+        height: 100%;
+        position: absolute;
+        border-radius: 1.25rem;
+        background-color: $color-light-gray;
+        border: $border;
+      }
+  
+      .slider-thumb {
+        width: .9375rem;
+        height: .9375rem;
+        position: absolute;
+        z-index: 3;
+        border-radius: 100%;
+        background-color: $color-super-light-gray;
+        border: $border;
+        transition: box-shadow .3s ease-in-out;
+
+        @include media('<=phone') {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+      }
+
+      .slider-thumb.start {
+        left: 25%;
+        transform: translate(-0.625rem, -0.3125rem);
+      }
+  
+      .slider-thumb.end {
+        right: 25%;
+        transform: translate(.625rem, -0.3125rem);
+      }
+          
+      .hover {
+        box-shadow: 0 0 0 .375rem #5a51814d;
+      }
+  
+      .active {
+        box-shadow: 0 0 0 .5rem #8e80ce66;
+      }
+    }
+  }
+}
+
+div:last-child.hidden {
+  @include hidden();
+}

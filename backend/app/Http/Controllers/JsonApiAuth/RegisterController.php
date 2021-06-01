@@ -27,6 +27,7 @@ class RegisterController extends Controller
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'password' => Hash::make($request->get('password')),
+                'timezone_offset' => $request->get('timezone_offset') ? $request->get('timezone_offset') : 0
             ]);
 
             if($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail()) {

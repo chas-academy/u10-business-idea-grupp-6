@@ -1,15 +1,23 @@
 @import 'global.scss';
 
-.grid {
-    @include grid-col($size: minmax(270px, 1fr));
-    @include grid-row($gap: 3rem);
+.home {
+  
+  h1 {
+   @include large-title();
+  }
 
-    div {
-        @include center();
-        background: $sec-color;
-        font-size: $font-md;
-        box-shadow: $shadow;
-        border-radius: $rounded-md;
-     }
+  p {
+   @include paragraph();
+   opacity: 0.5;
+   margin-bottom: 12.5rem;
+  }
+
+  div {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 25rem;
+  }
+
 }
-

@@ -1,0 +1,13 @@
+@import 'global.scss';
+
+.message {
+
+    div {
+        @include message();
+        color: #D8000C;
+        background-color:  #FFBABA;
+        border: $border-error;
+        margin-bottom: 1.875rem;
+    }
+}
+  

@@ -1,0 +1,42 @@
+@import "global.scss";
+
+.match {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+
+  .container {
+    width: 100%;
+    background-color: $color-dark-gray;
+    border-radius: $rounded-md;
+    max-width: 35rem;
+    padding-bottom: 6.25rem;
+    position: relative;
+
+    .like {
+      @include match-button();
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.25rem;
+    }
+
+    .dislike {
+      @include match-button();
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.25rem;
+    }
+  }
+
+  .no-match-text {
+    @include center();
+    margin-top: 10rem;
+    font-size: $font-sm;
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .loading {
+    width: 100%;
+    max-width: 35rem;
+  }
+}

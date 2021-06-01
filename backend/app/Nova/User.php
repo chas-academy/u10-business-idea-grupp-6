@@ -2,14 +2,22 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\UserCount;
+use App\Nova\Metrics\UsersPerDay;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Select;
 
 class User extends Resource
 {
+    public static $group = 'User Settings';
+
     /**
      * The model the resource corresponds to.
      *
@@ -25,12 +33,19 @@ class User extends Resource
     public static $title = 'name';
 
     /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['roles', 'games', 'profile'];
+
+    /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
-        'id', 'name', 'email',
+        'id', 'name', 'email', 'profile', 'games'
     ];
 
     /**
@@ -56,6 +71,24 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            BelongsToMany::make('Roles')->sortable(),
+
+            HasOne::make('Profile')->sortable(),
+
+            BelongsToMany::make('Games')->sortable(),
+
+            BelongsToMany::make('Genres')->sortable(),
+
+            BelongsToMany::make('Player_Types')->sortable(),
+
+            BelongsToMany::make('Langs')->sortable(),
+
+            BelongsToMany::make('Miscs')->sortable(),
+
+            HasMany::make('Times')->sortable(),
+
+            BelongsToMany::make('Matchups')->sortable(),
+
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
@@ -71,7 +104,10 @@ class User extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new UserCount,
+            new UsersPerDay,
+        ];
     }
 
     /**

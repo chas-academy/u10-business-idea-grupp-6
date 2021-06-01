@@ -1,0 +1,29 @@
+@import "global.scss";
+
+.register{
+  
+  h1 {
+    @include title();
+  }
+
+  h2 {
+    @include sub-title();
+  }
+
+  form {
+    @include flex(
+      space-between, 
+      center, 
+      column
+    )
+  }
+
+  p {
+    @include paragraph();
+  }
+
+  .link {
+    @include paragraph-link();
+
+  }
+}

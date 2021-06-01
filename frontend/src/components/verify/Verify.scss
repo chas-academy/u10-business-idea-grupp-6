@@ -1,0 +1,19 @@
+@import "global.scss";
+
+.verify {
+  margin: auto;
+  max-width: 25rem;
+
+  h1{
+    @include large-title();
+    margin-top: 12.5rem;
+  }
+
+  p {
+    @include paragraph();
+    opacity: 0.5;
+    margin-bottom: 12.5rem;
+  }
+}
+
+
