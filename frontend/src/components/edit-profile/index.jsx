@@ -115,6 +115,7 @@ const EditProfile = ({ logoutHandler }) => {
         navLink3="/change-password"
         navLink3Name="Change password"
         logoutHandler={logoutHandler}
+        aria-label="profile-menu"
       />
 
       <h1>
