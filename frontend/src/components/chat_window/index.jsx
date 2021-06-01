@@ -21,7 +21,6 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
           setMessageLog((previousState) => [...data.data.data]);
         });
       }
-      console.log('subscribing to session chat ' + matchup.session.id)
 
       echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
         const f = e;
