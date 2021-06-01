@@ -2,13 +2,25 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\GameCount;
+use App\Nova\Metrics\GamesPerGenre;
+use App\Nova\Metrics\UserCount;
+use App\Nova\Metrics\UsersPerDay;
+
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Misc extends Resource
 {
+    public static $group = 'App Settings';
     /**
      * The model the resource corresponds to.
      *
@@ -46,6 +58,7 @@ class Misc extends Resource
             Text::make('Misc')
                 ->sortable()
                 ->rules('required', 'max:255'),
+            BelongsToMany::make('Users')->sortable(),
         ];
     }
 
@@ -57,7 +70,12 @@ class Misc extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new UserCount,
+            new GameCount,
+            new UsersPerDay,
+            new GamesPerGenre
+        ];
     }
 
     /**
