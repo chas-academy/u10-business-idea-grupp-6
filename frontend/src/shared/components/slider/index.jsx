@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { TIME } from "../../services/preferences";
-import "./Slider.scss";
+import React, { useEffect, useState } from 'react';
+import { TIME } from '../../services/preferences';
+import './Slider.scss';
 
 const Slider = ({ name, defaults }) => {
   const [sliderValue, setSliderValue] = useState({ start: 0, end: 24 }),
@@ -22,8 +22,8 @@ const Slider = ({ name, defaults }) => {
         parseInt(inputStart.value),
         parseInt(inputEnd.value) - 1
       );
-      thumbStart.style.left = inputStart.value + "%";
-      range.style.left = inputStart.value + "%";
+      thumbStart.style.left = inputStart.value + '%';
+      range.style.left = inputStart.value + '%';
 
       setSliderValue((prevState) => ({
         ...prevState,
@@ -36,8 +36,8 @@ const Slider = ({ name, defaults }) => {
         parseInt(inputEnd.value),
         parseInt(inputStart.value) + 1
       );
-      thumbEnd.style.right = 100 - inputEnd.value + "%";
-      range.style.right = 100 - inputEnd.value + "%";
+      thumbEnd.style.right = 100 - inputEnd.value + '%';
+      range.style.right = 100 - inputEnd.value + '%';
 
       setSliderValue((prevState) => ({
         ...prevState,
@@ -66,17 +66,17 @@ const Slider = ({ name, defaults }) => {
   }, [defaults, name]);
 
   const addEventListeners = (input, thumb) => {
-    input.addEventListener("mouseover", () => {
-      thumb.classList.add("hover");
+    input.addEventListener('mouseover', () => {
+      thumb.classList.add('hover');
     });
-    input.addEventListener("mouseout", () => {
-      thumb.classList.remove("hover");
+    input.addEventListener('mouseout', () => {
+      thumb.classList.remove('hover');
     });
-    input.addEventListener("mousedown", () => {
-      thumb.classList.add("active");
+    input.addEventListener('mousedown', () => {
+      thumb.classList.add('active');
     });
-    input.addEventListener("mouseup", () => {
-      thumb.classList.remove("active");
+    input.addEventListener('mouseup', () => {
+      thumb.classList.remove('active');
     });
   };
 
