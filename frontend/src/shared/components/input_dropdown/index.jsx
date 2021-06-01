@@ -12,7 +12,7 @@ const InputDropdown = ({ placeholder, data, defaults, getState }) => {
       id: index,
     }));
     setOptions(formatted);
-  }, []);
+  }, [data]);
 
   const handleChange = (elem) => {
     getState(elem.value);

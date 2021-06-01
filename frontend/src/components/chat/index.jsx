@@ -4,13 +4,12 @@ import { echo, GET, POST } from '../../shared/services/requests';
 import { ButtonLink } from "../../shared/components/";
 import ChatWindow from '../chat_window';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisV, faUser, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const Chat = () => {
 
   const [matchups, setMatchups] = useState([]),
         [activeChat, setActiveChat] = useState(null),
-        [showChat, setShowChat] = useState([]),
         [optionModal, setOptionModal] = useState(null),
         [loading, setLoading] = useState(false),
         [status, setStatus] = useState(false);
@@ -112,11 +111,13 @@ const Chat = () => {
               {matchup.user[0].profile.img_path ?
                 <img
                   src={require(`../../shared/assets/images/${matchup.user[0].profile.img_path}.png`).default}
+                  alt={matchup.user[0].profile.img_path}
                   className="profile-img"
                 /> :
-                <img
-                  src={require('../../shared/assets/images/default_profile_image.png').default}
-                  className="default-profile-img"
+                <img 
+                  src={require('../../shared/assets/images/default_profile_image.png').default} 
+                  alt="default_profile_image"
+                  className="profile-img"
                 />
               }
               <p
