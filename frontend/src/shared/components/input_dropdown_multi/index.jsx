@@ -15,7 +15,7 @@ const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
       id: i.id
     }));
     setOptions(formatted);
-  }, [data, type]);
+  }, [data]);
 
   useEffect(() => { 
     const formatted = defaults?.map(i => ({
@@ -26,7 +26,7 @@ const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
     
     setDefaultValue(formatted);
     setSelectedOption(formatted);
-  }, [defaults, type]);
+  }, [defaults]);
 
   const promiseOptions = (inputValue) =>
     new Promise(resolve => resolve(filterOptions(inputValue))
@@ -54,8 +54,6 @@ const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
         closeMenuOnSelect={false}
         className="input-dropdown-multi"
         onChange={(e) => handleChange(e)}
-        menuPortalTarget={document.body}
-        menuPosition={"absolute"} 
       />
     </>
   )
@@ -113,9 +111,5 @@ const customStyles = {
   }),
   NoOptionsMessage: base => ({
     content: 'text'
-  }),
-  menuPortal: base => ({ 
-    ...base, 
-    zIndex: 9999 
   })
 }

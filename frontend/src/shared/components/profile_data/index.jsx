@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProfileData.scss';
+import defaultProfileImg from '../../assets/images/default_profile_image.png';
 import Showcase from '../showcase';
 
 const ProfileData = ({ data, preferences, offset }) => {
@@ -10,14 +11,8 @@ const ProfileData = ({ data, preferences, offset }) => {
     <div className="profile-data">
 
       {data.img_path ?
-        <img 
-          src={require(`../../assets/images/${data.img_path}.png`).default} 
-          alt={data.img_path}
-        /> :
-        <img 
-          src={require('../../assets/images/default_profile_image.png').default} 
-          alt="default_profile_image"
-        />
+        <img src={require(`../../assets/images/${data.img_path}.png`).default} alt="profile image" /> :
+        <img src={require('../../assets/images/default_profile_image.png').default} alt="default profile image" />
       }
 
       <h3>

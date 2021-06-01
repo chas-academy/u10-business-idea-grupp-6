@@ -47,7 +47,7 @@ const EditProfile = ({ logoutHandler }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [userId]);
+  }, []);
 
   const submit = (event) => {
     event.preventDefault();
@@ -77,18 +77,13 @@ const EditProfile = ({ logoutHandler }) => {
   const modalContent = (
     <>
       {images.map((path, idx) => {
-        return (
-          <img
-            key={idx}
-            onClick={(e) => {
-              setImgPath(e);
-              setOpenModal(false);
-              }}
-            path={path}
-            alt={path}
-            src={require(`../../shared/assets/images/${path}.png`).default}
-          />
-        );
+        return <img
+          key={idx}
+          onClick={e => setImgPath(e)}
+          path={path}
+          src={require(`../../shared/assets/images/${path}.png`).default}
+          alt="image"
+        />
       })}
     </>
   );
@@ -99,14 +94,12 @@ const EditProfile = ({ logoutHandler }) => {
 
   const modalImage = (
     <>
-      {img ? 
-        <img 
-          src={require(`../../shared/assets/images/${img}.png`).default}
-          alt={img}
+      {img ?
+        <img src={require(`../../shared/assets/images/${img}.png`).default}
+          alt="image"
         /> :
-        <img 
-          src={require(`../../shared/assets/images/default_profile_image.png`).default}
-          alt="default_profile_image"
+        <img src={require(`../../shared/assets/images/default_profile_image.png`).default}
+          alt="profile image"
         />
       }
     </>
