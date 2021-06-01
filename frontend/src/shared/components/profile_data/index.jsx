@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './ProfileData.scss';
-import defaultProfileImg from '../../assets/images/default_profile_image.png';
 import Showcase from '../showcase';
 
 const ProfileData = ({ data, preferences, offset }) => {
