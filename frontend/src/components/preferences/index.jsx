@@ -37,37 +37,47 @@ const Preferences = ({ logoutHandler }) => {
             Favorite games
           </h2>
 
-          <InputDropdownMulti
-            placeholder="Search games"
-            type="game"
-            data={options?.games}
-            defaults={defaults?.games}
-          />
+          <label>
+            <InputDropdownMulti
+              placeholder="Search games"
+              type="game"
+              data={options?.games}
+              defaults={defaults?.games}
+            />
+          </label>
 
           <h2>
             When do you play
           </h2>
 
-          <Slider
-            name="weekday"
-            defaults={defaults?.times}
-          />
+          <label>
+            <Slider
 
-          <Slider
-            name="weekend"
-            defaults={defaults?.times}
-          />
+              name="weekday"
+              defaults={defaults?.times}
+            />
+          </label>
+
+          <label>
+            <Slider
+
+              name="weekend"
+              defaults={defaults?.times}
+            />
+          </label>
 
           <h2>
             Appealing genres
           </h2>
 
-          <InputDropdownMulti
-            placeholder="Search genres"
-            type="genre"
-            data={options?.genres}
-            defaults={defaults?.genres}
-          />
+          <label>
+            <InputDropdownMulti
+              placeholder="Search genres"
+              type="genre"
+              data={options?.genres}
+              defaults={defaults?.genres}
+            />
+          </label>
 
           <h2>
             Type of player
@@ -86,12 +96,14 @@ const Preferences = ({ logoutHandler }) => {
             Preferred languages
           </h2>
 
-          <InputDropdownMulti
-            placeholder="Search languages"
-            type="lang"
-            data={options?.langs}
-            defaults={defaults?.langs}
-          />
+          <label>
+            <InputDropdownMulti
+              placeholder="Search languages"
+              type="lang"
+              data={options?.langs}
+              defaults={defaults?.langs}
+            />
+          </label>
 
           <h2>
             Optional
