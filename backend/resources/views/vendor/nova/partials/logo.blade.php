@@ -1,1 +1,1 @@
-<p class="text-center w-full"><strong>Tinder</strong> Gamers</p>
+<p class="text-center w-full"><strong>Gamer</strong>Hub</p>

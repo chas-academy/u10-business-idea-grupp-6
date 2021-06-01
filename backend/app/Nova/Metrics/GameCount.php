@@ -8,7 +8,7 @@ use Laravel\Nova\Metrics\Value;
 
 class GameCount extends Value
 {
-    public $name = 'Total Games on TinderGamers';
+    public $name = 'Total Games on GamerHub';
 
     /**
      * Calculate the value of the metric.
