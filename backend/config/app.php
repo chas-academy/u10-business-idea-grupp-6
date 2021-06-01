@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        // \Gamerhub\GamerHub\ThemeServiceProvider::class,
+        Gamerhub\GamerHub\ThemeServiceProvider::class
 
         /*
          * Package Service Providers...
