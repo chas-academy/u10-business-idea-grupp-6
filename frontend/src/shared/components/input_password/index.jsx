@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import "./InputPassword.scss";
+import React, { useState } from 'react';
+import './InputPassword.scss';
 
 const InputPassword = ({ getState, getStateConf, placeholder, idPwd, idToggleText, idPwdConf }) => {
   const [toggle, setToggle] = useState(true),
-        [pwdValue, setPwdValue] = useState(""),
-        [pwdConfValue, setPwdConfValue] = useState("");
+        [pwdValue, setPwdValue] = useState(''),
+        [pwdConfValue, setPwdConfValue] = useState('');
 
   const inputValue = (input) => {
     setPwdValue(input);
@@ -34,6 +34,7 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd, idToggleTex
           value={pwdValue}
           onChange={(e) => inputValue(e.target.value)}
           id={idPwd}
+          maxLength="255"
         />
 
         <input
@@ -61,6 +62,7 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd, idToggleTex
             value={pwdConfValue}
             onChange={(e) => inputConfValue(e.target.value)}
             id={idPwdConf}
+            maxLength="255"
           />
         </div>
       )}

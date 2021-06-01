@@ -21,6 +21,7 @@ const Input = ({ placeholder, type, name, getState, currentValue, id }) => {
         value={currentValue || value}
         onChange={(e) => inputValue(e.target.value)}
         id={id}
+        maxLength="255"
       />
     </div>
   );

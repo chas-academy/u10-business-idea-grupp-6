@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Nova\Metrics\GameCount;
+use App\Nova\Metrics\GamesPerGenre;
+use App\Nova\Metrics\UserCount;
+use App\Nova\Metrics\UsersPerDay;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
@@ -56,7 +60,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new UserCount,
+            new GameCount,
+            new UsersPerDay,
+            new GamesPerGenre
         ];
     }
 

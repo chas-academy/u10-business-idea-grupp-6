@@ -61,9 +61,9 @@ const Slider = ({ name, defaults }) => {
     addEventListeners(inputStart, thumbStart);
     addEventListeners(inputEnd, thumbEnd);
 
-    inputStart.addEventListener("input", setStartValue);
-    inputEnd.addEventListener("input", setEndValue);
-  }, [defaults]);
+    inputStart.addEventListener('input', setStartValue);
+    inputEnd.addEventListener('input', setEndValue);
+  }, [defaults, name]);
 
   const addEventListeners = (input, thumb) => {
     input.addEventListener("mouseover", () => {
@@ -103,7 +103,10 @@ const Slider = ({ name, defaults }) => {
           onClick={toggleHandler}
         />
 
-        <label className="slider-checkbox-label" htmlFor={name}>
+        <label
+          className="slider-checkbox-label"
+          htmlFor={name}
+        >
           {name}
         </label>
 

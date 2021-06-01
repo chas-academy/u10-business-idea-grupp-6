@@ -19,7 +19,7 @@ class CreateProfilesTable extends Migration
             $table->string('display_name')->nullable();
             $table->string('country')->nullable();
             $table->string('img_path')->nullable();
-            $table->string('body')->nullable();
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

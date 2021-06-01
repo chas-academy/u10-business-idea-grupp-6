@@ -2,14 +2,23 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\GameCount;
+use App\Nova\Metrics\GamesPerGenre;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Game extends Resource
 {
+    public static $group = 'Games Settings';
     /**
      * The model the resource corresponds to.
      *
@@ -55,7 +64,7 @@ class Game extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('Genre')
+            BelongsTo::make('Genre')->showCreateRelationButton()
                 ->sortable()
                 ->rules('required', 'max:255'),
         ];
@@ -69,7 +78,10 @@ class Game extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new GameCount,
+            new GamesPerGenre
+        ];
     }
 
     /**

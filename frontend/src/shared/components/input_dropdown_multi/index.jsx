@@ -15,7 +15,7 @@ const InputDropdownMulti = ({ placeholder, type, data, defaults, id }) => {
       id: i.id
     }));
     setOptions(formatted);
-  }, [data]);
+  }, [data, type]);
 
   useEffect(() => { 
     const formatted = defaults?.map(i => ({
@@ -26,7 +26,7 @@ const InputDropdownMulti = ({ placeholder, type, data, defaults, id }) => {
     
     setDefaultValue(formatted);
     setSelectedOption(formatted);
-  }, [defaults]);
+  }, [defaults, type]);
 
   const promiseOptions = (inputValue) =>
     new Promise(resolve => resolve(filterOptions(inputValue))

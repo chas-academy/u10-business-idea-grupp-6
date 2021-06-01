@@ -1,6 +1,6 @@
-import React from "react";
-import "./Modal.scss";
-import ReactModal from "react-modal";
+import React from 'react';
+import './Modal.scss';
+import ReactModal from 'react-modal';
 
 const Modal = ({
   modalContent,
