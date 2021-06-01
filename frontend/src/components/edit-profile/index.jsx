@@ -4,7 +4,7 @@ import { Input, InputDropdown, Textarea, ButtonSubmit, MessageError, MessageSucc
 import { PATCH, GET } from '../../shared/services/requests';
 import { LoadingButton, LoadingInput, LoadingTextarea } from '../../shared/loading_components';
 
-const EditProfile = ({logoutHandler}) => {
+const EditProfile = ({ logoutHandler }) => {
   const [displayName, setDisplayName] = useState(''),
         [oldDisplayName, setOldDisplayName] = useState(''),
         [country, setCountry] = useState(''),
@@ -16,8 +16,8 @@ const EditProfile = ({logoutHandler}) => {
         [success, setSuccess] = useState(null);
 
   const getDisplayName = (e) => setDisplayName(e),
-        getCountry = (e) => setCountry(e),
-        getBody = (e) => setBody(e);
+    getCountry = (e) => setCountry(e),
+    getBody = (e) => setBody(e);
 
   const userId = localStorage.getItem('user_id');
 
@@ -123,6 +123,7 @@ const EditProfile = ({logoutHandler}) => {
         navLink3="/change-password"
         navLink3Name="Change password"
         logoutHandler={logoutHandler}
+        aria-label="profile-menu"
       />
 
       <h1>
@@ -133,42 +134,40 @@ const EditProfile = ({logoutHandler}) => {
         This is your public profile that other people can see
       </h2>
 
-      {!loading && (
+      {!loading &&
         <>
-        <div className="messages">
-          {errorDisplayName ? <MessageError message={errorDisplayName} /> : success && <MessageSuccess message={success}/> }
-        </div>
+          <form
+            onSubmit={submit}
+          >
 
-          <form onSubmit={submit}>
+            {errorDisplayName ? <MessageError message={errorDisplayName} /> : success && <MessageSuccess message={success} />}
 
             <Modal
               modalContent={modalContent}
               openBtnClass="button-modal"
+              aria-label="button-modal"
+              closeBtnClass="button-modal"
               openBtnText={modalImage}
+              closeBtnText="Close Modal"
               modalClass="modal"
               modalOverlayClass="modal-overlay"
-              isModalOpen={openModal}
-              btnOpenEvent={() => setOpenModal(true)}
-              closeEvent={() => setOpenModal(false)}
             />
 
-            <div className="input-wrap">
-              <Input
-                type="text"
-                placeholder="Display Name"
-                currentValue={displayName}
-                name="display_name"
-                getState={getDisplayName}
-              />
+            <Input
+              type="text"
+              placeholder="Display Name"
+              currentValue={displayName}
+              name="display_name"
+              getState={getDisplayName}
+            />
 
-              <InputDropdown
-                placeholder="Select country"
-                type="lang"
-                data={countries}
-                defaults={country}
-                getState={getCountry}
-              />
-            </div>
+            <InputDropdown
+              placeholder="Select country"
+              type="lang"
+              data={countries}
+              defaults={country}
+              getState={getCountry}
+            />
 
             <Textarea
               name="body"
@@ -180,19 +179,17 @@ const EditProfile = ({logoutHandler}) => {
             <ButtonSubmit name="Update Profile" />
           </form>
         </>
-      )}
+      }
 
-      {loading && (
+      {loading &&
         <div className="loading">
-          <div className="loading-modal-img" />
-          <div className="input-wrap">
-            <LoadingInput />
-            <LoadingInput />
-          </div>
+          <LoadingButton />
+          <LoadingInput />
+          <LoadingInput />
           <LoadingTextarea />
           <LoadingButton />
         </div>
-      )}
+      }
     </div>
   );
 };

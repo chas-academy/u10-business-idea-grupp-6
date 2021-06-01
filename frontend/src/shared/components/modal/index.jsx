@@ -15,10 +15,7 @@ const Modal = ({
 
   return (
     <>
-      <button
-        type="button"
-        className={openBtnClass}
-        onClick={btnOpenEvent}>
+      <button className={openBtnClass} onClick={(e) => toggleModal(true)} aria-label="button">
         {openBtnText}
       </button>
 

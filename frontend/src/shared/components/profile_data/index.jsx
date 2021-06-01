@@ -72,7 +72,3 @@ const ProfileData = ({ data, preferences, offset }) => {
 }
 
 export default ProfileData;
-
-
-
-

@@ -43,17 +43,18 @@ const Chat = () => {
         POST('session/create', {
           friend_id: friendId
         })
-        .then(data => {
-          setLoading(false);
-          setActiveChat(data.data.data.id);
+          .then(data => {
+            setLoading(false);
+            setActiveChat(data.data.data.id);
 
-          const newMatchups = [...matchups];
-          const index = newMatchups.findIndex(i => i.id === matchupId)
-          newMatchups[index].session = data.data.data;
+            const newMatchups = [...matchups];
+            const index = newMatchups.findIndex(i => i.id === matchupId)
+            newMatchups[index].session = data.data.data;
 
-          setMatchups(newMatchups);
-        })
-        .catch((error) => setLoading(false))
+            setMatchups(newMatchups);
+            setShowChat(true);
+          })
+          .catch((error) => setLoading(false))
       }
     }
   }
@@ -64,9 +65,9 @@ const Chat = () => {
     if (confirmation) POST('match/delete', {
       matchup_id: id
     })
-    .then(data => {
-      setMatchups((previousState) => previousState.filter(i => i.id !== id))
-    });
+      .then(data => {
+        setMatchups((previousState) => previousState.filter(i => i.id !== id))
+      });
   }
 
   const handleCloseChat = () => setActiveChat(null);
@@ -86,9 +87,9 @@ const Chat = () => {
         <div>
           You have no more matches...
           <ButtonLink
-          name="Match" 
-          link="/"
-          classValue="button-match" 
+            name="Match"
+            link="/"
+            classValue="button-match"
           />
 
         </div>
@@ -108,7 +109,7 @@ const Chat = () => {
               }
             >
               {matchup.user[0].profile.img_path ?
-                <img 
+                <img
                   src={require(`../../shared/assets/images/${matchup.user[0].profile.img_path}.png`).default}
                   alt={matchup.user[0].profile.img_path}
                   className="profile-img"
@@ -172,7 +173,7 @@ const Chat = () => {
         />
       ))}
 
-      {!loading && !status && <FontAwesomeIcon icon ={faSpinner} className= "spinner shown"/>}
+      {!loading && !status && <FontAwesomeIcon icon={faSpinner} className="spinner shown" />}
 
     </>
   );
