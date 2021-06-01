@@ -1,0 +1,10 @@
+:root {
+  --primary: rgb(254, 1, 129, 1);
+  --primary-dark: rgb(209, 0, 105, 1);
+  --primary-70: rgba(254, 1, 129, 0.7);
+  --primary-50: rgba(254, 1, 129, 0.5);
+  --primary-30: rgba(254, 1, 129, 0.3);
+  --primary-10: rgba(254, 1, 129, 0.1);
+  --logo: #430051;
+  --sidebar-icon: #db34de;
+}
