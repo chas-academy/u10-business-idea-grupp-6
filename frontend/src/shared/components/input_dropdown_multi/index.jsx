@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import './InputDropdownMulti.scss';
 import AsyncSelect from 'react-select/async';
 import { DROPDOWNMULTI } from '../../services/preferences';
 
-const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
+const InputDropdownMulti = ({ placeholder, type, data, defaults, id }) => {
   const [selectedOption, setSelectedOption] = useState([]),
         [defaultValue, setDefaultValue] = useState([]),
         [options, setOptions] = useState();
@@ -44,6 +44,9 @@ const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
 
   return (
     <>
+      <label htmlFor={id}>
+        {placeholder}
+      </label>
       <AsyncSelect
         cacheOptions
         value={defaultValue}
@@ -54,10 +57,11 @@ const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
         closeMenuOnSelect={false}
         className="input-dropdown-multi"
         onChange={(e) => handleChange(e)}
+        id={id}
       />
     </>
-  )
-}
+  );
+};
 
 export default InputDropdownMulti;
 

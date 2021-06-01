@@ -82,7 +82,9 @@ const Register = ({getToken, getAuthLoading}) => {
           getState={getPwd}
           getStateConf={getPwdConf}
           placeholder="Password"
+          idToggleText="togglePwd"
           idPwd="pwd"
+          idPwdConf="pwdConf"
         />
 
         <ButtonSubmit name="Register" />

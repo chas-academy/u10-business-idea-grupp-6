@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './InputPassword.scss';
+import React, { useState } from "react";
+import "./InputPassword.scss";
 
-const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
+const InputPassword = ({ getState, getStateConf, placeholder, idPwd, idToggleText, idPwdConf }) => {
   const [toggle, setToggle] = useState(true),
-        [pwdValue, setPwdValue] = useState(''),
-        [pwdConfValue, setPwdConfValue] = useState('');
+        [pwdValue, setPwdValue] = useState(""),
+        [pwdConfValue, setPwdConfValue] = useState("");
 
   const inputValue = (input) => {
     setPwdValue(input);
@@ -23,37 +23,47 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
   return (
     <div className="input-password">
       <div>
+        <label htmlFor={idPwd}>
+          {placeholder}
+        </label>
+
         <input
           name="password"
           type={toggle ? "password" : "text"}
           placeholder={placeholder}
           value={pwdValue}
           onChange={(e) => inputValue(e.target.value)}
+          id={idPwd}
         />
 
         <input
-          id={idPwd}
+          id={idToggleText}
           type="checkbox"
           onChange={toggleInputType}
         />
 
         <label
-          htmlFor={idPwd}
+          htmlFor={idToggleText}
+          aria-label="Show/hide password"
         />
 
       </div>
 
-      { getStateConf &&
+      {getStateConf && (
         <div>
+          <label htmlFor={idPwdConf}>
+            Password Confirmation
+          </label>
           <input
             name="password_confirmation"
             type={toggle ? "password" : "text"}
             placeholder="Password Confirmation"
             value={pwdConfValue}
             onChange={(e) => inputConfValue(e.target.value)}
+            id={idPwdConf}
           />
         </div>
-      }
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './Modal.scss';
-import ReactModal from 'react-modal';
+import React, { useState } from "react";
+import "./Modal.scss";
+import ReactModal from "react-modal";
 
 const Modal = ({
   modalContent,
@@ -10,15 +10,17 @@ const Modal = ({
   modalOverlayClass,
   isModalOpen,
   closeEvent,
-  btnOpenEvent
+  btnOpenEvent,
+  ariaLabelBtn
 }) => {
-
   return (
     <>
       <button
         type="button"
         className={openBtnClass}
-        onClick={btnOpenEvent}>
+        onClick={btnOpenEvent}
+        aia-lbabel={ariaLabelBtn}
+      >
         {openBtnText}
       </button>
 

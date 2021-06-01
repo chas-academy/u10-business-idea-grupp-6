@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../index';
 
-const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, navLink3Name, logoutHandler}) => {
+const ProfileMenu = ({ navLink1, navLink1Name, navLink2, navLink2Name, navLink3, navLink3Name, logoutHandler }) => {
   const [openModal, setOpenModal] = useState(false);
-  
+
   const openMenuBtn = (
     <FontAwesomeIcon
       icon={faEllipsisH}
@@ -63,6 +63,7 @@ const ProfileMenu = ({navLink1, navLink1Name, navLink2, navLink2Name, navLink3, 
         modalContent={modalMenu}
         openBtnClass="profile-menu-btn"
         openBtnText={openMenuBtn}
+        ariaLabelBtn="Open profile menu"
         modalClass="menu-modal"
         modalOverlayClass="menu-modal-overlay"
         isModalOpen={openModal}

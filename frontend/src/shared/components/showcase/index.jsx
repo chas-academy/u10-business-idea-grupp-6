@@ -5,7 +5,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 const Showcase = ({ data, type }) => {
   const [items, setItems] = useState(),
-    [position, setPosition] = useState({
+        [position, setPosition] = useState({
       min: 0,
       max: 4
     });
@@ -43,7 +43,7 @@ const Showcase = ({ data, type }) => {
       />
 
       <div>
-        {(items?.length) ? 
+        {(items?.length) ?
           items.map((i, idx) => <span key={idx}>{i[type]}</span>) :
           <span>{`No ${type}s added`}</span>
         }
@@ -55,7 +55,7 @@ const Showcase = ({ data, type }) => {
         icon={faChevronRight}
       />
     </div>
-  )
-}
+  );
+};
 
 export default Showcase;

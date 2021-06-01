@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { TIME } from '../../services/preferences';
-import './Slider.scss';
+import React, { useEffect, useState } from "react";
+import { TIME } from "../../services/preferences";
+import "./Slider.scss";
 
 const Slider = ({ name, defaults }) => {
   const [sliderValue, setSliderValue] = useState({ start: 0, end: 24 }),
@@ -22,8 +22,8 @@ const Slider = ({ name, defaults }) => {
         parseInt(inputStart.value),
         parseInt(inputEnd.value) - 1
       );
-      thumbStart.style.left = inputStart.value + '%';
-      range.style.left = inputStart.value + '%';
+      thumbStart.style.left = inputStart.value + "%";
+      range.style.left = inputStart.value + "%";
 
       setSliderValue((prevState) => ({
         ...prevState,
@@ -36,8 +36,8 @@ const Slider = ({ name, defaults }) => {
         parseInt(inputEnd.value),
         parseInt(inputStart.value) + 1
       );
-      thumbEnd.style.right = 100 - inputEnd.value + '%';
-      range.style.right = 100 - inputEnd.value + '%';
+      thumbEnd.style.right = 100 - inputEnd.value + "%";
+      range.style.right = 100 - inputEnd.value + "%";
 
       setSliderValue((prevState) => ({
         ...prevState,
@@ -61,22 +61,22 @@ const Slider = ({ name, defaults }) => {
     addEventListeners(inputStart, thumbStart);
     addEventListeners(inputEnd, thumbEnd);
 
-    inputStart.addEventListener('input', setStartValue);
-    inputEnd.addEventListener('input', setEndValue);
+    inputStart.addEventListener("input", setStartValue);
+    inputEnd.addEventListener("input", setEndValue);
   }, [defaults]);
 
   const addEventListeners = (input, thumb) => {
-    input.addEventListener('mouseover', () => {
-      thumb.classList.add('hover');
+    input.addEventListener("mouseover", () => {
+      thumb.classList.add("hover");
     });
-    input.addEventListener('mouseout', () => {
-      thumb.classList.remove('hover');
+    input.addEventListener("mouseout", () => {
+      thumb.classList.remove("hover");
     });
-    input.addEventListener('mousedown', () => {
-      thumb.classList.add('active');
+    input.addEventListener("mousedown", () => {
+      thumb.classList.add("active");
     });
-    input.addEventListener('mouseup', () => {
-      thumb.classList.remove('active');
+    input.addEventListener("mouseup", () => {
+      thumb.classList.remove("active");
     });
   };
 
@@ -96,32 +96,34 @@ const Slider = ({ name, defaults }) => {
   return (
     <div className="slider">
       <div>
-        <input 
-          type="checkbox" 
-          id={name} 
+        <label htmlFor={name}></label>
+        <input
+          type="checkbox"
+          id={name}
           onChange={toggleInputType}
           onClick={toggleHandler}
         />
 
-        <label
-          className="slider-checkbox-label"
-          htmlFor={name}>
+        <label className="slider-checkbox-label" htmlFor={name}>
           {name}
         </label>
 
         <p>
-          { toggle ? `${sliderValue.start}:00 to ${sliderValue.end}:00` : `never` }
-        </p> 
+          {toggle
+            ? `${sliderValue.start}:00 to ${sliderValue.end}:00`
+            : `never`}
+        </p>
       </div>
 
-      <div className={(!toggle) && 'hidden'}>
-        <input 
-          type="range" 
-          id={`${name}-start`} 
+      <div className={!toggle && "hidden"}>
+        <label htmlFor={`${name}-start`}></label>
+        <input
+          type="range"
+          id={`${name}-start`}
           defaultValue="0"
           onMouseUp={submit}
         />
-
+        <label htmlFor={`${name}-end`}></label>
         <input
           type="range"
           id={`${name}-end`}
@@ -130,10 +132,10 @@ const Slider = ({ name, defaults }) => {
         />
 
         <span className="slider-container">
-          <span className="slider-track"/>
-          <span className={`slider-range ${name}-range`}/>
-          <span className={`slider-thumb start ${name}-start`}/>
-          <span className={`slider-thumb end ${name}-end`}/>
+          <span className="slider-track" />
+          <span className={`slider-range ${name}-range`} />
+          <span className={`slider-thumb start ${name}-start`} />
+          <span className={`slider-thumb end ${name}-end`} />
         </span>
       </div>
     </div>

@@ -99,8 +99,8 @@ const EditProfile = ({logoutHandler}) => {
   const modalImage = (
     <>
       {img ? 
-        <img src={require(`../../shared/assets/images/${img}.png`).default}/> :
-        <img src={require(`../../shared/assets/images/default_profile_image.png`).default}/>
+        <img src={require(`../../shared/assets/images/${img}.png`).default} alt="profile picture" /> :
+        <img src={require(`../../shared/assets/images/default_profile_image.png`).default} alt="default profile image" />
       }
     </>
   );
