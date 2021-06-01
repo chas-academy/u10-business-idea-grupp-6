@@ -19,16 +19,16 @@ const InputDropdown = ({ placeholder, data, defaults, getState }) => {
   };
 
   return (
-    <label>
-      <Select
+    <>
+      {<Select
         defaultInputValue={defaults}
         placeholder={placeholder}
         options={options}
         styles={customStyles}
         className="input-dropdown"
         onChange={(e) => handleChange(e)}
-      />
-    </label>
+      />}
+    </>
   );
 };
 
@@ -71,6 +71,6 @@ const customStyles = {
     content: 'text',
   }),
   singleValue: (base) => ({
-    color: 'white',
+      color: 'white',
   }),
 };

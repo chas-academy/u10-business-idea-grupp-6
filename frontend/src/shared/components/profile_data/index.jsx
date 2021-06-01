@@ -11,8 +11,8 @@ const ProfileData = ({ data, preferences, offset }) => {
     <div className="profile-data">
 
       {data.img_path ?
-        <img src={require(`../../assets/images/${data.img_path}.png`).default} alt="profile image" /> :
-        <img src={require('../../assets/images/default_profile_image.png').default} alt="default profile image" />
+        <img src={require(`../../assets/images/${data.img_path}.png`).default} /> :
+        <img src={require('../../assets/images/default_profile_image.png').default} />
       }
 
       <h3>
@@ -67,3 +67,7 @@ const ProfileData = ({ data, preferences, offset }) => {
 }
 
 export default ProfileData;
+
+
+
+

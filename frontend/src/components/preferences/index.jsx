@@ -37,47 +37,37 @@ const Preferences = ({ logoutHandler }) => {
             Favorite games
           </h2>
 
-          <label>
-            <InputDropdownMulti
-              placeholder="Search games"
-              type="game"
-              data={options?.games}
-              defaults={defaults?.games}
-            />
-          </label>
+          <InputDropdownMulti
+            placeholder="Search games"
+            type="game"
+            data={options?.games}
+            defaults={defaults?.games}
+          />
 
           <h2>
             When do you play
           </h2>
 
-          <label>
-            <Slider
+          <Slider
+            name="weekday"
+            defaults={defaults?.times}
+          />
 
-              name="weekday"
-              defaults={defaults?.times}
-            />
-          </label>
-
-          <label>
-            <Slider
-
-              name="weekend"
-              defaults={defaults?.times}
-            />
-          </label>
+          <Slider
+            name="weekend"
+            defaults={defaults?.times}
+          />
 
           <h2>
             Appealing genres
           </h2>
 
-          <label>
-            <InputDropdownMulti
-              placeholder="Search genres"
-              type="genre"
-              data={options?.genres}
-              defaults={defaults?.genres}
-            />
-          </label>
+          <InputDropdownMulti
+            placeholder="Search genres"
+            type="genre"
+            data={options?.genres}
+            defaults={defaults?.genres}
+          />
 
           <h2>
             Type of player
@@ -96,14 +86,12 @@ const Preferences = ({ logoutHandler }) => {
             Preferred languages
           </h2>
 
-          <label>
-            <InputDropdownMulti
-              placeholder="Search languages"
-              type="lang"
-              data={options?.langs}
-              defaults={defaults?.langs}
-            />
-          </label>
+          <InputDropdownMulti
+            placeholder="Search languages"
+            type="lang"
+            data={options?.langs}
+            defaults={defaults?.langs}
+          />
 
           <h2>
             Optional
