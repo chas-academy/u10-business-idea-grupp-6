@@ -43,7 +43,7 @@ const InputDropdownMulti = ({ placeholder, type, data, defaults, id }) => {
   }
 
   return (
-    <>
+    <div className="dropdown-multi">
       <label htmlFor={id}>
         {placeholder}
       </label>
@@ -59,7 +59,7 @@ const InputDropdownMulti = ({ placeholder, type, data, defaults, id }) => {
         onChange={(e) => handleChange(e)}
         id={id}
       />
-    </>
+    </div>
   );
 };
 

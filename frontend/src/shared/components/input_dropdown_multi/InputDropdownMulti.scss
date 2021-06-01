@@ -1,5 +1,6 @@
 @import 'global.scss';
 
+.dropdown-multi {
   .input-dropdown-multi {
     width: 100%;
     max-width: 25rem;
@@ -10,3 +11,4 @@
   label {
     @include hide-label();
   }
+}
