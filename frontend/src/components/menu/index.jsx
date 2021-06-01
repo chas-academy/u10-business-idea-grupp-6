@@ -7,10 +7,10 @@ import { faCommentAlt, faUserCircle, faGamepad } from '@fortawesome/free-solid-s
 const Menu = () => {
 
   const urls = [
-    '/verify',
-    '/verified',
-    '/already-verified',
-  ];
+      '/verify',
+      '/verified',
+      '/already-verified',
+    ];
 
   return (
     <div className="menu">
@@ -21,7 +21,6 @@ const Menu = () => {
             to="/"
             className="icon icon-medium"
             activeClassName="active-link"
-            aria-label="nav-link"
           >
             <FontAwesomeIcon
               icon={faGamepad}
@@ -33,7 +32,6 @@ const Menu = () => {
             to="/chat"
             className="icon icon-medium"
             activeClassName="active-link"
-            aria-label="nav-link"
           >
             <FontAwesomeIcon
               icon={faCommentAlt}
@@ -45,7 +43,6 @@ const Menu = () => {
             to="/edit-profile"
             className="icon icon-medium"
             activeClassName="active-link"
-            aria-label="nav-link"
           >
             <FontAwesomeIcon
               icon={faUserCircle}
