@@ -12,7 +12,7 @@
 }
 
 .received {
-    margin: 30px 10px;
+    margin: 1.875rem .625rem;
     margin-right: auto;
     background-color: $color-dark-gray;
     width: 80%;
@@ -23,7 +23,7 @@
 }
 
 .sent {
-    margin: 30px 10px;
+    margin: 1.875rem .625rem;
     margin-left: auto;
     background-color: $color-light-gray;
     width: 80%;
@@ -41,7 +41,7 @@
     white-space: nowrap;
     
     .link{
-        color: white;
+        color: $color-white;
         text-decoration: none;
         font-weight: 300;
     }
