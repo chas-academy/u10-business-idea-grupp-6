@@ -6,15 +6,8 @@ import { faCommentAlt, faUserCircle, faGamepad } from '@fortawesome/free-solid-s
 
 const Menu = () => {
 
-  const urls = [
-      '/verify',
-      '/verified',
-      '/already-verified',
-    ];
-
   return (
     <div className="menu">
-      {!urls.includes(window.location.pathname) &&
         <div>
           <NavLink
             exact
@@ -49,7 +42,6 @@ const Menu = () => {
             />
           </NavLink>
         </div>
-      }
     </div>
   );
 };
