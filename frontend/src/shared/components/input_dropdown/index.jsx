@@ -19,7 +19,7 @@ const InputDropdown = ({ placeholder, data, defaults, getState, id }) => {
   };
 
   return (
-      <>
+    <>
       <label htmlFor={id}>
         {placeholder}
       </label>
@@ -27,12 +27,12 @@ const InputDropdown = ({ placeholder, data, defaults, getState, id }) => {
         defaultInputValue={defaults}
         placeholder={placeholder}
         options={options}
-        styles={customStyles}        className="input-dropdown"
-        className="input-dropdown"        onChange={(e) => handleChange(e)}
+        styles={customStyles}
+        className="input-dropdown"
+        onChange={(e) => handleChange(e)}
         id={id}
-      />
-      
-      </>
+      /> 
+    </>
   );
 };
 

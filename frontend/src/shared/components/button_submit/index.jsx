@@ -9,7 +9,9 @@ const ButtonSubmit = ({ name, id }) => {
       </label>
       <button
         type="submit"
-        id={id}>{name}
+        id={id}
+      >
+        {name}
       </button>
     </div>
   );

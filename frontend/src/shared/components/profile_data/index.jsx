@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './ProfileData.scss';
-import defaultProfileImg from '../../assets/images/default_profile_image.png';
 import Showcase from '../showcase';
 
 const ProfileData = ({ data, preferences, offset }) => {
@@ -17,7 +16,7 @@ const ProfileData = ({ data, preferences, offset }) => {
         /> :
         <img
           src={require('../../assets/images/default_profile_image.png').default}
-          alt="default profile image"
+          alt="default profile picture"
         />
       }
 
@@ -29,14 +28,18 @@ const ProfileData = ({ data, preferences, offset }) => {
       <span>
         {preferences?.player_types.length ?
           preferences.player_types.map((i) => <h4>{i.player_type}</h4>) :
-          <h4>All types</h4>
+          <h4>
+            All types
+          </h4>
         }
       </span>
 
       <span>
         {preferences?.langs.length ?
           preferences.langs.map((i) => <h5>{i.lang}</h5>) :
-          <h5>All languages</h5>
+          <h5>
+            All languages
+          </h5>
         }
       </span>
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Modal.scss";
 import ReactModal from "react-modal";
 
@@ -19,7 +19,7 @@ const Modal = ({
         type="button"
         className={openBtnClass}
         onClick={btnOpenEvent}
-        aia-lbabel={ariaLabelBtn}
+        aria-label={ariaLabelBtn}
       >
         {openBtnText}
       </button>

@@ -6,7 +6,7 @@ const MessageSuccess = ({ message }) => {
     <div className="message-success">
       {message}
     </div>
-  )
-}
+  );
+};
 
 export default MessageSuccess;

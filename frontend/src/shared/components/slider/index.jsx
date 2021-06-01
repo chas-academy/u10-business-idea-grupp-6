@@ -96,7 +96,6 @@ const Slider = ({ name, defaults }) => {
   return (
     <div className="slider">
       <div>
-        <label htmlFor={name}></label>
         <input
           type="checkbox"
           id={name}
