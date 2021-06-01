@@ -29,6 +29,7 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
           placeholder={placeholder}
           value={pwdValue}
           onChange={(e) => inputValue(e.target.value)}
+          maxLength="255"
         />
 
         <input
@@ -51,6 +52,7 @@ const InputPassword = ({ getState, getStateConf, placeholder, idPwd }) => {
             placeholder="Password Confirmation"
             value={pwdConfValue}
             onChange={(e) => inputConfValue(e.target.value)}
+            maxLength="255"
           />
         </div>
       }
