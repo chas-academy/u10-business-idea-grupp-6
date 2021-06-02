@@ -20,9 +20,7 @@ const InputDropdown = ({ placeholder, data, defaults, getState, id }) => {
 
   return (
     <div className="dropdown">
-      <label htmlFor={id}>
-        {placeholder}
-      </label>
+      <label htmlFor={id}>{placeholder}</label>
       <Select
         defaultInputValue={defaults}
         placeholder={placeholder}
@@ -31,7 +29,7 @@ const InputDropdown = ({ placeholder, data, defaults, getState, id }) => {
         className="input-dropdown"
         onChange={(e) => handleChange(e)}
         id={id}
-      /> 
+      />
     </div>
   );
 };
