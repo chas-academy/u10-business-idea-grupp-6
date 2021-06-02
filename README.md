@@ -38,7 +38,7 @@ School Assignment @ Chas Academy.
   * [Installation](#installation)
 - [Page and Route Descriptions](#page-and-route-descriptions)
 - [Sitemap](#sitemap)
-- [ER-diagram](#er-diagram)
+- [Database Structure](#database-structure)
 - [Design](#design)
   * [Wireframe](#wireframe)
   * [Prototype](#prototype)
@@ -134,22 +134,6 @@ async getData(apiEndpoint) {
 }
 ```
 #### FontAwesome in React
-When you want to add an icon to your component, you need to first add this line to the list of imports:
-```js
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-```
-To initiate the auto-fill-functionality of your IDE, add an empty import from the icon-pack you want to use. **(e.g. free-solid-svg-icons or free-regular-svg-icons)**
-```js
-import {} from '@fortawesome/free-solid-svg-icons';
-```
-Then, to begin adding icons, create an instance of the FontAwesomeIcon component like this:
-```jsx
-<FontAwesomeIcon 
-icon={faPlus}
-/>
-```
-<<<<<<< HEAD
-<hr></hr>
 
 #### FontAwesomeIcon
 When you want to add an icon to your component, you need to first add this line to the list of imports:
@@ -170,10 +154,6 @@ When you're typing inside the icon-prop, you'll get suggested hundreds of nice i
 If you press enter while you're selecting an icon you want to use, your IDE will likely add the icon to the empty imports-object at the top. Success!!
 
 ### React code standards:
-=======
-When you're typing inside the icon-prop, you'll get suggested hundreds of nice icons! 
-If you press enter while you're selecting an icon you want to use, your IDE will likely add the icon to the empty imports-object at the top. Success!!
->>>>>>> dev
 
 ### Code standards:
 
@@ -399,23 +379,36 @@ src/shared/assets
 ## Goals and Context
 
 ### Project Solves?
-
-### Our Vision?
+In today's society, gamers can have a hard time fitting in and finding other mates to share their experience with. It can be due to social distancing, peer pressure, or mental illness. Our team has the solution to this problem. We wanted to create an application, targeted at gamers, to allow people to match with others based on personal gaming preferences with the hope that they can find new friends with similar interests. With our app, we provide gamers with a safe, easy to use, and fun environment for gamers of all kinds to meet and talk.
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
 ### Installation
 
-1. Download
+Start by cloning the repository. 
+Frontend is the react-folder, backend is the Laravel folder.
 
-2. Install npm dependencies
+#### React
+
+1. Install npm dependencies in the frontend-root (frontend/)
 
 ```
 npm install
 ```
+2. To start the react-server, run
+```
+npm start
+```
+3. In the files ```src/shared/services/requests``` and ```src/shared/services/preferences```, edit the baseApiUrl variable to be equal to a suitable backend-endpoint (either deployed or local). 
 
-3. You're **done**! 🎉
+#### Laravel
+1. Setup a Laravel environment. This can be done with either <a href="https://laravel.com/docs/8.x/homestead">Homestead (good for Windows users)</a>, <a href="https://laravel.com/docs/8.x/sail">Sail (works with Docker)</a>, <a href="https://laravel.com/docs/8.x/valet">Valet (Mac-specific)</a> or any other VM.
+2. Install backend dependencies in the backend root (backend/) by running
+```
+composer install
+```
+3. Depending on which setup you chose in step 1, running the server differs. Check the docs.
 
 ## Page and Route Descriptions
 
@@ -424,16 +417,53 @@ npm install
 | **Landing page** <br /> <br /> /  | <br /> <br /> Start page |
 | **Login, signup etc.** <br /> <br /> /login <br /> /logout <br /> /register <br /> /verify <br /> /verified <br /> /already-verified <br /> /forgot-password | Self-explanatory routes and methods for authentication  |
 
-## Sitemap
-<!--Insert Sitemap-->
-## ER-diagram
-<!--Insert ER-diagram-->
+## Database-structure
+### Preferences
+The application is built on a group of N-N relations to users. A user can select multiple preferences, and those are categorised as:
+- games
+- genres
+- player-types
+- languages (langs)
+- miscellaneous (miscs) 
+
+These all have potential for use in filtering suggested users in the match-controller, **however only player-types, langs and miscs are currently used in filtering.**
+
+### Other user-saved data
+Furthermore, there is support for more superficial data. 
+Users have a 1-1 relation to profiles, which hold profile-data such as image, display name, body.
+They also have a 1-N relation to **times**.
+Each row in the times-table represents one interval, either weekend or weekday. It is supposed to show which times a user can play.
+
+#### Roles
+Currently we support N-N relationships between users and **roles**. This means a user can have a multitude of roles, and new roles can be created in the admin-panel. 
+
+### Matchups & Interactions
+Each time a user interacts (e.g. presses YUP or NOPE) with another user, a row in the **interactions** table is saved. This row describes which user (subject) interacted with another user (object), and whether the interaction was positive (1) or negative (0). Each time this occurs, a query is executed to determine if the other user liked you back. 
+If that is the case, a row in the **matchups** table is created. This table has a N-N relationship with **users**, so technically matchups support an indeterminate number of users. However, in the case of this application, we will be satisfied with 2.
+
+### Chat
+The chat is dependent on **Pusher** for websocket-functionality, and currently has a few tables to get it working. 
+- sessions
+- chats
+- messages
+
+A session can be created between two users if they have a matchup presently. Only one session per matchup can be created, and that logic is detailed in SessionController.
+
+Each time a message is sent from the frontend, rows in the chats and messages table are created to represent the message - from whom it was sent, if it is read, which session it is connected to, and more. Basically, 1 message per chat, one session has many chats/messages. 
+
+If you want to contribute to the chat, or to other **Broadcast**-based features, please read the <a href="https://laravel.com/docs/8.x/broadcasting">Broadcast-section of the 8.0 Laravel Documentation</a>, and make sure you are connected to our Pusher-account. If you're unsure, contact other contributors.
 
 ## Design
-### Wireframe
-<!--Insert wireframe Image-->
-### Prototype
-<!--Insert prototype Image-->
+![Mockup](/assets/u10-prototype.png?raw=true)
+
+## Contributors
+- *Hannes Qvarnström* [Github](https://github.com/hannesqvarnstrom)
+- *Enzo Bomark* [Github](https://github.com/EnzoBomark)
+- *Karin Stenwall* [Github](https://github.com/stenwall)
+- *Simon Lindelöf* [Github](https://github.com/reelode)
+- *Jamil Bariche* [Github](https://github.com/jamil-source)
+- *Oskar Boström* [Github](https://github.com/Oskar-Mikael)
+- *Mehrdad Amini* [Github](https://github.com/MDAX1)
 
 ## License
 
