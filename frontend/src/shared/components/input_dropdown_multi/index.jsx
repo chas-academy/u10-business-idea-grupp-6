@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import './InputDropdownMulti.scss';
 import AsyncSelect from 'react-select/async';
 import { DROPDOWNMULTI } from '../../services/preferences';
 
-const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
+const InputDropdownMulti = ({ placeholder, type, data, defaults, id }) => {
   const [selectedOption, setSelectedOption] = useState([]),
         [defaultValue, setDefaultValue] = useState([]),
         [options, setOptions] = useState();
 
-  useEffect(() => { 
+  useEffect(() => {
     const formatted = data?.map(i => ({
       value: i[type],
       label: i[type],
@@ -17,24 +17,25 @@ const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
     setOptions(formatted);
   }, [data, type]);
 
-  useEffect(() => { 
+  useEffect(() => {
     const formatted = defaults?.map(i => ({
       value: i[type],
       label: i[type],
       id: i.id
     }));
-    
+
     setDefaultValue(formatted);
     setSelectedOption(formatted);
   }, [defaults, type]);
 
   const promiseOptions = (inputValue) =>
-    new Promise(resolve => resolve(filterOptions(inputValue))
-  );
+    new Promise((resolve) => resolve(filterOptions(inputValue))
+    );
 
   const filterOptions = (inputValue) =>
-    options.filter(i => i.label.toLowerCase().includes(inputValue.toLowerCase())
-  );
+    options.filter((i) => i.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+
 
   const handleChange = (elem) => {
     DROPDOWNMULTI(elem, selectedOption, type);
@@ -43,7 +44,10 @@ const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
   }
 
   return (
-    <>
+    <div className="dropdown-multi">
+      <label htmlFor={id}>
+        {placeholder}
+        </label>
       <AsyncSelect
         cacheOptions
         value={defaultValue}
@@ -54,10 +58,11 @@ const InputDropdownMulti = ({placeholder, type, data, defaults}) => {
         closeMenuOnSelect={false}
         className="input-dropdown-multi"
         onChange={(e) => handleChange(e)}
+        id={id}
       />
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export default InputDropdownMulti;
 
@@ -76,8 +81,7 @@ const customStyles = {
       border: 'solid 1px white',
     },
   }),
-    indicatorSeparator: () => ({
-  }),
+  indicatorSeparator: () => ({}),
   option: () => ({
     color: 'black',
     margin: '10px',

@@ -5,7 +5,6 @@ import { ButtonLink } from '../../shared/components';
 const AlreadyVerified = () => {
   return (
     <div className="already-verified">
-
       <h1>
         Email is already verified
       </h1>

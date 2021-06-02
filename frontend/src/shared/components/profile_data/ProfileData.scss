@@ -1,4 +1,4 @@
-@import "global.scss";
+@import 'global.scss';
 
 .profile-data {
   width: 100%;
@@ -83,7 +83,7 @@
     padding-bottom: 1.75rem;
     flex-direction: column;
 
-    h5::first-letter{
+    h5::first-letter {
       text-transform: uppercase;
     }
   }

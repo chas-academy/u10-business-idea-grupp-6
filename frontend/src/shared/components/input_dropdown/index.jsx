@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './InputDropdown.scss';
 import Select from 'react-select';
 
-const InputDropdown = ({ placeholder, data, defaults, getState }) => {
+const InputDropdown = ({ placeholder, data, defaults, getState, id }) => {
   const [options, setOptions] = useState();
 
   useEffect(() => {
@@ -19,16 +19,20 @@ const InputDropdown = ({ placeholder, data, defaults, getState }) => {
   };
 
   return (
-    <>
-      {<Select
+    <div className="dropdown">
+      <label htmlFor={id}>
+        {placeholder}
+      </label>
+      <Select
         defaultInputValue={defaults}
         placeholder={placeholder}
         options={options}
         styles={customStyles}
         className="input-dropdown"
         onChange={(e) => handleChange(e)}
-      />}
-    </>
+        id={id}
+      />
+    </div>
   );
 };
 
@@ -71,6 +75,6 @@ const customStyles = {
     content: 'text',
   }),
   singleValue: (base) => ({
-      color: 'white',
+    color: 'white',
   }),
 };

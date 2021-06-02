@@ -3,8 +3,12 @@
 .button-submit {
   width: 100%;
   max-width: 25rem;
-  
+
   button {
     @include button();
+  }
+
+  label {
+    @include hide-label();
   }
 }

@@ -44,9 +44,6 @@ const EditProfile = ({logoutHandler}) => {
         setBody(data.data.body);
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-      });
   }, [userId]);
 
   const submit = (event) => {
@@ -86,6 +83,7 @@ const EditProfile = ({logoutHandler}) => {
               }}
             path={path}
             src={require(`../../shared/assets/images/${path}.png`).default}
+            alt="Your profile picture"
           />
         );
       })}
@@ -99,8 +97,14 @@ const EditProfile = ({logoutHandler}) => {
   const modalImage = (
     <>
       {img ? 
-        <img src={require(`../../shared/assets/images/${img}.png`).default}/> :
-        <img src={require(`../../shared/assets/images/default_profile_image.png`).default}/>
+        <img
+          src={require(`../../shared/assets/images/${img}.png`).default}
+          alt="profile picture"
+        /> :
+        <img
+          src={require(`../../shared/assets/images/default_profile_image.png`).default}
+          alt="default profile image"
+        />
       }
     </>
   );
@@ -143,6 +147,7 @@ const EditProfile = ({logoutHandler}) => {
               isModalOpen={openModal}
               btnOpenEvent={() => setOpenModal(true)}
               closeEvent={() => setOpenModal(false)}
+              ariaLabelBtn="Change your profile picture"
             />
 
             <div className="input-wrap">
@@ -152,6 +157,7 @@ const EditProfile = ({logoutHandler}) => {
                 currentValue={displayName}
                 name="display_name"
                 getState={getDisplayName}
+                id="input-display-name"
               />
 
               <InputDropdown
@@ -160,6 +166,7 @@ const EditProfile = ({logoutHandler}) => {
                 data={countries}
                 defaults={country}
                 getState={getCountry}
+                id="input-select-country"
               />
             </div>
 
@@ -168,9 +175,13 @@ const EditProfile = ({logoutHandler}) => {
               placeholder="Write something about yourself..."
               currentValue={body}
               getState={getBody}
+              id="input-body-text"
             />
 
-            <ButtonSubmit name="Update Profile" />
+            <ButtonSubmit
+              name="Update Profile"
+              id="update-profile-btn"
+            />
           </form>
         </>
       )}

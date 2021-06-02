@@ -1,4 +1,4 @@
-@import "global.scss";
+@import 'global.scss';
 
 .switch {
   width: 100%;
@@ -6,11 +6,11 @@
   margin-bottom: 1.25rem;
 
   input {
-   @include checkbox();
+    @include checkbox();
   }
 
   label {
-    margin-left: .625rem;
+    margin-left: 0.625rem;
     @include checkbox-label();
   }
 }

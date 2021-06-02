@@ -20,7 +20,6 @@ const YourProfile = ({ logoutHandler }) => {
       setOffset(data.data.data.timezone_offset);
       setLoading(false);
     }).catch(error => {
-      console.log(error);
       setLoading(false);
     })
 
