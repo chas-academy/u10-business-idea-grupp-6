@@ -134,21 +134,6 @@ async getData(apiEndpoint) {
 }
 ```
 #### FontAwesome in React
-When you want to add an icon to your component, you need to first add this line to the list of imports:
-```js
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-```
-To initiate the auto-fill-functionality of your IDE, add an empty import from the icon-pack you want to use. **(e.g. free-solid-svg-icons or free-regular-svg-icons)**
-```js
-import {} from '@fortawesome/free-solid-svg-icons';
-```
-Then, to begin adding icons, create an instance of the FontAwesomeIcon component like this:
-```jsx
-<FontAwesomeIcon 
-icon={faPlus}
-/>
-```
-<hr></hr>
 
 #### FontAwesomeIcon
 When you want to add an icon to your component, you need to first add this line to the list of imports:
