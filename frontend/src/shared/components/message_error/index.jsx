@@ -4,9 +4,7 @@ import './MessageError.scss';
 const MessageError = ({ message }) => {
   return (
     <div className="message" >
-      <div>
-        {message}
-      </div>
+      {message}
     </div>
   );
 };

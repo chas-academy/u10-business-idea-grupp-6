@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 
 const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
 
-  const [inputValue, setInputValue] = useState(""),
-    [messageLog, setMessageLog] = useState([]),
-    [newMessages, setNewMessages] = useState([]),
-    [chatDisabled, setChatDisabled] = useState(false);
+  const [inputValue, setInputValue] = useState(''),
+        [messageLog, setMessageLog] = useState([]),
+        [newMessages, setNewMessages] = useState([]),
+        [chatDisabled, setChatDisabled] = useState(false);
 
 
   useEffect(() => {
@@ -22,14 +22,16 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
         });
       }
 
-      echo.private(`Chat.${matchup.session.id}`).listen('PrivateChatEvent', (e) => {
-        const f = e;
-        if (f.chat.user_id !== parseInt(localStorage.getItem('user_id'))) {
-          f.chat.type = 1;
-        }
-        setNewMessages((previousState) => [...previousState, f]);
-        openChat();
-      })
+      echo
+        .private(`Chat.${matchup.session.id}`)
+        .listen('PrivateChatEvent', (e) => {
+          const f = e;
+          if (f.chat.user_id !== parseInt(localStorage.getItem('user_id'))) {
+            f.chat.type = 1;
+          }
+          setNewMessages((previousState) => [...previousState, f]);
+          openChat();
+        });
     }
   }, [active])
 
@@ -64,7 +66,8 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
   }
 
   const toggleChat = () => {
-    echo.leave(`Chat.${matchup.session.id}`)
+    echo
+      .leave(`Chat.${matchup.session.id}`)
     closeChat();
   }
 
@@ -101,7 +104,9 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
               </div>
             ))}
             {newMessages.map((i) => (
-              <p key={i.id} className={`${i.chat.type ? "received" : "sent"} ${i.error ? "error" : ""}`}>
+              <p
+                key={i.id}
+                className={`${i.chat.type ? "received" : "sent"} ${i.error ? "error" : ""}`}>
                 {i.content}
               </p>
             ))}
@@ -125,6 +130,6 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
       )}
     </>
   );
-}
+};
 
 export default ChatWindow

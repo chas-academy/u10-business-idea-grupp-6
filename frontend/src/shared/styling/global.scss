@@ -10,7 +10,7 @@
   font-family: $font-roboto;
 
   input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
   textarea:-webkit-autofill,
   textarea:-webkit-autofill:hover,
@@ -18,8 +18,8 @@
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-  -webkit-text-fill-color: $color-white;
-  -webkit-box-shadow: 0 0 0px 62.5rem $color-dark-gray inset;
+    -webkit-text-fill-color: $color-white;
+    -webkit-box-shadow: 0 0 0px 62.5rem $color-dark-gray inset;
   }
 }
 
@@ -74,7 +74,7 @@ nav {
   }
 
   &.large {
-    margin: 45vh auto; 
+    margin: 45vh auto;
     font-size: 3rem;
   }
 }
@@ -103,10 +103,11 @@ nav {
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: .4;
+  0%,
+  100% {
+    opacity: 0.4;
   }
   50% {
-    opacity: .1;
+    opacity: 0.1;
   }
 }

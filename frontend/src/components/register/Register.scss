@@ -1,7 +1,6 @@
-@import "global.scss";
+@import 'global.scss';
 
-.register{
-  
+.register {
   h1 {
     @include title();
   }
@@ -11,11 +10,7 @@
   }
 
   form {
-    @include flex(
-      space-between, 
-      center, 
-      column
-    )
+    @include flex(space-between, center, column);
   }
 
   p {
@@ -24,6 +19,5 @@
 
   .link {
     @include paragraph-link();
-
   }
 }
