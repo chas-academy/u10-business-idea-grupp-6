@@ -6,8 +6,10 @@
 
 *Your place to find new gamers to play with based on personal preferences and gamer style. Totally anonymous.*
 
-<img src="/frontend/src/shared/assets/images/logo.png" width="100">
-
+<p align="center">
+<img src="/frontend/src/shared/assets/images/logo.png" width="300" align="center">
+</p>
+ 
 <details><summary>TABLE OF CONTENTS</summary>
 
 ---
