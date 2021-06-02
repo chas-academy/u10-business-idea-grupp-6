@@ -2,8 +2,8 @@
 
 .message {
   @include message();
-  color: #D8000C;
-  background-color:  #FFBABA;
+  color: #d8000c;
+  background-color: #ffbaba;
   border: $border-error;
   margin-bottom: 1.875rem;
 }

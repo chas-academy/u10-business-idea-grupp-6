@@ -63,9 +63,8 @@
   border: none;
   border-radius: $rounded-sm;
   cursor: pointer;
-  box-shadow: 0px .625rem .8125rem -0.4375rem #0000005d;
+  box-shadow: 0px 0.625rem 0.8125rem -0.4375rem #0000005d;
 }
-
 
 //INPUT
 @mixin input-field() {
@@ -156,15 +155,15 @@
 //TEXT
 @mixin large-title() {
   text-align: center;
-    font-size: $font-xl;
-    margin-bottom: .9375rem;
-    margin-top: 12.5rem;
+  font-size: $font-xl;
+  margin-bottom: 0.9375rem;
+  margin-top: 12.5rem;
 }
 
 @mixin title() {
   text-align: center;
   font-size: $font-lg;
-  margin-bottom: .9375rem;
+  margin-bottom: 0.9375rem;
   margin-top: 3.125rem;
 }
 
@@ -183,6 +182,6 @@
 @mixin paragraph-link {
   color: $color-white;
   opacity: 0.5;
-  margin-left: .3125rem;
+  margin-left: 0.3125rem;
   text-decoration: none;
 }
