@@ -22,13 +22,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\Role::create(['role' => 'basic']);
         \App\Models\Role::create(['role' => 'admin']);
         \App\Models\User::create([  
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
+            'name' => 'administrator',
+            'email' => 'u10.grupp.6@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        ])->roles()->attach(2);
+        ])->roles()->attach([1, 2]);
 
-        \App\Models\User::factory(25)->create();
+//         \App\Models\User::factory(25)->create();
 
 
         //---------------------------------------TESTS
@@ -56,31 +56,34 @@ class DatabaseSeeder extends Seeder
             Misc::create(['misc' => 'Non-aggressive language']);
             Misc::create(['misc' => 'Flexible times']);
 
-            foreach(User::all() as $user)
-            {
-                for($i = 0; $i <= rand(0, 2); $i++)
-                {
-                    $num = rand(1,4);
+//         this is by choice, not a mistake. enable in dev branch for testing.
+//             foreach(User::all() as $user)
+//             {
+//                 for($i = 0; $i <= rand(0, 2); $i++)
+//                 {
+//                     $num = rand(1,4);
 
-                    if($user->genres()->where('genre_id', $num)->get()->count() === 0)
-                        $user->genres()->attach($num);
+//                     if($user->genres()->where('genre_id', $num)->get()->count() === 0)
+//                         $user->genres()->attach($num);
 
-                    $gameNum = rand(1, 7);
+//                     $gameNum = rand(1, 7);
                     
-                    if($user->games()->where('game_id', $gameNum)->get()->count() === 0)
-                        $user->games()->attach($num);
-                }
+//                     if($user->games()->where('game_id', $gameNum)->get()->count() === 0)
+//                         $user->games()->attach($num);
+//                 }
                 
-                for($i = 0; $i <= rand(0, 2); $i++)
-                {
-                    $user->player_types()->attach($i+1);
-                }
+//                 for($i = 0; $i <= rand(0, 2); $i++)
+//                 {
+//                     $user->player_types()->attach($i+1);
+//                 }
 
-                for($i = 0; $i <= rand(0, 2); $i++)
-                {
-                    $user->langs()->attach($i+1);
-                }
+//                 for($i = 0; $i <= rand(0, 2); $i++)
+//                 {
+//                     $user->langs()->attach($i+1);
+//                 }
 
+        
+//         this is not needed for testing i think
                 // for($i = 0; $i <= rand(0, 1); $i++)
                 // {
                 //     $selected = rand(0,1);
@@ -104,8 +107,8 @@ class DatabaseSeeder extends Seeder
                 //     }
                 // }
 
-                $num = rand(0, 2);
-                if($num) $user->miscs()->attach($num);
+//                 $num = rand(0, 2);
+//                 if($num) $user->miscs()->attach($num);
             }
     }
 }
