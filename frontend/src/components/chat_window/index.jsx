@@ -96,7 +96,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
           <div id="chatbox" className="chatbox">
             <div className="shadow"/>
             {messageLog.map((i) => (
-              <div className={parseInt(i.type) ? "received" : "sent"}>
+              <div className={i.type ? "received" : "sent"}>
                 <div className="chatbox-bubble">
                   <p key={i.id}>{i.content}</p>
                   <p className="chatbox-sent">{i.send_at}</p>
