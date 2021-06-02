@@ -402,15 +402,29 @@ src/shared/assets
 
 ### Installation
 
-1. Download
+Start by cloning the repository. 
+Frontend is the react-folder, backend is the Laravel folder.
 
-2. Install npm dependencies
+#### React
+
+1. Install npm dependencies in the frontend-root (frontend/)
 
 ```
 npm install
 ```
+2. To start the react-server, run
+```
+npm start
+```
+3. In the files ```src/shared/services/requests``` and ```src/shared/services/preferences```, edit the baseApiUrl variable to be equal to a suitable backend-endpoint (either deployed or local). 
 
-3. You're **done**! 🎉
+#### Laravel
+1. Setup a Laravel environment. This can be done with either <a href="https://laravel.com/docs/8.x/homestead">Homestead (good for Windows users)</a>, <a href="https://laravel.com/docs/8.x/sail">Sail (works with Docker)</a>, <a href="https://laravel.com/docs/8.x/valet">Valet (Mac-specific)</a> or any other VM.
+2. Install backend dependencies in the backend root (backend/) by running
+```
+composer install
+```
+3. Depending on which setup you chose in step 1, running the server differs. Check the docs.
 
 ## Page and Route Descriptions
 
