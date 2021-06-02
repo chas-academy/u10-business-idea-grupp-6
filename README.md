@@ -148,7 +148,6 @@ Then, to begin adding icons, create an instance of the FontAwesomeIcon component
 icon={faPlus}
 />
 ```
-<<<<<<< HEAD
 <hr></hr>
 
 #### FontAwesomeIcon
@@ -170,10 +169,6 @@ When you're typing inside the icon-prop, you'll get suggested hundreds of nice i
 If you press enter while you're selecting an icon you want to use, your IDE will likely add the icon to the empty imports-object at the top. Success!!
 
 ### React code standards:
-=======
-When you're typing inside the icon-prop, you'll get suggested hundreds of nice icons! 
-If you press enter while you're selecting an icon you want to use, your IDE will likely add the icon to the empty imports-object at the top. Success!!
->>>>>>> dev
 
 ### Code standards:
 
@@ -430,10 +425,7 @@ npm install
 <!--Insert ER-diagram-->
 
 ## Design
-### Wireframe
-<!--Insert wireframe Image-->
-### Prototype
-<!--Insert prototype Image-->
+![Mockup](/assets/u10-prototype.png?raw=true)
 
 ## License
 
