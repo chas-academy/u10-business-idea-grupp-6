@@ -45,11 +45,7 @@ export const DROPDOWNMULTI = (elem, diff, type) => {
       model_id: id
     }
 
-    POST('prefs', data).then(data => {
-      console.log(data);
-    }, error => {
-      console.log(error);
-    });
+    POST('prefs', data)
   }
 }
 
@@ -62,11 +58,7 @@ export const DROPDOWN = (elem, type) => {
       model_id: id
     }
 
-    POST('prefs', data).then(data => {
-      console.log(data);
-    }, error => {
-      console.log(error);
-    });
+    POST('prefs', data)
   }
 }
 
@@ -76,11 +68,7 @@ export const SWITCH = (type, id) => {
     model_id: id
   }
 
-  POST('prefs', data).then(data => {
-    console.log(data);
-  },  error => {
-    console.log(error);
-  });
+  POST('prefs', data)
 }
 
 export const TIME = (from, to, interval, available) => {
@@ -91,9 +79,5 @@ export const TIME = (from, to, interval, available) => {
     available: available
   }
 
-  PATCH('times', data).then(data => {
-    console.log(data);
-  },  error => {
-    console.log(error);
-  });
+  PATCH('times', data)
 }

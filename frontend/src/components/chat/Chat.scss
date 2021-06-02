@@ -1,20 +1,20 @@
-@import 'global.scss';
+@import "global.scss";
 
 .chat-title {
   margin: 40px 0;
 }
 
 .chat-box {
-  text-align: center;
-  background-color: $color-dark-gray;
-  height: 10%;
-  border-radius: 20px;
-  padding: 20px;
-  margin: 30px 0;
-  cursor: pointer;
-  transition: all 100ms;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  padding: 1rem;
+  background-color: $color-dark-gray;
+  height: 5rem;
+  border-radius: $rounded-md;
+  margin: 1.875rem 0;
+  cursor: pointer;
+  transition: all 0.1s;
 
   &:hover {
     background-color: $color-light-gray;
@@ -36,45 +36,41 @@
     background-color: $color-white;
     padding: 0.5rem;
     font-size: $font-sm;
-    text-align: left;
     color: $color-black;
     position: absolute;
-    right: -50px;
-    top: 45px;
-    width: 80px;
+    right: -3rem;
+    top: 3;
+    width: 5rem;
+    border-radius: $rounded-sm;
 
     &.shown {
       display: block;
     }
 
     .un-match {
-      color: rgb(182, 66, 21);
+      color: rgb(182, 26, 21);
     }
   }
 }
 
 .chat-options {
-  padding: 0.5em;
-  border-radius: 5px;
+  padding: 0.5rem;
   font-size: $font-lg;
   background-color: none;
 
   &:hover {
-    transition: all 100ms;
+    transition: all 0.1s;
     background-color: $color-dark-gray;
   }
 }
 
 .chat-displayname {
-  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   word-wrap: break-word;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
   font-size: $font-lg;
+  font-weight: 300;
 }
 
 .button-match {

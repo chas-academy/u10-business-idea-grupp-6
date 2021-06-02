@@ -4,8 +4,6 @@ import Showcase from '../showcase';
 
 const ProfileData = ({ data, preferences, offset }) => {
 
-  console.log(preferences);
-
   return (
     <div className="profile-data">
 

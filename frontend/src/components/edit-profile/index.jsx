@@ -44,9 +44,6 @@ const EditProfile = ({logoutHandler}) => {
         setBody(data.data.body);
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-      });
   }, [userId]);
 
   const submit = (event) => {

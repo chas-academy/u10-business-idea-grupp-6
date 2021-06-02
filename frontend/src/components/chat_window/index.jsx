@@ -21,7 +21,6 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
           setMessageLog((previousState) => [...data.data.data]);
         });
       }
-      console.log('subscribing to session chat ' + matchup.session.id)
 
       echo
         .private(`Chat.${matchup.session.id}`)
@@ -43,25 +42,27 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
   const submit = (e) => {
     e.preventDefault();
     setChatDisabled(true)
-    POST('send/' + matchup.session.id, {
-      content: inputValue,
-      to_user: matchup.user[0].id
-    })
-    .then(() => {
-      openChat()
+    if(!inputValue){
       setChatDisabled(false)
-      setInputValue("");
-    })
-    .catch(e => {
-      setNewMessages((previousState) => [...previousState, {
-        chat: {
-          type: 1
-        },
-        error: true,
-        content: `SYSTEM: Something went wrong, or you have been unmatched! If you refresh your browser and the chat is gone, the other user doesn't wanna talk to you anymore... :(`
-      }])
-      openChat();
-    })
+    } else {
+      POST('send/' + matchup.session.id, {
+        content: inputValue,
+        to_user: matchup.user[0].id
+      }).then(() => {
+        openChat()
+        setChatDisabled(false)
+        setInputValue("");
+      }).catch(e => {
+        setNewMessages((previousState) => [...previousState, {
+          chat: {
+            type: 1
+          },
+          error: true,
+          content: `SYSTEM: Something went wrong, or you have been unmatched! If you refresh your browser and the chat is gone, the other user doesn't wanna talk to you anymore... :(`
+        }])
+        openChat();
+      }) 
+    }
   }
 
   const toggleChat = () => {
@@ -82,6 +83,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
             />
             <h3 className="chatwindow-title">
               <Link
+                className="link"
                 to={{
                   pathname: '/profile',
                   data: { user: matchup.user[0] }
@@ -92,6 +94,7 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
             </h3>
           </div>
           <div id="chatbox" className="chatbox">
+            <div className="shadow"/>
             {messageLog.map((i) => (
               <div className={parseInt(i.type) ? "received" : "sent"}>
                 <div className="chatbox-bubble">
