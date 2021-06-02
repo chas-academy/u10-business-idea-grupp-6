@@ -2,11 +2,15 @@
 [![Forks][forks-shield]][forks-url]
 [![Issues][issues-shield]][issues-url]
 
-# U10 Business Idea - Gaming Tinder (team 6)
+# **Gamer**Hub
 
-School Assignment @ Chas Academy.
+*Your place to find new gamers to play with based on personal preferences and gamer style. Totally anonymous.*
 
-## Table of Contents
+<img src="/frontend/src/shared/assets/images/logo.png" width="100">
+
+<details><summary>TABLE OF CONTENTS</summary>
+
+---
 
 - [About the Project](#about-the-project)
   * [Built with](#built-with)
@@ -43,6 +47,10 @@ School Assignment @ Chas Academy.
   * [Wireframe](#wireframe)
   * [Prototype](#prototype)
 - [License](#license)
+
+</details>
+
+---
 
 ## About the Project
 
@@ -467,7 +475,7 @@ If you want to contribute to the chat, or to other **Broadcast**-based features,
 
 ## License
 
-Distributed under the MIT License. 
+Distributed under the GNU General Public License v3.0. 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: https://img.shields.io/github/contributors/chas-academy/u10-business-idea-grupp-6.svg?style=for-the-badge
