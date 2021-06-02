@@ -148,7 +148,6 @@ Then, to begin adding icons, create an instance of the FontAwesomeIcon component
 icon={faPlus}
 />
 ```
-<<<<<<< HEAD
 <hr></hr>
 
 #### FontAwesomeIcon
@@ -170,10 +169,6 @@ When you're typing inside the icon-prop, you'll get suggested hundreds of nice i
 If you press enter while you're selecting an icon you want to use, your IDE will likely add the icon to the empty imports-object at the top. Success!!
 
 ### React code standards:
-=======
-When you're typing inside the icon-prop, you'll get suggested hundreds of nice icons! 
-If you press enter while you're selecting an icon you want to use, your IDE will likely add the icon to the empty imports-object at the top. Success!!
->>>>>>> dev
 
 ### Code standards:
 
@@ -461,8 +456,7 @@ Each time a message is sent from the frontend, rows in the chats and messages ta
 If you want to contribute to the chat, or to other **Broadcast**-based features, please read the <a href="https://laravel.com/docs/8.x/broadcasting">Broadcast-section of the 8.0 Laravel Documentation</a>, and make sure you are connected to our Pusher-account. If you're unsure, contact other contributors.
 
 ## Design
-### Wireframe
-https://cdn.discordapp.com/attachments/801798863823699968/842005950726275092/sketch10.png
+![Mockup](/assets/u10-prototype.png?raw=true)
 
 ## License
 
