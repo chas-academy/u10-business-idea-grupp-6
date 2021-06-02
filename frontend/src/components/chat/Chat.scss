@@ -1,80 +1,79 @@
-@import 'global.scss';
+@import "global.scss";
 
 .chat-title {
-    margin: 40px 0;
+  margin: 40px 0;
 }
 
 .chat-box {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: $color-dark-gray;
-    height: 5rem;
-    border-radius: $rounded-md;
-    margin: 1.875rem 0;
-    cursor: pointer;
-    transition: all .1s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: $color-dark-gray;
+  height: 5rem;
+  border-radius: $rounded-md;
+  margin: 1.875rem 0;
+  cursor: pointer;
+  transition: all 0.1s;
 
-    &:hover {
-        background-color: $color-light-gray;
-    }
+  &:hover {
+    background-color: $color-light-gray;
+  }
 }
 
 .profile-img {
-    object-fit: scale-down;
-    border-radius: $rounded-sm;
-    width: 3.125rem;
-    height: 3.125rem;
+  object-fit: scale-down;
+  border-radius: $rounded-sm;
+  width: 3.125rem;
+  height: 3.125rem;
 }
 
-.chat-options-wrapper{
-    position: relative;
+.chat-options-wrapper {
+  position: relative;
 
-    .chat-options-modal {
-        display: none;
-        background-color: $color-white;
-        padding: 0.5rem;
-        font-size: $font-sm;
-        color: $color-black;
-        position: absolute;
-        right: -3rem;
-        top: 3;
-        width: 5rem;
-        border-radius: $rounded-sm;
+  .chat-options-modal {
+    display: none;
+    background-color: $color-white;
+    padding: 0.5rem;
+    font-size: $font-sm;
+    color: $color-black;
+    position: absolute;
+    right: -3rem;
+    top: 3;
+    width: 5rem;
+    border-radius: $rounded-sm;
 
-        &.shown {
-            display: block;
-        }
-
-        .un-match {
-            color: rgb(182, 26, 21);
-        }
+    &.shown {
+      display: block;
     }
+
+    .un-match {
+      color: rgb(182, 26, 21);
+    }
+  }
 }
 .chat-options {
-    padding: 0.5rem;
-    font-size: $font-lg;
-    background-color: none;
-    
-    &:hover {
-        transition: all .1s;
-        background-color: $color-dark-gray;
-    }
+  padding: 0.5rem;
+  font-size: $font-lg;
+  background-color: none;
+
+  &:hover {
+    transition: all 0.1s;
+    background-color: $color-dark-gray;
+  }
 }
 
 .chat-displayname {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: break-word;
-    font-size: $font-lg;
-    font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+  font-size: $font-lg;
+  font-weight: 300;
 }
 
 .button-match {
-    @include button();
-    margin: 0 auto;
-    margin-top: 1.25rem;
+  @include button();
+  margin: 0 auto;
+  margin-top: 1.25rem;
 }
-  
