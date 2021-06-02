@@ -13,7 +13,7 @@ const Login = ({getToken, getAuthLoading}) => {
   const getEmail = (e) => setEmail(e),
         getPwd = (e) => setPwd(e);
 
-    const submit = (event) => {
+  const submit = (event) => {
     event.preventDefault();
     const data = {
       email: email,
@@ -30,7 +30,7 @@ const Login = ({getToken, getAuthLoading}) => {
         localStorage.setItem('timezone_offset', data.data.user.timezone_offset);
       
         getToken(localStorage.getItem('token'));
-    })
+      })
       .catch(error => {
         getAuthLoading(false);
         setError(error.response.data.message);
@@ -59,16 +59,19 @@ const Login = ({getToken, getAuthLoading}) => {
           placeholder="Email"
           name="email"
           getState={getEmail}
+          id="login-email"
         />
 
         <InputPassword
           getState={getPwd}
           placeholder="Password"
           idPwd="pwd"
+          id="login-password"
         />
 
         <ButtonSubmit 
-          name="Login" 
+          name="Login"
+          id="login-btn"
         />
 
       </form>

@@ -1,8 +1,16 @@
 @import 'global.scss';
 
-.input-dropdown-multi {
-    width: 100%;
+.dropdown-multi {
+  width: 100%;
+  margin-bottom: 1.875rem;
+
+  .input-dropdown-multi {
     max-width: 25rem;
-    margin-bottom: 1.875rem;
     z-index: 5;
+    margin: 0 auto;
+  }
+
+  label {
+    @include hide-label();
+  }
 }

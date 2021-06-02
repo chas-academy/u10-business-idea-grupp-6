@@ -10,15 +10,17 @@ const Modal = ({
   modalOverlayClass,
   isModalOpen,
   closeEvent,
-  btnOpenEvent
+  btnOpenEvent,
+  ariaLabelBtn
 }) => {
-
   return (
     <>
       <button
         type="button"
         className={openBtnClass}
-        onClick={btnOpenEvent}>
+        onClick={btnOpenEvent}
+        aria-label={ariaLabelBtn}
+      >
         {openBtnText}
       </button>
 

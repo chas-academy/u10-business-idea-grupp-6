@@ -38,7 +38,7 @@ School Assignment @ Chas Academy.
   * [Installation](#installation)
 - [Page and Route Descriptions](#page-and-route-descriptions)
 - [Sitemap](#sitemap)
-- [ER-diagram](#er-diagram)
+- [Database Structure](#database-structure)
 - [Design](#design)
   * [Wireframe](#wireframe)
   * [Prototype](#prototype)
@@ -134,21 +134,6 @@ async getData(apiEndpoint) {
 }
 ```
 #### FontAwesome in React
-When you want to add an icon to your component, you need to first add this line to the list of imports:
-```js
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-```
-To initiate the auto-fill-functionality of your IDE, add an empty import from the icon-pack you want to use. **(e.g. free-solid-svg-icons or free-regular-svg-icons)**
-```js
-import {} from '@fortawesome/free-solid-svg-icons';
-```
-Then, to begin adding icons, create an instance of the FontAwesomeIcon component like this:
-```jsx
-<FontAwesomeIcon 
-icon={faPlus}
-/>
-```
-<hr></hr>
 
 #### FontAwesomeIcon
 When you want to add an icon to your component, you need to first add this line to the list of imports:
@@ -394,23 +379,36 @@ src/shared/assets
 ## Goals and Context
 
 ### Project Solves?
-
-### Our Vision?
+In today's society, gamers can have a hard time fitting in and finding other mates to share their experience with. It can be due to social distancing, peer pressure, or mental illness. Our team has the solution to this problem. We wanted to create an application, targeted at gamers, to allow people to match with others based on personal gaming preferences with the hope that they can find new friends with similar interests. With our app, we provide gamers with a safe, easy to use, and fun environment for gamers of all kinds to meet and talk.
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
 ### Installation
 
-1. Download
+Start by cloning the repository. 
+Frontend is the react-folder, backend is the Laravel folder.
 
-2. Install npm dependencies
+#### React
+
+1. Install npm dependencies in the frontend-root (frontend/)
 
 ```
 npm install
 ```
+2. To start the react-server, run
+```
+npm start
+```
+3. In the files ```src/shared/services/requests``` and ```src/shared/services/preferences```, edit the baseApiUrl variable to be equal to a suitable backend-endpoint (either deployed or local). 
 
-3. You're **done**! 🎉
+#### Laravel
+1. Setup a Laravel environment. This can be done with either <a href="https://laravel.com/docs/8.x/homestead">Homestead (good for Windows users)</a>, <a href="https://laravel.com/docs/8.x/sail">Sail (works with Docker)</a>, <a href="https://laravel.com/docs/8.x/valet">Valet (Mac-specific)</a> or any other VM.
+2. Install backend dependencies in the backend root (backend/) by running
+```
+composer install
+```
+3. Depending on which setup you chose in step 1, running the server differs. Check the docs.
 
 ## Page and Route Descriptions
 
@@ -457,6 +455,15 @@ If you want to contribute to the chat, or to other **Broadcast**-based features,
 
 ## Design
 ![Mockup](/assets/u10-prototype.png?raw=true)
+
+## Contributors
+- *Hannes Qvarnström* [Github](https://github.com/hannesqvarnstrom)
+- *Enzo Bomark* [Github](https://github.com/EnzoBomark)
+- *Karin Stenwall* [Github](https://github.com/stenwall)
+- *Simon Lindelöf* [Github](https://github.com/reelode)
+- *Jamil Bariche* [Github](https://github.com/jamil-source)
+- *Oskar Boström* [Github](https://github.com/Oskar-Mikael)
+- *Mehrdad Amini* [Github](https://github.com/MDAX1)
 
 ## License
 

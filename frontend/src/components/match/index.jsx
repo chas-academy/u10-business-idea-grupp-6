@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { GET, POST } from '../../shared/services/requests'
+import React, { useEffect, useState } from 'react';
+import { GET, POST } from '../../shared/services/requests';
 import './Match.scss';
 import ProfileData from '../../shared/components/profile_data';
 import { LoadingProfileCard } from '../../shared/loading_components';
@@ -14,9 +14,8 @@ const Match = () => {
 
     GET('match')
       .then(data => {
-
         setLoading(false);
-        setMatches(data.data)
+        setMatches(data.data);
       });
   }, []);
 
@@ -27,7 +26,7 @@ const Match = () => {
   }, [matches]);
 
   const like = () => {
-    setLoading(true)
+    setLoading(true);
 
     POST('interactions', {
       object_user_id: current.id,
@@ -38,17 +37,18 @@ const Match = () => {
       const [, ...rest] = matches;
 
       setMatches(rest);
-    })
+    });
   };
 
   const dislike = () => {
-    setLoading(true)
+    setLoading(true);
 
     POST('interactions', {
       object_user_id: current.id,
       likes: 0
-    }).then(data => {
-      setLoading(false)
+    })
+    .then(data => {
+      setLoading(false);
 
       const [, ...rest] = matches;
 
@@ -100,7 +100,7 @@ const Match = () => {
       }
 
     </div>
-  )
-}
+  );
+};
 
 export default Match;

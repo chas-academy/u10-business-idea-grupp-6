@@ -1,12 +1,11 @@
-@import "global.scss";
+@import 'global.scss';
 
-.profile{
-    margin: 0 auto;
-    margin-top: 3.125rem;
-    background-color: $color-dark-gray;
-    border-radius: $rounded-md;
-    max-width: 50rem;
-    padding-bottom: 6.25rem;
-    position: relative;
+.profile {
+  margin: 0 auto;
+  margin-top: 3.125rem;
+  background-color: $color-dark-gray;
+  border-radius: $rounded-md;
+  max-width: 50rem;
+  padding-bottom: 6.25rem;
+  position: relative;
 }
-

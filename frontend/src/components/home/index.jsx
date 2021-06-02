@@ -1,33 +1,38 @@
 import React from 'react';
 import './Home.scss';
 import { ButtonLink } from '../../shared/components/';
+import logo from '../../shared/assets/images/logo.png';
 
 const Home = () => {
   return (
-    <div className="home">
-      
-      <h1>
-        Title
-      </h1>
+    <div className='home'>
+      <div className='title-container'>
+        <h1>
+          Gamer
+          <span>
+            Hub
+          </span>
+        </h1>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur 
-        adipiscing elit. Nam vestibulum neque
-        augue, ac gravida est finibus eget. Sed 
-        maximus, nisi at rutrum vehicula, turpis 
-      </p>
+        <p>
+          Your place to find new gamers to play with based on personal
+          preferences and gamer style. Totally anonymous.
+        </p>
 
-      <div>
-        <ButtonLink 
-          classValue="button-link small light" 
-          name="Register" 
-          link="/register"
+        <img className='logo' src={logo} alt='GamerHub logo' />
+      </div>
+
+      <div className='buttons-container'>
+        <ButtonLink
+          classValue='button-link small light'
+          name='Register'
+          link='/register'
         />
 
         <ButtonLink
-          classValue="button-link small dark"
-          name="Login"
-          link="/login"
+          classValue='button-link small dark'
+          name='Login'
+          link='/login'
         />
       </div>
     </div>
