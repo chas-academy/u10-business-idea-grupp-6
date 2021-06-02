@@ -40,23 +40,27 @@ const ChatWindow = ({ active, matchup, closeChat, openChat }) => {
   const submit = (e) => {
     e.preventDefault();
     setChatDisabled(true)
-    POST('send/' + matchup.session.id, {
-      content: inputValue,
-      to_user: matchup.user[0].id
-    }).then(() => {
-      openChat()
+    if(!inputValue){
       setChatDisabled(false)
-      setInputValue("");
-    }).catch(e => {
-      setNewMessages((previousState) => [...previousState, {
-        chat: {
-          type: 1
-        },
-        error: true,
-        content: `SYSTEM: Something went wrong, or you have been unmatched! If you refresh your browser and the chat is gone, the other user doesn't wanna talk to you anymore... :(`
-      }])
-      openChat();
-    })
+    } else {
+      POST('send/' + matchup.session.id, {
+        content: inputValue,
+        to_user: matchup.user[0].id
+      }).then(() => {
+        openChat()
+        setChatDisabled(false)
+        setInputValue("");
+      }).catch(e => {
+        setNewMessages((previousState) => [...previousState, {
+          chat: {
+            type: 1
+          },
+          error: true,
+          content: `SYSTEM: Something went wrong, or you have been unmatched! If you refresh your browser and the chat is gone, the other user doesn't wanna talk to you anymore... :(`
+        }])
+        openChat();
+      }) 
+    }
   }
 
   const toggleChat = () => {
