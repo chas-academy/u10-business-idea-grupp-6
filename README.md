@@ -394,8 +394,7 @@ src/shared/assets
 ## Goals and Context
 
 ### Project Solves?
-
-### Our Vision?
+In today's society, gamers can have a hard time fitting in and finding other mates to share their experience with. It can be due to social distancing, peer pressure, or mental illness. Our team has the solution to this problem. We wanted to create an application, targeted at gamers, to allow people to match with others based on personal gaming preferences with the hope that they can find new friends with similar interests. With our app, we provide gamers with a safe, easy to use, and fun environment for gamers of all kinds to meet and talk.
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -471,6 +470,15 @@ If you want to contribute to the chat, or to other **Broadcast**-based features,
 
 ## Design
 ![Mockup](/assets/u10-prototype.png?raw=true)
+
+## Contributors
+- *Hannes Qvarnström* [Github](https://github.com/hannesqvarnstrom)
+- *Enzo Bomark* [Github](https://github.com/EnzoBomark)
+- *Karin Stenwall* [Github](https://github.com/stenwall)
+- *Simon Lindelöf* [Github](https://github.com/reelode)
+- *Jamil Bariche* [Github](https://github.com/jamil-source)
+- *Oskar Boström* [Github](https://github.com/Oskar-Mikael)
+- *Mehrdad Amini* [Github](https://github.com/MDAX1)
 
 ## License
 
