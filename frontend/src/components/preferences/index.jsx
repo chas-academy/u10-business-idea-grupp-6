@@ -15,7 +15,6 @@ const Preferences = ({ logoutHandler }) => {
 
   return (
     <div className="preferences">
-
       <ProfileMenu
         navLink1="/your-profile"
         navLink1Name="Your profile"
