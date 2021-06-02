@@ -38,7 +38,7 @@ School Assignment @ Chas Academy.
   * [Installation](#installation)
 - [Page and Route Descriptions](#page-and-route-descriptions)
 - [Sitemap](#sitemap)
-- [ER-diagram](#er-diagram)
+- [Database Structure](#database-structure)
 - [Design](#design)
   * [Wireframe](#wireframe)
   * [Prototype](#prototype)
