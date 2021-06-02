@@ -1,21 +1,39 @@
 @import 'global.scss';
 
 .home {
+
+  .title-container {
+    @include flex(
+      space-between, 
+      center, 
+      column
+    );
+  }
+
   h1 {
     @include large-title();
+    span {
+      font-weight: 300;
+    }
   }
 
   p {
     @include paragraph();
     opacity: 0.5;
-    margin-bottom: 12.5rem;
+    margin-bottom: 2rem;
   }
 
-  div {
+  .buttons-container {
     margin: auto;
     display: flex;
     justify-content: space-between;
     width: 100%;
     max-width: 25rem;
+  }
+
+  img.logo {
+    height: 8rem;
+    margin-bottom: 7rem;
+    image-rendering: auto;
   }
 }
