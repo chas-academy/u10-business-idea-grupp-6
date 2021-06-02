@@ -3,7 +3,7 @@ import './LoadingButton.scss';
 
 const LoadingButton = () => {
   return (
-    <div className="loading-button" />
+    <div className="loading-button"/>
   );
 };
 

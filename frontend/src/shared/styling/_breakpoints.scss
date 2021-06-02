@@ -26,12 +26,12 @@ $media-expressions: (
   "handheld": "handheld",
   "retina2x": (
     "(-webkit-min-device-pixel-ratio: 2)",
-    "(min-resolution: 192dpi)",
+    "(min-resolution: 192dpi)"
   ),
   "retina3x": (
     "(-webkit-min-device-pixel-ratio: 3)",
-    "(min-resolution: 350dpi)",
-  ),
+    "(min-resolution: 350dpi)"
+  )
 ) !default;
 
 ///

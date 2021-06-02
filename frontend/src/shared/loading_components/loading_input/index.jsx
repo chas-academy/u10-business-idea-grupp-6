@@ -3,7 +3,7 @@ import './LoadingInput.scss';
 
 const LoadingInput = () => {
   return (
-    <div className="loading-input" />
+    <div className="loading-input"/>
   );
 };
 

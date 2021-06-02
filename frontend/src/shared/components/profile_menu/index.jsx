@@ -17,9 +17,9 @@ const ProfileMenu = ({
   const [openModal, setOpenModal] = useState(false);
 
   const openMenuBtn = (
-    <FontAwesomeIcon 
-    icon={faEllipsisH} 
-    className="icon icon-medium" 
+    <FontAwesomeIcon
+      icon={faEllipsisH}
+      className="icon icon-medium"
     />
   );
 

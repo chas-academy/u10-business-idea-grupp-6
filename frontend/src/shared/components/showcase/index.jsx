@@ -46,9 +46,9 @@ const Showcase = ({ data, type }) => {
 
       <div>
         {(items?.length) ?
-            items.map((i, idx) => <span key={idx}>{i[type]}</span>) :
-            <span>{`No ${type}s added`}</span>
-          }
+          items.map((i, idx) => <span key={idx}>{i[type]}</span>) :
+          <span>{`No ${type}s added`}</span>
+        }
       </div>
 
       <FontAwesomeIcon

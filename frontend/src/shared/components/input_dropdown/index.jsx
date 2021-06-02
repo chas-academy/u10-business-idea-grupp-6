@@ -20,7 +20,9 @@ const InputDropdown = ({ placeholder, data, defaults, getState, id }) => {
 
   return (
     <div className="dropdown">
-      <label htmlFor={id}>{placeholder}</label>
+      <label htmlFor={id}>
+        {placeholder}
+      </label>
       <Select
         defaultInputValue={defaults}
         placeholder={placeholder}

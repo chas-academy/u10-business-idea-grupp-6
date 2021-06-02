@@ -8,11 +8,11 @@ const Slider = ({ name, defaults }) => {
 
   useEffect(() => {
     const inputStart = document.getElementById(`${name}-start`),
-      inputEnd = document.getElementById(`${name}-end`),
-      thumbStart = document.querySelector(`.${name}-start`),
-      thumbEnd = document.querySelector(`.${name}-end`),
-      range = document.querySelector(`.${name}-range`),
-      filter = defaults?.find((elem) => elem.interval === name);
+          inputEnd = document.getElementById(`${name}-end`),
+          thumbStart = document.querySelector(`.${name}-start`),
+          thumbEnd = document.querySelector(`.${name}-end`),
+          range = document.querySelector(`.${name}-range`),
+          filter = defaults?.find((elem) => elem.interval === name);
 
     inputStart.value = Math.round((filter?.from / 24) * 100);
     inputEnd.value = Math.round((filter?.to / 24) * 100);
@@ -96,7 +96,6 @@ const Slider = ({ name, defaults }) => {
   return (
     <div className="slider">
       <div>
-        <label htmlFor={name}></label>
         <input
           type="checkbox"
           id={name}
@@ -104,7 +103,7 @@ const Slider = ({ name, defaults }) => {
           onClick={toggleHandler}
         />
 
-<label
+        <label
           className="slider-checkbox-label"
           htmlFor={name}
         >
