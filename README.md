@@ -22,7 +22,9 @@
     + [Exports](#exports)
     + [Data fetching in separate file](#data-fetching-in-separate-file)
     + [FontAwesome in React](#fontawesome-in-react)
-  * [Code standards:](#code-standards-)
+    + [FontAwesomeIcon](#fontawesomeicon)
+  * [React code standards](#react-code-standards)
+  * [Code standards](#code-standards)
     + [State hooks](#state-hooks)
     + [Arrow functions](#arrow-functions)
     + [Keep it DRY](#keep-it-dry)
@@ -38,16 +40,20 @@
   * [Assets](#assets)
     + [File structure](#file-structure-2)
 - [Goals and Context](#goals-and-context)
-  * [Project Solves?](#project-solves-)
-  * [Our Vision?](#our-vision-)
+  * [Project Solves](#project-solves)
 - [Getting Started](#getting-started)
   * [Installation](#installation)
+    + [React](#react-1)
+    + [Laravel](#laravel-1)
 - [Page and Route Descriptions](#page-and-route-descriptions)
-- [Sitemap](#sitemap)
-- [Database Structure](#database-structure)
+- [Database-structure](#database-structure)
+  * [Preferences](#preferences)
+  * [Other user-saved data](#other-user-saved-data)
+    + [Roles](#roles)
+  * [Matchups and Interactions](#matchups-and-interactions)
+  * [Chat](#chat)
 - [Design](#design)
-  * [Wireframe](#wireframe)
-  * [Prototype](#prototype)
+- [Contributors](#contributors)
 - [License](#license)
 
 </details>
@@ -163,9 +169,9 @@ icon={faPlus}
 When you're typing inside the icon-prop, you'll get suggested hundreds of nice icons! 
 If you press enter while you're selecting an icon you want to use, your IDE will likely add the icon to the empty imports-object at the top. Success!!
 
-### React code standards:
+### React code standards
 
-### Code standards:
+### Code standards
 
 * Only build ***functional components*** , do not use class based. 
 * Variables and functions should always be declared using camelCase! 
@@ -388,7 +394,7 @@ src/shared/assets
 
 ## Goals and Context
 
-### Project Solves?
+### Project Solves
 In today's society, gamers can have a hard time fitting in and finding other mates to share their experience with. It can be due to social distancing, peer pressure, or mental illness. Our team has the solution to this problem. We wanted to create an application, targeted at gamers, to allow people to match with others based on personal gaming preferences with the hope that they can find new friends with similar interests. With our app, we provide gamers with a safe, easy to use, and fun environment for gamers of all kinds to meet and talk.
 
 <!-- GETTING STARTED -->
@@ -447,7 +453,7 @@ Each row in the times-table represents one interval, either weekend or weekday. 
 #### Roles
 Currently we support N-N relationships between users and **roles**. This means a user can have a multitude of roles, and new roles can be created in the admin-panel. 
 
-### Matchups & Interactions
+### Matchups and Interactions
 Each time a user interacts (e.g. presses YUP or NOPE) with another user, a row in the **interactions** table is saved. This row describes which user (subject) interacted with another user (object), and whether the interaction was positive (1) or negative (0). Each time this occurs, a query is executed to determine if the other user liked you back. 
 If that is the case, a row in the **matchups** table is created. This table has a N-N relationship with **users**, so technically matchups support an indeterminate number of users. However, in the case of this application, we will be satisfied with 2.
 
@@ -457,7 +463,7 @@ The chat is dependent on **Pusher** for websocket-functionality, and currently h
 - chats
 - messages
 
-A session can be created between two users if they have a matchup presently. Only one session per matchup can be created, and that logic is detailed in SessionController.
+A session can be created between two users if they have a matchup presently. Only one session per matchup can be created, and that logic is detailed in SessionController.§§§§§                                                                                                                     
 
 Each time a message is sent from the frontend, rows in the chats and messages table are created to represent the message - from whom it was sent, if it is read, which session it is connected to, and more. Basically, 1 message per chat, one session has many chats/messages. 
 
