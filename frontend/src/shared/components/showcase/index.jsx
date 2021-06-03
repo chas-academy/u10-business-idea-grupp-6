@@ -5,39 +5,35 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 const Showcase = ({ data, type }) => {
   const [items, setItems] = useState(),
-        [position, setPosition] = useState({
-      min: 0,
-      max: 4
-    });
+        [min, setMin] = useState(0),
+        [max, setMax] = useState(4);
 
   useEffect(() => {
     const filtered = data.filter(
-      (i, index) => index >= position.min && index < position.max
+      (i, index) => index >= min && index < max
     );
 
     setItems(filtered);
-  }, [position]);
+  }, [min, max]);
 
   const left = () => {
-    if (position.min > 0)
-      setPosition((prevState) => ({
-        min: prevState.min--,
-        max: prevState.max--
-      }));
+    if (min > 0) {
+      setMin(min - 1);
+      setMax(max - 1);
+    }
   }
 
   const right = () => {
-    if (position.max < data.length)
-      setPosition((prevState) => ({
-        min: prevState.min++,
-        max: prevState.max++
-      }));
+    if (max < data.length) {
+      setMin(min + 1);
+      setMax(max + 1);
+    }
   }
 
   return (
     <div className="showcase">
       <FontAwesomeIcon
-        className={`${!(position.min > 0) && 'disabled'} arrow-icon`}
+        className={`${!(min > 0) && 'disabled'} arrow-icon`}
         onClick={left}
         icon={faChevronLeft}
       />
@@ -50,7 +46,7 @@ const Showcase = ({ data, type }) => {
       </div>
 
       <FontAwesomeIcon
-        className={`${!(position.max < data.length) && 'disabled'} arrow-icon`}
+        className={`${!(max < data.length) && 'disabled'} arrow-icon`}
         onClick={right}
         icon={faChevronRight}
       />
