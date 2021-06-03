@@ -16,7 +16,7 @@ const Showcase = ({ data, type }) => {
     );
 
     setItems(filtered);
-  }, [position, data]);
+  }, [position]);
 
   const left = () => {
     if (position.min > 0)

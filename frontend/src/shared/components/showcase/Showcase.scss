@@ -8,6 +8,7 @@
   .arrow-icon {
     margin: auto 4%;
     cursor: pointer;
+    user-select: none;
 
     &.disabled {
       opacity: 0.3;
