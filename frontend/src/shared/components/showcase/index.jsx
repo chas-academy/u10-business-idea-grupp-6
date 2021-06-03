@@ -21,18 +21,16 @@ const Showcase = ({ data, type }) => {
   const left = () => {
     if (position.min > 0)
       setPosition((prevState) => ({
-        ...prevState,
-        min: position.min--,
-        max: position.max--
+        min: prevState.min--,
+        max: prevState.max--
       }));
   }
 
   const right = () => {
     if (position.max < data.length)
       setPosition((prevState) => ({
-        ...prevState,
-        min: position.min++,
-        max: position.max++
+        min: prevState.min++,
+        max: prevState.max++
       }));
   }
 
